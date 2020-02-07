@@ -1,0 +1,56 @@
+* Aero2017nx is similar to that used in Stadtler et al 2017, but based
+* upon that paper we now skip some reactions.
+* Stadtler, S.; Simpson, D.; Schröder, S.; Taraborrelli, D.; Bott, A. &
+* Schultz, M. Ozone impacts of gas--aerosol uptake in global
+* chemistry-transport models Atmos. Chem. Physics, 2018, 18, 3147-3171
+* https://www.atmos-chem-phys.net/18/3147/2018/
+
+* 
+* The earlier (than EmCHem16x) EmChems had N2O5 hydrolysis on PMfine. Not included here
+* JUNE 2018: Now, put here:
+
+HydrolysisN2O5() :       N2O5 = 2 HNO3 ;
+
+* And GenChem only accepts one colon. We use KDIM for the first
+
+UptakeRate(cNO3,gam=0.001,S=S_m2m3(AERO%PM,KDIM))   : NO3 = HNO3 ;
+
+UptakeRate(cHNO3,gam=0.1,S=S_m2m3(AERO%DU_C,KDIM))  : HNO3 = NO3_c ;
+
+UptakeRate(cHNO3,gam=0.01,S=S_m2m3(AERO%SS_C,KDIM)) : HNO3 = NO3_c ;
+
+UptakeRate(cHO2,gam=0.2,S=S_m2m3(AERO%PM,KDIM))     : HO2 = 0.5 H2O2 ;
+
+* <---------- Old EMEP Aerosol reactions (crude....)------------------------->
+*A16 removed, but keep for consistency with rv4.17
+*
+ 1.0e-5                            : H2O2 =       ;
+ 1.0e-5                            : CH3OOH =    ;
+*
+
+* Notes:
+* Dust,  Dentener had gamma=0.1, but maybe only allow some Ca reaction, ca. 
+* 5% of surface?  Hodzic tested several values, finding 0.1 best, but with
+* assumed Ca+Mg of 17%, which means (I think) effective gamma = 0.017
+
+* HNO3 (NaCl + HNO3 -> NO3_c). Only consider coarse mode as we don't have NaNO3_f)
+* Sea-salt, Use instead Dentener's high gamma * Haldis used 0.2
+
+* HO2 : gamma = 0.2, Jacob. Both fine and coarse?
+*
+* ---------------------------------------------------------- *
+* R18= REMOVED FEB 2018, since reactions were either neglible (O3) or
+* dangerously unertain (NO2)
+*
+*R18 _func_UptakeRate(cO3,gam=1.0e-6,S=S_m2m3(AERO%DU_C,:))           O3 = HO2 ;
+
+*R18 FAKE to get GammaN2O5 as rate coefficient
+*R18 gamN2O5(:)   DUMMY =  ;
+
+*R18 _func_UptakeRate(cO3,gam=1.0e-6,S=S_m2m3(AERO%DU_F,:))           O3 = HO2 ;
+
+*R18 _func_UptakeRate(cNO2,gam=0.0001,S=S_m2m3(AERO%PM,:))  NO2 = 0.5 HNO3  + 0.5 HONO ;
+
+* O3:  Take rate loosely based upon Nicolas et al., 2009 who suggested
+*       between 0.2 - 3.2e-6. Tiny effect, see Stadtler et al 2017
+*R18 _func_UptakeRate(0.5*DpgNw(AERO%DU_C,:),cO3,gam=0.2,S=S_m2m3(AERO%DU_C,:))           HO2 = 0.5 H2O2 ;

@@ -1,0 +1,38 @@
+*"---------------------------------------------------------------------"
+* VBS species for inert emissions
+* Assumes PM emissions, with OC, EC, remPPM, for fine and coarse
+* FFIRE now moved to separate FFireInert directory
+*"---------------------------------------------------------------------"
+* REMEMBER to NOT include the PM10 and PMfine groups for the fine (PM2.5) Organic components! Taken care of by the help species PART_OM_F!
+* Aiken et al., EST2008, gives values about 1.56-1.72 for P-BBOA and similar for ambient BBOA
+*
+*"Spec,adv,formula,MW,DRY,WET,Groups,!Comments"
+* OM25_p will include 
+OM25_bgnd,3,C,24,xx,xx,OM25;nonvolPCM;nvabsOM,"!Assumed background; fine <2.5um"
+OM25_p,3,xx,1,xx,xx,OC;PM10;Extinc:OC;PMfine,"!Assumed background; fine <2.5um"
+
+"**************************************************"
+*"*Spec,adv,formula,MW,DRY,WET,Groups,!Comments"
+*"=========================================================================="
+*
+TERPPeroxy,1,terpperoxy,xx,xx,xx,RO2,"!From terpene degradation"
+ASOC_ng1e2,2,C,12.,ALD,ROOH,Cstar:0.1;DeltaH:30.0;OM25;PCM;ASOA,"! semi-volatile OC from AVOC "
+ASOC_ug1,2,C,12.,ALD,ROOH,Cstar:1.0;DeltaH:30.0;OM25;PCM;ASOA,"! semi-volatile OC from AVOC "
+ASOC_ug10,2,C,12.,ALD,ROOH,Cstar:10.0;DeltaH:30.0;OM25;PCM;ASOA,"! semi-volatile OC from AVOC "
+ASOC_ug1e2,2,C,12.,ALD,ROOH,Cstar:1.0e2;DeltaH:30.0;OM25;PCM;ASOA,"! semi-volatile OC from AVOC "
+ASOC_ug1e3,2,C,12.,ALD,ROOH,Cstar:1.0e3;DeltaH:30.0;OM25;PCM;ASOA,"! semi-volatile OC from AVOC "
+non_C_ASOA_ng1e2,2,otheratoms,1.,ALD,ROOH,Cstar:0.1;DeltaH:30.0;OM25;PCM;ASOA,"! non-C part of Sec OM"
+non_C_ASOA_ug1,2,otheratoms,1.,ALD,ROOH,Cstar:1.0;DeltaH:30.0;OM25;PCM;ASOA,"! non-C part of Sec OM"
+non_C_ASOA_ug10,2,otheratoms,1.,ALD,ROOH,Cstar:10.0;DeltaH:30.0;OM25;PCM;ASOA,"! non-C part of Sec OM"
+non_C_ASOA_ug1e2,2,otheratoms,1.,ALD,ROOH,Cstar:1.0e2;DeltaH:30.0;OM25;PCM;ASOA,"! non-C part of Sec OM"
+non_C_ASOA_ug1e3,2,otheratoms,1.,ALD,ROOH,Cstar:1.0e3;DeltaH:30.0;OM25;PCM;ASOA,"! non-C part of Sec OM"
+BSOC_ng1e2,2,C,12.,ALD,ROOH,Cstar:0.1;DeltaH:30.0;OM25;PCM;BSOA,"! semi-volatile OC from BVOC "
+BSOC_ug1,2,C,12.,ALD,ROOH,Cstar:1.0;DeltaH:30.0;OM25;PCM;BSOA,"! semi-volatile OC from BVOC "
+BSOC_ug10,2,C,12.,ALD,ROOH,Cstar:10.0;DeltaH:30.0;OM25;PCM;BSOA,"! semi-volatile OC from BVOC "
+BSOC_ug1e2,2,C,12.,ALD,ROOH,Cstar:1.0e2;DeltaH:30.0;OM25;PCM;BSOA,"! semi-volatile OC from BVOC "
+BSOC_ug1e3,2,C,12.,ALD,ROOH,Cstar:1.0e3;DeltaH:30.0;OM25;PCM;BSOA,"! semi-volatile OC from BVOC "
+non_C_BSOA_ng1e2,2,otheratoms,1.,ALD,ROOH,Cstar:0.1;DeltaH:30.0;OM25;PCM;BSOA,"! non-C part of SOM"
+non_C_BSOA_ug1,2,otheratoms,1.,ALD,ROOH,Cstar:1.0;DeltaH:30.0;OM25;PCM;BSOA,"! non-C part of SOM"
+non_C_BSOA_ug10,2,otheratoms,1.,ALD,ROOH,Cstar:10.0;DeltaH:30.0;OM25;PCM;BSOA,"! non-C part of SOM"
+non_C_BSOA_ug1e2,2,otheratoms,1.,ALD,ROOH,Cstar:1.0e2;DeltaH:30.0;OM25;PCM;BSOA,"! non-C part of SOM"
+non_C_BSOA_ug1e3,2,otheratoms,1.,ALD,ROOH,Cstar:1.0e3;DeltaH:30.0;OM25;PCM;BSOA,"! non-C part of SOM"

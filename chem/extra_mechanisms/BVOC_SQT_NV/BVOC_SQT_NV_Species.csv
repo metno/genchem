@@ -1,0 +1,5 @@
+* Sequiterpene, can be used by EmChems, CRI, etc.
+*
+Spec,adv,forumula,MW,DRY,WET,Extinc,Cstar,DeltaH,Empty,Groups,!Comments
+SQT_SOA_NV,1,C14H22O7,302.,PMf,PMf,nonvolPCM;nvabsOM;OM25;PCM;BSOA,,! OA/OC=1.8, loosely based low-O3 conc expts by Chen et al., 2012"
+

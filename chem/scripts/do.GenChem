@@ -1,0 +1,200 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*- 
+# (see pep-0263  for coding string)
+
+""" do.GenChem  - runs GenChem.py for one or more chemical mechanisms
+                   and puts all CM_ files in current and build directories
+
+    See Usage
+"""
+import argparse
+from collections import OrderedDict as odict # Not needed for Python >= 3.7
+import glob
+import os
+from   os.path import relpath
+import shutil
+import subprocess
+import sys
+import time  # for time.sleep() debugging
+
+Usage="""
+
+ Usage: do.GenChem   -b BaseMechanism {-e  [ExtraMechanism1] {ExtraMechanism2} ...}
+
+   e.g. do.GenChem   -b EmChem19a
+
+   e.g. do.GenChem   -b EmChem19a -e SeaSalt Dust
+
+ [Type do.GenChem -h for some debug options]
+
+ where 
+
+  BaseMechanism  is the base chemical mechanism (e.g. MCM_v3.3 or
+  EmChem19a).
+
+  ExtraMechanisms (optional) are any additional chemical mechanisms
+  (typically for BVOC chemistry or aerosols).
+
+  These should be available in the directory chem/base_mechanisms and
+  chem/extra_mechanisms
+
+"""
+parser = argparse.ArgumentParser(usage=Usage)
+
+parser.add_argument('-b','--base_mechanism', nargs=1,
+  required=True, help='Base chemical mechanisms (one  needed), e.g. EmChem19')
+parser.add_argument('-e','--extra_mechanisms', nargs='+', help='Chemical '
+    'mechanisms (zero or more needed), e.g. VBS_acp2012 SeaSalt', default=[])
+parser.add_argument('-s','--slow', type=int,
+    help='sleep time to slow down outputs, e.g. 3 or 10', default=0)
+parser.add_argument('-d','--dbg', help='debug mode. Waits for user input at '
+    'key steps', action='store_true')
+args = parser.parse_args()
+print(args)
+#print parser.print_usage() parser.print_help() parser.parse_args()
+
+
+# Figure out where chem dir is. We know GenChem is in xx/yy/chem/scripts
+gcdir   = os.path.dirname(os.path.realpath(__file__)) # tells where this script is
+genchem = gcdir + '/GenChem.py'
+chemdir = gcdir.replace('/scripts','')  # e.g. GenChem-xx/chem 
+
+# Quick check that all directories exist:
+for cm in args.base_mechanism:
+  assert os.path.isdir(chemdir+'/base_mechanisms/'+cm),'Missing directory%s'% cm
+for cm in args.extra_mechanisms:
+  assert os.path.isdir(chemdir+'/extra_mechanisms/'+cm),'Missing directory%s'% cm
+
+mydir      = os.path.abspath('.')         # Current directory
+buildDir   = mydir + '/build'             # temporary build directory
+splitdir   = mydir + '/emissplit_run'     # output dir for emissplits
+print('emissplit outputs: ',   relpath(splitdir)) 
+print('emissplit full: ',   splitdir) 
+
+for dir in [  chemdir, splitdir, buildDir ]:
+  os.makedirs( dir, exist_ok=True )
+
+print('mydir:',         mydir)      # e.g. GenChemSys/box/test_nov15
+print('Chem:       ',   relpath(chemdir)) # ../../chem
+print('buildDir:   ',   relpath(buildDir))   # build
+
+# We empty the build and inputs directories to avoid confusions ! CAREFUL !!!!!
+for dir in [ buildDir, splitdir ]:
+  for f in glob.glob(dir + '/*'):
+    print('Removing FILE', relpath(f))
+    os.remove(f)
+
+schemes='' # Variable to list all mechanisms
+
+genfiles= {                    #type/      suffix   
+                               #prefix
+  'Species'   :               [ 'GenIn_' ,   'csv'  ],
+  'Reactions' :               [ 'GenIn_' ,   'txt'  ],
+  'Shorthands':               [ 'GenIn_' ,   'txt'  ],
+  'BiomassBurning_FINNv1p5':  [ 'CMX_'   ,   'txt'  ],
+  'BiomassBurning_GFASv1':    [ 'CMX_'   ,   'txt'  ],
+  'BoundaryConditions':       [ 'CMX_'   ,   'txt'  ],
+}
+
+# For shorthands we have a 'generic master' file to start with:
+shGeneric='%s/GenChem_Shorthands.txt' %  gcdir
+
+outf =dict() # output files
+outfh=dict() # file handles
+
+for key in genfiles:
+
+  f=genfiles[key]
+
+  outf[key] = buildDir + '/%s%s.%s'%( f[0], key, f[1])
+  outfh[key] = open( outf[key], 'w')  
+  
+  if 'Shorthands' in key: # Copy generic master file first
+    with open(shGeneric,'r') as fi: outfh['Shorthands'].write(fi.read() )
+
+  first_cm=True
+  subdir='/base_mechanisms'
+
+  ##################### CM LOOP ##############################################
+  # Requested chemical mechanisms from input arguments, e.g. EmChemXX 
+  # We insist that species files are present, but they can be empty
+  # The first CM is used to provide shorthands and emissplits
+
+  for cm in args.base_mechanism + args.extra_mechanisms:
+
+    print('STARTING ', cm, key ) 
+    if 'Species' in key:  schemes+=" "+cm
+    time.sleep(args.slow)
+
+    if not first_cm:
+      subdir='/extra_mechanisms'
+
+    idir = chemdir + subdir + '/' +  cm
+
+    ifile =  '%s/%s_%s.%s'    % ( idir, cm, key, f[1] )
+
+    if first_cm and 'GenIn' in f[0]:
+      assert os.path.isfile(ifile), '\n ERROR!!! Missing:' + ifile 
+
+    if 'CMX' in f[0]: # Might have generic "emep" prefix or CM specific
+      idir = idir + '/emep_extras'
+      ifile =  '%s/%s_%s.%s'    % ( idir, cm, key, f[1] )
+      gfile =  '%s/%s_%s.%s'    % ( idir, 'emep', key, f[1] )
+      if os.path.isfile(ifile): # CM specific
+        print('CMX specific ', cm, key, ifile )
+      elif os.path.isfile(gfile):
+        ifile= gfile
+        print('CMX generic ', cm, key )
+      else:
+        ifile='CMX NOTSET'
+
+    if args.dbg: 
+      print('CHECK ', relpath(ifile), os.path.isfile(ifile) )
+      ans=input('Press enter key to continue stepwise... or f to finish: ')
+      if ans=='f': args.dbg=False
+
+    if os.path.isfile(ifile): # Start or append to outputfile
+       if first_cm:  print('START FILE  ', relpath(ifile))
+       else:         print('APPEND FILE ', relpath(ifile))
+       with open( ifile,'r') as fi: outfh[key].write( fi.read() )
+
+    first_cm=False
+  if outfh.get(key):
+    outfh[key].close()
+if args.dbg: input('Press enter key to continue...')
+
+
+# EMISSPLITS: Start with defaults (sox, nox, etc), but allow overwrite
+# (e.g. for voc or pm25)
+
+idir= '%s/inputs/emissplit_defaults' % chemdir # input, defaults
+#for e in glob.glob(idir+'/emissplit.defaults.*'):
+for e in glob.glob(idir+'/emissplit_defaults_*csv'):
+  print('DSPLIT ', e )
+  shutil.copy( e, splitdir )
+
+subdir='/base_mechanisms'
+for cm in args.base_mechanism + args.extra_mechanisms:
+  idir = chemdir + subdir + '/' +  cm
+  #CSV for ifile in glob.glob('%s/%s_emissplit.defaults.*' % ( idir, cm) ):
+  for ifile in glob.glob('%s/%s_emissplit_defaults_*csv' % ( idir, cm) ):
+    ofile=os.path.basename(ifile).replace('%s_'%cm,'')
+    ofile= '%s/%s' % ( splitdir, ofile )
+    shutil.copy(ifile,ofile)
+  subdir='/extra_mechanisms'
+
+##X##################### CM LOOP #############################################
+print("### Run GenChem: ", schemes)
+
+os.chdir(buildDir)
+
+subprocess.run([genchem, schemes], stdout=subprocess.PIPE)
+
+# Finally, copy build/CM files to mydir (we don't need femis or Log for box)
+for f in glob.glob(buildDir + '/CM_*')+ glob.glob(buildDir + '/CMX_*'):
+  shutil.copy( f,mydir )
+  print('COPIED ', f )
+  time.sleep(args.slow)
+
+print("\n### Finished!\n\n Contents of %s are now " % buildDir)
+subprocess.run('ls -lt',shell=True)

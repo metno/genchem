@@ -1,0 +1,20 @@
+\babel@toc {english}{}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}% 
+\contentsline {section}{\numberline {1.1}Code structure}{1}{section.1.1}% 
+\contentsline {section}{\numberline {1.2}Requirements}{1}{section.1.2}% 
+\contentsline {chapter}{\numberline {2}Quick start}{3}{chapter.2}% 
+\contentsline {section}{\numberline {2.1}Step 1: initial setup}{3}{section.2.1}% 
+\contentsline {section}{\numberline {2.2}Step 2: do.testChems}{3}{section.2.2}% 
+\contentsline {section}{\numberline {2.3}2a. Plotting?}{4}{section.2.3}% 
+\contentsline {section}{\numberline {2.4}2b. Box-config}{5}{section.2.4}% 
+\contentsline {subsection}{\numberline {2.4.1}Time-related variables}{5}{subsection.2.4.1}% 
+\contentsline {subsection}{\numberline {2.4.2}Geographical location}{5}{subsection.2.4.2}% 
+\contentsline {subsection}{\numberline {2.4.3}Emissions}{5}{subsection.2.4.3}% 
+\contentsline {section}{\numberline {2.5}Step 3: emep\_setup.py}{5}{section.2.5}% 
+\contentsline {chapter}{\numberline {3}Formatting of GenChem files}{7}{chapter.3}% 
+\contentsline {section}{\numberline {3.1}Reactions files}{7}{section.3.1}% 
+\contentsline {section}{\numberline {3.2}Species files}{7}{section.3.2}% 
+\contentsline {section}{\numberline {3.3}Shorthands file}{8}{section.3.3}% 
+\contentsline {chapter}{\numberline {4}Contributors}{9}{chapter.4}% 
+\contentsline {chapter}{\numberline {5}References}{11}{chapter.5}% 
+\contentsline {chapter}{Bibliography}{13}{chapter*.3}% 

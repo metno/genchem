@@ -1,0 +1,18 @@
+# NOx splits for EmChemXX, with SHIPNOX. Will overwrite non-SHIPNOx version
+# 
+# Key-word, MASS_ASSUMED= 0 by default, 
+# change when emissions have artificial mass, e.g. 46 for NOx as NO2
+: MASS_ASSUMED 46
+ 99, 99,      NO,     NO2, shipNOX,#HEADERS
+#DATA
+  0,  1,   95.00,    5.00,     0.0
+  0,  2,   95.00,    5.00,     0.0
+  0,  3,   95.00,    5.00,     0.0
+  0,  4,   95.00,    5.00,     0.0
+  0,  5,   95.00,    5.00,     0.0
+  0,  6,   95.00,    5.00,     0.0
+  0,  7,   95.00,    5.00,     0.0
+  0,  8,   95.00,    5.00,     0.0
+  0,  9,   95.00,    5.00,     0.0
+  0, 10,   95.00,    5.00,     0.0
+  0, 11,   95.00,    5.00,     0.0

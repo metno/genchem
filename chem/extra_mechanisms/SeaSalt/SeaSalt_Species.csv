@@ -1,0 +1,6 @@
+*
+Spec,adv,formula,MW,DRY,WET,Groups,!Comments
+*
+SeaSalt_f,3,xx,58,SSf,SSf,PMfine;Extinc:SSf;PM10;SS,,!
+SeaSalt_c,3,xx,58,SSc,SSc,PMcoarse;Extinc:SSc;PM10;SS,,!
+*

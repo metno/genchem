@@ -1,0 +1,35 @@
+* Some very simple reactions for BoxChem testing only
+
+*Added S-chemistry as in MCM (for testing and comparison to Mike Jenkin's simulations)
+
+4.0e-32*EXP(-1000/TEMP)*M : OP + SO2 = SO3 ;
+KMT12 : OH + SO2 = HSO3 ;
+1.3e-12*EXP(-330/TEMP)*O2 : HSO3 = HO2 + SO3 ;
+*
+** <---------- Aerosol reactions (crude....)------------------------------>
+*
+* From AE1982, with NITRATE used for 'aerosol' nitrate to avoid need for
+* EMEP's NO3_c in MCM etc.
+*
+*1.35e-12  : OH + SO2 = SO4 ;    Assumes inst. conv SO3 to SO4
+*test case for MCM (as suggested by Mike)
+*kaero(rh) : HNO3     = NITRATE ;
+*kaero(rh) : N2O5     = NITRATE + NITRATE ;
+*kaero(rh) : H2O2     =    ;   Just lost
+*kaero(rh)  : CH3OOH   =    ;   Just lost
+6.0e-6     : HNO3     = NITRATE ;
+4.0e-4     : N2O5     = NITRATE + NITRATE ;
+*
+1.20e-15*H2O   : SO3 = SO4 ;
+* 1.0e-5                            : SO2 =  SO4   ;  jof, kinf
+* RiemerN2O5(rh,temp,xSO4,xNO3,xNH4) : N2O5 = 2. HNO3                  ;
+*
+*
+** <-----------Dry deposition for MCM-box model comparison----------------->
+*
+* as used by Mike Jenkin
+*First hard coded for HMIX=1000m!
+2.0e-5     : HNO3     = depHNO3 ;
+5.0e-6     : SO2      = ;
+1.5e-6     : NO2      = depNO2 ;
+5.0e-6     : O3       = ;

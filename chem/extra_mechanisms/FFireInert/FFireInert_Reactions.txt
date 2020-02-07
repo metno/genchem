@@ -1,0 +1,7 @@
+* Here we have the three species for typical EMEP usage
+* See FFireTracers for the tracer species ffire_CO if wanted.
+*===========================================================================
+rcemis(ffire_OM,KDIM)               : = ffire_OM ;
+rcemis(ffire_BC,KDIM)               : = ffire_BC ;
+rcemis(ffire_remPPM25,KDIM)         : = ffire_remPPM25 ;
+

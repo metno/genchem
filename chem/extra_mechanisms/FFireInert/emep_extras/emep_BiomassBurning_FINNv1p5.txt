@@ -1,0 +1,15 @@
+# BiomassBurning mapping FINNv1.5 to ffire_OM, ffire_BC, ffire_remPPM25
+#
+# FFire PM species only here, see FFireTracers for ffire_CO tracer if wanted.
+# 
+# The tricky bit: we read in BC, OC and PM25 from FINN, but want BC, OM and
+# rempPM25 for EmChem19a , CRI etc. We solve this by using FINN's
+# OC to estimate OM (factor 1.7), and subtracting both BC and OM from
+# PM25 to get remPM25.   (ForestFire_mod will prevent zeros)
+#----------------------------------------------------------------------------#
+#  Finn       mw      fac   emep             Comment
+    'PM25',   1.000,  1.0,  'ffire_rempPM25',# !  Will need to subtract OM  BC
+    'OC  ',   1.700,  1.0,  'ffire_OM',      # ! Uses OM/OC=1.7, see above
+    'BC  ',   1.000,  1.0,  'ffire_BC',      #
+    'OC  ',   -1.70,  1.0,  'ffire_rempPM25',# ! Will subtract OM
+    'BC  ',   -1.00,  1.0,  'ffire_rempPM25',# ! Will subtract BC

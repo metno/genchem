@@ -1,0 +1,182 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Formatting of GenChem files &#8212; genchem 0.9.0 documentation</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contributors" href="GenChemDoc_contributors.html" />
+    <link rel="prev" title="Quick start" href="GenChemDoc_quickstart.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="GenChemDoc_contributors.html" title="Contributors"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="GenChemDoc_quickstart.html" title="Quick start"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">genchem 0.9.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Formatting of GenChem files</a><ul>
+<li><a class="reference internal" href="#reactions-files">Reactions files</a></li>
+<li><a class="reference internal" href="#species-files">Species files</a></li>
+<li><a class="reference internal" href="#shorthands-file">Shorthands file</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="GenChemDoc_quickstart.html"
+                        title="previous chapter">Quick start</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="GenChemDoc_contributors.html"
+                        title="next chapter">Contributors</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/GenChemDoc_chem.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="formatting-of-genchem-files">
+<h1>Formatting of GenChem files<a class="headerlink" href="#formatting-of-genchem-files" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="reactions-files">
+<h2>Reactions files<a class="headerlink" href="#reactions-files" title="Permalink to this headline">¶</a></h2>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Some</span> <span class="n">simple</span> <span class="n">lines</span>
+<span class="mf">1.4e-12</span><span class="o">*</span><span class="n">EXP</span><span class="p">(</span><span class="o">-</span><span class="mf">1310.</span><span class="o">*</span><span class="n">TINV</span><span class="p">)</span>          <span class="p">:</span> <span class="n">O3</span> <span class="o">+</span> <span class="n">NO</span>    <span class="o">=</span> <span class="n">NO2</span> <span class="o">+</span> <span class="o">&lt;</span><span class="n">O2</span><span class="o">&gt;</span>  <span class="p">;</span> <span class="n">acp2004</span>
+<span class="mf">5.681e-34</span><span class="o">*</span><span class="n">EXP</span><span class="p">(</span><span class="o">-</span><span class="mf">2.6</span><span class="o">*</span><span class="n">LogTdiv300</span><span class="p">)</span>    <span class="p">:</span> <span class="n">OP</span> <span class="o">+</span> <span class="o">&lt;</span><span class="n">O2</span><span class="o">&gt;</span> <span class="o">+</span> <span class="o">&lt;</span><span class="n">M</span><span class="o">&gt;</span>  <span class="o">=</span> <span class="n">O3</span> <span class="p">;</span> <span class="n">acp2004</span>
+<span class="mf">2.15e-11</span><span class="o">*</span><span class="n">EXP</span><span class="p">(</span><span class="mf">110.</span><span class="o">*</span><span class="n">TINV</span><span class="p">)</span>           <span class="p">:</span> <span class="n">OD</span> <span class="o">+</span> <span class="o">&lt;</span><span class="n">N2</span><span class="o">&gt;</span>  <span class="o">=</span> <span class="n">OP</span>       <span class="p">;</span> <span class="n">Updated</span> <span class="p">(</span><span class="n">IUPAC</span> <span class="mi">2009</span><span class="p">)</span>
+
+<span class="n">emisfiles</span><span class="p">:</span><span class="n">sox</span><span class="p">,</span><span class="n">nox</span><span class="p">,</span><span class="n">co</span><span class="p">,</span><span class="n">voc</span><span class="p">,</span><span class="n">nh3</span>
+<span class="n">rcemis</span><span class="p">(</span><span class="n">NO</span><span class="p">,</span><span class="n">KDIM</span><span class="p">)</span>                        <span class="p">:</span> <span class="o">=</span> <span class="n">NO</span>  <span class="p">;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>END-OF-LINE is “;”. Text after this (e.g. references, or unused “products”) will be ignored.</li>
+<li>Separator between rate coefficient and reaction is “:”.</li>
+<li>lines beginning with “*” are comments (no “;” needed here)</li>
+<li>lines beginning with “rcemis” are emission terms</li>
+<li>lines beginning with “emisfiles” give name of  emission files, e.g. nox</li>
+<li>Some coefficients are defined in GenIn.shorthand, e.g. TINV, LogTdiv300</li>
+<li>Anything else is simply used as the rate coefficient. (Do not add spaces!)</li>
+</ul>
+<p>Four  types of tracers/catalysts/yields are allowed, denoted by different types of parentheses:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>e.g. [OH] + VOC -&gt; SOA   will put xnew(OH) into the loss rate of VOC, but will not change the loss rate of OH.</li>
+<li>e.g. {O2} + OD -&gt; OP   will ignore the O2 term. Make sure it is in the reaction rate though if needed!</li>
+<li>e.g. OP + &lt;O2&gt; + &lt;M&gt; -&gt; O3  will ignore the O2 and M term AND add their concentrations to the reaction rate (multiply it). This system is only used for these “special” species (O2, N2, M) as they must be pre-defined, e.g. O2(k), in boxChem and/or EMEP codes.</li>
+<li>e.g. 1.36e-11 :   [OXYL] + [OH] = |YCOXY(0)|  ASOC_ug1  + …  will replace the contents of the || term with yield coefficients which will be updated each time-step in the EMEP model.  These variables (here YCOXY(0)) must be predefined in order for emep_setup.py and the emep model to compile.</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="species-files">
+<h2>Species files<a class="headerlink" href="#species-files" title="Permalink to this headline">¶</a></h2>
+<p>The input to the GenChem.py script is GenIn_Species.csv, but this
+is assembled by do.GenChem from all needed  _Species.csv files from
+the base_mechanisms and extra_mechanisms sub-directories. For For
+example, for a typical emep run with base EmChem19a, do.GenChem
+appends EmChem19a_Species.csv, SeaSalt_Species.csv, and many more into
+one GenIn_Species.csv. The file contains columns with species
+name, type, formula, and various settings related to dry and wet deposition</p>
+<p>Example lines:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Spec,adv,formula,MW,DRY,WET,Groups,!Comments
+*
+RO2POOL,1,RO2POOL,xx,xx,xx,xx,!
+OD,0,O,xx,xx,xx,xx,!
+NO2,1,NO2,xx,NO2,xx,NOx;OX;OXN;daObs,!
+MACR,1,CH2=CCH3CHO,xx,MEK,xx,RCHO;carbonyl;Hstar_5p0e0;f0_0p05;DRx_2p6,!
+BSOC_ng1e2,2,C,12.,ALD,ROOH,Cstar:0.1;DeltaH:30.0;OM25;PCM;BSOA,&quot;! semi-volatile OC from BVOC &quot;
+</pre></div>
+</div>
+<p>Further details can be found in the documentation article …</p>
+</div>
+<div class="section" id="shorthands-file">
+<h2>Shorthands file<a class="headerlink" href="#shorthands-file" title="Permalink to this headline">¶</a></h2>
+<p>Shorthands are text-strings used in the Reactions.txt file, usually to represent commonly used rate-coefficients. The meaning of the text-string is given in _Shorthand.txt file, e.g.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>XT           temp
+FH2O         (1.0+1.4e-21*h2o*exp(2200.0*TINV))
+KHO2RO2      2.91e-13*exp(1300.*TINV) ! MCM2001 ...
+KMT12        IUPAC_troe(2.8e-31*exp(2.6*Log300divT),2.0e-12,exp(-TEMP/472.),M,0.75-1.27*(-TEMP/472.)/LOG(10.))
+</pre></div>
+</div>
+<p>In these examples, XT is just a character-saving replacement for temp, FH2O gives a more complex expression, which also uses the pre-defined variable TINV = 1/temp. KHO2RO2 is a common rate-coefficient, but here we see that comments are allowed - anything afer the 2nd term. FInally, the KMT12 term shows that complex fuction calls are also allowed. IMPORTANT - avoid white space in any terms!</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">**  NOTE !!
+This user-guide is a work-in-progress manual on the GenChem system,
+with this interim version produced for interested users, Feb. 2020.
+**</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="GenChemDoc_contributors.html" title="Contributors"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="GenChemDoc_quickstart.html" title="Quick start"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">genchem 0.9.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2000-2020 met.no.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

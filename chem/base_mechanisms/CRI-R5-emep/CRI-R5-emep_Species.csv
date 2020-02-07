@@ -1,0 +1,249 @@
+***********************************************************,,,,,,,,,,,,
+*"* GenIn.species: List of Species for the",,,,,,,,,,,,
+*"* CRI_v2_R5 for emep chemical mechanism",,,,,,,,,,,,
+***********************************************************,,,,,,,,,,,,
+*"* GenIn.species:  List of species.",,,,,,,,,,,,
+*"* Give in order desired for twostep scheme, start with short-lived, then move to slower species.",,,,,,,,,,,,
+*"* 2nd column (integer) = 1 for advected species, otherwise 0",,,,,,,,,,,,
+*"* 3rd column gives chemical forumala - used for mass-balance",,,,,,,,,,,,
+*"*Extinc is extinction coefficient for AOD calculations",,,,,,,,,,,,
+*"*DRY give CDDEP species (My_DryDep_ml) most appropriate for this species",,,,,,,,,,,,
+*"*,,,,,,,,,,,,",,,,,,,,,,,,
+*"*  1. Use case correctly in 3rd column - secC4H9O2, *not* SECC4H9O2 which would be assigned 5, not 4 carbon atoms.",,,,,,,,,,,,
+*"*  2. GenChem uses the 3rd column to calculate masses. If these masses are important use the correct chemical formula!",,,,,,,,,,,,
+*"*  (masses not usually needed except for emissions input and if output in ug/m3 or similar wanted).",,,,,,,,,,,,
+*"* Masses assigned in 4th column overwrite any calculated from 3rd",,,,,,,,,,,,
+**************************************************************,,,,,,,,,,,,
+*"#GROUPED_STYLE - ",,,,,,,,,,,,
+Spec,adv,forumula,MW,DRY,WET,Extinc,Cstar,DeltaH,Empty,Groups,!Comments
+OD,0,O,xx,xx,xx,radical,!
+OP,0,O,xx,xx,xx,radical,!
+OH,0,OH,xx,xx,xx,radical,!
+CRU14,0,cru14,xx,xx,xx,radical,!C5
+TRU14,0,tru14,xx,xx,xx,radical,!C5
+HCOCO,0,HCOCO,xx,xx,xx,radical,!C2
+HO2,0,HO2,xx,xx,xx,HOx,!
+CH3O2,0,CH3O2,xx,xx,xx,HOx;RO2,!C1 why HOx?
+C2H5O2,0,C2H5O2,xx,xx,xx,RO2,!C2
+RN10O2,0,rn10o2,xx,xx,xx,RO2,!
+IC3H7O2,0,iC3H7O2,xx,xx,xx,RO2,!C3
+RN13O2,0,rn13o2,xx,xx,xx,RO2,!
+RN16O2,0,rn16o2,xx,xx,xx,RO2,!
+RN19O2,0,rn19o2,xx,xx,xx,RO2,! MCM:C720O2
+HOCH2CH2O2,0,HOCH2CH2O2,xx,xx,xx,RO2,!C2
+RN9O2,0,rn9o2,xx,xx,xx,RO2,!
+RN12O2,0,rn12o2,xx,xx,xx,RO2,! MCM:BUT2OLO2
+RN15O2,0,rn15o2,xx,xx,xx,RO2,!
+NRN6O2,0,C2H4NO5,xx,xx,xx,RO2,!C2 also OXN!
+NRN9O2,0,C3H6NO5,xx,xx,xx,RO2,!C3 also OXN!
+NRN12O2,0,C4H8NO5,xx,xx,xx,RO2,!C4 also OXN!
+RN11O2,0,rn11o2,xx,xx,xx,RO2,!
+RN14O2,0,rn14o2,xx,xx,xx,RO2,!
+RN8O2,0,rn8o2,xx,xx,xx,RO2,!C3, MCM:CH3COCH2O2
+RN17O2,0,rn17o2,xx,xx,xx,RO2,! MCM:C719O2
+RN13AO2,0,rn13ao2,xx,xx,xx,RO2,!
+RN16AO2,0,rn16ao2,xx,xx,xx,RO2,! no obvious equivalent in MCM - corresponds to C716OH + HO2
+RN15AO2,0,rn15ao2,xx,xx,xx,RO2,!
+C2H5CO3,0,C2H5CO3,xx,xx,xx,RO2,!
+HOCH2CO3,0,HOCH2CO3,xx,xx,xx,RO2,!C2
+CO2C3CO3,0,C4H5O4,xx,xx,xx,RO2,!C4
+RU12O2,0,ru12o2,xx,xx,xx,RO2,!
+RU10O2,0,ru10o2,xx,xx,xx,RO2,! MCM:HMVKAO2 and 
+NRU14O2,0,C5H8NO5,xx,xx,xx,RO2,!C5 also OXN!
+NRU12O2,0,C5H8NO7,xx,xx,xx,RO2,!C5 also OXN! 
+RA13O2,0,ra13o2,xx,xx,xx,RO2,!
+RA16O2,0,ra16o2,xx,xx,xx,RO2,! MCM:TLBIPERO2(mostly) 
+RA19AO2,0,ra19ao2,xx,xx,xx,RO2,! MCM:OXYBIPERO2(to a large extent) 
+RA19CO2,0,ra19co2,xx,xx,xx,RO2,! 
+RTN28O2,0,rtn28o2,xx,xx,xx,RO2,!
+RTN26O2,0,rtn26o2,xx,xx,xx,RO2,! MCM:C96CO3
+NRTN28O2,0,C10H16NO5,xx,xx,xx,RO2,!C10, MCM NAPINAO2 + NAPINBO2 also OXN!
+RTN25O2,0,rtn25o2,xx,xx,xx,RO2,!
+RTN24O2,0,rtn24o2,xx,xx,xx,RO2,! MCM:C97O2
+RTN23O2,0,rtn23o2,xx,xx,xx,RO2,! MCM:C98O2
+RTN14O2,0,rtn14o2,xx,xx,xx,RO2,! MCM:C614O2
+RTN10O2,0,rtn10o2,xx,xx,xx,RO2,!
+RTX28O2,0,rtx28o2,xx,xx,xx,RO2,!
+RTX24O2,0,rtx24o2,xx,xx,xx,RO2,!
+RTX22O2,0,rtx22o2,xx,xx,xx,RO2,!
+NRTX28O2,0,C10H16NO5,xx,xx,xx,RO2,!C10, MCM:NBPINAO2 (+ NBPINBO2) also OXN!
+MACRO2,0,O=CHC(O2)(CH3)CH2OH,xx,xx,xx,RO2,!C4
+MACO3,0,CH2C(CH3)C(=O)O2,xx,xx,xx,RO2,!C4
+HCOCO3,0,HCOCO3,xx,xx,xx,RO2,!C2
+CRU14O2,0,cru14o2,xx,xx,xx,RO2,!C5
+BRU14O2,0,bru14o2,xx,xx,xx,RO2,!C5
+TRU14O2,0,tru14o2,xx,xx,xx,RO2,!C5
+DHPR12O2,0,dhpr12o2,xx,xx,xx,RO2,! MCM:C536O2
+RU13O2,0,ru13o2,xx,xx,xx,RO2,!
+**,,,,,,,,,,,,
+*"******* Added as advected species *********",,,,,,,,,,,,
+RO2POOL,1,ro2pool,1,xx,xx,other,!C0
+**,,,,,,,,,,,,
+NO,1,NO,xx,xx,xx,NOx;OXN,!C0
+NO2,1,NO2,xx,NO2,xx,NOx;OXN;OX,!C0
+CO,1,CO,28.01,xx,xx,CO,!C1
+O3,1,O3,xx,O3,xx,O3;OX,!C0
+O3_REG,1,O3,xx,O3,xx,O3;OX,!C0
+NO3,1,NO3,xx,xx,xx,OXN,!C0
+N2O5,1,N2O5,xx,N2O5,HNO3,OXN,!C0
+H2,1,H2,xx,xx,xx,HOx,!C0
+H2O2,1,H2O2,xx,H2O2,H2O2,HOx;Hstar_1p0e5;f0_1p0;DRx_1p36,!C0 
+HONO,1,HNO2,xx,HNO2,H2O2,OXN;Hstar_2p6e5;f0_0p5;DRx_1p6,! Uncertain about wet-dep, maybe too efficient?
+HNO3,1,HNO3,xx,HNO3,HNO3,OXN,!C0
+HO2NO2,1,HO2NO2,xx,HO2NO2,0p8,OXN;Hstar_6p0e4;f0_1p0;DRx_2p1,! Sander gives very variable H 40-20 000 M/atm -> H* 6E2-3E5 M/atm or 4E3-2E6M/atm depending on Ka
+C2H6,1,C2H6,30.07,xx,xx,alkane,!C2
+C3H8,1,C3H8,44.1,xx,xx,alkane,!C3
+NC4H10,1,nC4H10,58.12,xx,xx,alkane,!C4
+C2H4,1,C2H4,28.05,xx,xx,alkene,!C2
+C3H6,1,C3H6,42.08,xx,xx,alkene,!C3
+TBUT2ENE,1,tbut2ene,56.11,xx,xx,alkene,!C4
+CH3CHO,1,CH3CHO,44.05,ALD,xx,RCHO;Hstar_1p3e1;f0_0p05;DRx_2p1,!C2, H ca 13 M/atm (Sander)
+C2H5CHO,1,C2H5CHO,58.08,MEK,xx,RCHO;Hstar_1p0e1;f0_0p05;DRx_2p4,!C3, H ca 10 M/atm (Sander)
+CH3CO2H,1,CH3CO2H,60.05,CH3CO2H,H2O2,acid;Hstar_7p0e5;f0_0p0;DRx_2p0,!C2, H* for pH=7
+CH3COCH3,1,CH3COCH3,58.08,MEK,xx,carbonyl;Hstar_3p0e1;f0_0p05;DRx_2p4,!C3, H ca 30 M/atm
+CARB14,1,C5H10O,xx,MEK,xx,carbonyl;Hstar_1p6e1;f0_0p05;DRx_3p1,! No easily identifiable MCM equivalent, uncertain deposition 
+C5H8,1,C5H8,68.12,xx,xx,biogenic;BVOC,!C5
+*
+BENZENE,1,C6H6,78.11,xx,xx,aromatic,!C6
+TOLUENE,1,C7H8,92.14,xx,xx,aromatic,!C7
+OXYL,1,C8H10,106.17,xx,xx,aromatic,!C8
+C2H2,1,C2H2,26.04,xx,xx,alkyne,!C2
+HCHO,1,HCHO,30.03,HCHO,ROOH,RCHO;Hstar_3p2e3;f0_0p2;DRx_1p4,!C1
+CH3CO3,1,CH3COO2,xx,xx,xx,RO2,!C2 RADICAL! Why advected? -- no advection in EmChem
+HCOOH,1,HCOOH,46.03,ORA,H2O2,acid,!C1, Heff ca 1.6E7M/atm at pH7, 1.7E5 at pH5
+HCOCO2H,1,HCOCO2H,xx,ACETOL,HCHO,acid;carbonyl;Hstar_1p0e4;f0_0p05;DRx_2p4,!C2, {glyoxylic acid}
+HCOCO3H,1,HCOCO3H,xx,HCOCO3H,H2O2,ROOH;carbonyl;RCHO;Hstar_3p2e6;f0_0p2;DRx_2p6,!C2 kHeff(GECKO)=3.2E6 M/atm 
+MEK,1,CH3COC2H5,72.11,MEK,xx,carbonyl;Hstar_2p0e1;f0_0p05;DRx_2p7,!C4 
+MVK,1,CH3C(=O)CH=CH2,xx,MEK,xx,carbonyl;Hstar_3p0e1;f0_0p05;DRx_2p6,!C4
+MACR,1,CH2=CCH3CHO,xx,MEK,xx,RCHO;Hstar_5p0e0;f0_0p05;DRx_2p6,!C4 
+GLYOX,1,HCOHCO,xx,GLYOX,H2O2,RCHO;carbonyl;Hstar_3p0e5;f0_0p0;DRx_2p1,!C2, {H* ca 3E5 M/atm or 2 orders of magnitude higher in Mexico City?}
+MGLYOX,1,CH3COCHO,xx,MGLYOX,0p3,carbonyl;RCHO;Hstar_2p4e4;f0_0p2;DRx_2p5,!C3 
+CH3OH,1,CH3OH,32.04,xx,xx,alcohol,!C1, roughly 200 M/atm [Sander]
+C2H5OH,1,C2H5OH,46.07,xx,xx,alcohol,!C2, roughly 200 M/atm [Sander]
+NPROPOL,1,nC3H7OH,60.1,xx,xx,alcohol,!C3, ca 140 M/atm [Sander]
+IPROPOL,1,iC3H7OH,60.1,xx,xx,alcohol,!C3, ca 130 M/atm [Sander]
+ACETOL,1,CH3COCH2OH,xx,ACETOL,HCHO,carbonyl;hydroxyketone;Hstar_8p0e3;f0_0p05;DRx_2p6,!C3, hydroxy acetone
+CH3NO3,1,CH3NO3,xx,CH3NO3,xx,nitrate;OXN;Hstar_2p0e0;f0_0p3;DRx_2p3,!C1
+C2H5NO3,1,C2H5NO3,xx,CH3NO3,xx,nitrate;OXN;Hstar_2p0e0;f0_0p3;DRx_2p6,!C2
+RN10NO3,1,nC3H7NO3,xx,VLSOLNO3,xx,nitrate;OXN;Hstar_1p0e0;f0_0p3;DRx_3p0,!C3
+IC3H7NO3,1,iC3H7NO3,xx,VLSOLNO3,xx,nitrate;OXN;Hstar_0p0e0;f0_0p3;DRx_3p0,!C3
+RN13NO3,1,C4H9NO3,xx,VLSOLNO3,xx,nitrate;OXN;Hstar_0p0e0;f0_0p3;DRx_3p3,!C4
+RN16NO3,1,rn16No3,xx,VLSOLNO3,xx,nitrate;OXN;Hstar_1p6e0;f0_0p3;DRx_3p5,!unknown structure - possibly contain several carbonyl groups
+RN19NO3,1,C7H11NO4,xx,MDNO3OH,0p8,nitrate;OXN;Hstar_5p5e4;f0_0p3;DRx_4p0,!MCM:C720NO3, SMILES O=N(=O)OC1CC=C(C)C(O)C1
+HOC2H4NO3,1,HOC2H4NO3,xx,SMNO3OH,0p6,nitrate;OXN;Hstar_4p0e4;f0_0p3;DRx_2p8,!C2, 2-hydroxyethyl nitrate
+RN9NO3,1,C3H7NO4,xx,MDSOLNO3,HCHO,nitrate;OXN;Hstar_7p0e3;f0_0p3;DRx_3p1,!C3, e.g. MCM:PROPOLNO3 (2-nitrooxy-1-propanol)
+RN12NO3,1,C4H9NO4,xx,MDSOLNO3,HCHO,nitrate;OXN;Hstar_1p0e4;f0_0p3;DRx_3p4,!C4, MCM:BUT2OLNO3 2-nitroxy-3-butanol
+RN15NO3,1,C5H11NO4,xx,MDNO3OH,0p6,nitrate;OXN;Hstar_4p4e4;f0_0p3;DRx_3p7,!C5
+CH3OOH,1,CH3OOH,xx,MEOOH,xx,ROOH;Hstar_3p0e2;f0_0p2;DRx_1p9,!C1
+C2H5OOH,1,C2H5OOH,xx,MEOOH,xx,ROOH;Hstar_3p3e2;f0_0p2;DRx_2p3,!C2 
+RN10OOH,1,C3H8O2,xx,C3H7OOH,xx,ROOH;Hstar_8p3e1;f0_0p2;DRx_2p7,!C3, MCM:NC3H7OOH
+IC3H7OOH,1,iC3H7OOH,xx,C3H7OOH,xx,ROOH;Hstar_8p3e1;f0_0p2;DRx_2p6,!C3 
+RN13OOH,1,C4H10O2,xx,C3H7OOH,xx,ROOH;Hstar_6p0e1;f0_0p2;DRx_3p0,!C4, MCM:SC4H9OOH
+RN16OOH,1,rn16ooh,xx,MPAN,xx,ROOH,! may contain multiple functional groups? - but assume relatively inefficient deposition
+RN19OOH,1,C7H12O3,xx,LHISOLOOH,H2O2,ROOH;Hstar_1p6e6;f0_0p2;DRx_3p8,! MCM:C720OOH 
+CH3CO3H,1,CH3CO3H,xx,PAA,ROOH,peroxyacid;Hstar_8p3e2;f0_0p2;DRx_2p4,! 
+RN8OOH,1,C3H6O3,xx,HYPERACET,0p4,ROOH;carbonyl;Hstar_3p1e4;f0_0p2;DRx_2p8,!C3, one MCM-equivalent is HYPERACET [CC(=O)COO] 
+RN11OOH,1,C4H8O3,xx,MDSOLOOH,1p3,ROOH;carbonyl;Hstar_9p0e4;f0_0p2;DRx_3p1,!C4 (MEKOOH [CC(OO)C(=O)C] + [OOCCC(=O)C]) 
+RN14OOH,1,C5H10O3,xx,MDSOLOOH,H2O2,ROOH;Hstar_1p2e5;f0_0p2;DRx_3p4,! precursor is CARB14 - could have multiple functional groups
+RN17OOH,1,C7H12O5,xx,VHISOLOOH,HNO3,ROOH;carbonyl;Hstar_1p0e11;f0_0p2;DRx_4p0,!C7 MCM:C719OOH OOC1(C)C(O)CC(=O)CC1O 
+HOC2H4OOH,1,HOC2H4OOH,xx,SHISOLOOH,H2O2,ROOH;Hstar_1p3e6;f0_0p2;DRx_2p5,!C2 MCM: HYETHO2H OCCOO 
+RN9OOH,1,C3H8O3,xx,SHISOLOOH,H2O2,ROOH;Hstar_9p6e5;f0_0p2;DRx_2p8,!C3, e.g. MCM:HYPROPO2H OCC(C)OO
+RN12OOH,1,C4H10O3,xx,RN12OOH,H2O2,ROOH;Hstar_7p2e5;f0_0p2;DRx_3p1,!C4, MCM:BUT2OLOOH OOC(C)C(C)O
+RN15OOH,1,C7H8O6,xx,VHISOLOOH,HNO3,ROOH;carbonyl;Hstar_4p0e11;f0_0p2;DRx_3p9,! could be MCM:C235C6CO3H OOC(=O)CC(=O)CC(=O)C(=O)C 
+NRN6OOH,1,C2H5NO5,xx,SMNO3OH,0p6,ROOH;nitrate;OXN;Hstar_4p0e4;f0_0p3;DRx_2p9,!C2, MCM:ETHO2HNO3 OOCCON(=O)=O 
+NRN9OOH,1,C3H7NO5,xx,MNO3OOH,0p4,ROOH;nitrate;OXN;Hstar_3p0e4;f0_0p3;DRx_3p2,!C3, MCM:PR[1,2]O2HNO3 OOC(C)CON(=O)=O and OOCC(C)ON(=O)=O 
+NRN12OOH,1,C4H9NO5,xx,MNO3OOH,0p3,ROOH;nitrate;OXN;Hstar_2p3e4;f0_0p3;DRx_3p5,!C4, MCM:C42NO33OOH OOC(C)C(C)ON(=O)=O 
+RU13OOH,1,C5H10O4,xx,VHISOLOOH,H2O2,ROOH;carbonyl;Hstar_3p4e9;f0_0p2;DRx_3p5,!C5, MCM:C51OOH OCC(OO)CC(=O)C 
+PAN,1,CH3COO2NO2,xx,PAN,xx,PANS;OXN;Hstar_3p0e0;f0_0p5;DRx_2p8,!C2
+APINENE,1,C10H16,136.24,xx,xx,biogenic;BVOC,!C10
+BPINENE,1,C10H16,136.24,xx,xx,biogenic;BVOC,!C10
+XTERP,1,C10H16,136.24,xx,xx,biogenic;BVOC,!C10
+CARB10,1,C4H8O2,xx,MEK,xx,carbonyl;Hstar_9p7e1;f0_0p05;DRx_2p9,!C4, MCM:BUT2OLO - 3-hydroxy-2-butanone 
+CARB13,1,carb13,xx,CH3CO2H,H2O2,carbonyl,!no obvious MCM equivalent - suggestion: CO2C5OH [OCCCC(=O)C] 
+CARB16,1,carb16,xx,MEK,xx,carbonyl,! no equivalent in MCM? 
+CARB9,1,C4H6O2,xx,MEK,xx,carbonyl;Hstar_7p3e1;f0_0p05;DRx_2p8,! MCM: BIACET - biacetyl, 2,3-butanedione 
+CARB12,1,C5H8O2,xx,CARB12,0p4,carbonyl,! unknown degree of functionalisation - suggestion: CO24C5 [CC(=O)CC(=O)C] 
+*
+C2H5CO3H,1,C2H5CO3H,xx,C3H7OOH,xx,peroxyacid;Hstar_5p4e2;f0_0p2;DRx_2p7,!C3
+PPN,1,C3H5NO5,xx,PAN,xx,PANS;OXN;Hstar_2p9e0;f0_0p5;DRx_3p2,!C3 
+HOCH2CHO,1,HOCH2CHO,xx,HOCH2CHO,0p6,RCHO;Hstar_4p1e4;f0_0p0;DRx_2p2,!C2, glycolaldehyde 
+HOCH2CO3H,1,HOCH2CO3H,xx,HOCH2CO3H,ROOH,peroxyacid;Hstar_4p6e3;f0_0p2;DRx_2p6,!C2 
+PHAN,1,C2H3NO6,xx,PAN,xx,PANS;OXN;Hstar_5p5e1;f0_0p5;DRx_3p0,!C2  
+CCARB12,1,ccarb12,xx,HISOLF0,H2O2,carbonyl,! no directly corresponding species in MCM? 
+UCARB12,1,C5H8O2,xx,DICARB,H2O2,RCHO,! COULD BE MCM:HC4CCHO 
+UCARB13,1,C5H8O,xx,MEK,xx,carbonyl;Hstar_1p3e1;f0_0p05;DRx_3p0,!C5, MCM: PE4E2CO [CC(=O)CC=C] and ME3BU3ECHO [CC(=C)CC=O] 
+RU14NO3,1,C5H9NO4,xx,MDNO3OH,0p7,nitrate;OXN;Hstar_5p0e4;f0_0p3;DRx_3p6,! mixture of MCM:ISOP[A,B,C,D]NO3 
+RU14OOH,1,C5H10O3,xx,SHISOLOOH,H2O2,ROOH;Hstar_1p4e6;f0_0p2;DRx_3p3,! mixture of hydroperoxides with additional hydroxyl group 
+RU12OOH,1,C5H10O5,xx,VHISOLOOH,H2O2,ROOH;Hstar_1p2e7;f0_0p2;DRx_3p6,! mixture of different multifunctional hydroperoxides 
+RU10OOH,1,C4H8O4,xx,VHISOLOOH,H2O2,ROOH;Hstar_3p5e8;f0_0p2;DRx_3p2,!C4 Mixture of different multifunctional hydroperoxides from e.g. MACR and MVK 
+MPAN,1,C4H5NO5,xx,MPAN,xx,PANS;OXN;Hstar_3p0e0;f0_0p2;DRx_3p4,!
+NUCARB12,1,C5H7NO4,xx,LOSOLNO3,ROOH,carbonyl;OXN;nitrate;Hstar_4p2e3;f0_0p3;DRx_3p5,! MCM:NC4CHO [O=CC=C(C)CON(=O)=O]
+NRU14OOH,1,C5H9NO5,xx,MDSOLNO3,0p2,ROOH;OXN;nitrate;Hstar_1p7e4;f0_0p3;DRx_3p7,! MCM:NISOPOOH [OOCC=C(C)CON(=O)=O] 
+NRU12OOH,1,C5H9NO7,xx,VHISOLNO3,H2O2,ROOH;nitrate;OXN;Hstar_1p2e8;f0_0p3;DRx_3p9,! corresponding MCM mixture of C510OOH and NC4CO3H
+NOA,1,C3H5NO4,xx,VLSOLNO3,ROOH,nitrate;OXN;carbonyl;Hstar_1p0e3;f0_0p3;DRx_3p0,!C3 MCM:NOA nitroxyacetone 
+RA13NO3,1,C6H7NO6,xx,VHISOLNO3,H2O2,nitrate;OXN;Hstar_8p8e6;f0_0p3;DRx_3p9,!C0?, C6 MCM:BZBIPERNO3 
+RA13OOH,1,C6H8O5,xx,VHISOLOOH,H2O2,ROOH;Hstar_2p5e8;f0_0p2;DRx_3p7,!C0?, C6 MCM:BZBIPEROOH 
+UDCARB8,1,C4H4O2,xx,DICARB,H2O2,carbonyl;Hstar_2p0e5;f0_0p0;DRx_2p8,!C4 MCM mixture of BZFUONE and MALDIAL
+AROH14,1,aroh14,xx,PHENOL,ROOH,aromatic;Hstar_2p8e3;f0_0p0;DRx_3p2,!C6, MCM:PHENOL 
+RAROH14,1,raroh14,xx,xx,xx,intermediate,! probably mainly C6H5O - aromatic oxy-radical
+ARNOH14,1,HOC6H4NO2,xx,xx,xx,OXN;aromatic,!C6, MCM:HOC6H4NO2 - 2-nitrophenol 
+RA16NO3,1,C7H9NO6,xx,HISOLNO3,H2O2,nitrate;OXN;Hstar_6p6e6;f0_0p3;DRx_4p1,! MCM:TLBIPERNO3 [O=N(=O)OC1C=CC2(C)OOC1C2O] 
+RA16OOH,1,C7H10O5,xx,VHISOLOOH,H2O2,ROOH;Hstar_1p7e8;f0_0p2;DRx_3p9,! MCM:TLBIPEROOH [OOC1C=CC2(C)OOC1C2O]  + "ring-peroxide" [C-O-O-C] + C6H5CH2OOH [OOCc1ccccc1] 
+UDCARB11,1,udcarb11,xx,DICARB,H2O2,carbonyl,! MCM:C5DICARB, TLFUONE, C4MDIAL, and more?
+AROH17,1,aroh17,xx,xx,xx,aromatic,!C7, MCM:o-CRESOL 
+RAROH17,1,raroh17,xx,xx,xx,intermediate,! MCM-equivalent is probably TOL1O - a radical
+ARNOH17,1,C7H7NO3,xx,xx,xx,OXN;aromatic,!C7, MCM:TOL1OHNO2 ? 
+UDCARB14,1,C6H8O2,xx,MCARB,0p7,carbonyl;Hstar_4p8e4;f0_0p0;DRx_3p4,!C6 MCM-mixture of MC5DICARB, OXYFUONE
+RA19NO3,1,C8H11NO6,xx,HISOLNO3,H2O2,nitrate;OXN;Hstar_5p0e6;f0_0p3;DRx_4p4,! MCM:OXYBIPENO3
+RA19OOH,1,C8H12O5,xx,VHISOLOOH,H2O2,ROOH;Hstar_1p4e8;f0_0p2;DRx_4p1,! MCM:OXYBPEROOH [OOC1(C)C=CC2OOC1(C)C2O] 
+RTN28NO3,1,C10H17NO4,xx,C10H17NO4,0p8,nitrate;OXN;Hstar_5p5e4;f0_0p3;DRx_4p7,!e.g. MCM:APIN[A,B,C]NO3
+RTN28OOH,1,C10H18O3,xx,LHISOLOOH,H2O2,ROOH;Hstar_1p5e6;f0_0p2;DRx_4p5,! MCM:APIN[A,B,C]OOH
+TNCARB26,1,C10H16O2,xx,PINONALDEHYDE,HCHO,carbonyl;RCHO;Hstar_9p0e3;f0_0p05;DRx_4p4,! e.g. MCM:PINAL, APINBCO 
+RTN26OOH,1,C10H16O4,xx,PERPINONIC,H2O2,ROOH;carbonyl;Hstar_4p4e5;f0_0p2;DRx_4p5,! e.g. MCM:PERPINONIC, C107OOH, C109OOH 
+NRTN28OOH,1,C10H17NO5,xx,C10NO3OOH,0p3,ROOH;OXN;nitrate;Hstar_2p2e4;f0_0p3;DRx_4p8,!C10, MCM:NAPIN[A,B]OOH
+RTN26PAN,1,C10H15NO6,xx,C10PAN2,ROOH,PANS;OXN;carbonyl;Hstar_5p2e3;f0_0p2;DRx_4p8,!C10, MCM: C10PAN2 [O=N(=O)OOC(=O)CC1CC(C(=O)C)C1(C)C] 
+RTN25OOH,1,C9H16O3,xx,C96OOH,1p3,ROOH;carbonyl;Hstar_9p0e4;f0_0p2;DRx_4p3,! MCM:C96OOH 
+RTN24OOH,1,C9H16O4,xx,VHISOLOOH,H2O2,ROOH;carbonyl;Hstar_3p5e8;f0_0p2;DRx_4p3,! MCM:C97OOH [OCC1CC(OO)(C(=O)C)C1(C)C] 
+RTN23OOH,1,C9H16O5,xx,VHISOLOOH,HNO3,ROOH;carbonyl;Hstar_3p6e11;f0_0p2;DRx_4p5,!C9 MCM:C98OOH [OCC(CC(=O)C(=O)C)C(C)(C)OO]
+RTN14OOH,1,C6H10O5,xx,VHISOLOOH,HNO3,ROOH;carbonyl;Hstar_8p5e11;f0_0p2;DRx_3p8,! MCM:C614OOH [OCC(OO)CC(=O)C(=O)C] 
+RTN10OOH,1,C5H6O5,xx,VHISOLOOH,H2O2,ROOH;peroxyacid;Hstar_2p7e8;f0_0p2;DRx_3p4,! MCM:CO23C4CO3H
+TNCARB10,1,C5H6O3,xx,CO23C4CHO,H2O2,carbonyl;Hstar_5p5e6;f0_0p0;DRx_3p2,! MCM:CO23C4CHO [O=CCC(=O)C(=O)C] 
+RTN25NO3,1,C9H15NO4,xx,VHISOLNO3,H2O2,nitrate;OXN;carbonyl;Hstar_5p0e8;f0_0p3;DRx_4p5,! MCM:C96NO3, C108NO3 
+TNCARB15,1,C7H8O4,xx,HISOLF0,H2O2,carbonyl,!C7 MCM:CO235C6CHO [O=CCC(=O)CC(=O)C(=O)C] 
+RCOOH25,1,C10H16O3,xx,PINONIC,H2O2,acid;carbonyl,!MCM:PINONIC (pinonic acid) 
+RTX28NO3,1,C10H17NO4,xx,C10H17NO4,0p8,nitrate;OXN;Hstar_5p5e4;f0_0p3;DRx_4p7,! MCM:BPINANO3 [OCC1(CCC2CC1C2(C)C)ON(=O)=O] 
+RTX28OOH,1,C10H18O3,xx,LHISOLOOH,H2O2,ROOH;Hstar_1p6e6;f0_0p2;DRx_4p5,! MCM:BPINAOOH 
+TXCARB24,1,txcarb24,xx,xx,xx,carbonyl,!C9, MCM:NOPINONE, H ca 2E2 M/atm (Noziere et al. 2001)
+RTX24NO3,1,C9H13NO4,xx,LOSOLNO3,HCHO,nitrate;OXN;Hstar_7p0e3;f0_0p3;DRx_4p4,!C9, MCM: NOPIN[A,B,C]NO3
+RTX24OOH,1,C9H14O3,xx,NOPINAOOH,H2O2,ROOH;carbonyl;Hstar_1p8e5;f0_0p2;DRx_4p2,!C9, MCM: NOPIN[A,B,C,D]OOH
+TXCARB22,1,C9H12O2,xx,MCARB,0p7,carbonyl;Hstar_5p0e4;f0_0p0;DRx_4p1,!C9, mainly MCM:C9DC 
+RTX22NO3,1,C9H11NO5,xx,VHISOLNO3,H2O2,nitrate;OXN;Hstar_1p8e7;f0_0p3;DRx_4p4,! MCM:C9DCNO3 
+RTX22OOH,1,C9H12O4,xx,VHISOLOOH,H2O2,ROOH;carbonyl;Hstar_5p4e8;f0_0p2;DRx_4p2,! MCM:C9DCOOH 
+NRTX28OOH,1,C10H17NO5,xx,C10NO3OOH,0p3,ROOH;OXN;nitrate;Hstar_2p2e4;f0_0p3;DRx_4p8,!C10, MCM:80%NBPIN[A,B]OOH
+ANHY,1,anhy,xx,ANHY,xx,other;carbonyl;Hstar_2p5e2;f0_1p0;DRx_2p9,! assumed to be MCM MALANHY?
+SO2,1,SO2,64.06,SO2,SO2,SOx,!C0
+HPUCARB12,1,C5H8O3,xx,MDSOLOOH,H2O2,RCHO;ROOH;Hstar_1p2e5;f0_0p2;DRx_3p3,!C5, MCM:C5HPALD[1,2] 
+HUCARB9,1,C4H6O2,xx,MCARB,0p8,carbonyl;Hstar_6p1e4;f0_0p0;DRx_2p8,! HVMK? and/or HMAC?
+IEPOX,1,C5H10O3,xx,HISOLF0,HNO3,epoxide,!C5 MCM: IEPOX[A,B,C]
+HMML,1,C4H6O3,xx,CARB12,0p5,epoxide;carbonyl;Hstar_3p8e4;f0_0p0;DRx_3p0,!C4 
+DHPR12OOH,1,C5H10O7,xx,VHISOLOOH,HNO3,ROOH;carbonyl;Hstar_1p0e12;f0_0p2;DRx_3p8,!C5, MCM:C536OOH 
+DHPCARB9,1,C4H8O5,xx,VHISOLOOH,H2O2,ROOH;carbonyl;Hstar_2p5e8;f0_0p2;DRx_3p3,!C4, MCM:DHPMEK
+DHCARB9,1,C4H8O3,xx,MACROH,ROOH,carbonyl;Hstar_1p5e3;f0_0p05;DRx_3p1,!C4, MCM:MACROH + HO12CO3C4 
+CO2C3CHO,1,CH3C(O)CH2CHO,xx,MGLYOX,0p3,RCHO;carbonyl;Hstar_2p2e4;f0_0p0;DRx_2p8,!C4
+CO2C3CO3H,1,CH3C(O)CH2C(O)OOH,xx,SHISOLOOH,H2O2,carbonyl;peroxyacid;Hstar_1p1e6;f0_0p2;DRx_3p1,!C4
+RU13NO3,1,C5H9NO5,xx,VHISOLNO3,H2O2,nitrate;OXN;carbonyl;Hstar_1p2e8;f0_0p3;DRx_3p7,!C5 MCM:C51NO3 
+RU12NO3,1,C5H9NO6,xx,VHISOLNO3,H2O2,nitrate;OXN;RCHO;Hstar_1p7e9;f0_0p3;DRx_3p8,!C5 perhaps MCM:C58ANO3, INDHCHO, C57NO3
+RU10NO3,1,C4H7NO5,xx,VHISOLNO3,H2O2,nitrate;OXN;carbonyl;Hstar_1p5e8;f0_0p3;DRx_3p4,!C4, perhaps MCM:MVKNO3, MACRNO3, HMVKANO3 
+CO2C3PAN,1,CH3C(O)CH2C(O)ONO3,xx,CO2C3PAN,0p2,PANS;OXN;Hstar_1p3e4;f0_0p5;DRx_3p5,!C4
+HCC7CO,1,C7H10O2,xx,HCC7CO,H2O2,carbonyl,!C7
+**,,,,,,,,,,,,
+*"* ***** Slow species *****************************",,,,,,,,,,,,
+**,,,,,,,,,,,,
+* TRACER,1,tracer,1,xx,xx,tracer,!C0
+* SLOW, typ=3
+NH3,3,NH3,17.03,NH3,NH3,NH3;RDN,!C0
+SO4,3,SO4,96.06,PMf,PMf,PM10;PMfine;SIA;SOx;Extinc:SO4,!C0
+NH4_f,3,NH4,18.01,PMfNH4,PMf,PM10;PMfine;RDN;Extinc:NH4f,!C0
+NO3_f,3,NO3,62,PMfNO3,PMf,PM10;PMfine;TNO3;OXN;SIA;Extinc:NO3f,!C0
+NO3_c,3,NO3,62,PMc,PMc,PMcoarse;PM10;TNO3;OXN;SIA;Extinc:NO3c,!C0
+CH4,3,CH4,16.04,xx,xx,methane,!C1

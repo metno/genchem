@@ -1,0 +1,12 @@
+
+*  <----------- Biogenic/natural emissions ----------------------------->
+*
+* For sea-salt, we currently set rcemis directly in emepctm
+*
+rcemis(SeaSalt_f,k)   : = SeaSalt_f ;
+rcemis(SeaSalt_c,k)   : = SeaSalt_c ;
+*
+*FUTURE MAYBE:
+*_func_rcbio(SEASALT_F,k)   : = SeaSalt_f ;
+*_func_rcbio(SEASALT_C,k)   : = SeaSalt_c ;
+

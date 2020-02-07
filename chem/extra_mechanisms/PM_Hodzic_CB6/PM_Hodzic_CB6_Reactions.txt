@@ -1,0 +1,55 @@
+
+* YIELD APPROACH YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+* YCOXY etc indices use 0, 1, 2, 3 for 10**0, 10**1 etc
+
+* 1) OH REACTIONS  ---------------------------------------
+
+
+K_185 :   [XYL] + [OH] = |YCOXY(-2)|  ASOC_ng10  +  |YNOXY(-2)|  NON_C_ASOA_ng10  +  |YCOXY(-1)|  ASOC_ng1e2  +  |YNOXY(-1)|  NON_C_ASOA_ng1e2  +  |YCOXY(0)|  ASOC_ug1  +  |YNOXY(0)|   NON_C_ASOA_ug1  +  |YCOXY(1)|  ASOC_ug10 + |YNOXY(1)|  NON_C_ASOA_ug10 +  |YCOXY(2)| ASOC_ug1e2  +  |YNOXY(2)| NON_C_ASOA_ug1e2 +  |YCOXY(3)| ASOC_ug1e3  +  |YNOXY(3)| NON_C_ASOA_ug1e3 ;
+
+
+
+K_175 : [BENZ] + [OH] = |YCBENZ(-2)|  ASOC_ng10  +  |YNBENZ(-2)|  NON_C_ASOA_ng10  +  |YCBENZ(-1)|  ASOC_ng1e2  +  |YNBENZ(-1)|  NON_C_ASOA_ng1e2  +  |YCBENZ(0)|  ASOC_ug1  +  |YNBENZ(0)|   NON_C_ASOA_ug1  +  |YCBENZ(1)|  ASOC_ug10 + |YNBENZ(1)|  NON_C_ASOA_ug10 +  |YCBENZ(2)| ASOC_ug1e2  +  |YNBENZ(2)| NON_C_ASOA_ug1e2 +  |YCBENZ(3)| ASOC_ug1e3  +  |YNBENZ(3)| NON_C_ASOA_ug1e3 ;
+
+
+
+K_180 : [TOL] + [OH] = |YCTOL(-2)|  ASOC_ng10  +  |YNTOL(-2)|  NON_C_ASOA_ng10  +  |YCTOL(-1)|  ASOC_ng1e2  +  |YNTOL(-1)|  NON_C_ASOA_ng1e2  +  |YCTOL(0)|  ASOC_ug1  +  |YNTOL(0)|   NON_C_ASOA_ug1  +  |YCTOL(1)|  ASOC_ug10 + |YNTOL(1)|  NON_C_ASOA_ug10 +  |YCTOL(2)| ASOC_ug1e2  +  |YNTOL(2)| NON_C_ASOA_ug1e2 +  |YCTOL(3)| ASOC_ug1e3  +  |YNTOL(3)| NON_C_ASOA_ug1e3 ;
+
+
+*EXCLUDE SOA FROM ALKANES -- NOT IN Hodzic et al. --- 2.03e-17*(TEMP**2)*EXP(78.0*TINV) : [OH] + [NC4H10]  = |YCALK(0)|  ASOC_ug1  +  |YNALK(0)|   NON_C_ASOA_ug1  +  |YCALK(1)|  ASOC_ug10 + |YNALK(1)|  NON_C_ASOA_ug10 +  |YCALK(2)| ASOC_ug1e2  +  |YNALK(2)| NON_C_ASOA_ug1e2 +  |YCALK(3)| ASOC_ug1e3  +  |YNALK(3)| NON_C_ASOA_ug1e3 ;
+
+*TROE_OH_C3H6 : changed to KMT16
+*EXCLUDE SOA FROM ALKENES -- NOT IN Hodzic et al. --- KMT16 :  [OH] + [C3H6]  = |YCOLE(0)|  ASOC_ug1  +  |YNOLE(0)|   NON_C_ASOA_ug1  +  |YCOLE(1)|  ASOC_ug10 + |YNOLE(1)|  NON_C_ASOA_ug10 +  |YCOLE(2)| ASOC_ug1e2  +  |YNOLE(2)| NON_C_ASOA_ug1e2 +  |YCOLE(3)| ASOC_ug1e3  +  |YNOLE(3)| NON_C_ASOA_ug1e3 ;
+
+
+K_149 :   [OH] + [C5H8] = |YCISOP(-2)|  BSOC_ng10  +  |YNISOP(-2)|   NON_C_BSOA_ng10  +  |YCISOP(-1)|  BSOC_ng1e2  +  |YNISOP(-1)|   NON_C_BSOA_ng1e2  +  |YCISOP(0)|  BSOC_ug1  +  |YNISOP(0)|   NON_C_BSOA_ug1  +  |YCISOP(1)|  BSOC_ug10 + |YNISOP(1)|  NON_C_BSOA_ug10 +  |YCISOP(2)| BSOC_ug1e2  +  |YNISOP(2)| NON_C_BSOA_ug1e2 +  |YCISOP(3)| BSOC_ug1e3  +  |YNISOP(3)| NON_C_BSOA_ug1e3 ;
+
+
+* NOTE: RENAMED - CB6 TERP is renamed here to APINENE, for consistency with
+* EmChems, and to ease boxChem testing
+K_172 :   [OH] + [APINENE] = |YCTERP(-2)|  BSOC_ng10  +  |YNTERP(-2)|   NON_C_BSOA_ng10  +  |YCTERP(-1)|  BSOC_ng1e2  +  |YNTERP(-1)|   NON_C_BSOA_ng1e2  +  |YCTERP(0)|  BSOC_ug1  +  |YNTERP(0)|   NON_C_BSOA_ug1  +  |YCTERP(1)|  BSOC_ug10 + |YNTERP(1)|  NON_C_BSOA_ug10 +  |YCTERP(2)| BSOC_ug1e2  +  |YNTERP(2)| NON_C_BSOA_ug1e2 +  |YCTERP(3)| BSOC_ug1e3  +  |YNTERP(3)| NON_C_BSOA_ug1e3 ;
+
+* 2) O3 REACTIONS  ---------------------------------------
+*assume same SOA yield for MT+O3 reaction as MT+OH...
+
+
+K_173 :   [O3] + [APINENE] = |YCTERP(-2)|  BSOC_ng10  +  |YNTERP(-2)|   NON_C_BSOA_ng10  +  |YCTERP(-1)|  BSOC_ng1e2  +  |YNTERP(-1)|   NON_C_BSOA_ng1e2  +  |YCTERP(0)|  BSOC_ug1  +  |YNTERP(0)|   NON_C_BSOA_ug1  +  |YCTERP(1)|  BSOC_ug10 + |YNTERP(1)|  NON_C_BSOA_ug10 +  |YCTERP(2)| BSOC_ug1e2  +  |YNTERP(2)| NON_C_BSOA_ug1e2 +  |YCTERP(3)| BSOC_ug1e3  +  |YNTERP(3)| NON_C_BSOA_ug1e3 ;
+
+* 3) NO3 REACTIONS  ---------------------------------------
+*assume same SOA yield for MT+NO3 reactions as for MT+OH -- NOTE! This is probably NOT a very realistic assumption!
+* NOTE also that Fry et al. (2014 EST) found zero SOA yield for a-pinene+NO3, but HIGH SOA yields for all other tested monoterpenes+NO3 reactions
+* For work focussed on BSOA from biogenic VOC emissions the NO3 SOA production clearly needs to be reconsidered!
+
+
+K_174 :    [NO3] + [APINENE] = |YCTERP(-2)|  BSOC_ng10  +  |YNTERP(-2)|   NON_C_BSOA_ng10  +  |YCTERP(-1)|  BSOC_ng1e2  +  |YNTERP(-1)|   NON_C_BSOA_ng1e2  + |YCTERP(0)|  BSOC_ug1  +  |YNTERP(0)|   NON_C_BSOA_ug1  +  |YCTERP(1)|  BSOC_ug10 + |YNTERP(1)|  NON_C_BSOA_ug10 +  |YCTERP(2)| BSOC_ug1e2  +  |YNTERP(2)| NON_C_BSOA_ug1e2 +  |YCTERP(3)| BSOC_ug1e3  +  |YNTERP(3)| NON_C_BSOA_ug1e3 ;
+
+* END  YIELD APPROACH YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+
+*===========================================================================
+* No "extra" aging of SOA semivolatiles with Hodzic scheme!
+*
+
+*<----- EC ageing ------- -------------------------------------------->
+* ;
+ec_ageing_rate()         : EC_f_wood_NEW  = EC_f_wood_AGE ;
+ec_ageing_rate()         : EC_f_ffuel_NEW = EC_f_ffuel_AGE ;

@@ -1,0 +1,31 @@
+*"---------------------------------------------------------------------"
+* Assumes PM emissions, with OC, EC, remPPM, for fine and coarse
+* FFIRE now moved to separate FFireInert directory
+*"---------------------------------------------------------------------"
+* REMEMBER to NOT include the PM10 and PMfine groups for the fine (PM2.5) Organic components! Taken care of by the help species PART_OM_F!
+* Aiken et al., EST2008, gives values about 1.56-1.72 for P-BBOA and similar for ambient BBOA
+*
+*"Spec,adv,formula,MW,DRY,WET,Groups,!Comments"
+*
+* Inert POM species:
+* 
+POM_f_wood,3,CO,20.4,PMf,PMf,OM25;PCM;PPM25;PPM10;nvwoodOC25;nonvolPCM;nvabsOM,"!Primary wood burning OC emissions, OM/OC=1.7"
+POM_c_wood,3,CO,20.4,PMc,PMc,PMcoarse;PPM_c;PPM10;PM10;nvwoodOC_coarse;OMcoarse;nonvolPCM,"!Primary wood burning coarse OC emissions, OM/OC=1.7"
+POM_f_ffuel,3,CH3,xx,PMf,PMf,OM25;PCM;PPM25;PPM10;nvffuelOC25;nonvolPCM;nvabsOM,"!Primary fossil fuel burning fine OC emissions, OM/OC=1.25"
+POM_c_ffuel,3,CH3,xx,PMc,PMc,PMcoarse;PPM_c;PPM10;PM10;PM10anthr;nvffuelOC_coarse;OMcoarse;nonvolPCM,"!Primary fossil fuel burning coarse OC emissions, OA/OC=1.25"
+*
+* Primary wood burning fine EC emissions"
+EC_f_wood_new,3,C,xx,PMf,ECfn,Extinc:ECn;EC_f;PMfine;PM10;PPM25;PPM10;PCM;woodEC;woodECfine;ECfine;nonvolPCM,
+EC_f_wood_age,3,C,xx,PMf,PMf,Extinc:ECa;EC_f;PMfine;PM10;PPM25;PPM10;PCM;woodEC;woodECfine;ECfine;nonvolPCM,"!Aged wood burning fine EC emissions"
+EC_c_wood,3,C,xx,PMc,PMc,Extinc:EC;PPM_c;PPM10;PM10;PM10anthr;woodEC;ECcoarse;nonvolPCM,"!Primary wood burning coarse EC emissions"
+EC_f_ffuel_new,3,C,xx,PMf,ECfn,Extinc:ECn;EC_f;PMfine;PM10;PPM25;PPM10;PCM;ffuelEC;ffuelECfine;ECfine;nonvolPCM,"!Primary fossil fuel burning fine EC emissions"
+EC_f_ffuel_age,3,C,xx,PMf,PMf,Extinc:ECa;EC_f;PMfine;PM10;PPM25;PPM10;PCM;ffuelEC;ffuelECfine;ECfine;nonvolPCM,"!Aged fossil fuel burning fine EC emissions"
+EC_c_ffuel,3,C,xx,PMc,PMc,Extinc:EC;PPM_c;PPM10;PM10;PM10anthr;ffuelEC;ECcoarse;nonvolPCM,"!Primary fossil fuel burning coarse EC emissions"
+*
+* Four species represent any particle emissions which are not EC or OC. Uses a little
+* extra CPU if only OC, EC inventories are used, but makes for easy consistency with PMxx inventories
+*
+pSO4f,3,SO4,xx,PMf,PMf,PM10;PMfine;SOx;PPM25;PPM10;Extinc:SO4,! primary sulfate emissions in PM2.5 (should this also be counted as SIA?)
+pSO4c,3,SO4,xx,PMc,PMc,Extinc:SO4;PM10;PMcoarse;SOx;PPM10;PPM_c,! primary sulfate emissions in PMcoarse (should this also be counted as SIA?)
+remPPM25,3,xx,12,PMf,PMf,Extinc:DDf;PM10;PMfine;PPM25;PPM10,"!Primary; fine <2.5um"
+remPPM_c,3,xx,12,PMc,PMc,Extinc:DDc;PMcoarse;PPM_c;PPM10;PM10,"!Primary; coarse 2.5um<PM<10"

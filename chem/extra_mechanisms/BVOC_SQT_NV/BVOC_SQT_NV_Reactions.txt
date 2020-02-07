@@ -1,0 +1,11 @@
+
+* Taken from BVOC_EmChem16 scheme (with SQT_SOA corresponding to
+* SQT-emis 5% of MT-emission and 17% SOA yield, added as direct emission
+* of non-volatile SOA)
+
+_func_rcbio(2,k) : =  0.00383 SQT_SOA_NV ; 
+
+*_func_rcbio(2,k) : =  0.45 APINENE + 0.2 BPINENE + 0.35 XTERP ;
+
+
+

@@ -1,0 +1,77 @@
+
+* YIELD APPROACH YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+* YCOXY etc indices use 0, 1, 2, 3 for 10**0, 10**1 etc
+
+* 1) OH REACTIONS  ---------------------------------------
+
+1.36e-11 :   [OXYL] + [OH] = |YCOXY(0)|  ASOC_ug1  +  |YNOXY(0)|   non_C_ASOA_ug1  +  |YCOXY(1)|  ASOC_ug10 + |YNOXY(1)|  non_C_ASOA_ug10 +  |YCOXY(2)| ASOC_ug1e2  +  |YNOXY(2)| non_C_ASOA_ug1e2 +  |YCOXY(3)| ASOC_ug1e3  +  |YNOXY(3)| non_C_ASOA_ug1e3 ;
+*
+* BENZENE AND TOLUENE tmp - same as OXYL
+2.3e-12*exp(-190.0*TINV) :   [BENZENE] + [OH] = |YCBENZ(0)|  ASOC_ug1  +  |YNBENZ(0)|   non_C_ASOA_ug1  +  |YCBENZ(1)|  ASOC_ug10 + |YNBENZ(1)|  non_C_ASOA_ug10 +  |YCBENZ(2)| ASOC_ug1e2  +  |YNBENZ(2)| non_C_ASOA_ug1e2 +  |YCBENZ(3)| ASOC_ug1e3  +  |YNBENZ(3)| non_C_ASOA_ug1e3 ;
+
+1.8e-12*exp(340.*TINV) :   [TOLUENE] + [OH] = |YCTOL(0)|  ASOC_ug1  +  |YNTOL(0)|   non_C_ASOA_ug1  +  |YCTOL(1)|  ASOC_ug10 + |YNTOL(1)|  non_C_ASOA_ug10 +  |YCTOL(2)| ASOC_ug1e2  +  |YNTOL(2)| non_C_ASOA_ug1e2 +  |YCTOL(3)| ASOC_ug1e3  +  |YNTOL(3)| non_C_ASOA_ug1e3 ;
+
+*OLD: 2.03e-17*(TEMP**2)*EXP(78.0*TINV) : [OH] + [NC4H10]  = |YCALK(0)|  ASOC_ug1  +  |YNALK(0)|   non_C_ASOA_ug1  +  |YCALK(1)|  ASOC_ug10 + |YNALK(1)|  non_C_ASOA_ug10 +  |YCALK(2)| ASOC_ug1e2  +  |YNALK(2)| non_C_ASOA_ug1e2 +  |YCALK(3)| ASOC_ug1e3  +  |YNALK(3)| non_C_ASOA_ug1e3 ;
+
+*change to simpler Arrhenius type rate expression (to be consistent with EmChem16z_Reactions)
+9.8e-12*exp(-425.*TINV) : [OH] + [NC4H10]  = |YCALK(0)|  ASOC_ug1  +  |YNALK(0)|   non_C_ASOA_ug1  +  |YCALK(1)|  ASOC_ug10 + |YNALK(1)|  non_C_ASOA_ug10 +  |YCALK(2)| ASOC_ug1e2  +  |YNALK(2)| non_C_ASOA_ug1e2 +  |YCALK(3)| ASOC_ug1e3  +  |YNALK(3)| non_C_ASOA_ug1e3 ;
+
+*TROE_OH_C3H6 : changed to KMT16
+KMT16 :  [OH] + [C3H6]  = |YCOLE(0)|  ASOC_ug1  +  |YNOLE(0)|   non_C_ASOA_ug1  +  |YCOLE(1)|  ASOC_ug10 + |YNOLE(1)|  non_C_ASOA_ug10 +  |YCOLE(2)| ASOC_ug1e2  +  |YNOLE(2)| non_C_ASOA_ug1e2 +  |YCOLE(3)| ASOC_ug1e3  +  |YNOLE(3)| non_C_ASOA_ug1e3 ;
+
+2.7e-11*EXP(390.0*TINV) :            [OH] + [C5H8] = |YCISOP(0)|  BSOC_ug1  +  |YNISOP(0)|   non_C_BSOA_ug1  +  |YCISOP(1)|  BSOC_ug10 + |YNISOP(1)|  non_C_BSOA_ug10 +  |YCISOP(2)| BSOC_ug1e2  +  |YNISOP(2)| non_C_BSOA_ug1e2 +  |YCISOP(3)| BSOC_ug1e3  +  |YNISOP(3)| non_C_BSOA_ug1e3 ;
+
+1.34e-11*exp(410.*tinv) :   [OH] + [APINENE] = |YCTERP(0)|  BSOC_ug1  +  |YNTERP(0)|   non_C_BSOA_ug1  +  |YCTERP(1)|  BSOC_ug10 + |YNTERP(1)|  non_C_BSOA_ug10 +  |YCTERP(2)| BSOC_ug1e2  +  |YNTERP(2)| non_C_BSOA_ug1e2 +  |YCTERP(3)| BSOC_ug1e3  +  |YNTERP(3)| non_C_BSOA_ug1e3 ; Updated rate (new IUPAC recommendation)
+
+* 1.62e-11*exp(460.*tinv) :           [OH] + [BPINENE] = |YCTERP(0)|  BSOC_ug1  +  |YNTERP(0)|   non_C_BSOA_ug1  +  |YCTERP(1)|  BSOC_ug10 + |YNTERP(1)|  non_C_BSOA_ug10 +  |YCTERP(2)| BSOC_ug1e2  +  |YNTERP(2)| non_C_BSOA_ug1e2 +  |YCTERP(3)| BSOC_ug1e3  +  |YNTERP(3)| non_C_BSOA_ug1e3 ; Updated rate (new IUPAC recommendation)
+
+* 1.34e-11*exp(410.*tinv)*3.22 :      [OH] +  [XTERP]  = |YCTERP(0)|  BSOC_ug1  +  |YNTERP(0)|   non_C_BSOA_ug1  +  |YCTERP(1)|  BSOC_ug10 + |YNTERP(1)|  non_C_BSOA_ug10 +  |YCTERP(2)| BSOC_ug1e2  +  |YNTERP(2)| non_C_BSOA_ug1e2 +  |YCTERP(3)| BSOC_ug1e3  +  |YNTERP(3)| non_C_BSOA_ug1e3 ; Assume XTERP gives same products as APINENE (but using faster rates, based on available (IUPAC rates) for other monoterpenes)
+
+
+* 2) O3 REACTIONS  ---------------------------------------
+
+8.22e-16*exp(-640.*TINV) :          [O3] + [APINENE] = |YCTERP(0)|  BSOC_ug1  +  |YNTERP(0)|   non_C_BSOA_ug1  +  |YCTERP(1)|  BSOC_ug10 + |YNTERP(1)|  non_C_BSOA_ug10 +  |YCTERP(2)| BSOC_ug1e2  +  |YNTERP(2)| non_C_BSOA_ug1e2 +  |YCTERP(3)| BSOC_ug1e3  +  |YNTERP(3)| non_C_BSOA_ug1e3 ; Updated rate to new IUPAC recommendation
+
+* 1.39e-15*exp(-1280.*TINV) :         [O3] + [BPINENE] = |YCTERP(0)|  BSOC_ug1  +  |YNTERP(0)|   non_C_BSOA_ug1  +  |YCTERP(1)|  BSOC_ug10 + |YNTERP(1)|  non_C_BSOA_ug10 +  |YCTERP(2)| BSOC_ug1e2  +  |YNTERP(2)| non_C_BSOA_ug1e2 +  |YCTERP(3)| BSOC_ug1e3  +  |YNTERP(3)| non_C_BSOA_ug1e3 ; Updated rate tonew IUPAC recommendation
+
+* 8.22e-16*exp(-640.*TINV)*3.34 :     [O3] +  [XTERP]  = |YCTERP(0)|  BSOC_ug1  +  |YNTERP(0)|   non_C_BSOA_ug1  +  |YCTERP(1)|  BSOC_ug10 + |YNTERP(1)|  non_C_BSOA_ug10 +  |YCTERP(2)| BSOC_ug1e2  +  |YNTERP(2)| non_C_BSOA_ug1e2 +  |YCTERP(3)| BSOC_ug1e3  +  |YNTERP(3)| non_C_BSOA_ug1e3 ;
+
+* 3) NO3 REACTIONS  ---------------------------------------
+
+1.2e-12*exp(490.*tinv) :          [NO3] + [APINENE] = |YCTERP(0)|  BSOC_ug1  +  |YNTERP(0)|   non_C_BSOA_ug1  +  |YCTERP(1)|  BSOC_ug10 + |YNTERP(1)|  non_C_BSOA_ug10 +  |YCTERP(2)| BSOC_ug1e2  +  |YNTERP(2)| non_C_BSOA_ug1e2 +  |YCTERP(3)| BSOC_ug1e3  +  |YNTERP(3)| non_C_BSOA_ug1e3 ;
+
+* 2.51e-12 :                         [NO3] + [BPINENE] = |YCTERP(0)|  BSOC_ug1  +  |YNTERP(0)|   non_C_BSOA_ug1  +  |YCTERP(1)|  BSOC_ug10 + |YNTERP(1)|  non_C_BSOA_ug10 +  |YCTERP(2)| BSOC_ug1e2  +  |YNTERP(2)| non_C_BSOA_ug1e2 +  |YCTERP(3)| BSOC_ug1e3  +  |YNTERP(3)| non_C_BSOA_ug1e3 ;
+
+* 1.20e-12*exp(490.*tinv)*2.249 :     [NO3] +  [XTERP]  = |YCTERP(0)|  BSOC_ug1  +  |YNTERP(0)|   non_C_BSOA_ug1  +  |YCTERP(1)|  BSOC_ug10 + |YNTERP(1)|  non_C_BSOA_ug10 +  |YCTERP(2)| BSOC_ug1e2  +  |YNTERP(2)| non_C_BSOA_ug1e2 +  |YCTERP(3)| BSOC_ug1e3  +  |YNTERP(3)| non_C_BSOA_ug1e3 ;
+
+* END  YIELD APPROACH YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+
+*===========================================================================
+* Aging of SOA as in Lane et al., 2008 (Tsimpidi et al., 2010, seem to use 10 times faster aging also for SOA!)
+* NOTE! Test mass increase due to uptake of oxygen in aging reactions (assume 7.5% mass increase per aging reaction).
+*
+4.0e-12*Fgas(ASOC_ug1,KDIM)  : [OH] + ASOC_ug1      = ASOC_ng1e2 + 0.9 non_C_ASOA_ng1e2 ;
+4.0e-12*Fgas(ASOC_ug10,KDIM) : [OH] + ASOC_ug10     = ASOC_ug1 + 0.9 non_C_ASOA_ug1 ;
+4.0e-12*Fgas(ASOC_ug1e2,KDIM): [OH] + ASOC_ug1e2    = ASOC_ug10 + 0.9 non_C_ASOA_ug10 ;
+4.0e-12*Fgas(ASOC_ug1e3,KDIM): [OH] + ASOC_ug1e3    = ASOC_ug1e2 + 0.9 non_C_ASOA_ug1e2 ; 
+*
+4.0e-12*Fgas(non_C_ASOA_ug1,KDIM)     : [OH] + non_C_ASOA_ug1     =  1.075 non_C_ASOA_ng1e2 ;
+4.0e-12*Fgas(non_C_ASOA_ug10,KDIM)    : [OH] + non_C_ASOA_ug10    =  1.075 non_C_ASOA_ug1  ;
+4.0e-12*Fgas(non_C_ASOA_ug1e2,KDIM)   : [OH] + non_C_ASOA_ug1e2   =  1.075 non_C_ASOA_ug10  ;
+4.0e-12*Fgas(non_C_ASOA_ug1e3,KDIM)   : [OH] + non_C_ASOA_ug1e3   =  1.075 non_C_ASOA_ug1e2  ;
+*
+4.0e-12*Fgas(BSOC_ug1,KDIM)   :[OH] + BSOC_ug1      = BSOC_ng1e2 + 0.9 non_C_BSOA_ng1e2 ;
+4.0e-12*Fgas(BSOC_ug10,KDIM)  :[OH] + BSOC_ug10     = BSOC_ug1 + 0.9 non_C_BSOA_ug1 ;
+4.0e-12*Fgas(BSOC_ug1e2,KDIM) :[OH] + BSOC_ug1e2    = BSOC_ug10 + 0.9 non_C_BSOA_ug10 ;
+4.0e-12*Fgas(BSOC_ug1e3,KDIM) :[OH] + BSOC_ug1e3    = BSOC_ug1e2 + 0.9 non_C_BSOA_ug1e2 ;
+*
+4.0e-12*Fgas(non_C_BSOA_ug1,KDIM)    :  [OH] + non_C_BSOA_ug1     =  1.075 non_C_BSOA_ng1e2 ;
+4.0e-12*Fgas(non_C_BSOA_ug10,KDIM)   :  [OH] + non_C_BSOA_ug10    =  1.075 non_C_BSOA_ug1  ;
+4.0e-12*Fgas(non_C_BSOA_ug1e2,KDIM)  :  [OH] + non_C_BSOA_ug1e2   =  1.075 non_C_BSOA_ug10  ;
+4.0e-12*Fgas(non_C_BSOA_ug1e3,KDIM)  :  [OH] + non_C_BSOA_ug1e3   =  1.075 non_C_BSOA_ug1e2  ;
+
+
+*<----- EC ageing ------- -------------------------------------------->
+* ;
+ec_ageing_rate()         : EC_f_wood_new  = EC_f_wood_age ;
+ec_ageing_rate()         : EC_f_ffuel_new = EC_f_ffuel_age ;

@@ -1,0 +1,19 @@
+*
+emisfiles:pm25,pmco
+* 
+* Here primary OA emissions are considered nonvolatile ("traditional approach")
+*
+rcemis(POM_f_ffuel,KDIM)            : = POM_f_ffuel ;
+rcemis(POM_c_ffuel,KDIM)            : = POM_c_ffuel ;
+rcemis(EC_f_ffuel_new,KDIM)         : = EC_f_ffuel_new ;
+rcemis(EC_f_ffuel_age,KDIM)         : = EC_f_ffuel_age ;
+rcemis(EC_c_ffuel,KDIM)             : = EC_c_ffuel ;
+*
+rcemis(POM_f_wood,KDIM)             : = POM_f_wood ;
+rcemis(EC_f_wood_new,KDIM)          : = EC_f_wood_new ;
+rcemis(EC_f_wood_age,KDIM)          : = EC_f_wood_age ;
+rcemis(remPPM25,KDIM)               : = remPPM25 ;
+rcemis(remPPM_c,KDIM)               : = remPPM_c ;
+rcemis(pSO4f,KDIM)                  : = pSO4f ;
+rcemis(pSO4c,KDIM)                  : = pSO4c ;
+*

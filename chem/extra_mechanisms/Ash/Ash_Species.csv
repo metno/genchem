@@ -1,0 +1,10 @@
+*
+Spec,adv,formula,MW,DRY,WET,Groups,!Comments
+* adv=1 = fast, sent to CM_Reactions1.inc
+* adv=2 = fast, semi-vol
+* adv=3 = slow, sent to CM_Reactions2.inc
+*
+* Volcanic ash tracers (all active vents)
+Ash_f,3,xx,12,PMf,PMf,ASH;PMfine;PM10,,"!!Volcanic ash; fine  < 2.5 um"
+Ash_c,3,xx,12,PMc,PMc,ASH;PMcoarse;PM10,,"!!Volcanic ash; coarse 2.5-10 um"
+*

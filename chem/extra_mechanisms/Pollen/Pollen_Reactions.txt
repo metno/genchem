@@ -1,0 +1,7 @@
+* <----------- Biogenic/natural emissions ----------------------------->
+* Pollen: rcbio or rcemis?
+
+rcemis(POLLEN_BIRCH,KDIM)              : = POLLEN_BIRCH ;
+rcemis(POLLEN_OLIVE,KDIM)              : = POLLEN_OLIVE ;
+rcemis(POLLEN_RWEED,KDIM)              : = POLLEN_RWEED ;
+rcemis(POLLEN_GRASS,KDIM)              : = POLLEN_GRASS ;

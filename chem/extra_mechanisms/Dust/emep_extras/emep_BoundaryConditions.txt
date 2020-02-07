@@ -1,0 +1,5 @@
+# CMX_BoundaryConditions.txt for generic emep, Dust
+# globBC     emep             fac    wanted
+#
+ 'DUST_f',  'Dust_f',        1.0,    T,     #Dust
+ 'DUST_c',  'Dust_c',        1.0,    T,     #Dust

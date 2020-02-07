@@ -1,0 +1,6 @@
+*
+Spec,adv,formula,MW,DRY,WET,Groups,!Comments
+*
+Dust_f,1,xx,200,DUf,PMf,PMfine;PM10;Extinc:DDf;DUST,,!
+Dust_c,1,xx,200,DUc,PMc,PMcoarse;PM10;Extinc:DDc;DUST,,!
+*

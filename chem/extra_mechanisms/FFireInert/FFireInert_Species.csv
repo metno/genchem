@@ -1,0 +1,15 @@
+* Forest fire species for inert emissions of the three species for
+* typical EMEP usage.
+* For ffire emissions, we need an OM/OC ratio consistent with BiomassBurning
+* Mapping. 1.7 x 12 = 20.4
+* Wildfire OC emissions, OM/OC assumed to be =1.7 (loosely based on Aiken et al. 2008)"
+* IMPORTANT! REMEMBER to NOT include the PM10 and PMfine groups for the fine
+*  (PM2.5) Organic components! Taken care of by the help species PART_OM_F!
+*
+* See FFireTracers for the tracer species ffire_CO if wanted.
+*"---------------------------------------------------------------------"
+*"Spec,adv,formula,MW,DRY,WET,Groups,!Comments"
+ffire_OM,3,CO,20.4,PMf,PMf,OC;OM25;PCM;PPM25_fire;PPM10_fire;nonvolPCM;nvabsOM;FBBPOA25,"!Wildfire OC emissions"
+ffire_BC,3,C,xx,PMf,PMf,Extinc:EC;EC_f;PMfine;PPM25_fire;PPM10_fire;PM10;PCM;ffireBC;ECfine;nonvolPCM,"!Wildfire BC emissions"
+ffire_remPPM25,3,xx,12,PMf,PMf,Extinc:DDf;PM10;PPM25_fire;PPM10_fire;PMfine,"!Primary; fine <2.5um"
+ffire_c,3,xx,12,PMc,PMc,Extinc:DDc;PM10;PPM10_fire;PMcoarse,"!Primary; coarse >=2.5um"

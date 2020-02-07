@@ -1,0 +1,72 @@
+
+
+Step 3: emep_setup.py
++++++++++++++++++++++
+
+The do.testChem script described above is best for quickly testing and 
+comparing different mechanisms. Usually these comparisons only involve
+gas-phase mechanisms such as EmChem19a or MCM_v3.3. However, the EMEP
+model usually requires a host of extra species and reactions to 
+accommodate sea-salt, dust, organic aerosols, and pollen.
+It also requires files to specify how emissions and boundary
+conditions should be distributed among specific species, e.g.
+how a VOC emission should be split into C2H6, C2H4, nC4H10 etc.
+
+In fact, for the EMEP model, GenChem produces many files which are
+copied into the ZCM\_XXX directories for the scheme XXX you wish to use: 
+
+   $ls -x ZCM_EmChem19a/
+
+    CM_ChemDims_mod.f90                     CM_ChemGroups_mod.f90
+    CM_ChemRates_mod.f90                    CM_ChemSpecs_mod.f90
+    CM_DryDep.inc                           CM_EmisFile.inc
+    CM_emislist.csv                         CM_EmisSpecs.inc
+    CM_Reactions1.inc                       CM_Reactions2.inc
+    CM_Reactions.log                        CM_WetDep.inc
+    CMX_BiomassBurningMapping_FINNv1.5.txt  CMX_BiomassBurningMapping_GFASv1.txt
+    CMX_BoundaryConditions.txt              config_box.nml
+    run_emislist/  (with emislist.defaults.sox etc..)
+
+
+The recommended way to get this directory is to use the script *emep_setup.py* from your temporary work directory
+within  the **box** system. So, from e.g. box/tmp_work, do:
+
+  ./emep_setup.py  EmChem19a
+
+or just::
+
+  ./emep_setup.py
+
+and this will provide a list of options.
+
+
+You can edit the *emep_setup.py* scripts, maybe renaming it as *my_setup.py* directory. 
+If selecting from the provided base\_mechanisms and extra\_mechanisms you only need to extend
+the possible command lines as provided by the *cmdx*  dictionary::
+
+  cmdx['EmChem19a'] ='-b EmChem19a -e PM_VBS_EmChem19 BVOC_MTERP1_EmChem19'+common
+  cmdx['CRI-R5-emep'] ='-b CRI-R5-emep -e common'
+
+
+The '-b' argument gives the base mechanism, and then you can have any number of compatable extra mechanisms (-e argument).
+
+Any keys from *cmdx* can be used by *emep_setup.py*. For example, if the user builds a new base scheme *usersChem* and
+some OA scheme, *usersSOA*, then *emep_setup.py* can be edited to add these as a new option::
+
+  cmdx['usersChem'] ='-b usersChem -e  usersSOA'+common
+
+you could do::
+
+  do.testChems usersChem   # GOOD TO CHECK FIRST
+
+  emep_setup.py usersChem  # Creates ZCM_usersChem
+
+
+
+
+.. warning::
+
+  **  NOTE !!
+  This user-guide is a work-in-progress manual on the GenChem system,
+  with this interim version produced for interested users, Dec. 2019.
+  **

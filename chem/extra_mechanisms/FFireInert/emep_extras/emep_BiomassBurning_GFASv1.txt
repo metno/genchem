@@ -1,0 +1,25 @@
+#----------------------------------------------------------------------------#
+# BiomassBurning mapping GFASv1 to EMEP's ffire_OM, ffire_BC, ffire_remPPM25
+#----------------------------------------------------------------------------#
+# Column-1 gives GFASv1 species,
+# Column-2 gives unitsfac
+# Column-3 gives mass fraction of GFASv1 emissions assign to EMEP species
+# Column-4 gives EMEP species
+# Note, GFAS species are not essential in all files, but if given they need
+# to be part of the POSSIBLE_GFASv1_SPECS array in EMEP's ForestFire_mod.
+#
+# FFire PM species only here, see FFireTracers for ffire_CO tracer if wanted.
+# 
+# The tricky bit: we read in BC, OC, PM25 and PM10 from GFAS, but want BC, OM,
+# rempPM25 and c for EmChem19a , CRI etc. We solve this by using GFAS's
+# OC to estimate OM (factor 1.7), and subtracting both BC and OM from
+# PM25 to get remPM25.   (ForestFire_mod will prevent zeros)
+#----------------------------------------------------------------------------#
+#   GFAS             mw?     fac?   emep              comment
+    'tpmfire      ', 1.000,  1.000, 'ffire_c'       , # 088.210 | PM 10
+    'pm2p5fire    ', 1.000, -1.000, 'ffire_c'       , # 087.210 | PM 10 - PM 2.5
+    'pm2p5fire    ', 1.000,  1.000, 'ffire_rempPM25', # 087.210 | PM 2.5
+    'ocfire       ', 1.700, -1.000, 'ffire_rempPM25', # 090.210 | PM 2.5 - Organic Matter
+    'bcfire       ', 1.000, -1.000, 'ffire_rempPM25', # 091.210 | PM 2.5 - Black Carbon
+    'ocfire       ', 1.700,  1.000, 'ffire_OM',       # 090.210 | Organic Carbon --> O.Matter (OM/OC=1.7)
+    'bcfire       ', 1.000,  1.000, 'ffire_BC',       # 091.210 | Black Carbon

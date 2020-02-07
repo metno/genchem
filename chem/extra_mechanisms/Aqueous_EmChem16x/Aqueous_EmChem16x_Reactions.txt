@@ -1,0 +1,8 @@
+*----- sulphur chemistry ----------------------------------- ;
+* ;
+ aqrck(ICLOHSO2,k)*2.00e-12 :       OH + SO2 = HO2 + SO4   ;  jof, kinf
+ aqrck(ICLRC1,k)            :       SO2 + H2O2 =  SO4   ;  !ox limitation
+ aqrck(ICLRC2,k)            :       SO2 + O3 =  SO4   ;
+ aqrck(ICLRC3,k)            :       SO2 + {Fe} =  SO4   ;
+* ;
+

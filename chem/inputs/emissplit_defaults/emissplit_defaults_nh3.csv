@@ -1,0 +1,18 @@
+# NH3 splits for EmChemXX
+# 
+# Key-word, MASS_ASSUMED= 0 by default, 
+# change when emissions have artificial mass, e.g. 46 for NOx as NO2
+: MASS_ASSUMED 0 
+ 99, 99,     NH3,#HEADERS
+#DATA
+  0,  1,  100.00
+  0,  2,  100.00
+  0,  3,  100.00
+  0,  4,  100.00
+  0,  5,  100.00
+  0,  6,  100.00
+  0,  7,  100.00
+  0,  8,  100.00
+  0,  9,  100.00
+  0, 10,  100.00
+  0, 11,  100.00

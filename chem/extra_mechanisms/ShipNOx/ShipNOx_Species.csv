@@ -1,0 +1,7 @@
+* ShipNOx is an articial species to avoid too high O3 production from
+* shipping NO emissions - See Simpson et al., 2012
+*"---------------------------------------------------------------------"
+*"Spec,adv,formula,MW,DRY,WET,Groups,!Comments"
+*
+shipNOx,1,NO2,xx,NO2,xx,NOx;tmpx;OXN,
+*

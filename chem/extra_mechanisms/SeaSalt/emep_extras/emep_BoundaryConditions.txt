@@ -1,0 +1,5 @@
+# CMX_BoundaryConditions.txt for generic emep run, Sea-salt
+# globBC     emep             fac  wanted
+#
+  'SeaSalt_f  ','SeaSalt_f',   1.0,   T
+  'SeaSalt_c  ','SeaSalt_c',   1.0,   T

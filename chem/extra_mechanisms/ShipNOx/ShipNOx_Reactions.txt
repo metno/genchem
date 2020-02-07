@@ -1,0 +1,12 @@
+*<----- SHIP NOx  ------- -------------------------------------------->
+* GEOS-CHEM had  2.0e-4    SHIPNOX = HNO3 + 10 O3 ; gives half-life of < 1h
+*ERR? TROE_NO2_OH : SHIPNOX + OH + {M}  = HNO3   ; A97,J
+*
+KMT08                  : shipNOx + OH + {M}  = HNO3   ; A97,J
+*
+* gives half-life of  6h, loosely based on dark experiments of Vinken et al, ACP,2009
+*
+3.2e-5                  : shipNOx   = HNO3   ; 
+
+rcemis(shipNOx,KDIM)    :           = shipNOx ;
+*

@@ -1,0 +1,7 @@
+
+**IMPORTANT: FOR MCM we have not yet set up these emep_extras files.
+
+The files have fake text which will crash any attempt to run with emep-ctm. 
+
+These files are not needed by boxChem though, so this scheme can be used via do.testChems.**
+

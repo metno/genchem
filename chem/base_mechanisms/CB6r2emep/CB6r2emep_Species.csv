@@ -1,0 +1,133 @@
+Spec,type,formula,MW,DRY,WET,Groups,!Comments
+BZO2,0,C6H7O5,159.1,xx,xx,xx,!Peroxy radical from OH addition to benzene 
+C2O3,0,C2H3O3,75.0,xx,xx,xx,!Acetylperoxy radical
+CRO,0,C7H7O,107.1,xx,xx,xx,!Alkoxy radical from cresol
+CXO3,0,C3H5O3,89.0,xx,xx,xx,!C3 and higher acylperoxy radicals 
+EPX2,0,C5H9O5,149.1,xx,xx,xx,!Peroxy radical from EPOX reaction with OH
+HCO3,0,CH3O3,63.0,xx,xx,xx,!Adduct from HO2 plus formaldehyde
+HO2,0,HO2,33.0,xx,xx,xx,!Hydroperoxy radical
+ISO2,0,C5H9O3,117.1,xx,xx,xx,!Peroxy radical from OH addition to isoprene 
+MEO2,0,CH3O2,47.0,xx,xx,xx,!Methylperoxy radical
+NO3,1,O3N,62.0,xx,xx,OXN,!Nitrate radical
+OP,0,O,16.0,xx,xx,xx,!Oxygen atom in the O3(P) electronic state (DS:was O in CB6)
+OD,0,O,16.0,xx,xx,xx,!Oxygen atom in the O1(D) electronic state (RB: was O1D in CB6)
+OH,0,HO,17.0,xx,xx,xx,!Hydroxyl radical
+OPO3,0,C4H3O4,115.0,xx,xx,xx,!Peroxyacyl radical from OPEN
+RO2,0,C4H7O2,87.1,xx,xx,RO2,!Operator to approximate total peroxy radical concentration
+ROR,0,C4H7O,71.1,xx,xx,xx,!Secondary alkoxy radical
+TO2,0,C7H9O5,173.1,xx,xx,xx,!Peroxy radical from OH addition to TOL 
+XLO2,0,C8H11O5,187.1,xx,xx,xx,!Peroxy radical from OH addition to XYL 
+XO2,0,C4H7O2,87.1,xx,xx,xx,!NO to NO2 conversion from alkylperoxy (RO2) radical
+XO2H,0,C4H7O2,87.1,xx,xx,xx,!NO to NO2 conversion (XO2) accompanied by HO2 production
+XO2N,0,C4H7O2,87.1,xx,xx,xx,!NO to organic nitrate conversion from alkylperoxy (RO2) radical
+AACD,1,C2H4O2,60.05,CH3CO2H,H2O2,acid;Hstar_7p0e5;f0_0p0;DRx_2p0,!Acetic acid !!NOTE emitted species!! M should be kept at 60.05 -- if changed the emissplit-file may have to be updated!  DEPOSITION! H* ca 7E5M/atm based on H=4e3 M/atm and Ka 1.75E-5 and pH=7
+ACET,1,C3H6O,58.08,MEK,xx,carbonyl;Hstar_3p0e1;f0_0p05;DRx_2p4,!Acetone !!NOTE emitted species!! M should be kept at 58.08 -- if changed the emissplit-file may have to be updated!
+ALD2,1,C2,24.0,ALD,xx,RCHO;Hstar_1p3e1;f0_0p05;DRx_2p1,!Acetaldehyde AND surrogate for various species (deposition???)!! !!NOTE emitted species!! M must be kept at 24.0 -- if changed the emissplit-file will have to be updated! 
+ALDX,1,C2,24.0,MEK,xx,RCHO;Hstar_1p0e1;f0_0p05;DRx_2p4,!Propionaldehyde and higher aldehydes DSCB5 !!NOTE emitted species!! M must be kept at 24.0 -- if changed the emissplit-file will have to be updated! -- deposition parameters based on C2H5CHO
+BENZ,1,C6H6,78.11,xx,xx,xx,!Benzene !!NOTE emitted species!! M should be kept at 78.11 -- if changed the emissplit-file may have to be updated!
+CAT1,1,C7H8O2,124.1,xx,xx,xx,!Methyl-catechols -- deposition?
+CO,1,CO,28.0,xx,xx,xx,!Carbon monoxide
+CH4,1,CH4,16.04,xx,xx,xx,!Methane !! Keep the M = 16.04 (in case CH4 would be added as emission surrogate)
+CRES,1,C7H8O,108.1,xx,xx,xx,!Cresols
+CRON,1,C7H7O3N,153.1,xx,xx,xx,!Nitro-cresols (deposition? slightly soluble in water?)
+EPOX,1,C5H10O3,118.1,HISOLF0,HNO3,epoxide,! Epoxide formed from ISPX reaction with OH -- assuming it is based on the MCM IEPOX[A,B,C] epoxide with two hydroxyl groups. 
+ETH,1,C2H4,28.05,xx,xx,xx,!Ethene !!NOTE emitted species!! M must be kept at 28.05 -- if changed the emissplit-file will have to be updated!
+ETHA,1,C2H6,30.07,xx,xx,xx,!Ethane !!NOTE emitted species!! M should be kept at 30.07 -- if changed the emissplit-file may have to be updated!
+ETHY,1,C2H2,26.04,xx,xx,xx,!Ethyne !!NOTE emitted species!! M should be kept at 26.04 -- if changed the emissplit-file may have to be updated!
+ETOH,1,C2H6O,46.07,xx,xx,xx,!Ethanol !!NOTE emitted species!! M should be kept at 46.07 -- if changed the emissplit-file may have to be updated!
+FACD,1,CH2O2,46.03,ORA,H2O2,acid,!Formic acid !!NOTE emitted species!! M should be kept at 46.03 -- if changed the emissplit-file may have to be updated!
+FORM,1,C,12.0,HCHO,ROOH,RCHO;Hstar_3p2e3;f0_0p2;DRx_1p4,!Formaldehyde !!NOTE emitted species!! M must be kept at 12.0 -- if changed the emissplit-file will have to be updated!
+GLY,1,C2H2O2,58.04,GLYOX,H2O2,RCHO;Hstar_3p0e5;f0_0p0;DRx_2p1,!Glyoxal !!NOTE this species may be emitted and M should be kept at 58.04 -- if changed the emissplit-file may have to be updated!
+GLYD,1,C2H4O2,60.0,HOCH2CHO,0p6,RCHO;Hstar_4p1e4;f0_0p0;DRx_2p2,!Glycolaldehyde -- high Kh Sander review gives values 41000M/atm, 99000M/atm (and one QSPR estimate 65000M/atm)
+H2O2,1,H2O2,34.0,H2O2,H2O2,HOx;Hstar_1p0e5;f0_1p0;DRx_1p36,!C0 
+HNO3,1,HO3N,63.0,HNO3,HNO3,OXN,!Nitric acid
+HONO,1,HO2N,47.0,HNO2,H2O2,OXN;Hstar_2p6e5;f0_0p5;DRx_1p6,! uncertain wet-dep rate maybe too high?
+HPLD,1,C5H8O3,116.1,MDSOLOOH,H2O2,RCHO;ROOH;Hstar_1p2e5;f0_0p2;DRx_3p3,!C5 hydroperoxyaldehyde -- deposition parameters based on estimated parameters for MCM C5HPALD1 and C5HPALD2
+INTR,1,C5H9O4N,147.1,MDNO3OH,0p7,nitrate;TNO3;OXN;Hstar_5p0e4;f0_0p3;DRx_3p6,!Organic nitrates from ISO2 reaction with NO -- deposition parameters based on estimated parameters for MCM ISOP[A,B,C,D]NO3
+IOLE,1,C4,48.0,xx,xx,xx,!Internal olefin carbon bond (R-C=C-R) DSCB5 !!NOTE emitted species!! M must be kept at 48.0 -- if changed the emissplit-file will have to be updated!
+C5H8,1,C5H8,68.12,xx,xx,BVOC,!Isoprene !!NOTE emitted species!! M should be kept at 68.12 -- if changed the emissplit-file may have to be updated!
+ISPD,1,C4H6O,70.1,MEK,xx,xx,!"Isoprene product (lumped methacrolein; methyl vinyl ketone; etc.)"
+ISPX,1,C5H10O3,118.1,SHISOLOOH,H2O2,ROOH;Hstar_1p4e6;f0_0p2;DRx_3p3,!Hydroperoxides from ISO2 reaction with HO2 -- deposition parameters based on estimated parameters for MCM ISOP[A,B,C,D]OOH
+KET,1,C,12.,xx,xx,xx,!Ketone carbon bond (C=O) !!NOTE emitted species!! M must be kept at 12.0 -- if changed the emissplit-file will have to be updated!
+MEOH,1,CH4O,32.04,xx,xx,xx,!Methanol !!NOTE emitted species!! M should be kept at 32.04 -- if changed the emissplit-file may have to be updated!
+CH3OOH,1,CH4O2,48.0,MEOOH,xx,ROOH;Hstar_3p0e2;f0_0p2;DRx_1p9,!Methylhydroperoxide -- changed name from MEPX
+MGLY,1,C3H4O2,72.06,MGLYOX,0p3,carbonyl;RCHO;Hstar_2p4e4;f0_0p0;DRx_2p5,!Methylglyoxal !!NOTE this species may be emitted and M should be kept at 72.06 -- if changed the emissplit-file may have to be updated!
+N2O5,1,O5N2,108.0,N2O5,HNO3,OXN,!Dinitrogen pentoxide
+NO,1,ON,30.0,xx,xx,OXN;NOx,!Nitric oxide
+NO2,1,O2N,46.0,NO2,xx,OXN;NOx,!Nitrogen dioxide
+O3,1,O3,48.0,O3,xx,xx,!Ozone
+OLE,1,C2,24.,xx,xx,xx,!Terminal olefin carbon bond (R-C=C) DSCB5 !!NOTE emitted species!! M must be kept at 24.0 -- if changed the emissplit-file will have to be updated!
+OPAN,1,C4H3O6N,161.0,PAN,xx,PAN;OXN;RCHO,!Peroxyacyl nitrate (PAN compound) from OPO3 -- perhaps equivalent to MCM MALDIALPAN? deposition???
+OPEN,1,C4H4O2,84.0,DICARB,H2O2,carbonyl;Hstar_2p0e5;f0_0p0;DRx_2p8,!Aromatic ring opening product (unsaturated dicarbonyl) -- MCM MALDIAL (deposition parameters based on mixture of BZFUONE and MALDIAL -- CRI: UDCARB8)
+PACD,1,C2H4O3,76.0,PAA,ROOH,peroxyacid;Hstar_8p3e2;f0_0p2;DRx_2p4,!Peroxyacetic and higher peroxycarboxylic acids
+PAN,1,C2H3O5N,121.0,PAN,xx,OXN;PAN;Hstar_3p0e0;f0_0p5;DRx_2p8,!Peroxyacetyl Nitrate
+PANX,1,C3H5O5N,135.0,PAN,xx,OXN;PAN;Hstar_2p9e0;f0_0p5;DRx_3p2,!C3 and higher peroxyacyl nitrate
+PAR,1,C,12.0,xx,xx,xx,!Paraffin carbon bond (C-C) DSCB5 !!NOTE emitted species!! M must be kept at 12.0 -- if changed the emissplit-file will have to be updated!
+PNA,1,HO4N,79.0,HO2NO2,0p8,OXN;Hstar_6p0e4;f0_1p0;DRx_2p1,!Peroxynitric acid
+PRPA,1,C3H8,44.1,xx,xx,xx,!Propane !!NOTE emitted species!! M should be kept at 44.1 -- if changed the emissplit-file may have to be updated!
+ROOH,1,C4H10O2,90.1,C3H7OOH,xx,ROOH;Hstar_6p0e1;f0_0p2;DRx_3p0,!Higher organic peroxide -- deposition parameters based on parameter estimates for MCM:SC4H9OOH
+SO2,1,O2S,64.0,SO2,SO2,SOX,!Sulfur dioxide
+*using SO4 in EMEP -- SULF,1,H2SO4,98.0,HNO3,HNO3,SOX,!Sulfuric acid (gaseous, is HNO3 okay?)
+
+* NOTE: RENAMED - CB6 TERP is renamed here to APINENE, for consistency with
+* EmChems, and to ease boxChem testing
+
+APINENE,1,C10H16,136.24,xx,xx,BVOC,!Monoterpenes !!NOTE emitted species!! M should be kept at 136.24 -- if changed the emissplit-file may have to be updated!
+
+TOL,1,C7,84.,xx,xx,xx,!Toluene and other monoalkyl aromatics !!NOTE emitted species!! M must be kept at 84.0 -- if changed the emissplit-file will have to be updated!
+XOPN,1,C5H6O2,98.1,DICARB,H2O2,carbonyl,!Aromatic ring opening product (unsaturated dicarbonyl) -- perhaps equivalent to MCM C5DICARB (and/or perhaps C4MDIAL)
+XYL,1,C8,96.0,xx,xx,xx,!Xylene and other polyalkyl aromatics !!NOTE emitted species!! M must be kept at 96.0 -- if changed the emissplit-file will have to be updated!
+NTR1,1,C4H9O3N,119.1,VLSOLNO3,xx,nitrate;TNO3;OXN;Hstar_0p0e0;f0_0p3;DRx_3p3,!Simple organic nitrates -- deposition parameters from CRI RN13NO3
+NTR2,1,C4H9O4N,135.1,MDSOLNO3,HCHO,nitrate;TNO3;OXN;Hstar_1p0e4;f0_0p3;DRx_3p4,!Multi-functional organic nitrates -- deposition parameters based on estimates for MCM BUT2OLNO3
+ECH4,1,CH4,16.0,xx,xx,xx,!Emitted methane (to enable tracking separate from CH4)
+CL2,1,Cl2,70.9,xx,xx,xx,!Molecular chlorine
+CL,1,Cl,35.5,xx,xx,xx,!Chlorine atom
+CLO,1,OCl,51.4,xx,xx,xx,!Chlorine monoxide
+HCL,1,HCl,36.5,xx,xx,xx,!Hydrogen chloride
+HOCL,1,HOCl,52.4,xx,xx,xx,!Hypochlorous acid
+CLN2,1,O2NCl,81.4,xx,xx,OXN,!Nitryl chloride
+CLN3,1,O3NCl,97.4,xx,xx,OXN,!Chlorine nitrate
+FMCL,1,CHOCl,64.5,xx,xx,xx,!Formyl chloride
+BR2,1,Br2,159.8,xx,xx,xx,!Molecular bromine
+BR,1,Br,79.9,xx,xx,xx,!Bromine atom
+BRO,1,OBr,95.9,xx,xx,xx,!Bromine monoxide
+HBR,1,HBr,80.9,xx,xx,xx,!Hydrogen bromide
+HOBR,1,HOBr,96.9,xx,xx,xx,!Hypobromous acid
+BRN2,1,O2NBr,125.9,xx,xx,OXN,!Nitryl broride
+BRN3,1,O3NBr,141.9,xx,xx,OXN,!Bromine nitrate
+FMBR,1,CHOBr,108.9,xx,xx,xx,!Formyl bromide
+I2,1,I2,253.8,xx,xx,xx,!Molecular iodine
+Iodine,1,I,126.9,xx,xx,xx,!Iodine atom
+IO,1,OI,142.9,xx,xx,xx,!Iodine monoxide
+OIO,1,O2I,158.9,xx,xx,xx,!Iodine dioxide
+I2O2,1,O2I2,285.8,xx,xx,xx,!Diiodine dioxide
+IXOY,1,O3I2,301.8,xx,xx,xx,!Condensable iodine oxides
+HI,1,HI,127.9,xx,xx,xx,!Hydrogen iodide
+HOI,1,HOI,143.9,xx,xx,xx,!Hypoiodous acid
+HIO3,1,HO3I,175.9,xx,xx,xx,!Iodic acid
+INO2,1,O2NI,172.9,xx,xx,OXN,!Nitryl iodide
+INO3,1,O3NI,188.9,xx,xx,OXN,!Iodine nitrate
+CH3I,1,CH3I,141.9,xx,xx,xx,!Iodomethane (CH3I}
+MI2,1,CH2I2,267.8,xx,xx,xx,!Diiodomethane (CH2I2}
+MIB,1,CH2BrI,220.8,xx,xx,xx,!Bromoiodomethane (CH2IBr}
+MIC,1,CH2ClI,176.4,xx,xx,xx,!Chloroiodomethane (CH2ICl}
+MBC,1,CH2ClBr,129.4,xx,xx,xx,!Chlorobromomethane (CH2BrCl}
+MB2,1,CH2Br2,173.8,xx,xx,xx,!Dibromomethane (CH2Br2}
+MBC2,1,CH3Cl2Br,165.8,xx,xx,xx,!Dichlorobromomethane (CHBrCl2}
+MB2C,1,CH3ClBr2,210.3,xx,xx,xx,!Chlorodibromomethane (CHBr2Cl}
+MB3,1,CHBr3,252.7,xx,xx,xx,!Bromoform (CHBr3}
+SSCL,1,Cl,35.5,xx,xx,xx,!Pseudo gas?phase species for sea salt chloride
+SSBR,1,Br,79.9,xx,xx,xx,!Pseudo gas?phase species for sea salt bromide
+SSN3,1,O3N,62.0,xx,xx,xx,!Pseudo gas?phase species for sea salt nitrate
+IALK,1,C3H7I,170.0,xx,xx,xx,!Alkyl iodides
+* EMEP changes
+* Spec,type,formula,MW,DRY,WET,Groups,!Comments
+H2,1,H2,xx,xx,xx,xx,!DS added
+NH3,1,NH3,xx,NH3,NH3,RDN,!DS added
+SO4,1,SO4,xx,PMf,PMf,SIA;SOX;PM10;PM;PMfine;Extinc:SO4,!DS added. Particulate, diff to gaseous SULF above?
+NH4_f,1,NH4,18.01,PMfNH4,PMf,PM10;PM;PMfine;SIA;RDN;Extinc:NH4f,!
+NO3_f,1,NO3,62,PMfNO3,PMf,PM10;PM;PMfine;SIA;OXN;Extinc:NO3f,!
+NO3_c,1,NO3,62,PMc,PMc,PM;PM10;PMcoarse;SIA;OXN;Extinc:NO3f,!
+* Fake species for -PAR
+PARLOSS,1,counter,72.1,xx,xx,xx,!cf Gery1988 p127 -PAR, 
+*
