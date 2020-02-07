@@ -1,0 +1,12 @@
+
+# Copies CMX and emisplit files from emep_setup.py to ZCM_DIRS, for transfer to
+# supercomputers
+# e.g mk.ZCMdirs  EmChem19a EmChem19X ...
+
+for chem
+do
+  odir=ZCM_DIRS/ZCM_$chem
+  mkdir -p $odir
+  cp    ZCM_$chem/CMX*  $odir
+  cp -r ZCM_$chem/emissplit_run  $odir
+done

@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+# Script to test and run boxChem for one or more chemical mechanisms.
+# Harmonises usage of extra_mechanism BoxAero and BVOC_IsoMT1_emis with
+# base-mechanisms, to make testing more comparable. (BoxAero adds some basic
+# aerosol reactions # that would have more complex forms in EMEP model,
+# and BVOC_IsoMT1_emis adds a-pinene as 100% of MTERP emissions.)
+
+usage="
+
+ eg 
+    do.tests EmChem19                      - runs one chemical mechanism,
+                   
+    do.tests EmChem09  EmChem19a MCM_v3.3  - runs all three
+
+ Needs to be run from a side-directory to src, scripts, etc.
+"
+if [ -z $1 ]; then echo "Missing arguments !! $usage"; exit; fi
+
+for chem 
+do
+
+
+  echo CHEM $chem
+
+  odir=D_Outputs_TEST # $tst
+#  if [ -f "$odir/box_dt30s.csv" ]; then rm $odir/box_dt30s.csv; fi
+  mkdir -p build $odir
+  mkdir ZCMBOX_$chem
+
+  make clean
+
+  for tmp in boxChem CM_*f90 CM_*inc CMX_*inc *.o *.mod build/*
+  do
+    if [ -f $tmp ]; then rm $tmp; fi
+  done
+
+
+  ../../chem/scripts/do.GenChem -b $chem -e BoxAero  BVOC_IsoMT1_emis
+
+  if [ -f "CM_ChemDims_mod.f90" ]; then 
+
+    echo "FINISHED GENCHEM", $chem
+    make
+    echo "MADE ", $chem
+
+    cp CM_* ZCMBOX_$chem
+    cp CMX_* ZCMBOX_$chem
+
+    ./boxChem > RES.$chem
+
+    cp -r emissplit_run     ZCMBOX_$chem
+    cp config_box.nml    $odir/config_box.$chem
+    mv ./box_outputs.csv $odir/box$chem.csv  # rename with chemical mechanism
+
+  else
+
+   echo "GenChem FAILED: $chem"
+  fi
+
+done

@@ -1,0 +1,115 @@
+! config_box.nml
+! ---------------------------------------------------------------------------
+! Namelist for BoxChem.
+
+&box_config
+
+! ---------------------------------------------------------------------------
+! Initialisations
+! ---------------
+
+! Time variables, all in seconds
+! ------------------------------
+! tstart = 0., ! 00:00
+! tstart = 10800., ! 03:00
+ tstart = 43200., ! 12:00
+! end time is absolute time -> total runtime is tend - tstart!
+ tend = 302400., ! three days on top of 12 hours
+! tend = 270000., ! three days
+! tend = 432000., ! five days
+! timestep dt
+ dt = 30.!,
+! dt = 600.!,
+! Day of the year
+doy = 182,
+
+! Geographical location
+! --------
+lat = 45.05,
+lon = 15.06,
+
+
+! Emissions
+! ---------
+! use emissions at all?
+ use_emis = T,
+! directory with emissplit files
+ emissplit_dir = 'emissplit_run/'
+ emis_kgm2day = 'nox', 18.3, ! NOx, kg/m2/day, as in MCM/CRI tests
+                'voc', 15.4  ! NMVOC
+ !emis_kgm2day = 'nox', 180.3, ! NOx, kg/m2/day, as in MCM/CRI tests
+ !               'voc', 150.4  ! NMVOC
+ ! BVOC emissions.
+ ! The following emissions will be modulated by light
+ rcbio_isopMax  = 1.0e11,       ! molec/cm2/s  isoprene 
+ rcbio_mtlMax   = 0.5e11,       ! molec/cm2/s  monoterpenes from light-dependent emissions
+ rcbio_mtp      = 0.5e11,       ! molec/cm2/s  monoterpenes from pool-dependent emissions
+
+! Concentrations of fixed species M, N2, O2, H2O.
+! -----------------------------------------------
+! Can set M, H2O as #/cm3, or set fRH, Ps
+! DO NOT USE BOTH METHODS!
+! M, H2O in molec cm^-3
+ M = 2.55e+19,
+! H2O = 2.55e17,
+ RH = 0.90,   ! equivalent to h2ofraction = 0.01
+! RH = 0.8,    ! equivalent to h2ofraction = 0.01
+! Ps = 1.0e5   ! equivalent to h2ofraction = 0.01
+
+! Concentrations of variable species
+! ----------------------------------
+! all in ppb!!
+! first set all species (might sometimes want 1.0e-30, but here zero)
+ all_species = 0.0
+! then individual ones : 'NAME',4.3e-1, 
+ initBox =
+!  'H2O2',2.e+0,
+  'CH4',1.7e+3,
+!  'NO',1.e-1,
+  'H2',5.e+2,
+  'CO',1.e+2,
+!  'C5H8',0.0,
+  'O3',3.e+1,
+!  'NO2',1.e-1,
+!  'HNO3',1.e-1,
+!  'PAN', 5.e-1,
+
+! Other variables
+! ---------------
+ Hmix = 1.0e5,    ! cm
+ TEMP = 298.15,   ! K
+
+! Output species
+! --------------
+! Can say just e.g. 'O3', to reduce size of outputs, 
+!  but in general usage 'all' is normally best.
+
+  OutSpecs_list =
+  'all', 'ppb'    ! Will switch to ug for OM
+
+
+! Output Groups
+! --------------
+  OutGroups_list =
+  'NOX',   'ppb',
+  'PAN',   'ppb',
+  'RO2',   'ppb',
+  'ASOA',   'ugm3'
+  'BSOA',   'ugm3'
+  'PMFINE',   'ugm3'
+
+
+! Debug
+! -----
+
+! For testing, one can assign all VOC to one species. Do that here:
+!  dbgVOC = 'NODEBUG',
+!  dbgVOC = 'C2H4',
+  debug%Emis = 0
+!  debug%VOC = 'C2H4'
+  debug%Spec = 'NONE', !'C2H4'
+  debug%SOA = 0
+  debug%PM = .false.
+  debug%Chem = .false.
+
+/

@@ -1,0 +1,210 @@
+! config_box.nml
+! ---------------------------------------------------------------------------
+! Namelist for the BoxChem.
+
+&box_config
+
+! ---------------------------------------------------------------------------
+! Initialisations
+! ---------------
+
+! Time variables, all in seconds
+! --------------
+! tstart = 0., ! 00:00
+! tstart = 10800., ! 03:00
+ tstart = 43200., ! 12:00
+! end time is absolute time -> total runtime is tend - tstart!
+ tend = 302400., ! three days on top of 12 hours
+! tend = 270000., ! three days
+! tend = 432000., ! five days
+! timestep dt
+! dt = 10.!,
+ dt = 600.!,
+
+! Emissions
+! ---------
+! use emissions at all?
+use_emis = F,
+! directory with emissplit files
+ emissplit_dir = '../inputs/emissplit_run/'
+
+! Concentrations of fixed species M, N2, O2, H2O.
+! -----------------------------------------------
+! M in molec cm^-3, N2, O2 and H2O should be given in fractions of M, will be
+!  calculated correctly in Box_Config.
+ M = 2.55e+19,
+ N2 = 0.7809,
+ O2 = 0.2095,
+ H2O = 1.0e-2, ! not given by MCM3.1 -> leave as EmChem15
+
+! Concentrations of variable species
+! ----------------------------------
+! all in ppb!!
+! first set all species
+ all_species = 3.9e-11,
+! then individual ones : 'NAME',4.3e-1, 
+ initBox =
+'NO',3.0,
+'NO2',7.0,
+'SO2',1.0,
+'CO',120.0,
+'CH4',1800.0,
+'O3',50.0,
+'H2',500.0,
+'H2O2',2.0,
+'C2H6',1.0,
+'C3H8',1.0,
+'NC4H10',1.0,
+'IC4H10',1.0,
+'NC5H12',1.0,
+'IC5H12',1.0,
+'NEOP',1.0,
+'NC6H14',1.0,
+'M2PE',1.0,
+'M3PE',1.0,
+'M22C4',1.0,
+'M23C4',1.0,
+'NC7H16',1.0,
+'M2HEX',1.0,
+'M3HEX',1.0,
+'NC8H18',1.0,
+'NC9H20',1.0,
+'NC10H22',1.0,
+'NC11H24',1.0,
+'NC12H26',1.0,
+'CHEX',1.0,
+'C2H4',1.0,
+'C3H6',1.0,
+'BUT1ENE',1.0,
+'CBUT2ENE',1.0,
+'TBUT2ENE',1.0,
+'MEPROPENE',1.0,
+'PENT1ENE',1.0,
+'CPENT2ENE',1.0,
+'TPENT2ENE',1.0,
+'ME2BUT1ENE',1.0,
+'ME3BUT1ENE',1.0,
+'ME2BUT2ENE',1.0,
+'HEX1ENE',1.0,
+'CHEX2ENE',1.0,
+'THEX2ENE',1.0,
+'C4H6',1.0,
+'C5H8',1.0,
+'C2H2',1.0,
+'HCHO',1.0,
+'CH3CHO',1.0,
+'C2H5CHO',1.0,
+'C3H7CHO',1.0,
+'IPRCHO',1.0,
+'C4H9CHO',1.0,
+'CH3COCH3',1.0,
+'MEK',1.0,
+'MPRK',1.0,
+'DIEK',1.0,
+'MIPK',1.0,
+'HEX2ONE',1.0,
+'HEX3ONE',1.0,
+'MIBK',1.0,
+'MTBK',1.0,
+'CYHEXONE',1.0,
+'CH3OH',1.0,
+'C2H5OH',1.0,
+'NPROPOL',1.0,
+'IPROPOL',1.0,
+'NBUTOL',1.0,
+'BUT2OL',1.0,
+'IBUTOL',1.0,
+'TBUTOL',1.0,
+'PECOH',1.0,
+'IPEAOH',1.0,
+'ME3BUOL',1.0,
+'IPECOH',1.0,
+'IPEBOH',1.0,
+'CYHEXOL',1.0,
+'MIBKAOH',1.0,
+'ETHGLY',1.0,
+'PROPGLY',1.0,
+'CH3OCH3',1.0,
+'DIETETHER',1.0,
+'MTBE',1.0,
+'DIIPRETHER',1.0,
+'ETBE',1.0,
+'MO2EOL',1.0,
+'EOX2EOL',1.0,
+'PR2OHMOX',1.0,
+'BUOX2ETOH',1.0,
+'BOX2PROL',1.0,
+'CH3OCHO',1.0,
+'METHACET',1.0,
+'ETHACET',1.0,
+'NPROACET',1.0,
+'IPROACET',1.0,
+'NBUTACET',1.0,
+'SBUTACET',1.0,
+'TBUACET',1.0,
+'HCOOH',1.0,
+'CH3CO2H',1.0,
+'PROPACID',1.0,
+'CH3CL',1.0,
+'CH2CL2',1.0,
+'CHCL3',1.0,
+'CH3CCL3',1.0,
+'TCE',1.0,
+'TRICLETH',1.0,
+'CDICLETH',1.0,
+'TDICLETH',1.0,
+'CH2CLCH2CL',1.0,
+'CCL2CH2',1.0,
+'CL12PROP',1.0,
+'CHCL2CH3',1.0,
+'CH3CH2CL',1.0,
+'CH3BR',1.0,
+'DIBRET',1.0,
+'BENZENE',1.0,
+'TOLUENE',1.0,
+'OXYL',1.0,
+'MXYL',1.0,
+'PXYL',1.0,
+'EBENZ',1.0,
+'PBENZ',1.0,
+'IPBENZ',1.0,
+'TM123B',1.0,
+'TM124B',1.0,
+'TM135B',1.0,
+'OETHTOL',1.0,
+'METHTOL',1.0,
+'PETHTOL',1.0,
+'DIME35EB',1.0,
+'DIET35TOL',1.0,
+'STYRENE',1.0,
+'BENZAL',1.0,
+'APINENE',1.0,
+'DMM',1.0,
+'DMC',1.0,
+'BPINENE',1.0,
+'DM23BU2ENE',1.0,
+'MBO',1.0,
+'CHCL2CHCL2',1.0,
+'CH2CLCHCL2',1.0,
+
+! Other variables
+! ---------------
+ TEMP = 288.15,
+ RH = 0.6, ! equivalent to h2ofraction = 0.01
+
+! Output species
+! --------------
+! Either give a comma separated string of species or 'all'
+out_spec = 'all',
+! Demo of species input:
+!out_spec = 'O3','OH','HO2','CO','NO2','NO3','NO','OD','H2','CH4','CH3OOH','MACROOH','OXYL','H2O2','HNO3','OP','HCHO','C2H6','NC4H10','C2H4','HONO','PAN','RO2POOL',
+!out_spec = '',
+
+! Debug
+! -----
+
+! For testing, one can assign all VOC to one species. Do that here:
+!  dbgVOC = 'NODEBUG',
+!  dbgVOC = 'C2H6',
+
+/
