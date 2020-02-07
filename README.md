@@ -4,11 +4,10 @@ GenChem
 This directory contains the GenChem chemical processing system in 'chem', and
 the boxChem testing system in 'box'
 
-To get started, point your browser at the (in-progress) documentation. Do something like:
+To get started, follow the guide::
 
-  firefox doc/_build/html/index.html 
+   https://genchem.readthedocs.io/en/latest/index.html
 
-(WILL UPDATE TO readthedocs location soon!)
 
-Initial test of upload Feb 2020
+Initial upload 7th Feb 2020
 
