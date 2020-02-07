@@ -10,3 +10,5 @@ To get started, point your browser at the (in-progress) documentation. Do someth
 
 (WILL UPDATE TO readthedocs location soon!)
 
+Initial upload Feb 2020
+
