@@ -4,7 +4,8 @@ GenChem
 This package contains the GenChem system, which
 includes a chemical pre-processor (**GenChem.py**) for converting chemical
 equations into differential form for use in atmospheric chemical transport
-models (CTMs).  Although primarily intended for users of the EMEP MSC-W CTM and
+models (CTMs).  Although primarily intended for users of the **EMEP MSC-W**
+chemical transport model (https://github.com/metno/emep-ctm) and 
 related systems, GenChem also features a simple box-model testing system
 (**boxChem**), which can run as a stand-alone chemical solver, enabling for
 example easy testing of chemical mechanisms against each other.
