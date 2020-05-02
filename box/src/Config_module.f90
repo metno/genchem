@@ -12,7 +12,7 @@ module Config_module
   use OwnDataTypes_mod,      only: TXTLEN_SHORT
   use PhysicalConstants_mod, only: AVOG, RGAS_J
   use SmallUtils_mod,        only: find_index
-  use ZchemData_mod
+  use ZchemData_mod                ! fIsop, etc.
    
   implicit none
 
@@ -78,10 +78,13 @@ module Config_module
   ! transfered to box_emis with the right index 
   type(box_emis_t), dimension(NEMIS_File) :: emis_kgm2day=box_emis_t()
 
-  ! BVOC emissions.
-  ! The following emissions will be modulated by light and/or temperature
-  ! so we give the max (noontime) values in molec/cm2/s
-   real, public, save :: rcbio_isopMax, rcbio_mtlMax, rcbio_mtp
+  ! BVOC emissions?
+  ! In the box model, a default set of emissions is included in
+  ! chem/extra_mechanisms/BoxBVOCemis. These can be modified 
+  ! with factors (ZchemData_mod) from config_box.nml:
+  ! real, public, save :: fIsop=1.0, fMTL=1.0, fMTP=1.0, fSQT=1.0
+  ! The fIsop and fMTL factors will be further modulated by 
+  ! light through the SUN variable.
    
   ! ------------------------------------------------
 
@@ -140,7 +143,7 @@ logical, public, save ::  MasterProc = .true.
    namelist /box_config/ tstart, tend, dt, doy, lat, lon, use_emis, &
       USES, & !added for consistency with EMEP
       emissplit_dir, m, h2o, Hmix, emis_kgm2day, &
-      rcbio_isopMax, rcbio_mtlMax, rcbio_mtp, &
+      fIsop,fMTL,fMTP,fSQT, & ! BVOC factors
       all_species, initBox, &
       debug, OutSpecs_list, OutGroups_list, Temp, rh, debug
 
