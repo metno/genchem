@@ -15,6 +15,7 @@ module ZchemData_mod
     ,rcemis = 0.0
   real, public, save, dimension(MAXRCPHOT,NZ) ::&
      rcphot = 0.0 
+  real, public, save :: fIsop=1.0, fMTL=1.0, fMTP=1.0, fSQT=1.0 ! Used by ChemRates
 
   real, public, save, dimension(NSPEC_TOT,NZ) ::&
        xChem = 0.0  &
@@ -24,7 +25,7 @@ module ZchemData_mod
   real, public, save, dimension(NZ) :: &
             temp = UNDEF_R, rh = UNDEF_R, tinv, M = UNDEF_R, N2 = UNDEF_R &
             , O2 = UNDEF_R, H2O = UNDEF_R &
-            ,log300divt, logtdiv300 &
+            !FUTURE ,log300divt, logtdiv300 &
             ,cN2O5, cHNO3, cHO2, cNO3, cNO2, cO3 & !for gas-aerosols
            !For consistency with EMEP and SOA:
             ,gamN2O5=UNDEF_R & ! for n2o5Hydrol
