@@ -39,14 +39,9 @@
 
   private
   public  :: chemsolve        ! Runs chemical solver
-  ! Just some helper routines added for boxChem
-!  private :: PrintLog
   private :: checkNans
 
-  integer, parameter:: &
-      nchemMAX=1200    & ! ESX 15
-     ,NUM_INITCHEM=5   & ! Number of initial time-steps with shorter dt
-     ,EXTRA_ITER = 1     ! Set > 1 for even more iteration
+  integer, parameter :: nchemMAX = 15
   real, parameter:: ZERO = 1.0e-30   !  Had _dp option in some versions
   real, save     :: dt_initchem=1.0 ! shorter dt for initial time-steps
   real, public :: dbgLoss             ! for output in debugging
@@ -89,7 +84,7 @@ contains
 !<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
-  subroutine chemsolve( k, dtstep, xn,Dchem,debug_level,itern)
+  subroutine chemsolve( k, dtstep, xn,Dchem,debug_level,time,itern)
 
     !.. In
     integer, intent(in) :: k   ! Needed for rates. ESX change?
@@ -98,6 +93,7 @@ contains
     real, dimension(:), intent(inout) ::  Dchem ! Nz, Tendencies, ..'
                                                 ! = d xn/dt due to chem
     integer, intent(in) :: debug_level          ! 0 for none, ..
+    real, intent(in) :: time ! external time, for TEST DTX
     integer, intent(in), optional :: itern
     integer :: toiter
 
@@ -114,10 +110,11 @@ contains
 
     ! Concentrations : xold=old, x=current, xnew=predicted
     ! - dimensioned to have same size as "x"
+    ! [molecules/cm3]
 
-    !real, dimension(size(xn)) :: x, xold ,xnew   ! Working array [molecules/cm3]
-    real, dimension(nchemMAX), save :: dti       &! variable timestep*(c+1)/(c+2)
-                           ,coeff1,coeff2,cc ! coefficients for variable timestep
+    real, dimension(nchemMAX), save :: dti  &! variable timestep*(c+1)/(c+2)
+                           ,coeff1,coeff2,cc ! coefficients for variable
+                                             ! timesteps
 
 !======================================================
 
@@ -130,7 +127,6 @@ contains
        if ( MasterProc ) then
 !         call PrintLog ('Chem dts: nchemMAX: ' //num2str(nchemMAX))
 !         call PrintLog ('Chem dts: nchem: ' //num2str(nchem))
-!         call PrintLog ('Chem dts: NUM_INITCHEM: ' //num2str(NUM_INITCHEM))
 !         call PrintLog ('Chem dts: dt_initchem: ' //num2str( dt_initchem))
 !         call PrintLog ('Chem dts: EXTRA_ITER: ' //num2str( EXTRA_ITER))
 !         call PrintLog ('Chem Yields: ' //trim( YieldModifications ))
@@ -152,7 +148,6 @@ contains
      end if
 
    ! to get better accuracy if wanted (at CPU cost)
-    
    !ESX toiter = toiter * EXTRA_ITER
 
 
@@ -194,65 +189,46 @@ contains
 
              call checkNans(xnew,species(:)%name,'posC') 
 
-
           enddo
 
           dt2  =  dti(ichem) !*(1.0+cc(ichem))/(1.0+2.0*cc(ichem))
+          !print "(a,2i5,f15.3,2f10.3)","DTX ",ichem,nchem,time,dtstep,dt2
 
           where ( xnew(:) < CPINIT  )
              xnew(:) = CPINIT
           end where
 
-!== Here comes all chemical reactions
 !=============================================================================
           if ( debug%DryRun ) then
             ! Skip fast chemistry
           else
 
-            do iter = 1, toiter  !ESX (k)
-!
-! The chemistry is iterated several times, more close to the ground than aloft.
-! For some reason, it proved faster for some compilers to include files as given below
-! with the if statements, than to use loops.
-!Just add some comments:
-!At present the "difference" between My_FastReactions and My_SlowReactions
-!is that in My_Reactions the products do not reacts chemically at all,
-!and therefore do not need to be iterated.  We could have another class
-!"slowreactions", which is not iterated or fewer times. This needs some
-!work to draw a proper line ......
+            ! The fast chemistry is iterated several times.
 
+             do iter = 1, toiter  !ESX (k)
 
-                   !xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                   include 'CM_Reactions1.inc'
-                   !xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                   ! print *, 'N2(k) = ', N2(k)
-                   ! print *, 'N2 = ', N2
-                   ! print *, 'O2(k) = ', O2(k)
-                   ! print *, 'O2 = ', O2
-                   ! print *, 'M(k) = ', M(k)
-                   ! print *, 'M = ', M
-                   ! stop
+                !== Here comes all fast chemical reactions
+                !xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                include 'CM_Reactions1.inc'
+                !xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+                ! print *, 'N2(k) = ', N2(k)
+                ! print *, 'O2(k) = ', O2(k)
+                ! print *, 'M(k) = ', M(k)
 
-                ! VBS VBS VBS VBS 
-
-            end do !! End iterations
+             end do !! End iterations
 
            !YIELDs  Allows change of gas/aerosol yield, which currently is
            ! only used for SOA species to be handled in CM_Reactions2
 
-            if ( YieldModificationsInUse ) then
-                !OLD   1/cell_tinv, iter, toiter(k)
-                !OLD if( iter == toiter ) call doYieldModifications('run')
-                call doYieldModifications('run')
-           end if
+             if ( YieldModificationsInUse ) then
+               call doYieldModifications('run')
+             end if
 
+            ! slower species
 
-
-          ! slower? species
-
-          !xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-           include 'CM_Reactions2.inc'
-          !xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+            !xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+             include 'CM_Reactions2.inc'
+            !xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
           end if ! debug%DryRun
 
@@ -261,8 +237,6 @@ contains
 
           if ( debug_level > 0 ) then !LOTS of output, careful. Useful
              do n=1,NSPEC_TOT
-               ! write(*, "(a,2i3,1x,a,10es10.2)") "ESX TESTING CHECM ", ichem,&
-                  ! n, species(n)%name, xnew(n)
                if(iter==1) write(*, "(a,2i3,1x,a,10es10.2)")"TESTCHEM ", &
                   ichem, n, species(n)%name, xnew(n)
                call checkNans(xnew,species(:)%name,'posD') 
@@ -304,56 +278,52 @@ contains
  real, dimension(nchemMAX),intent(out) :: dti,coeff1,coeff2,cc
  integer,                  intent(out) :: nchem
 
- real    :: ttot, dt(nchemMAX), inp_dtstep
- real :: dt_init   ! time (seconds) with initially short time-steps
- integer :: i
+ real    :: ttot, dt(nchemMAX)
+ real :: dt_init ! time (seconds) with initially short time-steps
+ real :: dt_rem  ! = dtstep - dt_init (ie time remaining after init)
  logical, save :: first_dt = .true.
  character(len=*), parameter :: dtxt = 'makedt:'
+ integer, parameter :: N_INIT = 5
+ integer :: nrem, i
+
 !_________________________
 
   nchem=nchemMax      ! number of chemical timesteps inside dt_advec
-  inp_dtstep = dtstep ! saved for printout only
 
-  if ( 2*NUM_INITCHEM*dt_initchem >= dtstep) then ! shorter dt_initchem needed
-    dt_initchem = dtstep / ( 2*NUM_INITCHEM )
-    if ( debug%Chem) write(*,'(a,4f12.3)') dtxt//"reduce dt_initchem",&
-                                      inp_dtstep, dtstep, dt_initchem
-  end if
+  if ( debug%Chem) write(*,'(a,2i6,4f12.3)') dtxt//"starting makedt",&
+                                        N_INIT, dtstep, dt_initchem
 
-   dt_init = NUM_INITCHEM*dt_initchem 
+  dt_init = N_INIT*dt_initchem        ! initial phase
+  dt_rem =  dtstep- dt_init           ! remaining phase
 
-!/ ** For smaller scales, but not tested
-  !emep: if(dtstep<620.0)
+  if(dtstep<= dt_init )then !print *, 'SHORT!'
+     nchem = N_INIT
+     dt=dtstep/nchem
+     nrem = 0
+  else ! Pragmatic choices
+              !print *, 'QUITE SHORT! Keep same dt_init'
+     dt(1:N_INIT) = dt_initchem ! 5 short time-steps
+     if ( dt_rem <= dt_init ) then 
+       nrem = nint( dt_rem/dt_initchem ) ! keep dt_initchem
+     else ! calc new dt as 10% dt_rem
+       nrem = 10
+     end if
+     dt(N_INIT+1:) = dt_rem/nrem
+     nchem = N_INIT + nrem
+   end if
 
-   nchem = NUM_INITCHEM +int((dtstep- dt_init) / dt_init )
+   if (debug%Chem)write(*,'(a,3f12.3,3i5)')dtxt//"orig tstep initchem  init",& 
+      dtstep, dt_initchem, dt_init, N_INIT, nrem, nchem
 
-   if (debug%Chem)write(*,'(a,4f12.3,2i3)')dtxt//"orig tstep initchem  init",& 
-      inp_dtstep, dtstep, dt_initchem, dt_init, nchem, NUM_INITCHEM
-
-   call CheckStop ( nchem == NUM_INITCHEM , dtxt//"NCHEM problem")
-
-   dt=(dtstep - dt_init )/(nchem-NUM_INITCHEM)
-
-   dt(1:NUM_INITCHEM)=dt_initchem     !.. first five timesteps
-
-   if(dtstep<= dt_init )then
-      nchem=int(dtstep/dt_initchem)+1
-      dt=(dtstep)/(nchem)
-   endif
-!/ **
-
-   call CheckStop(dtstep<dt_initchem, &
-        dtxt//"Error in Solver/makedt: dtstep too small!")
    call CheckStop(nchem>nchemMAX,&
         dtxt//"Error in Solver/makedt: nchemMAX too small!")
 
-   nchem=min(nchemMAX,nchem)
-
     if( MasterProc ) then
 
-     if( first_dt ) then
-      write(*,'(a,4f8.4,i4)')dtxt//'MAKEDT',dtstep,dt_init,dt(1),dt(nchem),nchem
-      first_dt = .false.
+      if( first_dt ) then
+        write(*,'(a,4f8.4,i4)')dtxt//'MAKEDT',dtstep,dt_init,dt(1),&
+                 dt(nchem),nchem
+        first_dt = .false.
      end if
 
      ttot=0.0
