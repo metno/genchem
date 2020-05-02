@@ -1,7 +1,6 @@
 program Box
   use AeroFunctions_mod,    only: GammaN2O5_om
   use Config_module,        only: Init_Box, use_emis, emis_spec, emis_snap, &
-                                  rcbio_isopMax, rcbio_mtlMax, rcbio_mtp, &
                                   box_emis, emissplit_dir,Hmix, dt, tstart, &
                                   tend, doy, lat, lon
   use Box_Outputs,           only: boxOutputs
@@ -19,7 +18,7 @@ program Box
                                     Init_OrganicAerosol, OrganicAerosol
   use PhysicalConstants_mod, only: AVOG
   use SmallUtils_mod,        only: num2str, find_index, to_upper
-  use ZchemData_mod              ! rcbio
+  use ZchemData_mod              ! xChem,rcphot, etc.
 
 !UK T, RH
 !   use MicroMet_mod, only : rh2num
@@ -28,12 +27,7 @@ program Box
    implicit none
    integer :: k, doy_now
    integer :: start, end, rate, cmax, snap, iland
-
-   real :: timeh, ZenRad, noonZenRad, hr, time
-
-  ! real :: dz = 1.0e5  ! Mixing depth, 1km, in cm
-  !DBG character(20) :: dbgVOC
-  !DEC1 integer, dimension(NSPEC_TOT) :: out_specs
+   real :: timeh, ZenRad, hr, time
    logical :: first_tstep=.true.       ! for BOXSOA - tmp
    real, parameter :: ppb = 2.55e+10
    real, dimension(1) :: zmid = [ 45.0 ]  ! fake array for box-model
@@ -75,8 +69,6 @@ program Box
 
      ! read emissplit files
      call RdEmisSplit(emissplit_dir,debug%Emis,debug%VOC)
-!print *, "USE EMIS ", use_emis
-!stop 'DDD'
 
      ! Get emissions of each species, now in molec/cm2/s:
      iland = 1 ! Box simplification
@@ -125,24 +117,19 @@ program Box
       ! needed (we assume that rcphot scales as total Radn)
      !  rcphot(idj,:) = GetPhotol(idj,cos(ZenRad),debug_level=1 )
      !end do
-     rcphot(photol_used,1) = GetPhotol2(photol_used,cos(ZenRad),debug_level=debug%Photol)
+     rcphot(photol_used,1) = GetPhotol2(photol_used, cos(ZenRad), &
+                                debug_level=debug%Photol)
 
    end if
+
    !===============================================
-   ! rcbio, scaled with cos(zen) compared to noon
-     if ( cos(ZenRad) > 0.0 ) then
-       noonZenRad = ZenithAngle(doy_now, 12.0, lat, 0.0)
-       rcbio(1,1) = rcbio_isopMax * cos(ZenRad)/cos(noonZenRad) / Hmix
-       rcbio(2,1) = rcbio_mtlMax * cos(ZenRad)/cos(noonZenRad) / Hmix
-     else
-       rcbio(1:2,1) = 0.0
-     end if
-     rcbio(2,1) = rcbio(2,1) +  rcbio_mtp / Hmix ! add pool-dependent terp
-     !print '(a,f7.1,3f8.2,2es12.2)', "FAKE BIO ", hr, cos(ZenRad), cos(noonZenRad), ZenRad * 57.296, rcbio(1,1),rcbio(2,1)
+   !Some BVOC rates may use SUN as scalar
+    call Update_SUN(time)
    !===============================================
    ! Rate coefficients (rct)
 
-    call  setChemRates() !A2018 debug_level=0)
+    call  setChemRates()
+    !print '(a,f7.1,3f8.2,3es12.2)', "FAKE RC ", hr, SUN, rct(1,1)
 
    !===============================================
 
@@ -151,14 +138,15 @@ program Box
 
     call cpu_time(start_time) ! processor time, just the chem soln
 
-    call chemsolve( k, dt, xChem(:,1),Dchem(:,1),debug_level=1,itern=1)
+    call chemsolve( k, dt, xChem(:,1),Dchem(:,1),debug_level=1,&
+                     time=time,itern=1)
 
     call cpu_time(stop_time)
     time_used = time_used + stop_time - start_time
 
   if ( abs(timeh - nint(timeh) ) < 0.5*dt/3600 ) then  ! Print every hour
-     !DEC1 call boxOutputs(timeh,out_specs)
-     !print *, 'CPU TIME ', start_time,stop_time, time_used, stop_time-start_time
+      !print *, 'CPU TIME ', start_time,stop_time, time_used,&
+      ! stop_time-start_time
      call boxOutputs(timeh)
 
    !===============================================
