@@ -1,3 +1,37 @@
+* NOTE: Reaction file updated/modified 26/04/2020:
+*       * fixing one bug in MCM 
+*         - M3BU3ECO3 + HO2 -> C45O2 + OH + NO2 in MCM -- the NO2 is not correct (probably should have been CO2?)
+*       * and updating a number of reaction rates to be in agreement with IUPAC recommended rates
+*         - the KAPHO2 reaction rate used for RCO3 + HO2 reactions was updated (set in MCM_v3.3_Shorthands.txt)
+*         - O(1D) + N2 -> O(3P)
+*         - 2 NO + O2 -> 2 NO2
+*         - C5H8 + NO3 -> NISOPO2
+*         - C5H8 + O3 -> 0.5 CH2OOE + 0.5 HCHO + 0.3 MACR + 0.3 MACROOA + 0.2 MVK + 0.2 MVKOOA 
+*         - APINENE + O3 -> 0.6 APINOOA + 0.4 APINOOB 
+*         - APINENE + OH -> 0.572 APINAO2 + 0.353 APINBO2 + 0.075 APINCO2
+*         - BPINENE + O3 -> 0.4 NOPINONE + 0.4 CH2OOF + 0.6 NOPINOOA + 0.6 HCHO
+*         - BPINENE + OH -> 0.849 BPINAO2 + 0.076 BPINBO2 + 0.075 BPINCO2
+*         - LIMONENE + O3 -> 0.73 LIMOOA + 0.27 LIMOOB 
+*         - LIMONENE + OH -> 0.408 LIMAO2 + 0.222 LIMBO2 + 0.37 LIMCO2
+*         - GLYOX + NO3 -> HCOCO + HNO3
+*         - MGLYOX + NO3 -> CH3CO3 + CO + HNO3
+*         - CH3COCO2H + OH -> CH3CO3
+*
+*         - HCHO + NO3 -> HNO3 + CO + HO2 [introduced temperature dependence]
+*         - CH3COCO2H photolysis -- changed products based on IUPAC 
+*
+*       * Updated both reaction rate and products to IUPAC recommendations for one reaction:
+*         - CH3CO3H + OH -> 0.5 CH3CO3 + 0.5 CH2O2CO3H [MCM only has CH3CO3 product]
+*       * The CH2O2CO3H (from the above reaction) is a new peroxy radical species (not in MCM); two reactions were added for this:
+*         - CH2O2CO3H + NO = NO2 + HOCH2CO3
+*         - CH2O2CO3H + NO3 = NO2 + HOCH2CO3
+*       * The rate of the CH3CO3 + RO2POOL reaction was changed to the MCM v3.3.1 rate (1.0e-11; the previous EMEP MCMv3.3 version had a complex rate expression for this reaction)
+*
+* NOTE! The updates of the reaction rates introduced here are 
+*       NOT intended to be a complete revision of the MCMv3.3.1 rates! 
+*       Only a limited set of reactions were checked against IUPAC 
+*       [mostly reactions also included in the EmChem19 mechanism].  
+* Original header: 
 * This file has been written by cri2GenChem.py on 25/07/2016 11:19:49
 * Its inputfile is
 * MCM3.3/mcm_subset.fac
@@ -11,10 +45,14 @@ KMT01 : OP + NO = NO2 ;
 5.5e-12*EXP(188/TEMP) : OP + NO2 = NO ;
 KMT02 : OP + NO2 = NO3 ;
 3.2e-11*EXP(67/TEMP)*O2 : OD = OP ;
-2.0e-11*EXP(130/TEMP)*N2 : OD = OP ;
+*MCM old: 2.0e-11*EXP(130/TEMP)*N2 : OD = OP ;
+*IUPAC June 2009:
+2.15e-11*EXP(110.0*TINV) : OD + <N2>  = OP ; Updated (IUPAC 2009)
 1.4e-12*EXP(-1310/TEMP) : NO + O3 = NO2 ;
 1.4e-13*EXP(-2470/TEMP) : NO2 + O3 = NO3 ;
-3.3e-39*EXP(530/TEMP)*O2 : NO + NO = NO2 + NO2 ;
+*MCM old: 3.3e-39*EXP(530/TEMP)*O2 : NO + NO = NO2 + NO2 ;
+*IUPAC May 2014:
+4.25e-39*EXP(663.5*TINV) : NO + NO + <O2> = NO2 + NO2 ; IUPAC recommended rate
 1.8e-11*EXP(110/TEMP) : NO + NO3 = NO2 + NO2 ;
 4.50e-14*EXP(-1260/TEMP) : NO2 + NO3 = NO + NO2 ;
 KMT03 : NO2 + NO3 = N2O5 ;
@@ -103,7 +141,9 @@ rcphot(22) : MIBKAOH = TBUTOLO2 + CH3CO3 ;
 8.1e-12*EXP(610/TEMP)*0.33 : MBO + OH = MBOBO2 ;
 rcphot(11) : HCHO = CO + HO2 + HO2 ;
 rcphot(12) : HCHO = H2 + CO ;
-5.5e-16 : NO3 + HCHO = HNO3 + CO + HO2 ;
+*MCM: 5.5e-16 : NO3 + HCHO = HNO3 + CO + HO2 ;
+*IUPAC suggested temperature dependence [NOTE! only 298K value of 5.5e-16 is "recommended", the temperature dependence has not been measured but is based on analogy with CH3CHO]:
+2.0e-12*EXP(-2440.0*TINV) : NO3 + HCHO = HNO3 + CO + HO2 ;
 5.4e-12*EXP(135/TEMP) : OH + HCHO = HO2 + CO ;
 rcphot(13) : CH3CHO = CH3O2 + HO2 + CO ;
 1.4e-12*EXP(-1860/TEMP) : NO3 + CH3CHO = HNO3 + CH3CO3 ;
@@ -440,11 +480,15 @@ rcphot(18) : BENZAL = HO2 + CO + C6H5O2 ;
 1.48e-11*EXP(448/TEMP)*0.217 : OH + C4H6 = BUTDAO2 ;
 1.48e-11*EXP(448/TEMP)*0.649 : OH + C4H6 = BUTDBO2 ;
 1.48e-11*EXP(448/TEMP)*0.134 : OH + C4H6 = BUTDCO2 ;
-3.15e-12*EXP(-450/TEMP) : NO3 + C5H8 = NISOPO2 ;
-1.03e-14*EXP(-1995/TEMP)*0.3 : O3 + C5H8 = CH2OOE + MACR ;
-1.03e-14*EXP(-1995/TEMP)*0.2 : O3 + C5H8 = CH2OOE + MVK ;
-1.03e-14*EXP(-1995/TEMP)*0.3 : O3 + C5H8 = HCHO + MACROOA ;
-1.03e-14*EXP(-1995/TEMP)*0.2 : O3 + C5H8 = HCHO + MVKOOA ;
+*MCM old: 3.15e-12*EXP(-450/TEMP) : NO3 + C5H8 = NISOPO2 ;
+*IUPAC July 2015:
+2.95e-12*EXP(-450.0*TINV) : NO3 + C5H8 = NISOPO2 ;
+*MCM old: 1.03e-14*EXP(-1995/TEMP)*0.3 : O3 + C5H8 = CH2OOE + MACR ;
+*MCM old: 1.03e-14*EXP(-1995/TEMP)*0.2 : O3 + C5H8 = CH2OOE + MVK ;
+*MCM old: 1.03e-14*EXP(-1995/TEMP)*0.3 : O3 + C5H8 = HCHO + MACROOA ;
+*MCM old: 1.03e-14*EXP(-1995/TEMP)*0.2 : O3 + C5H8 = HCHO + MVKOOA ;
+*IUPAC July 2018:
+1.05e-14*EXP(-2000.*TINV) : O3 + C5H8 = 0.5 CH2OOE + 0.5 HCHO + 0.3 MACR + 0.3 MACROOA + 0.2 MVK + 0.2 MVKOOA ;
 2.70e-11*EXP(390/TEMP)*0.288 : OH + C5H8 = CISOPA ;
 2.70e-11*EXP(390/TEMP)*0.238 : OH + C5H8 = CISOPC ;
 2.70e-11*EXP(390/TEMP)*0.022 : OH + C5H8 = ISOP34O2 ;
@@ -548,24 +592,36 @@ rcphot(22)*0.5 : CYHEXONE = C2H4 + C3H6 + CO ;
 rcphot(22)*0.5 : CYHEXONE = PENT1ENE + CO ;
 1.2e-12*EXP(490/TEMP)*0.65 : APINENE + NO3 = NAPINAO2 ;
 1.2e-12*EXP(490/TEMP)*0.35 : APINENE + NO3 = NAPINBO2 ;
-8.05e-16*EXP(-640/TEMP)*0.6 : APINENE + O3 = APINOOA ;
-8.05e-16*EXP(-640/TEMP)*0.4 : APINENE + O3 = APINOOB ;
-1.2e-11*EXP(440/TEMP)*0.572 : APINENE + OH = APINAO2 ;
-1.2e-11*EXP(440/TEMP)*0.353 : APINENE + OH = APINBO2 ;
-1.2e-11*EXP(440/TEMP)*0.075 : APINENE + OH = APINCO2 ;
+*MCM old: 8.05e-16*EXP(-640/TEMP)*0.6 : APINENE + O3 = APINOOA ;
+*MCM old: 8.05e-16*EXP(-640/TEMP)*0.4 : APINENE + O3 = APINOOB ;
+*IUPAC Aug 2018:
+8.22e-16*exp(-640.*TINV) : APINENE + O3 = 0.6 APINOOA + 0.4 APINOOB ;
+*MCM old: 1.2e-11*EXP(440/TEMP)*0.572 : APINENE + OH = APINAO2 ;
+*MCM old: 1.2e-11*EXP(440/TEMP)*0.353 : APINENE + OH = APINBO2 ;
+*MCM old: 1.2e-11*EXP(440/TEMP)*0.075 : APINENE + OH = APINCO2 ;
+*IUPAC Dec 2017 rate:
+1.34e-11*exp(410.*TINV) : APINENE + OH = 0.572 APINAO2 + 0.353 APINBO2 + 0.075 APINCO2 ;
 2.51e-12*0.8 : BPINENE + NO3 = NBPINAO2 ;
 2.51e-12*0.2 : BPINENE + NO3 = NBPINBO2 ;
-1.35e-15*EXP(-1270/TEMP)*0.4 : BPINENE + O3 = NOPINONE + CH2OOF ;
-1.35e-15*EXP(-1270/TEMP)*0.6 : BPINENE + O3 = NOPINOOA + HCHO ;
-2.38e-11*EXP(357/TEMP)*0.849 : BPINENE + OH = BPINAO2 ;
-2.38e-11*EXP(357/TEMP)*0.076 : BPINENE + OH = BPINBO2 ;
-2.38e-11*EXP(357/TEMP)*0.075 : BPINENE + OH = BPINCO2 ;
+*MCM old: 1.35e-15*EXP(-1270/TEMP)*0.4 : BPINENE + O3 = NOPINONE + CH2OOF ;
+*MCM old: 1.35e-15*EXP(-1270/TEMP)*0.6 : BPINENE + O3 = NOPINOOA + HCHO ;
+*IUPAC Aug 2018:
+1.39e-15*exp(-1280.*TINV) : BPINENE + O3 = 0.4 NOPINONE + 0.4 CH2OOF + 0.6 NOPINOOA + 0.6 HCHO ;
+*MCM old: 2.38e-11*EXP(357/TEMP)*0.849 : BPINENE + OH = BPINAO2 ;
+*MCM old: 2.38e-11*EXP(357/TEMP)*0.076 : BPINENE + OH = BPINBO2 ;
+*MCM old: 2.38e-11*EXP(357/TEMP)*0.075 : BPINENE + OH = BPINCO2 ;
+*IUPAC Dec 2017 rate:
+1.62e-11*exp(460.*TINV) : BPINENE + OH = 0.849 BPINAO2 + 0.076 BPINBO2 + 0.075 BPINCO2 ;
 1.22e-11 : LIMONENE + NO3 = NLIMO2 ;
-2.80e-15*EXP(-770/TEMP)*0.730 : LIMONENE + O3 = LIMOOA ;
-2.80e-15*EXP(-770/TEMP)*0.270 : LIMONENE + O3 = LIMOOB ;
-4.28e-11*EXP(401/TEMP)*0.408 : LIMONENE + OH = LIMAO2 ;
-4.28e-11*EXP(401/TEMP)*0.222 : LIMONENE + OH = LIMBO2 ;
-4.28e-11*EXP(401/TEMP)*0.370 : LIMONENE + OH = LIMCO2 ;
+*MCM old: 2.80e-15*EXP(-770/TEMP)*0.730 : LIMONENE + O3 = LIMOOA ;
+*MCM old: 2.80e-15*EXP(-770/TEMP)*0.270 : LIMONENE + O3 = LIMOOB ;
+*IUPAC Aug 2018:
+2.91e-15*exp(-770.*TINV) : LIMONENE + O3 = 0.73 LIMOOA + 0.27 LIMOOB ;
+*MCM old: 4.28e-11*EXP(401/TEMP)*0.408 : LIMONENE + OH = LIMAO2 ;
+*MCM old: 4.28e-11*EXP(401/TEMP)*0.222 : LIMONENE + OH = LIMBO2 ;
+*MCM old: 4.28e-11*EXP(401/TEMP)*0.370 : LIMONENE + OH = LIMCO2 ;
+*IUPAC Dec 2017 rate:
+3.41e-11*exp(470.*TINV) : LIMONENE + OH = 0.408 LIMAO2 + 0.222 LIMBO2 + 0.37 LIMCO2 ;
 1.90e-11 : BCARY + NO3 = NBCO2 ;
 1.20e-14*0.435 : BCARY + O3 = BCAOO ;
 1.20e-14*0.435 : BCARY + O3 = BCBOO ;
@@ -769,8 +825,10 @@ KAPHO2*0.44 : CH3CO3 + HO2 = CH3O2 + OH ;
 7.5e-12*EXP(290/TEMP) : CH3CO3 + NO = NO2 + CH3O2 ;
 KFPAN : CH3CO3 + NO2 = PAN ;
 4.0e-12 : CH3CO3 + NO3 = NO2 + CH3O2 ;
-2*(K298CH3O2*2.9e-12*EXP(500/TEMP))**0.5*0.3 : [RO2POOL] + CH3CO3 = CH3CO2H ;
-2*(K298CH3O2*2.9e-12*EXP(500/TEMP))**0.5*0.7 : [RO2POOL] + CH3CO3 = CH3O2 ;
+*OLD MCM?: 2*(K298CH3O2*2.9e-12*EXP(500/TEMP))**0.5*0.3 : [RO2POOL] + CH3CO3 = CH3CO2H ;
+*OLD MCM?: 2*(K298CH3O2*2.9e-12*EXP(500/TEMP))**0.5*0.7 : [RO2POOL] + CH3CO3 = CH3O2 ;
+*MCM 3.3.1 [in 2019 and at least until 26/04/2020; IUPAC seems to prefer a temperature dependence factor exp(500/T)] :
+1.0e-11 : [RO2POOL] + CH3CO3 = 0.3 CH3CO2H + 0.7 CH3O2 ;
 KNO3AL : HOCH2CHO + NO3 = HOCH2CO3 + HNO3 ;
 1.00e-11*0.200 : HOCH2CHO + OH = GLYOX + HO2 ;
 1.00e-11*0.800 : HOCH2CHO + OH = HOCH2CO3 ;
@@ -942,7 +1000,9 @@ KRO2NO3 : OCCOHCO2 + NO3 = C42AOH + NO2 ;
 rcphot(31) : GLYOX = CO + CO + H2 ;
 rcphot(33) : GLYOX = CO + CO + HO2 + HO2 ;
 rcphot(32) : GLYOX = HCHO + CO ;
-KNO3AL : NO3 + GLYOX = HCOCO + HNO3 ;
+*MCM old: KNO3AL : NO3 + GLYOX = HCOCO + HNO3 ;
+*IUPAC June 2015:
+4.e-16 : NO3 + GLYOX = HCOCO + HNO3 ;
 3.1e-12*EXP(340/TEMP) : OH + GLYOX = HCOCO ;
 KDEC*0.24 : GLYOOB = GLYOO ;
 KDEC*0.20 : GLYOOB = HCHO ;
@@ -961,7 +1021,9 @@ KRO2NO3*1.74 : MACO3 + NO3 = CH3C2H2O2 + NO2 ;
 KDEC*0.18 : MGLYOOB = MGLYOO ;
 KDEC*0.82 : MGLYOOB = OH + CO + CH3CO3 ;
 rcphot(34) : MGLYOX = CH3CO3 + CO + HO2 ;
-KNO3AL*2.4 : NO3 + MGLYOX = CH3CO3 + CO + HNO3 ;
+*MCM old: KNO3AL*2.4 : NO3 + MGLYOX = CH3CO3 + CO + HNO3 ;
+*IUPAC June 2015:
+5.e-16 : NO3 + MGLYOX = CH3CO3 + CO + HNO3 ;
 1.9e-12*EXP(575/TEMP) : OH + MGLYOX = CH3CO3 + CO ;
 KDEC*0.37 : CH2OOG = CH2OO ;
 KDEC*0.47 : CH2OOG = CO ;
@@ -2986,7 +3048,13 @@ rcphot(22) : MIBKHO14 = TBUTOLO2 + HOCH2CO3 ;
 KNO3AL*8.5 : MIBKHO4CHO + NO3 = TBUTOLO2 + CO + CO + HNO3 ;
 1.34e-11 : MIBKHO4CHO + OH = TBUTOLO2 + CO + CO ;
 rcphot(34) : MIBKHO4CHO = H2M2C3CO3 + HO2 + CO ;
-3.70e-12 : CH3CO3H + OH = CH3CO3 ;
+*MCM old: 3.70e-12 : CH3CO3H + OH = CH3CO3 ;
+*IUPAC Nov 2017:
+1.1e-11 : CH3CO3H + OH = 0.5 CH3CO3 + 0.5 CH2O2CO3H ; Based on IUPAC recommendations November 2017 (large(?) uncertainties both in rate and product split)
+*Added (CH2O2CO3H not in MCM):
+KRO2NO : CH2O2CO3H + NO = NO2 + HOCH2CO3 ; assumed standard RO2+NO reaction rate [neglecting other reaction paths initially]
+*Added (CH2O2CO3H not in MCM):
+KRO2NO3 : CH2O2CO3H + NO3 = NO2 + HOCH2CO3 ; assumed NO3 reaction
 rcphot(41) : CH3CO3H = CH3O2 + OH ;
 3e-14 : PAN + OH = HCHO + CO + NO2 ;
 KBPAN : PAN = CH3CO3 + NO2 ;
@@ -3064,7 +3132,8 @@ KDEC : HCOCH2O = HCHO + CO + HO2 ;
 4.42e-12 : PERPROACID + OH = C2H5CO3 ;
 rcphot(41) : PERPROACID = C2H5O2 + OH ;
 1.27e-12 : PPN + OH = CH3CHO + CO + NO2 ;
-1.7e-3*EXP(-11280/TEMP) : PPN = C2H5CO3 + NO2 ;
+*BUG? 1.7e-3*EXP(-11280/TEMP) : PPN = C2H5CO3 + NO2 ;
+KBPPN : PPN = C2H5CO3 + NO2 ;
 rcphot(41) : C2H5OOH = C2H5O + OH ;
 1.90e-12*EXP(190/TEMP) : OH + C2H5OOH = C2H5O2 ;
 8.01e-12 : OH + C2H5OOH = CH3CHO + OH ;
@@ -5018,7 +5087,8 @@ KRO2NO*0.020 : C530O2 + NO = C530NO3 ;
 KRO2NO*0.980 : C530O2 + NO = C530O + NO2 ;
 KRO2NO3 : C530O2 + NO3 = C530O + NO2 ;
 9.20e-14 : [RO2POOL] + C530O2 = C530O ;
-KAPHO2*0.44 : M3BU3ECO3 + HO2 = C45O2 + OH + NO2 ;
+*BUG in MCM! This reaction should not produce NO2!: KAPHO2*0.44 : M3BU3ECO3 + HO2 = C45O2 + OH + NO2 ;
+KAPHO2*0.44 : M3BU3ECO3 + HO2 = C45O2 + OH ; corrected -- NO2 should have been CO2!?
 KAPHO2*0.56 : M3BU3ECO3 + HO2 = M3BU3ECO3H ;
 KAPNO : M3BU3ECO3 + NO = C45O2 + NO2 ;
 KFPAN : M3BU3ECO3 + NO2 = M3BU3EPAN ;
@@ -9404,8 +9474,12 @@ KDEC*0.17 : C5CO14CO2 = MGLYOX + HO2 + CO ;
 rcphot(20)*2 : C5CO14OOH = C5CO14CO2 + OH ;
 5.43e-11 : C5COO2NO2 + OH = MGLYOX + CO + CO + NO2 ;
 KBPAN : C5COO2NO2 = C5CO14O2 + NO2 ;
-rcphot(34) : CH3COCO2H = CH3CO3 + HO2 ;
-8.0e-13 : OH + CH3COCO2H = CH3CO3 ;
+*MCM: rcphot(34) : CH3COCO2H = CH3CO3 + HO2 ;
+*Product distribution based on IUPAC 2017:
+rcphot(34) : CH3COCO2H = 0.6 CH3CHO + 0.05 CH3CO2H + 0.05 CO + 0.35 CH3CO3 + 0.35 HO2 ;
+*MCMold: 8.0e-13 : OH + CH3COCO2H = CH3CO3 ;
+*IUPAC June 2017:
+4.9e-14*exp(280.*TINV) : CH3COCO2H + OH = CH3CO3 ;
 1.10e-12 : OXYLCO2H + OH = OXYL1O2 ;
 4.66e-12 : OXYLCO3H + OH = OXYLCO3 ;
 rcphot(41) : OXYLCO3H = OXYL1O2 + OH ;
