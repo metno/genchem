@@ -15,7 +15,7 @@
 *
   
 logtdiv300   log(temp/300) # HI added this
-log300divt   log(300/temp) # and this
+log300divt   log(300*TINV) # and this
 
 H2O          H2O
 XT           temp
