@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
 # Script to test and run boxChem for one or more chemical mechanisms.
-# Harmonises usage of extra_mechanism BoxAero and BVOC_IsoMT1_emis with
-# base-mechanisms, to make testing more comparable. (BoxAero adds some basic
-# aerosol reactions # that would have more complex forms in EMEP model,
+# Harmonises usage of extra_mechanisms BoxAero, BoxDep and BoxBVOCemis
+# with base-mechanisms, to make testing more comparable. (BoxAero adds some
+# basic aerosol reactions that would have more complex forms in EMEP model,
+# BoxDep just adds simple deposition for a few species,
 # and BVOC_IsoMT1_emis adds a-pinene as 100% of MTERP emissions.)
 
 usage="
@@ -36,7 +37,7 @@ do
   done
 
 
-  ../../chem/scripts/do.GenChem -b $chem -e BoxAero  BVOC_IsoMT1_emis
+  ../../chem/scripts/do.GenChem -b $chem -e BoxAero BoxDep BoxBVOCemis
 
   if [ -f "CM_ChemDims_mod.f90" ]; then 
 

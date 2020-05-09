@@ -1,4 +1,4 @@
-CB6r2emep is a version of the CB6r2h code provided by Greg Yarwood, modified to
+CB6r2Em is a version of the CB6r2h code provided by Greg Yarwood, modified to
 work within the EMEP/ESX/GenChem modelling systems. working.
 
 
