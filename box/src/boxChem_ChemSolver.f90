@@ -71,13 +71,12 @@ contains
  subroutine checkNans(x,specs,txt)
     real,             dimension(:), intent(in) :: x
     character(len=*), dimension(:), intent(in) :: specs
-    character(len=*) :: txt
+    character(len=*), intent(in) :: txt
     integer :: n
     do  n = 1, size(x)
       if ( isnan(x(n)) ) then
-!      if ( x(n) /= x(n) )  then
         print *, "OOOPS!! ChemSolver:Nan found!"//txt, n, specs(n)
-        stop 'OOOPS'//txt
+        stop 'OOOPS' ! //txt
       end if  
     end do
  end subroutine checkNans
