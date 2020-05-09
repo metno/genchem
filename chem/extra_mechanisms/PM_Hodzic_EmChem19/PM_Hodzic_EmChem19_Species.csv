@@ -1,6 +1,6 @@
 *"---------------------------------------------------------------------"
 * VBS species for inert emissions
-* Assumes PM emissions, with OC, EC, REMPPM, for fine and coarse
+* Assumes PM emissions, with OC, EC, remPPM, for fine and coarse
 * FFIRE now moved to separate FFireInert directory
 *"---------------------------------------------------------------------"
 * REMEMBER to NOT include the PM10 and PMfine groups for the fine (PM2.5) Organic components! Taken care of by the help species PART_OM_F!
@@ -8,7 +8,7 @@
 *
 *"Spec,adv,formula,MW,DRY,WET,Groups,!Comments"
 * OM25_p will include 
-OM25_BGND,3,C,24,xx,xx,OM25;NONVOLPCM;NVABSOM,"!Assumed background; fine <2.5um"
+OM25_bgnd,3,C,24,xx,xx,OM25;nonvolPCM;nvabsOM,"!Assumed background; fine <2.5um"
 OM25_p,3,xx,1,xx,xx,OC;PM10;Extinc:OC;PMfine,"!Assumed background; fine <2.5um"
 
 "**************************************************"
@@ -21,22 +21,21 @@ ASOC_ug1,2,C,12.,HCC7CO,H2O2,Cstar:1.0;DeltaH:129.0;OM25;PCM;ASOA,"! semi-volati
 ASOC_ug10,2,C,12.,SVASOA,H2O2,Cstar:10.0;DeltaH:118.0;OM25;PCM;ASOA,"! semi-volatile OC from fossil fuel AVOC "
 ASOC_ug1e2,2,C,12.,SVASOA,H2O2,Cstar:1.0e2;DeltaH:107.0;OM25;PCM;ASOA,"! semi-volatile OC from fossil fuel AVOC "
 ASOC_ug1e3,2,C,12.,SVASOA,H2O2,Cstar:1.0e3;DeltaH:96.0;OM25;PCM;ASOA,"! semi-volatile OC from fossil fuel AVOC "
-NON_C_ASOA_ng10,2,otheratoms,1.,LVASOA,H2O2,Cstar:0.01;DeltaH:151.0;OM25;PCM;ASOA,"! non-C part of Sec OM"
-NON_C_ASOA_ng1e2,2,otheratoms,1.,HCC7CO,H2O2,Cstar:0.1;DeltaH:140.0;OM25;PCM;ASOA,"! non-C part of Sec OM"
-NON_C_ASOA_ug1,2,otheratoms,1.,HCC7CO,H2O2,Cstar:1.0;DeltaH:129.0;OM25;PCM;ASOA,"! non-C part of Sec OM"
-NON_C_ASOA_ug10,2,otheratoms,1.,SVASOA,H2O2,Cstar:10.0;DeltaH:118.0;OM25;PCM;ASOA,"! non-C part of Sec OM"
-NON_C_ASOA_ug1e2,2,otheratoms,1.,SVASOA,H2O2,Cstar:1.0e2;DeltaH:107.0;OM25;PCM;ASOA,"! non-C part of Sec OM"
-NON_C_ASOA_ug1e3,2,otheratoms,1.,SVASOA,H2O2,Cstar:1.0e3;DeltaH:96.0;OM25;PCM;ASOA,"! non-C part of Sec OM"
+non_C_ASOA_ng10,2,otheratoms,1.,LVASOA,H2O2,Cstar:0.01;DeltaH:151.0;OM25;PCM;ASOA,"! non-C part of Sec OM"
+non_C_ASOA_ng1e2,2,otheratoms,1.,HCC7CO,H2O2,Cstar:0.1;DeltaH:140.0;OM25;PCM;ASOA,"! non-C part of Sec OM"
+non_C_ASOA_ug1,2,otheratoms,1.,HCC7CO,H2O2,Cstar:1.0;DeltaH:129.0;OM25;PCM;ASOA,"! non-C part of Sec OM"
+non_C_ASOA_ug10,2,otheratoms,1.,SVASOA,H2O2,Cstar:10.0;DeltaH:118.0;OM25;PCM;ASOA,"! non-C part of Sec OM"
+non_C_ASOA_ug1e2,2,otheratoms,1.,SVASOA,H2O2,Cstar:1.0e2;DeltaH:107.0;OM25;PCM;ASOA,"! non-C part of Sec OM"
+non_C_ASOA_ug1e3,2,otheratoms,1.,SVASOA,H2O2,Cstar:1.0e3;DeltaH:96.0;OM25;PCM;ASOA,"! non-C part of Sec OM"
 BSOC_ng10,2,C,12.,LSVBSOA,HNO3,Cstar:0.01;DeltaH:151.0;OM25;PCM;BSOA,"! semi-volatile OC from BVOC "
 BSOC_ng1e2,2,C,12.,LSVBSOA,HNO3,Cstar:0.1;DeltaH:140.0;OM25;PCM;BSOA,"! semi-volatile OC from BVOC "
 BSOC_ug1,2,C,12.,LSVBSOA,H2O2,Cstar:1.0;DeltaH:129.0;OM25;PCM;BSOA,"! semi-volatile OC from BVOC "
 BSOC_ug10,2,C,12.,LSVBSOA,H2O2,Cstar:10.0;DeltaH:118.0;OM25;PCM;BSOA,"! semi-volatile OC from BVOC "
 BSOC_ug1e2,2,C,12.,SVBSOA,H2O2,Cstar:1.0e2;DeltaH:107.0;OM25;PCM;BSOA,"! semi-volatile OC from BVOC "
 BSOC_ug1e3,2,C,12.,PINONIC,H2O2,Cstar:1.0e3;DeltaH:96.0;OM25;PCM;BSOA,"! semi-volatile OC from BVOC "
-NON_C_BSOA_ng10,2,otheratoms,1.,LSVBSOA,HNO3,Cstar:0.01;DeltaH:151.0;OM25;PCM;BSOA,"! non-C part of Sec OM"
-NON_C_BSOA_ng1e2,2,otheratoms,1.,LSVBSOA,HNO3,Cstar:0.1;DeltaH:140.0;OM25;PCM;BSOA,"! non-C part of Sec OM"
-NON_C_BSOA_ug1,2,otheratoms,1.,LSVBSOA,H2O2,Cstar:1.0;DeltaH:129.0;OM25;PCM;BSOA,"! non-C part of Sec OM"
-NON_C_BSOA_ug10,2,otheratoms,1.,LSVBSOA,H2O2,Cstar:10.0;DeltaH:118.0;OM25;PCM;BSOA,"! non-C part of Sec OM"
-NON_C_BSOA_ug1e2,2,otheratoms,1.,SVBSOA,H2O2,Cstar:1.0e2;DeltaH:107.0;OM25;PCM;BSOA,"! non-C part of Sec OM"
-NON_C_BSOA_ug1e3,2,otheratoms,1.,PINONIC,H2O2,Cstar:1.0e3;DeltaH:96.0;OM25;PCM;BSOA,"! non-C part of Sec OM"
-*
+non_C_BSOA_ng10,2,otheratoms,1.,LSVBSOA,HNO3,Cstar:0.01;DeltaH:151.0;OM25;PCM;BSOA,"! non-C part of Sec OM"
+non_C_BSOA_ng1e2,2,otheratoms,1.,LSVBSOA,HNO3,Cstar:0.1;DeltaH:140.0;OM25;PCM;BSOA,"! non-C part of Sec OM"
+non_C_BSOA_ug1,2,otheratoms,1.,LSVBSOA,H2O2,Cstar:1.0;DeltaH:129.0;OM25;PCM;BSOA,"! non-C part of Sec OM"
+non_C_BSOA_ug10,2,otheratoms,1.,LSVBSOA,H2O2,Cstar:10.0;DeltaH:118.0;OM25;PCM;BSOA,"! non-C part of Sec OM"
+non_C_BSOA_ug1e2,2,otheratoms,1.,SVBSOA,H2O2,Cstar:1.0e2;DeltaH:107.0;OM25;PCM;BSOA,"! non-C part of Sec OM"
+non_C_BSOA_ug1e3,2,otheratoms,1.,PINONIC,H2O2,Cstar:1.0e3;DeltaH:96.0;OM25;PCM;BSOA,"! non-C part of Sec OM"

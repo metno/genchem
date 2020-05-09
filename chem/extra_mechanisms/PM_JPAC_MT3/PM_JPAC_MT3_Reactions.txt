@@ -1,0 +1,39 @@
+
+* YIELD APPROACH YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+* JPAC based yields
+
+* 1) OH REACTIONS  ---------------------------------------
+
+2.70e-11*EXP(390*TINV)      :  [OH] + [C5H8]    = |YA_ISOPOH| ISOPOH_BSOA_NV ;
+
+1.34e-11*exp(410*TINV)      :  [OH] + [APINENE] = |YA_APINOH| APINOH_BSOA_NV ; IUPAC rate 201712
+
+1.62e-11*exp(460*tinv)      :  [OH] + [BPINENE] = |YA_BPINOH| BPINOH_BSOA_NV ; IUPAC rate 201712
+
+1.34e-11*exp(410*TINV)*3.22 :  [OH] +  [XTERP]  = |YA_MTOH| XMTOH_BSOA_NV ; assumed similar to APINENE (but using faster rates, based on available (IUPAC rates) for other monoterpenes)
+
+
+* 2) O3 REACTIONS  ---------------------------------------
+*
+
+8.22e-16*exp(-640*TINV)     :  [O3] + [APINENE] = |YA_APINO3| APINO3_BSOA_NV ; IUPAC rate 2018-08
+
+1.39e-15*exp(-1280*TINV)    :  [O3] + [BPINENE] = |YA_BPINO3| BPINO3_BSOA_NV ; IUPAC rate 2018-08
+
+8.22e-16*exp(-640*TINV)*3.3 :  [O3] + [XTERP]   = |YA_MTO3| XMTO3_BSOA_NV ;
+
+* 3) NO3 REACTIONS  ---------------------------------------
+
+2.95e-12*EXP(-450*TINV)  : [NO3] + [C5H8] = |YA_ISOPNO3| ISOPNO3_BSOA_NV ;
+
+* NOTE that Fry et al. (2014 EST) found zero SOA yield for a-pinene+NO3, but HIGH SOA yields for all other tested monoterpenes+NO3 reactions
+* Here produce no SOA from APINENE+NO3
+
+2.51e-12 :                     [NO3] + [BPINENE] = |YA_BPINNO3| BPINNO3_BSOA_NV ;
+
+1.20e-12*exp(490*TINV)*2.25 :  [NO3] + [XTERP]   = |YA_MTNO3| XMTNO3_BSOA_NV ;
+
+* END  YIELD APPROACH YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+
+*===========================================================================
+*

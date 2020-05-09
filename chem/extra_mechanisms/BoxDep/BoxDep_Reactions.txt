@@ -1,0 +1,8 @@
+* Some very simple deposition reactions for BoxChem testing only
+*
+* as used by Mike Jenkin in MCM
+*First hard coded for HMIX=1000m!
+2.0e-5     : HNO3     = depHNO3 ;
+5.0e-6     : SO2      = ;
+1.5e-6     : NO2      = depNO2 ;
+5.0e-6     : O3       = ;

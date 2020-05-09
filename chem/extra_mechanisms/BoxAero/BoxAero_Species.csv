@@ -1,6 +1,4 @@
 * NITRATE is added as a species applicable in both EMEP and MCM type schemes
 NITRATE,1,NO3,xx,PMc,PMc,PM10;PMcoarse;SIA;OXN;TNO3;Extinc:NO3_c,!Coarse nitrate
-depNO2,1,NO2,xx,xx,xx,dummy,! help species to keep track of deposition
-depHNO3,1,HNO3,xx,xx,xx,dummy,! help species to keep track of deposition
 SO3,1,SO3,xx,xx,xx,xx,!
 HSO3,1,SO3,xx,xx,xx,xx,!

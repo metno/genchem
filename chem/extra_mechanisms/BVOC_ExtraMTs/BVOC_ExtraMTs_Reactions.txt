@@ -1,0 +1,32 @@
+*| ============================
+*| BVOC_ExtraMTs_Reactions.csv
+*| ============================
+*| Some extra BVOC reactions (beyond C5H8) used in EmChem19a scheme -- NOTE! Not to be used with EmChem19X, which includes MVK
+* Based on Emmons et al. 2010 (but with updated rates): Emmons et al., 2010 (MOZART-4) Geosci. Model Dev., 3, 43-67, 2010
+*
+
+* MT/Apinene chemistry scheme, based partly on Emmons et al. 2010 
+* VERY SIMPLE production of TERPO2 from all!
+
+1.62e-11*exp(460*TINV)       : BPINENE  + OH = TERPO2 ; Rate from IUPAC Dec 2017
+1.34e-11*exp(410*TINV)*3.22  :  XTERP   + OH = TERPO2 ; Assume XTERP gives same products as APINENE (but using faster rates, based on available (IUPAC rates) for other monoterpenes)
+
+*-------------------------------------------------------------------------------------------
+*| O3 reactions
+
+* Note! no MVK in EmChem19 -- replace MVK by MACR (for EmChem19X this have to be changed!)
+
+1.39e-15*exp(-1280*TINV)      : BPINENE + O3 =  0.7 OH + 2 MACR + HO2 ; Rate from IUPAC Aug 2018
+8.22e-16*exp(-640*TINV)*3.3   :  XTERP  + O3 =  0.7 OH + 2 MACR + HO2  ; 
+
+*-------------------------------------------------------------------------------------------
+*| NO3 chemistry
+
+2.51e-12                      :  BPINENE + NO3 = TERPO2 + NO2 ; 
+1.20e-12*exp(490*TINV)*2.25   :  XTERP   + NO3 = TERPO2 + NO2 ; 
+
+*-------------------------------------------------------------------------------------------
+*
+
+rcemis(BPINENE,KDIM)              : = BPINENE ; #Anthropogenic
+rcemis(XTERP,KDIM)                : = XTERP ; #Anthropogenic

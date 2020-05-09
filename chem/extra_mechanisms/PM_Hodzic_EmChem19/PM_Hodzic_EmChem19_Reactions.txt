@@ -1,0 +1,41 @@
+
+* YIELD APPROACH YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+* YCOXY etc indices use 0, 1, 2, 3 for 10**0, 10**1 etc
+
+* 1) OH REACTIONS  ---------------------------------------
+
+1.36e-11               :  [OXYL] + [OH] = |YCOXY(-2)|  ASOC_ng10  +  |YNOXY(-2)|  non_C_ASOA_ng10  +  |YCOXY(-1)|  ASOC_ng1e2  +  |YNOXY(-1)|  non_C_ASOA_ng1e2  +  |YCOXY(0)|  ASOC_ug1  +  |YNOXY(0)|   non_C_ASOA_ug1  +  |YCOXY(1)|  ASOC_ug10 + |YNOXY(1)|  non_C_ASOA_ug10 +  |YCOXY(2)| ASOC_ug1e2  +  |YNOXY(2)| non_C_ASOA_ug1e2 +  |YCOXY(3)| ASOC_ug1e3  +  |YNOXY(3)| non_C_ASOA_ug1e3 ;
+
+*optional track Wood Burning SOA: 1.36e-11 :   [WOXYL] + [OH] = |YCOXY(-2)|  WSOC_ng10  +  |YNOXY(-2)|  non_C_WSOA_ng10  +  |YCOXY(-1)|  WSOC_ng1e2  +  |YNOXY(-1)|  non_C_WSOA_ng1e2  +  |YCOXY(0)|  WSOC_ug1  +  |YNOXY(0)|   non_C_WSOA_ug1  +  |YCOXY(1)|  WSOC_ug10 + |YNOXY(1)|  non_C_WSOA_ug10 +  |YCOXY(2)| WSOC_ug1e2  +  |YNOXY(2)| non_C_WSOA_ug1e2 +  |YCOXY(3)| WSOC_ug1e3  +  |YNOXY(3)| non_C_WSOA_ug1e3 ;
+
+2.3e-12*EXP(-190*TINV) :  [BENZENE] + [OH] = |YCBENZ(-2)|  ASOC_ng10  +  |YNBENZ(-2)|  non_C_ASOA_ng10  +  |YCBENZ(-1)|  ASOC_ng1e2  +  |YNBENZ(-1)|  non_C_ASOA_ng1e2  +  |YCBENZ(0)|  ASOC_ug1  +  |YNBENZ(0)|   non_C_ASOA_ug1  +  |YCBENZ(1)|  ASOC_ug10 + |YNBENZ(1)|  non_C_ASOA_ug10 +  |YCBENZ(2)| ASOC_ug1e2  +  |YNBENZ(2)| non_C_ASOA_ug1e2 +  |YCBENZ(3)| ASOC_ug1e3  +  |YNBENZ(3)| non_C_ASOA_ug1e3 ;
+
+*optional track Wood Burning SOA:  2.3e-12*EXP(-190.0*TINV) : [WBENZ] + [OH] = |YCBENZ(-2)|  WSOC_ng10  +  |YNBENZ(-2)|  non_C_WSOA_ng10  +  |YCBENZ(-1)|  WSOC_ng1e2  +  |YNBENZ(-1)|  non_C_WSOA_ng1e2  +  |YCBENZ(0)|  WSOC_ug1  +  |YNBENZ(0)|   non_C_WSOA_ug1  +  |YCBENZ(1)|  WSOC_ug10 + |YNBENZ(1)|  non_C_WSOA_ug10 +  |YCBENZ(2)| WSOC_ug1e2  +  |YNBENZ(2)| non_C_WSOA_ug1e2 +  |YCBENZ(3)| WSOC_ug1e3  +  |YNBENZ(3)| non_C_WSOA_ug1e3 ;
+
+1.8e-12*EXP(340*TINV)  :  [TOLUENE] + [OH] = |YCTOL(-2)|  ASOC_ng10  +  |YNTOL(-2)|  non_C_ASOA_ng10  +  |YCTOL(-1)|  ASOC_ng1e2  +  |YNTOL(-1)|  non_C_ASOA_ng1e2  +  |YCTOL(0)|  ASOC_ug1  +  |YNTOL(0)|   non_C_ASOA_ug1  +  |YCTOL(1)|  ASOC_ug10 + |YNTOL(1)|  non_C_ASOA_ug10 +  |YCTOL(2)| ASOC_ug1e2  +  |YNTOL(2)| non_C_ASOA_ug1e2 +  |YCTOL(3)| ASOC_ug1e3  +  |YNTOL(3)| non_C_ASOA_ug1e3 ;
+
+*optional track Wood Burning SOA:  1.8e-12*EXP(340.*TINV) : [WTOL] + [OH] = |YCTOL(-2)|  WSOC_ng10  +  |YNTOL(-2)|  non_C_WSOA_ng10  +  |YCTOL(-1)|  WSOC_ng1e2  +  |YNTOL(-1)|  non_C_WSOA_ng1e2  +  |YCTOL(0)|  WSOC_ug1  +  |YNTOL(0)|   non_C_WSOA_ug1  +  |YCTOL(1)|  WSOC_ug10 + |YNTOL(1)|  non_C_WSOA_ug10 +  |YCTOL(2)| WSOC_ug1e2  +  |YNTOL(2)| non_C_WSOA_ug1e2 +  |YCTOL(3)| WSOC_ug1e3  +  |YNTOL(3)| non_C_WSOA_ug1e3 ;
+
+2.7e-11*EXP(390*TINV)  :  [OH] + [C5H8] = |YCISOP(-2)|  BSOC_ng10  +  |YNISOP(-2)|   non_C_BSOA_ng10  +  |YCISOP(-1)|  BSOC_ng1e2  +  |YNISOP(-1)|   non_C_BSOA_ng1e2  +  |YCISOP(0)|  BSOC_ug1  +  |YNISOP(0)|   non_C_BSOA_ug1  +  |YCISOP(1)|  BSOC_ug10 + |YNISOP(1)|  non_C_BSOA_ug10 +  |YCISOP(2)| BSOC_ug1e2  +  |YNISOP(2)| non_C_BSOA_ug1e2 +  |YCISOP(3)| BSOC_ug1e3  +  |YNISOP(3)| non_C_BSOA_ug1e3 ;
+
+1.34e-11*exp(410*TINV) :  [OH] + [APINENE] = |YCTERP(-2)|  BSOC_ng10  +  |YNTERP(-2)|   non_C_BSOA_ng10  +  |YCTERP(-1)|  BSOC_ng1e2  +  |YNTERP(-1)|   non_C_BSOA_ng1e2  +  |YCTERP(0)|  BSOC_ug1  +  |YNTERP(0)|   non_C_BSOA_ug1  +  |YCTERP(1)|  BSOC_ug10 + |YNTERP(1)|  non_C_BSOA_ug10 +  |YCTERP(2)| BSOC_ug1e2  +  |YNTERP(2)| non_C_BSOA_ug1e2 +  |YCTERP(3)| BSOC_ug1e3  +  |YNTERP(3)| non_C_BSOA_ug1e3 ;
+
+
+* 2) O3 REACTIONS  ---------------------------------------
+*assume same SOA yield for MT+O3 reaction as MT+OH...
+
+8.22e-16*exp(-640*TINV) : [O3] + [APINENE] = |YCTERP(-2)|  BSOC_ng10  +  |YNTERP(-2)|   non_C_BSOA_ng10  +  |YCTERP(-1)|  BSOC_ng1e2  +  |YNTERP(-1)|   non_C_BSOA_ng1e2  +  |YCTERP(0)|  BSOC_ug1  +  |YNTERP(0)|   non_C_BSOA_ug1  +  |YCTERP(1)|  BSOC_ug10 + |YNTERP(1)|  non_C_BSOA_ug10 +  |YCTERP(2)| BSOC_ug1e2  +  |YNTERP(2)| non_C_BSOA_ug1e2 +  |YCTERP(3)| BSOC_ug1e3  +  |YNTERP(3)| non_C_BSOA_ug1e3 ;
+
+* 3) NO3 REACTIONS  ---------------------------------------
+*assume same SOA yield for MT+NO3 reactions as for MT+OH -- NOTE! This is probably NOT a very realistic assumption!
+* NOTE also that Fry et al. (2014 EST) found zero SOA yield for a-pinene+NO3, but HIGH SOA yields for all other tested monoterpenes+NO3 reactions
+* For work focussed on BSOA from biogenic VOC emissions the NO3 SOA production clearly needs to be reconsidered!
+
+1.2e-12*exp(490*TINV)   : [NO3] + [APINENE] = |YCTERP(-2)|  BSOC_ng10  +  |YNTERP(-2)|   non_C_BSOA_ng10  +  |YCTERP(-1)|  BSOC_ng1e2  +  |YNTERP(-1)|   non_C_BSOA_ng1e2  + |YCTERP(0)|  BSOC_ug1  +  |YNTERP(0)|   non_C_BSOA_ug1  +  |YCTERP(1)|  BSOC_ug10 + |YNTERP(1)|  non_C_BSOA_ug10 +  |YCTERP(2)| BSOC_ug1e2  +  |YNTERP(2)| non_C_BSOA_ug1e2 +  |YCTERP(3)| BSOC_ug1e3  +  |YNTERP(3)| non_C_BSOA_ug1e3 ;
+
+* END  YIELD APPROACH YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+
+*===========================================================================
+* No "extra" aging of SOA semivolatiles with Hodzic scheme!
+*
+*

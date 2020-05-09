@@ -1,0 +1,9 @@
+*| ============================
+*| XTERP_CRI_Species.csv
+*| ============================
+*| Extra monoterpenes (in addition to APINENE and BPINENE), optionally used with CRIv2R5Em mechanism
+*
+* Spec,adv,formula,MW,DRY,WET,Groups,!Comments
+*
+XTERP,1,C10H16,136.24,xx,xx,biogenic;BVOC,!C10
+

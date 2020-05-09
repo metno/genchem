@@ -1,5 +1,4 @@
-PM handling for VBS treatment in EmChem19
-Also includes EC_f_ffuel etc.
+PM handling for VBS treatment in EmChem19 also usable with CRIv2R5Em
 
 Similar to VBS scheme used in Bergström et al, ACP, 2012 and Simpson et al., 
 ACP, 2012 (VBS_acp2012 in earlier GenChem).

@@ -1,0 +1,30 @@
+* Additional BPINENE SOA formation (only APINENE used in standard scheme)
+*
+* YIELD APPROACH YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+* YCOXY etc indices use 0, 1, 2, 3 for 10**0, 10**1 etc
+
+* 1) OH REACTIONS  ---------------------------------------
+
+1.62e-11*exp(460*TINV)   :  [OH] + [BPINENE] = |YCTERP(0)|  BSOC_ug1  +  |YNTERP(0)|   non_C_BSOA_ug1  +  |YCTERP(1)|  BSOC_ug10 + |YNTERP(1)|  non_C_BSOA_ug10 +  |YCTERP(2)| BSOC_ug1e2  +  |YNTERP(2)| non_C_BSOA_ug1e2 +  |YCTERP(3)| BSOC_ug1e3  +  |YNTERP(3)| non_C_BSOA_ug1e3 ;
+
+
+* 2) O3 REACTIONS  ---------------------------------------
+*assume same SOA yield for MT+O3 reaction as MT+OH...
+
+1.39e-15*exp(-1280*TINV) :  [O3] + [BPINENE] = |YCTERP(0)|  BSOC_ug1  +  |YNTERP(0)|   non_C_BSOA_ug1  +  |YCTERP(1)|  BSOC_ug10 + |YNTERP(1)|  non_C_BSOA_ug10 +  |YCTERP(2)| BSOC_ug1e2  +  |YNTERP(2)| non_C_BSOA_ug1e2 +  |YCTERP(3)| BSOC_ug1e3  +  |YNTERP(3)| non_C_BSOA_ug1e3 ;
+
+
+* 3) NO3 REACTIONS  ---------------------------------------
+*assume same SOA yield for MT+NO3 reactions as for MT+OH -- NOTE! This is probably NOT a very realistic assumption!
+* NOTE also that Fry et al. (2014 EST) found zero SOA yield for a-pinene+NO3, but HIGH SOA yields for all other tested monoterpenes+NO3 reactions
+* For work focussed on BSOA from biogenic VOC emissions the NO3 SOA production clearly needs to be reconsidered!
+
+2.51e-12 :                  [NO3] + [BPINENE] = |YCTERP(0)|  BSOC_ug1  +  |YNTERP(0)|   non_C_BSOA_ug1  +  |YCTERP(1)|  BSOC_ug10 + |YNTERP(1)|  non_C_BSOA_ug10 +  |YCTERP(2)| BSOC_ug1e2  +  |YNTERP(2)| non_C_BSOA_ug1e2 +  |YCTERP(3)| BSOC_ug1e3  +  |YNTERP(3)| non_C_BSOA_ug1e3 ;
+
+
+* END  YIELD APPROACH YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+
+*===========================================================================
+* No "extra" aging of SOA semivolatiles with Hodzic scheme!
+*
+*

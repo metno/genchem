@@ -1,0 +1,4 @@
+*<----- EC ageing ------- -------------------------------------------->
+* ;
+ec_ageing_rate()         : EC_f_wood_new  = EC_f_wood_age ;
+ec_ageing_rate()         : EC_f_ffuel_new = EC_f_ffuel_age ;

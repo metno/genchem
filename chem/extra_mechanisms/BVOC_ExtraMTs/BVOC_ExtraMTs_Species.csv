@@ -1,0 +1,10 @@
+*| ============================
+*| BVOC_ExtraMTs_Species.csv
+*| ============================
+*| Some extra monoterpenes (in addition to APINENE), optionally used in EmChem schemes
+*
+* Spec,adv,formula,MW,DRY,WET,Groups,!Comments
+*
+BPINENE,1,C10H16,xx,xx,xx,BVOC;MONOTERP,!
+XTERP,1,C10H16,xx,xx,xx,BVOC;MONOTERP,!
+*

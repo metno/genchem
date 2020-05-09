@@ -1,0 +1,27 @@
+
+* YIELD APPROACH YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+* YCOXY etc indices use 0, 1, 2, 3 for 10**0, 10**1 etc
+
+* 1) OH REACTIONS  ---------------------------------------
+
+1.62e-11*exp(460*TINV) :       [OH] + [BPINENE] = |YCTERP(0)|  BSOC_ug1  +  |YNTERP(0)|   non_C_BSOA_ug1  +  |YCTERP(1)|  BSOC_ug10 + |YNTERP(1)|  non_C_BSOA_ug10 +  |YCTERP(2)| BSOC_ug1e2  +  |YNTERP(2)| non_C_BSOA_ug1e2 +  |YCTERP(3)| BSOC_ug1e3  +  |YNTERP(3)| non_C_BSOA_ug1e3 ;
+
+1.34e-11*exp(410*TINV)*3.22 :  [OH] +  [XTERP]  = |YCTERP(0)|  BSOC_ug1  +  |YNTERP(0)|   non_C_BSOA_ug1  +  |YCTERP(1)|  BSOC_ug10 + |YNTERP(1)|  non_C_BSOA_ug10 +  |YCTERP(2)| BSOC_ug1e2  +  |YNTERP(2)| non_C_BSOA_ug1e2 +  |YCTERP(3)| BSOC_ug1e3  +  |YNTERP(3)| non_C_BSOA_ug1e3 ;
+
+
+* 2) O3 REACTIONS  ---------------------------------------
+
+1.39e-15*exp(-1280*TINV) :     [O3] + [BPINENE] = |YCTERP(0)|  BSOC_ug1  +  |YNTERP(0)|   non_C_BSOA_ug1  +  |YCTERP(1)|  BSOC_ug10 + |YNTERP(1)|  non_C_BSOA_ug10 +  |YCTERP(2)| BSOC_ug1e2  +  |YNTERP(2)| non_C_BSOA_ug1e2 +  |YCTERP(3)| BSOC_ug1e3  +  |YNTERP(3)| non_C_BSOA_ug1e3 ;
+
+8.22e-16*exp(-640*TINV)*3.3 :  [O3] +  [XTERP]  = |YCTERP(0)|  BSOC_ug1  +  |YNTERP(0)|   non_C_BSOA_ug1  +  |YCTERP(1)|  BSOC_ug10 + |YNTERP(1)|  non_C_BSOA_ug10 +  |YCTERP(2)| BSOC_ug1e2  +  |YNTERP(2)| non_C_BSOA_ug1e2 +  |YCTERP(3)| BSOC_ug1e3  +  |YNTERP(3)| non_C_BSOA_ug1e3 ;
+
+* 3) NO3 REACTIONS  ---------------------------------------
+
+2.51e-12 :                     [NO3] + [BPINENE] = |YCTERP(0)|  BSOC_ug1  +  |YNTERP(0)|   non_C_BSOA_ug1  +  |YCTERP(1)|  BSOC_ug10 + |YNTERP(1)|  non_C_BSOA_ug10 +  |YCTERP(2)| BSOC_ug1e2  +  |YNTERP(2)| non_C_BSOA_ug1e2 +  |YCTERP(3)| BSOC_ug1e3  +  |YNTERP(3)| non_C_BSOA_ug1e3 ;
+
+1.20e-12*exp(490*TINV)*2.25 :  [NO3] +  [XTERP]  = |YCTERP(0)|  BSOC_ug1  +  |YNTERP(0)|   non_C_BSOA_ug1  +  |YCTERP(1)|  BSOC_ug10 + |YNTERP(1)|  non_C_BSOA_ug10 +  |YCTERP(2)| BSOC_ug1e2  +  |YNTERP(2)| non_C_BSOA_ug1e2 +  |YCTERP(3)| BSOC_ug1e3  +  |YNTERP(3)| non_C_BSOA_ug1e3 ;
+
+* END  YIELD APPROACH YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+
+*YY*===========================================================================
+

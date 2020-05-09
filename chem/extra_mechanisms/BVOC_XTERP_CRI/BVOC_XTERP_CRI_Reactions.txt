@@ -1,0 +1,16 @@
+*| ============================
+*| XTERP_CRI_Reactions.csv
+*| ============================
+*| Additional monoterpenes (apart from APINENE and BPINENE) for usage together with the CRIv2R5Em mechanism!
+*
+
+*Assume XTERP gives same products as APINENE (but using faster rates, based on available rates for other monoterpenes):
+
+1.34e-11*exp(410*TINV)*3.22  :  XTERP   + OH = RTN28O2 ; 
+8.22e-16*exp(-640*TINV)*3.3  :  XTERP  + O3 = 0.8 OH + 0.8 RTN26O2 + 0.125 RCOOH25 + 0.075 TNCARB26 + 0.075 H2O2 ;
+1.20e-12*exp(490.*TINV)*2.25  :  XTERP   + NO3 = NRTN28O2 ;
+
+*-------------------------------------------------------------------------------------------
+*
+
+rcemis(XTERP,KDIM)                : = XTERP ; #Anthropogenic

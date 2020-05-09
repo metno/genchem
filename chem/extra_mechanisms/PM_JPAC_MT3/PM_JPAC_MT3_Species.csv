@@ -1,0 +1,17 @@
+*"---------------------------------------------------------------------"
+* SOA species for JPAC yield based schemes 
+*"---------------------------------------------------------------------"
+* REMEMBER to NOT include the PM10 and PMfine groups for the fine (PM2.5) Organic components! Taken care of by the help species PART_OM_F!
+*
+*"Spec,adv,formula,MW,DRY,WET,Groups,!Comments"
+ISOPOH_BSOA_NV,1,C5,126.,PMf,PMf,OM25;PCM;nonvolPCM;nvabsSOM;BSOA,"!BSOA from isoprene+OH reaction, treated as non-volatile (fixed-yield), OM/OC ratio set to 2.1 (based on Chen et al., 2015)"
+ISOPNO3_BSOA_NV,1,C5,126.,PMf,PMf,OM25;PCM;nonvolPCM;nvabsSOM;BSOA,"!BSOA from isoprene+NO3 reaction, treated as non-volatile (fixed-yield), OM/OC ratio set to 2.1 (based on Chen et al., 2015)"
+APINOH_BSOA_NV,1,C10,204.,PMf,PMf,OM25;PCM;nonvolPCM;nvabsSOM;BSOA,"!BSOA from a-pinene+OH reaction, treated as non-volatile (fixed-yield), OM/OC ratio set to 1.7 (as in Bergstrom et al., 2012 - based on a-pinene+O3 SOA OM/OC from Chhabra et al., 2010 -- seems to agree with Chen et al. 2015)"
+APINO3_BSOA_NV,1,C10,204.,PMf,PMf,OM25;PCM;nonvolPCM;nvabsSOM;BSOA,"!BSOA from a-pinene+O3 reaction, treated as non-volatile (fixed-yield), OM/OC ratio set to 1.7 (as in Bergstrom et al., 2012 - based on a-pinene+O3 SOA OM/OC from Chhabra et al., 2010)"
+BPINOH_BSOA_NV,1,C10,204.,PMf,PMf,OM25;PCM;nonvolPCM;nvabsSOM;BSOA,"!BSOA from b-pinene+OH reaction, treated as non-volatile (fixed-yield), OM/OC ratio set to 1.7 (as in Bergstrom et al., 2012 - based on a-pinene+O3 SOA OM/OC from Chhabra et al., 2010)"
+BPINNO3_BSOA_NV,1,C10,204.,PMf,PMf,OM25;PCM;nonvolPCM;nvabsSOM;BSOA,"!BSOA from b-pinene+NO3 reaction, treated as non-volatile (fixed-yield), OM/OC ratio set to 1.7 (as in Bergstrom et al., 2012 - based on a-pinene+O3 SOA OM/OC from Chhabra et al., 2010)"
+BPINO3_BSOA_NV,1,C10,204.,PMf,PMf,OM25;PCM;nonvolPCM;nvabsSOM;BSOA,"!BSOA from b-pinene+O3 reaction, treated as non-volatile (fixed-yield), OM/OC ratio set to 1.7 (as in Bergstrom et al., 2012 - based on a-pinene+O3 SOA OM/OC from Chhabra et al., 2010)"
+XMTOH_BSOA_NV,1,C10,204.,PMf,PMf,OM25;PCM;nonvolPCM;nvabsSOM;BSOA,"!BSOA from XTERP+OH reaction, treated as non-volatile (fixed-yield), OM/OC ratio set to 1.7 (as in Bergstrom et al., 2012 - based on a-pinene+O3 SOA OM/OC from Chhabra et al., 2010)"
+XMTO3_BSOA_NV,1,C10,204.,PMf,PMf,OM25;PCM;nonvolPCM;nvabsSOM;BSOA,"!BSOA from XTERP+O3 reaction, treated as non-volatile (fixed-yield), OM/OC ratio set to 1.7 (as in Bergstrom et al., 2012 - based on a-pinene+O3 SOA OM/OC from Chhabra et al., 2010)"
+XMTNO3_BSOA_NV,1,C10,204.,PMf,PMf,OM25;PCM;nonvolPCM;nvabsSOM;BSOA,"!BSOA from XTERP+NO3 reaction, treated as non-volatile (fixed-yield), OM/OC ratio set to 1.7 (as in Bergstrom et al., 2012 - based on a-pinene+O3 SOA OM/OC from Chhabra et al., 2010)"
+*

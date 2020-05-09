@@ -1,0 +1,17 @@
+* <----------- Biogenic/natural emissions ----------------------------->
+* IsoMT2: BVOC emissions for case of isoprene + monoterpenes treated as 0.69 APINENE + 0.31 BPINENE 
+*
+* Use _func_rcbio for BVOC, e.g. APINENE; to avoid complications with
+* any AVOC equivalent
+*
+* The rcbio functions will apply light and/or temperature
+* dependencies, either in a very simple way in boxChem, or based upon
+* detailed land-cover calculations in EMEP model. 
+*
+* The indices 1 and 2 ar hard-coded to isoprene and monoterpenes in the
+* boxChem and EMEP models. (BIO_C5H8=1, BIO_MTERP=2 )
+*
+* if wanted, SQT is in extra_mechanisms/BVOC_SQT_NV
+
+_func_rcbio(1,k) : =  C5H8  ;
+_func_rcbio(2,k) : =  0.69 APINENE + 0.31 BPINENE   ; 
