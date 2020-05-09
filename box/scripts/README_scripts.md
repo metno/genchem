@@ -5,8 +5,8 @@
   * do.Makefile - a helper script to run gen-makefile.py. Here one can set e.g.
     the gfortran flags, and if needed sub-directories to search
 
-  * do.testChems - harminoses usage of BoxAero with base-mechanisms, to make
-    testing more comparable
+  * do.testChems - harminoses usage of BoxAero, BoxDep and BVOC_IsoMT1 with
+    base-mechanisms, to make testing more comparable
 
 
 
@@ -33,6 +33,12 @@
 
 
 ## Misc scripts
+
+###  mkCounts.sh
+
+  Just counts numbers of species and reactions (Nr,Nj,Ne)::
+
+    mkCounts.sh EmChem19a
 
 ### getboxconcs.py
 
