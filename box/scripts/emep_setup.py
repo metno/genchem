@@ -75,7 +75,7 @@ if len(sys.argv) < 2:
     parser.print_usage()
     sys.exit(1)
 
-parser.add_argument('chem_mech', help='Base chemical mechanisms (one  needed), e.g. EmChem19a',choices=available_emeps)
+parser.add_argument('chem_mech', help='Base chemical mechanisms (one  needed), e.g. EmChem19a-vbs',choices=available_emeps)
 parser.add_argument('-d','--dbg',
     help='debug mode. Waits for user input at key steps', action='store_true')
 args = parser.parse_args()
