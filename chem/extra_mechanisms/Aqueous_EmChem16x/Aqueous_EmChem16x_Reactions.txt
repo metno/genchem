@@ -1,8 +1,8 @@
 *----- sulphur chemistry ----------------------------------- ;
 * ;
- aqrck(ICLOHSO2,k)*2.00e-12 :       OH + SO2 = HO2 + SO4   ;  jof, kinf
- aqrck(ICLRC1,k)            :       SO2 + H2O2 =  SO4   ;  !ox limitation
- aqrck(ICLRC2,k)            :       SO2 + O3 =  SO4   ;
- aqrck(ICLRC3,k)            :       SO2 + {Fe} =  SO4   ;
+ aqrck(ICLOHSO2,k)*2.00e-12 :       OH + SO2 = HO2 + SO4 ;  gas phase oxidation of SO2 -- jof, kinf -- too fast reaction! Should be revised! IUPAC rate would be <= 1e-12 for T>288K and P=1atm
+ aqrck(ICLRC1,k)            :       SO2 + H2O2 =  SO4    ;  aqueous phase reaction !ox limitation
+ aqrck(ICLRC2,k)            :       SO2 + O3 =  SO4      ;  aqueous phase reaction
+ aqrck(ICLRC3,k)            :       SO2 + {Fe} =  SO4    ;  aqueous phase reaction
 * ;
 
