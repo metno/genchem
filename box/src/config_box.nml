@@ -18,9 +18,8 @@
  tend = 129600., ! one day on top of 12 hours
 ! tend = 270000., ! three days
 ! tend = 432000., ! five days
-! timestep dt
+! timestep dt (seconds)
  dt = 30.!,
-! dt = 600.!,
 ! Day of the year
 doy = 182,
 
