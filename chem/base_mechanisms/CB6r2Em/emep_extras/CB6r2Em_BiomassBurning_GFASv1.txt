@@ -22,7 +22,7 @@
     'c3h6fire     ', 1.000, 0.286, 'PAR',            # 107.210 | Propene PAR(M=12) + OLE(M=24) in EMEP CB6
     'c3h6fire     ', 1.000, 0.571, 'OLE',            # 107.210 | Propene PAR(M=12) + OLE(M=24) in EMEP CB6
     'c5h8fire     ', 1.000, 1.000, 'C5H8',           # 108.210 | Isoprene
-    'toluenefire  ', 1.000, 1.000, 'TOL',            # 110.210 | Toluene lump(C7H8+C6H6+C8H10)
+    'toluenefire  ', 1.000, 0.913, 'TOL',            # 110.210 | Toluene lump(C7H8+C6H6+C8H10)
 #  2 PAR + 1 OLE  2*12 + 1*24
 #  (2*12++24)/c4h8 = 0.857; 50% -> 0.42857  OLE
     'hialkenesfire', 1.000, 0.429, 'OLE',           # 111.210 | Higher Alkenes (CnH2n, C>=4) 50%

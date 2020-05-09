@@ -24,23 +24,23 @@
     'ACET',   0.058,  1.0,    'ACET',          # acetone 
     'ALD2',   0.044,  0.545,  'ALD2',          # ALD2 has M=24 in EMEP CB6! c2/ch3cho=0.545
 # c5h12 c5/c5h12 ratio 0.833; c4h10 c4/c4h10 ratio 0.828
-    'ALK4',   0.058,  0.83,   'PAR',           # PAR has M=12 and butane/pentane is 4/5 PAR in EMEP CB6
+    'ALK4',   0.058,  0.833,  'PAR',           # PAR has M=12 and butane/pentane is 4/5 PAR in EMEP CB6
     'C2H6',   0.030,  1.0,    'ETHA',          #
     'C3H8',   0.044,  1.0,    'PRPA',          # 
 # Need to explain factors below
     'CH2O',   0.030,  0.4,    'FORM',          # FORM has M=12 in EMEP CB6!
-    'MEK ',   0.072,  0.5,    'MEK',           # MEK is 3 PAR (M=12) + 1 KET(M=12) in EMEP CB6
+    'MEK ',   0.072,  0.5,    'PAR',           # MEK is 3 PAR (M=12) + 1 KET(M=12) in EMEP CB6
     'MEK ',   0.072,  0.167,  'KET',           # MEK is 3 PAR (M=12) + 1 KET(M=12) in EMEP CB6
     'PRPE',   0.042,  0.286,  'PAR',           # propylene is PAR(M=12) + OLE(M=24) in EMEP CB6
     'PRPE',   0.042,  0.571,  'OLE',           # propylene is PAR(M=12) + OLE(M=24) in EMEP CB6
     'C2H4',   0.028,  1.0,    'ETH',           # 
 # GLYC = hydroxy-acetaldehyde (glycoaldehyde)  HOCH2CHO -- treat
 # as ALD2 (in CB5; Carter 2015)
-    'GLYC',   0.060,  0.4,    'ALD2',          # 
+    'GLYC',   0.060,  0.4,    'ALD2',          # ! hydroxy-acetaldehyde (glycoaldehyde)  HOCH2CHO -- treated as ALD2 (in CB5; Carter 2015)
 # CB5 ACETOL was treated as 2 PAR (+UNR) -- use PAR + KET instead:
     'HAC' ,   0.074,  0.162,  'PAR',           # 
     'HAC' ,   0.074,  0.162,  'KET',           #
     'BENZ',   0.078,  1.0,    'BENZ',          #
-    'TOLU',   0.092,  1.0,    'TOL',           # 
-    'XYLE',   0.106,  1.0,    'XYL',           #
+    'TOLU',   0.092,  0.913,  'TOL',           # ! Note ! TOL has M=84 in EMEP CB6
+    'XYLE',   0.106,  0.906,  'XYL',           # ! Note ! XYLE has M=96 in EMEP CB6
     'MGLY'    0.072,  1.0,    'MGLY',          #
