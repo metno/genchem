@@ -1,9 +1,17 @@
-MCMv3.3-Em 
-==========
+MCMv3.3Em
+=========
 
-Slightly-modified version of MCMv3.3.1
+MCM Chemistry from web-side (http://mcm.leeds.ac.uk/MCMv3.3.1), converted by HI
 
-Revisions made compared to the MCM v3.3.1 
+ - adapted for EMEP/GenChem and with some modifications (updates)
+
+Added rcemis terms added from utils/mkrcemis.py
+
+Added some extra species to allow testing from boxChem
+
+Added some deposition params in Species to make ESX work
+
+Chemistry revisions made compared to the MCM v3.3.1 
 * 
 *       * Fixed one bug in MCM:
 *         - M3BU3ECO3 + HO2 -> C45O2 + OH + NO2 in MCM -- the NO2 is not correct (probably should have been CO2?)
@@ -45,12 +53,3 @@ Revisions made compared to the MCM v3.3.1
 *        after the original downloading of the scheme.
 
 ===
-Original comments: 
-
-Chemistry from web-side (http://mcm.leeds.ac.uk/MCMv3.3.1), converted by HI
-
-Plus some few deposition terms added to make ESX work
-
-Plus rcemis terms added from utils/mkrcemis.py
-
-And some extra species to allow testing from boxChem
