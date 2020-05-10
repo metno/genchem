@@ -1,17 +1,20 @@
-CRI-R5-emep
-===========
+CRIv2R5Em
+=========
 
-Update of CRI_v2.1_R5 scheme with 2016 isoprene chemistry from Mike Jenkin.
--- combined CRIv2R5 and Isoprene C15_R1A (without SOA)
-From Robert Bergström,  28 Nov 2016, adapted by Hannah & Dave for BoxChem
-
+Major update of the EMEP-CRI_v2.1_R5 scheme -- many reaction rates updated 
+(to new IUPAC recommendations, and largely in line with CRIv2.2 and MCM);
+isoprene chemistry completely revised (Jenkin et al., 2019; The CRI v2.2 
+reduced degradation scheme for isoprene, Atmospheric Environment 212 (2019) 
+172–182).
+ 
 Similar to the gas-phase scheme used for global modelling in:
 
    McFiggans et al, Secondary organic aerosol reduced by mixture of
    atmospheric vapours, Nature, 565, 587-593, doi:10.1029/2018JD029133,
    2019
 
-NB - uses 2 psuedo species, ISRO2 and MTO2 for SOA work 
+From Robert Bergström,  28 Nov 2016, adapted by Hannah & Dave for BoxChem
+[includes later revisions to some reactions after 2016]
 
 Notes from RB:
 --------------
@@ -54,4 +57,3 @@ Updates Jan-Feb 2019 [RB]:
                            moment does not expect radicals in the groups)
 
    Switching to latest IUPAC recommended rates for a number of reactions
-   This version was used in the model runs for the Isoprene CRIv2.2 manuscript by Mike Jenkin et al. (2019)
