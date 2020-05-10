@@ -486,8 +486,7 @@ class SpeciesReader(object):
                 if v == 'xx' or v == '':
                     row[k] = None
 
-            print('DSBSPECrow', row)
-            LOG.debug('DSBSPEC %s', row['Spec'])
+            LOG.debug('SPEC %s', row['Spec'])
             LOG.indent()
 
             # Process groups
@@ -1484,7 +1483,7 @@ class ReactionsWriter(CodeGenerator):
                 # All other species
                 prod = self.prod[spec.name]
                 loss = self.loss[spec.name]
-                LOG.info('DSASPEC %-12s: nprod=%2d, nloss=%2d', spec.name, len(prod), len(loss))
+                LOG.info('SPEC %-12s: nprod=%2d, nloss=%2d', spec.name, len(prod), len(loss))
                 eqn = self.CHEMEQN_LOOKUP[(bool(prod), bool(loss))].format(spec=spec.name)
 
             # Choose appropriate output stream
