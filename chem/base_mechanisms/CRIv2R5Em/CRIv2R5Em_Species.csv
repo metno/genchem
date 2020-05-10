@@ -116,13 +116,13 @@ HCOCO3H,1,HCOCO3H,xx,HCOCO3H,H2O2,ROOH;carbonyl;RCHO;Hstar_3p2e6;f0_0p2;DRx_2p6,
 MEK,1,CH3COC2H5,72.11,MEK,xx,carbonyl;Hstar_2p0e1;f0_0p05;DRx_2p7,!C4 
 MVK,1,CH3C(=O)CH=CH2,xx,MEK,xx,carbonyl;Hstar_3p0e1;f0_0p05;DRx_2p6,!C4
 MACR,1,CH2=CCH3CHO,xx,MEK,xx,RCHO;Hstar_5p0e0;f0_0p05;DRx_2p6,!C4 
-GLYOX,1,HCOHCO,xx,GLYOX,H2O2,RCHO;carbonyl;Hstar_3p0e5;f0_0p0;DRx_2p1,!C2, {H* ca 3E5 M/atm or 2 orders of magnitude higher in Mexico City?}
-MGLYOX,1,CH3COCHO,xx,MGLYOX,0p3,carbonyl;RCHO;Hstar_2p4e4;f0_0p2;DRx_2p5,!C3 
+GLYOX,1,HCOHCO,xx,GLYOX,H2O2,RCHO;carbonyl;Hstar_3p0e5;f0_0p0;DRx_2p1,!C2, CARB3 in CRI {H* ca 3E5 M/atm or 2 orders of magnitude higher in Mexico City?}
+MGLYOX,1,CH3COCHO,xx,MGLYOX,0p3,carbonyl;RCHO;Hstar_2p4e4;f0_0p2;DRx_2p5,!C3, CARB6 in CRI 
 CH3OH,1,CH3OH,32.04,xx,xx,alcohol,!C1, roughly 200 M/atm [Sander]
 C2H5OH,1,C2H5OH,46.07,xx,xx,alcohol,!C2, roughly 200 M/atm [Sander]
 NPROPOL,1,nC3H7OH,60.1,xx,xx,alcohol,!C3, ca 140 M/atm [Sander]
 IPROPOL,1,iC3H7OH,60.1,xx,xx,alcohol,!C3, ca 130 M/atm [Sander]
-ACETOL,1,CH3COCH2OH,xx,ACETOL,HCHO,carbonyl;hydroxyketone;Hstar_8p0e3;f0_0p05;DRx_2p6,!C3, hydroxy acetone
+ACETOL,1,CH3COCH2OH,xx,ACETOL,HCHO,carbonyl;hydroxyketone;Hstar_8p0e3;f0_0p05;DRx_2p6,!C3, hydroxy acetone, CARB7 in CRI
 CH3NO3,1,CH3NO3,xx,CH3NO3,xx,nitrate;OXN;Hstar_2p0e0;f0_0p3;DRx_2p3,!C1
 C2H5NO3,1,C2H5NO3,xx,CH3NO3,xx,nitrate;OXN;Hstar_2p0e0;f0_0p3;DRx_2p6,!C2
 RN10NO3,1,nC3H7NO3,xx,VLSOLNO3,xx,nitrate;OXN;Hstar_1p0e0;f0_0p3;DRx_3p0,!C3
@@ -157,7 +157,6 @@ RU13OOH,1,C5H10O4,xx,VHISOLOOH,H2O2,ROOH;carbonyl;Hstar_3p4e9;f0_0p2;DRx_3p5,!C5
 PAN,1,CH3COO2NO2,xx,PAN,xx,PANS;OXN;Hstar_3p0e0;f0_0p5;DRx_2p8,!C2
 APINENE,1,C10H16,136.24,xx,xx,biogenic;BVOC,!C10
 BPINENE,1,C10H16,136.24,xx,xx,biogenic;BVOC,!C10
-XTERP,1,C10H16,136.24,xx,xx,biogenic;BVOC,!C10
 CARB10,1,C4H8O2,xx,MEK,xx,carbonyl;Hstar_9p7e1;f0_0p05;DRx_2p9,!C4, MCM:BUT2OLO - 3-hydroxy-2-butanone 
 CARB13,1,carb13,xx,CH3CO2H,H2O2,carbonyl,!no obvious MCM equivalent - suggestion: CO2C5OH [OCCCC(=O)C] 
 CARB16,1,carb16,xx,MEK,xx,carbonyl,! no equivalent in MCM? 
@@ -235,7 +234,7 @@ RU13NO3,1,C5H9NO5,xx,VHISOLNO3,H2O2,nitrate;OXN;carbonyl;Hstar_1p2e8;f0_0p3;DRx_
 RU12NO3,1,C5H9NO6,xx,VHISOLNO3,H2O2,nitrate;OXN;RCHO;Hstar_1p7e9;f0_0p3;DRx_3p8,!C5 perhaps MCM:C58ANO3, INDHCHO, C57NO3
 RU10NO3,1,C4H7NO5,xx,VHISOLNO3,H2O2,nitrate;OXN;carbonyl;Hstar_1p5e8;f0_0p3;DRx_3p4,!C4, perhaps MCM:MVKNO3, MACRNO3, HMVKANO3 
 CO2C3PAN,1,CH3C(O)CH2C(O)ONO3,xx,CO2C3PAN,0p2,PANS;OXN;Hstar_1p3e4;f0_0p5;DRx_3p5,!C4
-HCC7CO,1,C7H10O2,xx,HCC7CO,H2O2,carbonyl,!C7
+HCC7CO,1,C7H10O2,xx,HCC7CO,H2O2,carbonyl,!C7, CARB17 in CRI
 **,,,,,,,,,,,,
 *"* ***** Slow species *****************************",,,,,,,,,,,,
 **,,,,,,,,,,,,
