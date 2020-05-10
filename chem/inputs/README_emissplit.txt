@@ -22,8 +22,3 @@ This directory has two main sub-directories:
      copy the appopriate emissplit.defaults.voc file for the chemical
      mechanism in use.
 
-
-The creation of emissplit directories for box and emep runs is done via te do.GenChem
-scripts which is called via either box/scripts/box_setup.py or box/scripts/emep_setup.py.
-These files can also be created by hand, though usually one creates "specials" files to
-deal with specific inventories or runs.
