@@ -10,102 +10,93 @@ emisfiles:sox,nox,co,voc,nh3
 *-- ;
 5.6e-34*((xt/300)**(-2.6))*O2*N2 : OP = O3 ;
 6.0e-34*((xt/300)**(-2.6))*O2*O2 : OP = O3 ;
-8.0e-12*exp(-2060*tinv)          : OP + O3 =   ;
+8.0e-12*exp(-2060*TINV)          : OP + O3 =   ;
 KMT01                             : OP + NO = NO2 ;
-5.5e-12*exp(188*tinv)            : OP + NO2 = NO ;
+5.5e-12*exp(188*TINV)            : OP + NO2 = NO ;
 KMT02                             : OP + NO2 = NO3 ;
-3.2e-11*exp(67*tinv)*O2          : OD = OP ;
-***MCMrate 2.0e-11*EXP(130*tinv)*N2 : OD = OP ;
-2.15e-11*exp(110*tinv)*N2         : OD = OP ;
-1.4e-12*exp(-1310*tinv)          : NO + O3 = NO2 ;
-1.4e-13*exp(-2470*tinv)          : NO2 + O3 = NO3 ;
-3.3e-39*exp(530*tinv)*O2         : NO + NO = 2 NO2 ;
-1.8e-11*exp(110*tinv)            : NO + NO3 = 2 NO2 ;
-4.5e-14*exp(-1260*tinv)          : NO2 + NO3 = NO + NO2 ;
+3.2e-11*exp(67*TINV)*O2          : OD = OP ;
+***CRIv2.2: 2.0e-11*EXP(130*TINV)*N2 : OD = OP ;
+*IUPAC June 2009:
+2.15e-11*exp(110*TINV)*N2         : OD = OP ;
+1.4e-12*exp(-1310*TINV)          : NO + O3 = NO2 ;
+1.4e-13*exp(-2470*TINV)          : NO2 + O3 = NO3 ;
+3.3e-39*exp(530*TINV)*O2         : NO + NO = 2 NO2 ;
+1.8e-11*exp(110*TINV)            : NO + NO3 = 2 NO2 ;
+4.5e-14*exp(-1260*TINV)          : NO2 + NO3 = NO + NO2 ;
 KMT03                             : NO2 + NO3 = N2O5 ;
 KMT04                             : N2O5 = NO2 + NO3 ;
 2.14e-10*h2o                      : OD = 2 OH ;
-1.7e-12*exp(-940*tinv)           : OH + O3 = HO2 ;
-7.7e-12*exp(-2100*tinv)          : OH + H2 = HO2 ;
+1.7e-12*exp(-940*TINV)           : OH + O3 = HO2 ;
+7.7e-12*exp(-2100*TINV)          : OH + H2 = HO2 ;
 KMT05                             : OH + CO = HO2 ;
-2.9e-12*exp(-160*tinv)           : OH + H2O2 = HO2 ;
-2.03e-16*((xt/300)**(4.57))*exp(693*tinv) : HO2 + O3 = OH ;
-4.8e-11*exp(250*tinv)            : OH + HO2 =   ;
-2.2e-13*exp(600*tinv)*KMT06      : HO2 + HO2 = H2O2 ;
-1.9e-33*exp(980*tinv)*KMT06*M    : HO2 + HO2 = H2O2 ;
+2.9e-12*exp(-160*TINV)           : OH + H2O2 = HO2 ;
+2.03e-16*((xt/300)**(4.57))*exp(693*TINV) : HO2 + O3 = OH ;
+4.8e-11*exp(250*TINV)            : OH + HO2 =   ;
+2.2e-13*exp(600*TINV)*KMT06      : HO2 + HO2 = H2O2 ;
+1.9e-33*exp(980*TINV)*KMT06*M    : HO2 + HO2 = H2O2 ;
 KMT07                             : OH + NO = HONO ;
 KMT08                             : OH + NO2 = HNO3 ;
 2.0e-11                          : OH + NO3 = HO2 + NO2 ;
-3.45e-12*exp(270*tinv)            : HO2 + NO = OH + NO2 ;
+3.45e-12*exp(270*TINV)            : HO2 + NO = OH + NO2 ;
 KMT09                             : HO2 + NO2 = HO2NO2 ;
 KMT10                             : HO2NO2 = HO2 + NO2 ;
-3.2e-13*exp(690*tinv)            : OH + HO2NO2 = NO2 ;
+3.2e-13*exp(690*TINV)            : OH + HO2NO2 = NO2 ;
 4.0e-12                          : HO2 + NO3 = OH + NO2 ;
-2.5e-12*exp(260*tinv)            : OH + HONO = NO2 ;
+2.5e-12*exp(260*TINV)            : OH + HONO = NO2 ;
 KMT11                             : OH + HNO3 = NO3 ;
-*IUPAC (210-866K):
-6.38e-18*TEMP**2*EXP(144.*TINV)   : OH + CH3OH = HO2 + HCHO ;
-*MCM: (210-300K): 
-***MCMrate 2.85e-12*exp(-345*tinv)           : OH + CH3OH = HO2 + HCHO ;
-*IUPAC (216-599K):
-6.70e-18*TEMP**2*EXP(511.*TINV)   : OH + C2H5OH = 0.95 CH3CHO + 0.95 HO2 + 0.05 HOCH2CH2O2 ;
-*MCM (210-300K): 
-***MCMrate 3.00e-12*exp(20*tinv)             : OH + C2H5OH = 0.95 CH3CHO + 0.95 HO2 + 0.05 HOCH2CH2O2 ;
-*MCM (200-300K): 
-***MCMrate 5.40e-12*exp(135*tinv)            : OH + HCHO = HO2 + CO ;
-*IUPAC (202-426K):
-1.25e-17*TEMP**2*EXP(615.*TINV)   : OH + HCHO = HO2 + CO ;
-*MCM uses the 298K value: 
-***MCMrate 5.5e-16                           : NO3 + HCHO = HO2 + CO + HNO3 ;
-*NOTE! strong T-dependence expected -- I suggest using the Arrhenius type rate below in the 3D-model
-*IUPAC expects a temperature dependent rate 
-2.e-12*exp(-2440.*tinv)          : NO3 + HCHO = HO2 + CO + HNO3 ; [based on analogy with CH3CHO rate]
-4.7e-12*exp(345*tinv)            : OH + CH3CHO = CH3CO3 ;
-KNO3AL                           : NO3 + CH3CHO = CH3CO3 + HNO3 ;
-4.9e-12*exp(405*tinv)            : OH + C2H5CHO = C2H5CO3 ;
-*MCM rate (seems to be based on IUPAC rates at 298K for C2H5CHO and CH3CHO reactions with NO3)
-3.24e-12*exp(-1860.*tinv)         : NO3 + C2H5CHO = C2H5CO3 + HNO3 ;
 *
-*MCM/IUPAC (200-300K): 
-***MCMrate 1.85e-12*exp(-1690*tinv)          : OH + CH4 = CH3O2 ;
+*-- Organic chemistry ----- ;
+*-- ;
+***CRIv2.2 (210-300K): 2.85e-12*exp(-345*TINV)           : OH + CH3OH = HO2 + HCHO ;
+*IUPAC (210-866K):
+6.38e-18*TEMP**2*EXP(144*TINV)  : OH + CH3OH = HO2 + HCHO ;
+***CRIv2.2 (210-300K): 3.00e-12*exp(20*TINV)           : OH + C2H5OH = 0.95 CH3CHO + 0.95 HO2 + 0.05 HOCH2CH2O2 ;
+*IUPAC (216-599K):
+6.7e-18*TEMP**2*EXP(511*TINV)   : OH + C2H5OH = 0.95 CH3CHO + 0.95 HO2 + 0.05 HOCH2CH2O2 ;
+4.6e-12*exp(70*TINV)            : OH + NPROPOL = 0.51 RN9O2 + 0.49 C2H5CHO + 0.49 HO2 ;
+2.6e-12*exp(200*TINV)           : OH + IPROPOL = 0.861 CH3COCH3 + 0.861 HO2 + 0.139 RN9O2 ;
+***CRIv2.2 (200-300K): 5.40e-12*exp(135*TINV)            : OH + HCHO = HO2 + CO ;
+*IUPAC (202-426K):
+1.25e-17*TEMP**2*EXP(615*TINV)  : OH + HCHO = HO2 + CO ;
+***CRIv2.2 (298K): 5.5e-16                           : NO3 + HCHO = HO2 + CO + HNO3 ;
+*NOTE! strong T-dependence expected (IUPAC) -- use the Arrhenius type rate below in the 3D-model
+2.e-12*exp(-2440*TINV)          : NO3 + HCHO = HO2 + CO + HNO3 ; [based on analogy with CH3CHO rate]
+4.7e-12*exp(345*TINV)           : OH + CH3CHO = CH3CO3 ;
+KNO3AL                          : NO3 + CH3CHO = CH3CO3 + HNO3 ;
+4.9e-12*exp(405*TINV)           : OH + C2H5CHO = C2H5CO3 ;
+3.24e-12*exp(-1860*TINV)        : NO3 + C2H5CHO = C2H5CO3 + HNO3 ;
+*
+***CRIv2.2 (200-300K): 1.85e-12*exp(-1690*TINV)          : OH + CH4 = CH3O2 ;
 *IUPAC (195-420K):
-1.85e-20*(TEMP**2.82)*EXP(-987*tinv) : OH + CH4 = CH3O2 ;
-*MCM/IUPAC (200-300K): 
-***MCMrate 6.90e-12*exp(-1000*tinv)          : OH + C2H6 = C2H5O2 ;
+1.85e-20*(TEMP**2.82)*EXP(-987*TINV) : OH + CH4 = CH3O2 ;
+***CRIv2.2 (200-300K): 6.90e-12*exp(-1000*TINV)          : OH + C2H6 = C2H5O2 ;
 *IUPAC (180-1230K):
-1.49e-17*TEMP**2*EXP(-499*TINV) : OH + C2H6 = C2H5O2 ;
-*MCM/IUPAC (200-300K): 
-***MCMrate 7.60e-12*exp(-585*tinv)     : OH + C3H8 = 0.736 IC3H7O2 + 0.264 RN10O2 ;
-*IUPAC-rate (190-1220K) [IC3H7O2/RN10O2-split is T-dependent but keep old split...]:
-1.65e-17*TEMP**2*EXP(-87*tinv) : OH + C3H8 = 0.736 IC3H7O2 + 0.264 RN10O2 ;
-*MCM/IUPAC (180-300K): 
-***MCMrate 9.80e-12*exp(-425*tinv)           : OH + NC4H10 = RN13O2 ;
-*IUPAC-rate (185-509K):
-2.03e-17*TEMP**2*EXP(78.*TINV)    : OH + NC4H10 = RN13O2 ;
-KMT15                             : OH + C2H4 = HOCH2CH2O2 ;
-3.3e-12*exp(-2880*tinv)           : NO3 + C2H4 = NRN6O2 ;
-*IUPAC(201806!) has a new suggested rate (180-360K) [keep MCM products]: 
-6.82e-15*exp(-2500*TINV)          : O3 + C2H4 = 1.139 HCHO + 0.63 CO + 0.13 HO2 + 0.13 OH + 0.139 H2O2 + 0.231 HCOOH ; 
-***MCMrate 9.1e-15*exp(-2580*tinv)    : O3 + C2H4 = 1.139 HCHO + 0.63 CO + 0.13 HO2 + 0.13 OH + 0.139 H2O2 + 0.231 HCOOH ; 
-KMT16                             : OH + C3H6 = RN9O2 ;
-4.6e-13*exp(-1155*tinv)           : NO3 + C3H6 = NRN9O2 ;
-*MCM-rate (and updated product split) [but NOTE that there is a new IUPAC recommended rate from July 2018]:
-*CRI used to have the products: O3 + C3H6 = HCHO + 0.64 CH3CO2H + 0.36 CO + 0.36 CH3O2 + 0.36 OH ;
-***MCMrate 5.50e-15*exp(-1880*tinv)     : O3 + C3H6 = 0.545 CH3CHO + 0.545 HCHO + 0.1 CH4 + 0.28 CH3O2 + 0.36 OH + 0.09 H2O2 + 0.075 CH3CO2H + 0.075 HCOOH + 0.28 HO2 + 0.56 CO ;
-*New IUPAC rate (July 2018) -- MCM-based product split:
-5.77e-15*exp(-1880*tinv)          : O3 + C3H6 = 0.545 CH3CHO + 0.545 HCHO + 0.1 CH4 + 0.28 CH3O2 + 0.36 OH + 0.09 H2O2 + 0.075 CH3CO2H + 0.075 HCOOH + 0.28 HO2 + 0.56 CO ;
-*IUPAC (290-430K) is close enough: 1.0e-11*exp(553.*TINV)
-1.01e-11*exp(550*tinv)            : OH + TBUT2ENE = RN12O2 ;
-*IUPAC also provides T-dep rate for NO3+TBUT2ENE [but the total rate is relatively T-independent so keep MCM rate]: 1.78e-12*exp(-530/T)+1.28e-14*exp(570/T)
-3.9e-13                           : NO3 + TBUT2ENE = NRN12O2 ;
-*new (201807) IUPAC recommendation for TBUT2ENE+O3 reaction rate is probably close enough 7.0e-15*exp(-1060/T)
-*old split: 6.64e-15*exp(-1059*tinv)     : O3 + TBUT2ENE = CH3CHO + 0.69 CO + 0.69 CH3O2 + 0.69 OH + 0.31 CH3CO2H ;
-*more MCM-like products:
-***MCMrate 6.64e-15*exp(-1059*tinv)         : O3 + TBUT2ENE = 1.0675 CH3CHO + 0.695 CH3O2 + 0.57 CO + 0.57 OH + 0.125 HO2 + 0.125 CH4 + 0.1125 CH3CO2H + 0.0675 H2O2 ;
-7.0e-15*exp(-1060*tinv)           : O3 + TBUT2ENE = 1.0675 CH3CHO + 0.695 CH3O2 + 0.57 CO + 0.57 OH + 0.125 HO2 + 0.125 CH4 + 0.1125 CH3CO2H + 0.0675 H2O2 ;
-KMT17                       : OH + C2H2 = 0.636 GLYOX + 0.636 OH + 0.364 HCOOH + 0.364 CO + 0.364 HO2 ;  #DS HI has CARB3
-2.33e-12*exp(-193*tinv)   : OH + BENZENE = 0.53 AROH14 + 0.53 HO2 + 0.47 RA13O2 ;
-1.81e-12*exp(338*tinv)    : OH + TOLUENE = 0.82 RA16O2 + 0.18 AROH17 + 0.18 HO2 ;
+1.49e-17*TEMP**2*EXP(-499*TINV)      : OH + C2H6 = C2H5O2 ;
+***CRIv2.2 (200-300K): 7.60e-12*exp(-585*TINV)     : OH + C3H8 = 0.736 IC3H7O2 + 0.264 RN10O2 ;
+*IUPAC (190-1220K) [IC3H7O2/RN10O2-split is T-dependent but keep old split...]:
+1.65e-17*TEMP**2*EXP(-87*TINV)       : OH + C3H8 = 0.736 IC3H7O2 + 0.264 RN10O2 ;
+***CRIv2.2 (180-300K): 
+9.8e-12*exp(-425*TINV)    : OH + NC4H10 = RN13O2 ;
+*IUPAC (185-509K): 2.03e-17*TEMP**2*EXP(78*TINV)        : OH + NC4H10 = RN13O2 ;
+KMT15                     : OH + C2H4 = HOCH2CH2O2 ;
+3.3e-12*exp(-2880*TINV)   : NO3 + C2H4 = NRN6O2 ;
+***CRIv2.2 use the rate 9.1D-15*EXP(-2580/TEMP) and has different product split compared to the one used here!]
+*IUPAC(201806!) (180-360K) [use MCM products]: 
+6.82e-15*exp(-2500*TINV)  : O3 + C2H4 = 1.139 HCHO + 0.63 CO + 0.13 HO2 + 0.13 OH + 0.139 H2O2 + 0.231 HCOOH ; 
+KMT16                     : OH + C3H6 = RN9O2 ;
+4.6e-13*exp(-1155*TINV)   : NO3 + C3H6 = NRN9O2 ;
+***CRIv2.2: 5.50e-15*exp(-1880*TINV): O3 + C3H6 = HCHO + 0.64 CH3CO2H + 0.36 CO + 0.36 CH3O2 + 0.36 OH ;
+*IUPAC (July 2018) -- MCM-based product split:
+5.77e-15*exp(-1880*TINV)  : O3 + C3H6 = 0.545 CH3CHO + 0.545 HCHO + 0.1 CH4 + 0.28 CH3O2 + 0.36 OH + 0.09 H2O2 + 0.075 CH3CO2H + 0.075 HCOOH + 0.28 HO2 + 0.56 CO ;
+1.01e-11*exp(550*TINV)    : OH + TBUT2ENE = RN12O2 ;
+3.9e-13                   : NO3 + TBUT2ENE = NRN12O2 ;
+***CRIv2.2: 6.64e-15*exp(-1059*TINV)     : O3 + TBUT2ENE = CH3CHO + 0.69 CO + 0.69 CH3O2 + 0.69 OH + 0.31 CH3CO2H ;
+*IUPAC 200807, products based on MCM:
+7.0e-15*exp(-1060*TINV)   : O3 + TBUT2ENE = 1.0675 CH3CHO + 0.695 CH3O2 + 0.57 CO + 0.57 OH + 0.125 HO2 + 0.125 CH4 + 0.1125 CH3CO2H + 0.0675 H2O2 ;
+KMT17                     : OH + C2H2 = 0.636 GLYOX + 0.636 OH + 0.364 HCOOH + 0.364 CO + 0.364 HO2 ;  #DS HI has CARB3
+*Rates for BENZENE+OH and TOLUENE+OH are slightly different from CRIv2.2
+2.3e-12*exp(-190*TINV)    : OH + BENZENE = 0.53 AROH14 + 0.53 HO2 + 0.47 RA13O2 ;
+1.8e-12*exp(340*TINV)     : OH + TOLUENE = 0.82 RA16O2 + 0.18 AROH17 + 0.18 HO2 ;
 1.36e-11                  : OH + OXYL = 0.7 RA19AO2 + 0.3 RA19CO2 ;
 2.63e-11                  : OH + AROH14 = RAROH14 ;
 3.78e-12                  : NO3 + AROH14 = RAROH14 + HNO3 ;
@@ -116,57 +107,53 @@ KMT17                       : OH + C2H2 = 0.636 GLYOX + 0.636 OH + 0.364 HCOOH +
 1.53e-12                  : OH + ARNOH17 = CARB16 + NO2 ;
 3.13e-13                  : NO3 + ARNOH17 = CARB16 + NO2 + HNO3 ;
 *
-2.70e-11*exp(390*tinv)    : OH + C5H8 = 0.538 CRU14 + 0.4 TRU14 + 0.062 UCARB13 + 0.062 HO2 ;
-2.95e-12*exp(-450*tinv)   : NO3 + C5H8 = NRU14O2 ;
-1.03e-14*exp(-1995*tinv)  : O3 + C5H8 = 0.825 HCHO + 0.468 MACR + 0.312 MVK + 0.25 OH + 0.364 CO + 0.173 HO2 + 0.175 HCOOH + 0.385 H2O2 + 0.019 CH3O2 + 0.154 CH3CO3 + 0.047 CH3CHO ;
+2.70e-11*exp(390*TINV)    : OH + C5H8 = 0.538 CRU14 + 0.4 TRU14 + 0.062 UCARB13 + 0.062 HO2 ;
+***CRIv2.2: 3.15e-12*exp(-450*TINV) : NO3 + C5H8 = NRU14O2 ;
+*IUPAC July 2015:
+2.95e-12*exp(-450*TINV)   : NO3 + C5H8 = NRU14O2 ;
+1.03e-14*exp(-1995*TINV)  : O3 + C5H8 = 0.825 HCHO + 0.468 MACR + 0.312 MVK + 0.25 OH + 0.364 CO + 0.173 HO2 + 0.175 HCOOH + 0.385 H2O2 + 0.019 CH3O2 + 0.154 CH3CO3 + 0.047 CH3CHO ;
 *
-8.8e-12*exp(-1320*tinv)+1.70D-14*exp(423*tinv) : OH + CH3COCH3 = RN8O2 ;
-* switch to the MCM/IUPAC recommended rate:
-1.5e-12*exp(-90*tinv)     : MEK + OH = RN11O2 ;
+8.8e-12*exp(-1320*TINV)+1.70D-14*exp(423*TINV) : OH + CH3COCH3 = RN8O2 ;
+1.5e-12*exp(-90*TINV)     : MEK + OH = RN11O2 ;
 *
-*New IUPAC recommended APINENE+OH rate: 
-1.34e-11*exp(410.*tinv)   : APINENE + OH = RTN28O2 ; 
-***MCMrate 1.20e-11*exp(440*tinv)         : APINENE + OH = RTN28O2 ; 
-1.20e-12*exp(490*tinv)    : APINENE + NO3 = NRTN28O2 ; 
-***MCMrate 8.05e-16*exp(-640.*tinv) : APINENE + O3 = 0.8 OH + 0.8 RTN26O2 + 0.125 RCOOH25 + 0.075 TNCARB26 + 0.075 H2O2 ; 
-8.22e-16*exp(-640.*tinv)  : APINENE + O3 = 0.8 OH + 0.8 RTN26O2 + 0.125 RCOOH25 + 0.075 TNCARB26 + 0.075 H2O2 ; 
-*New IUPAC-recommended BPINENE+OH rate: 
-1.62e-11*exp(460*tinv)    : BPINENE + OH = RTX28O2 ; 
-***MCMrate 2.38e-11*exp(357*tinv)         : BPINENE + OH = RTX28O2 ; 
-*IUPAC still has only 298K-recommended rate for BPINENE+NO3: 2.5e-12
+***CRIv2.2: 1.20e-11*exp(440*TINV)         : APINENE + OH = RTN28O2 ; 
+*IUPAC Dec 2017: 
+1.34e-11*exp(410*TINV)    : APINENE + OH = RTN28O2 ; 
+1.20e-12*exp(490*TINV)    : APINENE + NO3 = NRTN28O2 ; 
+***CRIv2.2: 8.05e-16*exp(-640*TINV) : APINENE + O3 = 0.8 OH + 0.8 RTN26O2 + 0.125 RCOOH25 + 0.075 TNCARB26 + 0.075 H2O2 ; 
+*IUPAC Aug 2018:
+8.22e-16*exp(-640*TINV)   : APINENE + O3 = 0.8 OH + 0.8 RTN26O2 + 0.125 RCOOH25 + 0.075 TNCARB26 + 0.075 H2O2 ; 
+***CRIv2.2: 2.38e-11*exp(357*TINV)         : BPINENE + OH = RTX28O2 ; 
+*IUPAC Dec 2017: 
+1.62e-11*exp(460*TINV)    : BPINENE + OH = RTX28O2 ; 
 2.51e-12                  : BPINENE + NO3 = NRTX28O2 ; 
-* BPINENE + O3 reaction gives different products in MCM AND has T-dependent rate! Also IUPAC has new recommendation for BPINENE+O3!
-1.39e-15*exp(-1280.*tinv) : BPINENE + O3 = 0.45 HCHO + 0.35 RTX24O2 + 0.35 OH + 0.4 TXCARB24 + 0.2 H2O2 + 0.25 TXCARB22 + 0.2 CO ; 
-***MCMrate 1.35e-15*exp(-1270.*tinv)      : BPINENE + O3 = 0.45 HCHO + 0.4 TXCARB24 + 0.35 RTX24O2 + 0.35 OH + 0.25 TXCARB22 + 0.2 H2O2 + 0.2 CO ; 
-*Assume XTERP gives same products as APINENE (but using faster rates, based on available (IUPAC rates) for other monoterpenes):
-1.34e-11*exp(410.*tinv)*3.22    : XTERP + OH  = RTN28O2 ; 
-1.20e-12*exp(490*tinv)*2.5      : XTERP + NO3 = NRTN28O2 ; 
-8.22e-16*exp(-640.*tinv)*3.3    : XTERP + O3  = 0.8 OH + 0.8 RTN26O2 + 0.125 RCOOH25 + 0.075 TNCARB26 + 0.075 H2O2 ; 
+***CRIv2.2: 1.35e-15*exp(-1270*TINV)      : BPINENE + O3 = 0.45 HCHO + 0.4 TXCARB24 + 0.35 RTX24O2 + 0.35 OH + 0.25 TXCARB22 + 0.2 H2O2 + 0.2 CO ; 
+*IUPAC Aug 2018:
+1.39e-15*exp(-1280*TINV)  : BPINENE + O3 = 0.45 HCHO + 0.35 RTX24O2 + 0.35 OH + 0.4 TXCARB24 + 0.2 H2O2 + 0.25 TXCARB22 + 0.2 CO ; 
 *
 4.5e-13                   : HCOOH + OH = HO2 ;
-*simplified product for CH3CO2H+OH (as in MCM) -- IUPAC indicates that this is the major path (~70%)
-*IUPAC (220-300K):
-4.0e-14*exp(850*tinv)     : CH3CO2H + OH = CH3O2 ;
-***MCMrate 8.00e-13 : CH3CO2H + OH = CH3O2 ;
+***CRIv2.2: 8.00e-13 : CH3CO2H + OH = CH3O2 ;
+*IUPAC 2009 (220-300K):
+4.0e-14*exp(850*TINV)     : CH3CO2H + OH = CH3O2 ;
 1.23e-11                  : OH + HCOCO2H = CO + HO2 ;
 6.65e-12                  : OH + RCOOH25 = RTN25O2 ;
 *
-8.0e-12*EXP(380*tinv)     : OH + MACR = 0.55 MACRO2 + 0.45 MACO3 ;
+8.0e-12*EXP(380*TINV)     : OH + MACR = 0.55 MACRO2 + 0.45 MACO3 ;
 3.4e-15                   : NO3 + MACR = MACO3 + HNO3 ;
-1.4e-15*EXP(-2100*tinv)   : O3 + MACR = 0.902 MGLYOX + 0.652 CO + 0.239 OH + 0.141 HO2 + 0.242 HCHO + 0.204 HCOOH + 0.142 H2O2 + 0.098 CH3CO3 ;
-2.6e-12*EXP(610*tinv)     : OH + MVK = RU10O2 ;
-8.5e-16*EXP(-1520*tinv)   : O3 + MVK = 0.28 CH3CO3 + 0.645 HCHO + 0.36 OH + 0.56 CO + 0.1 CH3CHO + 0.62 MGLYOX + 0.075 HCOOH + 0.165 H2O2 + 0.18 HO2 ;
+1.4e-15*EXP(-2100*TINV)   : O3 + MACR = 0.902 MGLYOX + 0.652 CO + 0.239 OH + 0.141 HO2 + 0.242 HCHO + 0.204 HCOOH + 0.142 H2O2 + 0.098 CH3CO3 ;
+2.6e-12*EXP(610*TINV)     : OH + MVK = RU10O2 ;
+8.5e-16*EXP(-1520*TINV)   : O3 + MVK = 0.28 CH3CO3 + 0.645 HCHO + 0.36 OH + 0.56 CO + 0.1 CH3CHO + 0.62 MGLYOX + 0.075 HCOOH + 0.165 H2O2 + 0.18 HO2 ;
 *
-* Various carbonyls
-*     1.14e-11   OH + CARB3 = CO + CO + HO2 ;
-3.1e-12*EXP(340*tinv)     : OH + GLYOX = HCOCO ;
-*IUPAC2015 (MCM uses a much faster rate (KNO3AL)!):
+* CRIv2.2 has simplified products from OH+CARB3/GLYOX -- here use HCOCO
+3.1e-12*EXP(340*TINV)     : OH + GLYOX = HCOCO ;
+*IUPAC2015 -- reaction not included in CRIv2.2:
 4.0e-16                   : NO3 + GLYOX = HCOCO + HNO3 ;
-1.9e-12*EXP(575*tinv)     : OH + MGLYOX = CH3CO3 + CO ;
-*IUPAC2015 (MCM uses a very much faster rate (2.4*KNO3AL!):
+1.9e-12*EXP(575*TINV)     : OH + MGLYOX = CH3CO3 + CO ;
+*IUPAC2015 -- reaction not included in CRIv2.2:
 5.0e-16                   : NO3 + MGLYOX = CH3CO3 + CO + HNO3 ;
-1.6e-12*EXP(305*tinv)     : ACETOL + OH = MGLYOX + HO2 ;
-***MCMrate 1.00e-11; IUPAC recommends 8.0e-12:
+1.6e-12*EXP(305*TINV)     : ACETOL + OH = MGLYOX + HO2 ;
+***CRIv2.2: 1.00e-11 
+*IUPAC 2007 (240-370K):
 8.0e-12                   : OH + HOCH2CHO = 0.8 HOCH2CO3 + 0.2 GLYOX + 0.2 HO2 ;
 KNO3AL                    : NO3 + HOCH2CHO = HOCH2CO3 + HNO3 ;
 7.15e-11                  : OH + CO2C3CHO = CO2C3CO3 ;
@@ -177,20 +164,18 @@ KNO3AL*4.0                : CO2C3CHO + NO3 = CO2C3CO3 + HNO3 ;
 1.65e-11                  : OH + CARB13 = RN13O2 ;
 1.87e-11                  : OH + CARB14 = RN14O2 ;
 1.25e-11                  : OH + CARB16 = RN16O2 ;
-*NOTE! The reaction below is very much faster in MCM:1.19D-10 OH+HCC7CO=C719O2
-*4.36e-12                                 OH + CARB17 = RN17O2 ;
-1.19e-10                  : OH + HCC7CO = RN17O2 ;
-6.42e-11                  : OH + UCARB12 = RU12O2 ;
-KNO3AL*4.25               : NO3 + UCARB12 = RU12O2 + HNO3 ;
-2.4e-17  : O3 + UCARB12 = 0.5 MGLYOX + 0.5 GLYOX + 0.25 ACETOL + 0.25 HOCH2CHO + 0.75 CO + 0.25 CH3CO3 + 0.75 OH + 0.5 HO2 ;
-4.19e-11 : OH + UCARB13 = RU13O2 ;
-1.19e-17 : O3 + UCARB13 = 0.636 HCHO + 0.607 CO2C3CHO + 0.044 HCOOH + 0.165 H2O2 + 0.505 CO + 0.389 HO2 + 0.508 OH + 0.158 MGLYOX + 0.158 GLYOX + 0.158 CH3CO3 + 0.077 RN8O2 ;
-*HUCARB9+OH reaction simplified compared to MCM
+***CRIv2.2: 4.36e-12                                 OH + CARB17 = RN17O2 ;
+*MCM-rate:
+1.19e-10      : OH + HCC7CO = RN17O2 ;
+6.42e-11      : OH + UCARB12 = RU12O2 ;
+KNO3AL*4.25   : NO3 + UCARB12 = RU12O2 + HNO3 ;
+2.4e-17       : O3 + UCARB12 = 0.5 MGLYOX + 0.5 GLYOX + 0.25 ACETOL + 0.25 HOCH2CHO + 0.75 CO + 0.25 CH3CO3 + 0.75 OH + 0.5 HO2 ;
+4.19e-11      : OH + UCARB13 = RU13O2 ;
+1.19e-17      : O3 + UCARB13 = 0.636 HCHO + 0.607 CO2C3CHO + 0.044 HCOOH + 0.165 H2O2 + 0.505 CO + 0.389 HO2 + 0.508 OH + 0.158 MGLYOX + 0.158 GLYOX + 0.158 CH3CO3 + 0.077 RN8O2 ;
 5.78e-11                  : OH + HUCARB9 = MGLYOX + CO + HO2 ;
 5.2e-11                   : OH + HPUCARB12 = HUCARB9 + CO + OH ;
 KNO3AL*4.25               : NO3 + HPUCARB12 = HUCARB9 + CO + OH + HNO3 ;
 2.4e-17                   : O3 + HPUCARB12 = GLYOX + MGLYOX + 2 OH ;
-*DHCARB9+OH seems to loose a lot of atoms (and reactivity) in the CRI-simplification below?
 3.42e-11                  : OH + DHCARB9 = MGLYOX + HO2 ;
 3.64e-11                  : OH + DHPCARB9 = RN8OOH + CO + OH ;
 4.79e-12                  : OH + CCARB12 = RN12O2 ;
@@ -206,29 +191,27 @@ KNO3AL*5.5                : NO3 + TNCARB10 = RTN10O2 + HNO3 ;
 1.55e-11                  : OH + TXCARB24 = RTX24O2 ;
 4.16e-11                  : OH + NUCARB12 = NRU12O2 ;
 *
-* various hydroperoxides
-5.3e-12*exp(190*tinv)             : OH + CH3OOH = 0.6 CH3O2 + 0.4 HCHO + 0.4 OH ;
-1.36e-11                          : OH + C2H5OOH = CH3CHO + OH ;
-2.78e-11                          : OH + IC3H7OOH = CH3COCH3 + OH ;
-2.13e-11                          : OH + HOC2H4OOH = HOCH2CHO + OH ;
-* CRI_V2_R5 and C15_R1A have VERY different RN8OOH + OH reaction rates:
-* 4.42e-12                                 OH + RN8OOH = CARB6 + OH ;
-1.2e-11                           : OH + RN8OOH = MGLYOX + OH ;
-2.5e-11                           : OH + RN9OOH = ACETOL + OH ;
-1.89e-11                          : OH + RN10OOH = C2H5CHO + OH ;
-2.5e-11                           : OH + RN11OOH = CARB9 + OH ;
-3.25e-11                          : OH + RN12OOH = CARB10 + OH ;
-3.57e-11                          : OH + RN13OOH = MEK + OH ;
-3.2e-11                           : OH + RN14OOH = CARB12 + OH ;
-3.74e-11                          : OH + RN15OOH = CARB13 + OH ;
-4.21e-11                          : OH + RN16OOH = CARB14 + OH ;
-*Reaction below is different in MCM - forms a peroxy radical (and no OH-radical)
-*CHANGE 3.35e-11                                 OH + RN17OOH = CARB15 + OH ;
-7.06e-11                          : OH + RN17OOH = RN17O2 ;
+5.3e-12*exp(190*TINV)     : OH + CH3OOH = 0.6 CH3O2 + 0.4 HCHO + 0.4 OH ;
+1.36e-11                  : OH + C2H5OOH = CH3CHO + OH ;
+2.78e-11                  : OH + IC3H7OOH = CH3COCH3 + OH ;
+2.13e-11                  : OH + HOC2H4OOH = HOCH2CHO + OH ;
+1.2e-11                   : OH + RN8OOH = MGLYOX + OH ;
+2.5e-11                   : OH + RN9OOH = ACETOL + OH ;
+1.89e-11                  : OH + RN10OOH = C2H5CHO + OH ;
+2.5e-11                   : OH + RN11OOH = CARB9 + OH ;
+3.25e-11                  : OH + RN12OOH = CARB10 + OH ;
+3.57e-11                  : OH + RN13OOH = MEK + OH ;
+3.2e-11                   : OH + RN14OOH = CARB12 + OH ;
+3.74e-11                  : OH + RN15OOH = CARB13 + OH ;
+4.21e-11                  : OH + RN16OOH = CARB14 + OH ;
+*Reaction below is different in MCM (C719OOH) -- forms a peroxy radical (and no OH-radical)
+***CRIv2.2: 3.35e-11                                 OH + RN17OOH = CARB15 + OH ;
+*MCM-based (C719OOH):
+7.06e-11                  : OH + RN17OOH = RN17O2 ;
 *
-*Note MCM has much higher reaction rate: 1.27D-10 OH+C720OOH = HCC7CO+OH 
-*4.71e-11                                 OH + RN19OOH = CARB17 + OH ;
-1.27e-10                          : OH + RN19OOH = HCC7CO + OH ;
+***CRIv2.2: 4.71e-11                                 OH + RN19OOH = CARB17 + OH ;
+*MCM-based rate (C720OOH):
+1.27e-10                  : OH + RN19OOH = HCC7CO + OH ;
 *
 3.84e-11           : OH + RU10OOH = ACETOL + CO + OH ;
 3.5e-11            : OH + RU12OOH = RU10OOH + CO + HO2 ;
@@ -236,43 +219,42 @@ KNO3AL*5.5                : NO3 + TNCARB10 = RTN10O2 + HNO3 ;
 7.14e-11           : OH + RU14OOH = 0.85 IEPOX + 0.09 UCARB12 + 0.94 OH + 0.06 BRU14O2 ; 
 9.77e-11           : OH + RA13OOH = GLYOX + UDCARB8 + OH ;
 9.64e-11           : OH + RA16OOH = GLYOX + UDCARB11 + OH ;
-*NOTE MCM PRODUCE A PEROXY RADICAL IN THE REACTION (and the reaction rate is slightly lower). Change to:
-7.62e-11                          : OH + RA19OOH = RA19AO2 ;
+***CRIv2.2: 1.12e-10 : OH + RA19OOH = CARB6 + UDCARB11 + OH ;
+*MCM-based (OXYBPEROOH):
+7.62e-11           : OH + RA19OOH = RA19AO2 ;
 *
-4.23e-12                          : OH + RTN10OOH = RTN10O2 ;
-8.69e-11                          : OH + RTN14OOH = RTN14O2 ;
-2.05e-11                          : OH + RTN23OOH = RTN23O2 ;
-1.05e-11                          : OH + RTN24OOH = RTN24O2 ;
-1.66e-11                          : OH + RTN25OOH = RTN25O2 ;
-1.2e-11                           : OH + RTN26OOH = RTN26O2 ;
-2.38e-11                          : OH + RTN28OOH = TNCARB26 + OH ;
-7.5e-11                           : OH + RTX22OOH = CH3COCH3 + CCARB12 + OH ;
-8.59e-11                          : OH + RTX24OOH = TXCARB22 + OH ;
-2.0e-11                           : OH + RTX28OOH = RTX28O2 ;
-5.64e-11                          : OH + DHPR12OOH = DHPCARB9 + CO + OH ;
-5.22e-12                          : OH + NRN6OOH = 2 HCHO + NO2 + OH ;
-6.5e-12                           : OH + NRN9OOH = CH3CHO + HCHO + NO2 + OH ;
-7.15e-12                          : OH + NRN12OOH = 2 CH3CHO + NO2 + OH ;
-2.65e-11                          : OH + NRU12OOH = NOA + GLYOX + HO2 ;
-1.03e-10                          : OH + NRU14OOH = NUCARB12 + OH ;
-9.5e-12                           : OH + NRTN28OOH = TNCARB26 + NO2 + OH ;
-9.58e-12                          : OH + NRTX28OOH = NRTX28O2 ;
+4.23e-12           : OH + RTN10OOH = RTN10O2 ;
+8.69e-11           : OH + RTN14OOH = RTN14O2 ;
+2.05e-11           : OH + RTN23OOH = RTN23O2 ;
+1.05e-11           : OH + RTN24OOH = RTN24O2 ;
+1.66e-11           : OH + RTN25OOH = RTN25O2 ;
+1.2e-11            : OH + RTN26OOH = RTN26O2 ;
+2.38e-11           : OH + RTN28OOH = TNCARB26 + OH ;
+7.5e-11            : OH + RTX22OOH = CH3COCH3 + CCARB12 + OH ;
+8.59e-11           : OH + RTX24OOH = TXCARB22 + OH ;
+2.0e-11            : OH + RTX28OOH = RTX28O2 ;
+5.64e-11           : OH + DHPR12OOH = DHPCARB9 + CO + OH ;
+5.22e-12           : OH + NRN6OOH = 2 HCHO + NO2 + OH ;
+6.5e-12            : OH + NRN9OOH = CH3CHO + HCHO + NO2 + OH ;
+7.15e-12           : OH + NRN12OOH = 2 CH3CHO + NO2 + OH ;
+2.65e-11           : OH + NRU12OOH = NOA + GLYOX + HO2 ;
+1.03e-10           : OH + NRU14OOH = NUCARB12 + OH ;
+9.5e-12            : OH + NRTN28OOH = TNCARB26 + NO2 + OH ;
+9.58e-12           : OH + NRTX28OOH = NRTX28O2 ;
 *
-3.7e-12                           : OH + CH3CO3H = CH3CO3 ;
-4.42e-12                          : OH + C2H5CO3H = C2H5CO3 ;
-6.19e-12                          : OH + HOCH2CO3H = HOCH2CO3 ;
-1.58e-11                          : OH + HCOCO3H = HCOCO3 ;
-4.18e-12                          : OH + CO2C3CO3H = CO2C3CO3 ;
+3.7e-12            : OH + CH3CO3H = CH3CO3 ;
+4.42e-12           : OH + C2H5CO3H = C2H5CO3 ;
+6.19e-12           : OH + HOCH2CO3H = HOCH2CO3 ;
+1.58e-11           : OH + HCOCO3H = HCOCO3 ;
+4.18e-12           : OH + CO2C3CO3H = CO2C3CO3 ;
 *
-1.16e-11                          : OH + IEPOX = RU12O2 ;
-1.5e-12                           : OH + ANHY = HOCH2CH2O2 ;
-4.33e-12                          : OH + HMML = 0.7 MGLYOX + 0.3 HCOOH + 0.7 OH + 0.3 CH3CO3 ;
+1.16e-11           : OH + IEPOX = RU12O2 ;
+1.5e-12            : OH + ANHY = HOCH2CH2O2 ;
+4.33e-12           : OH + HMML = 0.7 MGLYOX + 0.3 HCOOH + 0.7 OH + 0.3 CH3CO3 ;
 *
-* various nitrates
-*
-4.0e-13*exp(-845*tinv)           : OH + CH3NO3 = HCHO + NO2 ;
-6.7e-13*exp(-395*tinv)           : OH + C2H5NO3 = CH3CHO + NO2 ;
-6.2e-13*exp(-230*tinv)           : OH + IC3H7NO3 = CH3COCH3 + NO2 ;
+4.0e-13*exp(-845*TINV)           : OH + CH3NO3 = HCHO + NO2 ;
+6.7e-13*exp(-395*TINV)           : OH + C2H5NO3 = CH3CHO + NO2 ;
+6.2e-13*exp(-230*TINV)           : OH + IC3H7NO3 = CH3COCH3 + NO2 ;
 6.7e-13                          : OH + NOA = MGLYOX + NO2 ;
 1.09e-12                         : OH + HOC2H4NO3 = HOCH2CHO + NO2 ;
 1.31e-12                         : OH + RN9NO3 = ACETOL + NO2 ;
@@ -282,8 +264,8 @@ KNO3AL*5.5                : NO3 + TNCARB10 = RTN10O2 + HNO3 ;
 1.03e-11                         : OH + RN15NO3 = CARB13 + NO2 ;
 1.85e-12                         : OH + RN16NO3 = CARB14 + NO2 ;
 *
-*Note, the reaction below is much faster in MCM:9.6D-11 OH+C720NO3=HCC7CO+NO2
-*3.02e-12                                 OH + RN19NO3 = CARB17 + NO2 ;
+***CRIv2.2: 3.02e-12                                 OH + RN19NO3 = CARB17 + NO2 ;
+*MCM-based (C720NO3):
 9.6e-11                          : OH + RN19NO3 = HCC7CO + NO2 ;
 5.26e-13                         : OH + RU10NO3 = ACETOL + CO + NO2 ;
 2.5e-12                          : OH + RU12NO3 = ACETOL + GLYOX + NO2 ;
@@ -308,35 +290,37 @@ KNO3AL*5.5                : NO3 + TNCARB10 = RTN10O2 + HNO3 ;
 *
 *isoprene radicals
 3.18e-12*O2                       : CRU14 = CRU14O2 ;
-2.31e16*exp(-10420*tinv)          : CRU14O2 = CRU14 ;
+2.31e16*exp(-10420*TINV)          : CRU14O2 = CRU14 ;
 3.11e-12*O2                       : CRU14 = BRU14O2 ;
-7.9e15*exp(-11370*tinv)           : BRU14O2 = CRU14 ;
-2.5e-12*EXP(-480*tinv)*O2         : TRU14 = TRU14O2 ;
-5.95e14*EXP(-9465*tinv)           : TRU14O2 = TRU14 ;
+7.9e15*exp(-11370*TINV)           : BRU14O2 = CRU14 ;
+2.5e-12*EXP(-480*TINV)*O2         : TRU14 = TRU14O2 ;
+5.95e14*EXP(-9465*TINV)           : TRU14O2 = TRU14 ;
 3.02e-12*O2                       : TRU14 = BRU14O2 ;
-6.34e15*EXP(-10760*tinv)          : BRU14O2 = TRU14 ;
-1.78e10*EXP(-8483*tinv)*EXP(1.0E8*(tinv**3)) : CRU14O2 = 0.5 DHPR12O2 + 0.5  HPUCARB12 + 0.5 HO2 ;
-1.38e11*EXP(-9750*tinv)           : BRU14O2 = 0.6 MVK + 0.4 MACR + HCHO + OH ;
+6.34e15*EXP(-10760*TINV)          : BRU14O2 = TRU14 ;
+1.78e10*EXP(-8483*TINV)*EXP(1.0E8*(TINV**3)) : CRU14O2 = 0.5 DHPR12O2 + 0.5  HPUCARB12 + 0.5 HO2 ;
+1.38e11*EXP(-9750*TINV)           : BRU14O2 = 0.6 MVK + 0.4 MACR + HCHO + OH ;
 *
-7.0e11*EXP(-3160*tinv)            : HCOCO = 2 CO + HO2 ;
+7.0e11*EXP(-3160*TINV)            : HCOCO = 2 CO + HO2 ;
 5.0e-12*O2                        : HCOCO = 2 CO + HO2 ;
-5.0e-12*O2*3.2*(1-EXP(-550*tinv)) : HCOCO = CO + OH ;
-5.0e-12*O2*3.2*EXP(-550*tinv)     : HCOCO = HCOCO3 ;
+5.0e-12*O2*3.2*(1-EXP(-550*TINV)) : HCOCO = CO + OH ;
+5.0e-12*O2*3.2*EXP(-550*TINV)     : HCOCO = HCOCO3 ;
 K14ISOM1                          : DHPR12O2 = DHPCARB9 + CO + OH ;
 K14ISOM1*0.008                    : RU12O2 = DHCARB9 + CO + OH ;
 K14ISOM1*0.85                     : MACRO2 = ACETOL + CO + OH ;
 *
 *Why no RAROH14 + O3 reaction? - ok simplification probably leads to ARNOH14 formation to a large extent
-2.08e-12                          : RAROH14 + NO2 = ARNOH14 ;
-2.08e-12                          : RAROH17 + NO2 = ARNOH17 ;
+2.08e-12                  : RAROH14 + NO2 = ARNOH14 ;
+2.08e-12                  : RAROH17 + NO2 = ARNOH17 ;
 *
 KFPAN                             : CH3CO3 + NO2 = PAN ;
 KBPAN                             : PAN = CH3CO3 + NO2 ;
 KFPAN                             : C2H5CO3 + NO2 = PPN ;
-*KBPAN                             : PPN = C2H5CO3 + NO2 ;
+***CRIv2.2: KBPAN                             : PPN = C2H5CO3 + NO2 ;
+*IUPAC and MCM:
 KBPPN                             : PPN = C2H5CO3 + NO2 ;
 KFPAN                             : MACO3 + NO2 = MPAN ;
-1.6D+16*EXP(-13500*tinv)          : MPAN = MACO3 + NO2 ;
+*at p=1 bar:
+1.6D+16*EXP(-13500*TINV)          : MPAN = MACO3 + NO2 ;
 KFPAN                             : HOCH2CO3 + NO2 = PHAN ;
 KBPAN                             : PHAN = HOCH2CO3 + NO2 ;
 KFPAN                             : HCOCO3 + NO2 = HO2 + CO + NO3 ;
@@ -345,14 +329,14 @@ KBPAN                             : CO2C3PAN = CO2C3CO3 + NO2 ;
 KFPAN*0.722                       : RTN26O2 + NO2 = RTN26PAN ;
 KBPAN                             : RTN26PAN = RTN26O2 + NO2 ;
 *
-*IUPAC/MCM (200-430K):
-2.3e-12*exp(360*tinv)      : CH3O2 + NO = 0.999 HCHO + 0.999 HO2 + 0.999 NO2 + 0.001 CH3NO3 ;
-*new IUPAC-recommended nitrate fraction (T- and P-dependent but here use 298K and 1bar fraction)
-2.55e-12*exp(380*tinv)     : C2H5O2 + NO = 0.967 CH3CHO + 0.967 HO2 + 0.967 NO2 + 0.033 C2H5NO3 ;
-*IUPAC/MCM (200-410K) [slightly different rate in CRIv2.2]:
-2.9e-12*exp(350*tinv)      : RN10O2 + NO = 0.98 C2H5CHO + 0.98 HO2 + 0.98 NO2 + 0.02 RN10NO3 ;
-*new IUPAC-recommended nitrate fraction (T- and P-dependent but here use 298K and 1bar fraction)
-2.7e-12*exp(360*tinv)      : IC3H7O2 + NO = 0.965 CH3COCH3 + 0.965 HO2 + 0.965 NO2 + 0.035 IC3H7NO3 ;
+2.3e-12*exp(360*TINV)      : CH3O2 + NO = 0.999 HCHO + 0.999 HO2 + 0.999 NO2 + 0.001 CH3NO3 ;
+*IUPAC (June2018) recommended nitrate fraction (T- and P-dependent but here use 298K and 1bar fraction)
+2.55e-12*exp(380*TINV)     : C2H5O2 + NO = 0.967 CH3CHO + 0.967 HO2 + 0.967 NO2 + 0.033 C2H5NO3 ;
+***CRIv2.2: 2.8e-12*exp(360*TINV) : RN10O2 + NO = 0.98 C2H5CHO + 0.98 HO2 + 0.98 NO2 + 0.02 RN10NO3 ;
+*IUPAC (200-410K) [nC3H7O2]:
+2.9e-12*exp(350*TINV)      : RN10O2 + NO = 0.98 C2H5CHO + 0.98 HO2 + 0.98 NO2 + 0.02 RN10NO3 ;
+*IUPAC (June2018) recommended nitrate fraction (T- and P-dependent but here use 298K and 1bar fraction)
+2.7e-12*exp(360*TINV)      : IC3H7O2 + NO = 0.965 CH3COCH3 + 0.965 HO2 + 0.965 NO2 + 0.035 IC3H7NO3 ;
 KRO2NO   : HOCH2CH2O2 + NO = 0.995 NO2 + 0.995 HO2 + 1.544 HCHO + 0.223 HOCH2CHO + 0.005 HOC2H4NO3 ;
 KRO2NO   : MACRO2 + NO = 0.987 ACETOL + 0.987 CO + 0.987 HO2 + 0.013 RU10NO3 + 0.987 NO2 ;
 KRO2NO   : RN8O2 + NO = CH3CO3 + HCHO + NO2 ;
@@ -363,11 +347,9 @@ KRO2NO   : RN13O2 + NO = 0.917 NO2 + 0.552 MEK + 0.552 HO2 + 0.365 CH3CHO + 0.36
 KRO2NO   : RN14O2 + NO = C2H5CO3 + CH3CHO + NO2 ;
 KRO2NO   : RN15O2 + NO = 0.936 C2H5CHO + 0.936 CH3CHO + 0.936 HO2 + 0.936 NO2 + 0.064 RN15NO3 ;
 KRO2NO   : RN16O2 + NO = 0.877 RN15AO2 + 0.877 NO2 + 0.123 RN16NO3 ;
-* THE REACTION BELOW IS NOT EQUIVALENT TO THE MCM REACTION, which forms a stable compound (C716OH) + NO2 + HO2
 KRO2NO   : RN17O2 + NO = RN16AO2 + NO2 ;
 * [HCC7CO <=> CARB17 in CRI]
 KRO2NO   : RN19O2 + NO = 0.722 HCC7CO + 0.722 NO2 + 0.722 HO2 + 0.278 RN19NO3 ;
-*
 KRO2NO   : RN13AO2 + NO = RN12O2 + NO2 ;
 KRO2NO   : RN15AO2 + NO = 0.975 CARB13 + 0.975 HO2 + 0.975 NO2 + 0.025 RN15NO3 ;
 KRO2NO   : RN16AO2 + NO = RN15O2 + NO2 ;
@@ -379,7 +361,6 @@ KRO2NO   : TRU14O2 + NO = 0.908 UCARB12 + 0.908 HO2 + 0.908 NO2 + 0.092 RU14NO3 
 KRO2NO   : BRU14O2 + NO = 0.889 HCHO + 0.889 HO2 + 0.889 NO2 + 0.593 MVK + 0.296 MACR + 0.111 RU14NO3 ;
 KRO2NO   : RA13O2 + NO = 0.918 GLYOX + 0.918 UDCARB8 + 0.918 HO2 + 0.918 NO2 + 0.082 RA13NO3 ;
 KRO2NO   : RA16O2 + NO = 0.889 NO2 + 0.889 HO2 + 0.622 GLYOX + 0.622 UDCARB11 + 0.267 MGLYOX + 0.267 UDCARB8 + 0.111 RA16NO3 ;
-*RA19AO2+NO reaction perhaps quite different products in MCM?
 KRO2NO   : RA19AO2 + NO = 0.862 GLYOX + 0.862 UDCARB14 + 0.862 HO2 + 0.862 NO2 + 0.138 RA19NO3 ;
 KRO2NO   : RA19CO2 + NO = 0.862 CARB9 + 0.862 UDCARB8 + 0.862 HO2 + 0.862 NO2 + 0.138 RA19NO3 ;
 KRO2NO   : RTN10O2 + NO = RN8O2 + CO + NO2 ;
@@ -392,16 +373,16 @@ KRO2NO   : RTX22O2 + NO = 0.7 CH3COCH3 + 0.7 RN13O2 + 0.7 NO2 + 0.3 RTX22NO3 ;
 KRO2NO   : RTX24O2 + NO = 0.843 NO2 + 0.506 TXCARB22 + 0.506 HO2 + 0.337 CH3COCH3 + 0.337 RN13AO2 + 0.337 HCHO + 0.157 RTX24NO3 ;
 KRO2NO   : RTX28O2 + NO = 0.767 NO2 + 0.233 RTX28NO3 + 0.702 TXCARB24 + 0.702 HCHO + 0.702 HO2 + 0.065 CH3COCH3 + 0.065 RN19O2 ;
 KRO2NO   : DHPR12O2 + NO = GLYOX + RN8OOH + OH + NO2 ;
-KRO2NO                : NRN6O2 + NO = 2 HCHO + 2 NO2 ;
-KRO2NO                : NRN9O2 + NO = CH3CHO + HCHO + 2 NO2 ;
-KRO2NO                : NRN12O2 + NO = 2 CH3CHO + 2 NO2 ;
-KRO2NO                : NRU12O2 + NO = NOA + 0.5 GLYOX + 0.5 CO + HO2 + NO2 ;
-KRO2NO                : NRU14O2 + NO = NUCARB12 + HO2 + NO2 ;
-KRO2NO                : NRTN28O2 + NO = TNCARB26 + 2 NO2 ;
-KRO2NO                : NRTX28O2 + NO = TXCARB24 + HCHO + 2 NO2 ;
+KRO2NO   : NRN6O2 + NO = 2 HCHO + 2 NO2 ;
+KRO2NO   : NRN9O2 + NO = CH3CHO + HCHO + 2 NO2 ;
+KRO2NO   : NRN12O2 + NO = 2 CH3CHO + 2 NO2 ;
+KRO2NO   : NRU12O2 + NO = NOA + 0.5 GLYOX + 0.5 CO + HO2 + NO2 ;
+KRO2NO   : NRU14O2 + NO = NUCARB12 + HO2 + NO2 ;
+KRO2NO   : NRTN28O2 + NO = TNCARB26 + 2 NO2 ;
+KRO2NO   : NRTX28O2 + NO = TXCARB24 + HCHO + 2 NO2 ;
 KAPNO                 : CH3CO3 + NO = CH3O2 + NO2 ;
 KAPNO                 : C2H5CO3 + NO = C2H5O2 + NO2 ;
-8.7e-12*EXP(290*tinv) : MACO3 + NO = 0.35 CH3CO3 + 0.65 CH3O2 + 0.65 CO + HCHO + NO2 ;
+8.7e-12*EXP(290*TINV) : MACO3 + NO = 0.35 CH3CO3 + 0.65 CH3O2 + 0.65 CO + HCHO + NO2 ;
 KAPNO                 : HOCH2CO3 + NO = HO2 + HCHO + NO2 ;
 KAPNO                 : HCOCO3 + NO = HO2 + CO + NO2 ;
 KAPNO                 : CO2C3CO3 + NO = RN8O2 + NO2 ;
@@ -421,9 +402,7 @@ KRO2NO3       : RN13O2 + NO3 = NO2 + 0.602 MEK + 0.602 HO2 + 0.398 CH3CHO + 0.39
 KRO2NO3       : RN14O2 + NO3 = C2H5CO3 + CH3CHO + NO2 ;
 KRO2NO3       : RN15O2 + NO3 = C2H5CHO + CH3CHO + HO2 + NO2 ;
 KRO2NO3       : RN16O2 + NO3 = RN15AO2 + NO2 ;
-*REACTION BELOW IS NOT EQUIVALENT TO THE MCM REACTION, which forms a stable compound (C716OH) + NO2 + HO2
 KRO2NO3       : RN17O2 + NO3 = RN16AO2 + NO2 ;
-*
 KRO2NO3       : RN19O2 + NO3 = HCC7CO + NO2 + HO2 ;
 *
 KRO2NO3 : RN13AO2 + NO3 = RN12O2 + NO2 ;
@@ -438,43 +417,39 @@ KRO2NO3 : BRU14O2 + NO3 = 0.667 MVK + 0.333 MACR + HCHO + HO2 + NO2 ;
 KRO2NO3 : RA13O2 + NO3 = GLYOX + UDCARB8 + HO2 + NO2 ;
 KRO2NO3 : RA16O2 + NO3 = 0.7 GLYOX + 0.7 UDCARB11 + 0.3 MGLYOX + 0.3 UDCARB8 + HO2 + NO2 ;
 *
-*MCM equiv would probably be:KRO2NO3  RA19AO2 + NO3 = 0.16 GLYOX + 0.16 UDCARB14 + 0.49 MGLYOX + 0.49 UDCARB11 + 0.35 CARB9 + 0.35 UDCARB8 + HO2 + NO2 ;
-KRO2NO3                           : RA19AO2 + NO3 = GLYOX + UDCARB14 + HO2 + NO2 ;
+KRO2NO3 : RA19AO2 + NO3 = GLYOX + UDCARB14 + HO2 + NO2 ;
+KRO2NO3 : RA19CO2 + NO3 = CARB9 + UDCARB8 + HO2 + NO2 ;
+KRO2NO3 : RTN10O2 + NO3 = RN8O2 + CO + NO2 ;
+KRO2NO3 : RTN14O2 + NO3 = HCHO + TNCARB10 + HO2 + NO2 ;
+KRO2NO3 : RTN23O2 + NO3 = CH3COCH3 + RTN14O2 + NO2 ;
+KRO2NO3 : RTN24O2 + NO3 = RTN23O2 + NO2 ;
+KRO2NO3 : RTN25O2 + NO3 = RTN24O2 + NO2 ;
+KRO2NO3 : RTN28O2 + NO3 = TNCARB26 + HO2 + NO2 ;
+KRO2NO3 : RTX22O2 + NO3 = CH3COCH3 + RN13O2 + NO2 ;
+KRO2NO3 : RTX24O2 + NO3 = TXCARB22 + HO2 + NO2 ;
+KRO2NO3 : RTX28O2 + NO3 = TXCARB24 + HCHO + HO2 + NO2 ;
+KRO2NO3 : DHPR12O2 + NO3 = GLYOX + RN8OOH + OH + NO2 ;
+KRO2NO3 : NRN6O2 + NO3 = 2 HCHO + 2 NO2 ;
+KRO2NO3 : NRN9O2 + NO3 = CH3CHO + HCHO + 2 NO2 ;
+KRO2NO3 : NRN12O2 + NO3 = 2 CH3CHO + 2 NO2 ;
+KRO2NO3 : NRU12O2 + NO3 = NOA + 0.5 GLYOX + 0.5 CO + HO2 + NO2 ;
+KRO2NO3 : NRU14O2 + NO3 = NUCARB12 + HO2 + NO2 ;
+KRO2NO3 : NRTN28O2 + NO3 = TNCARB26 + 2 NO2 ;
+KRO2NO3 : NRTX28O2 + NO3 = TXCARB24 + HCHO + 2 NO2 ;
+KRO2NO3*1.6      : CH3CO3 + NO3 = CH3O2 + NO2 ;
+KRO2NO3*1.6      : C2H5CO3 + NO3 = C2H5O2 + NO2 ;
+KRO2NO3*1.74     : MACO3 + NO3 = 0.35 CH3CO3 + 0.65 CH3O2 + 0.65 CO + HCHO + NO2 ;
+KRO2NO3*1.6      : HOCH2CO3 + NO3 = HO2 + HCHO + NO2 ;
+KRO2NO3*1.74     : HCOCO3 + NO3 = HO2 + CO + NO2 ;
+KRO2NO3*1.74     : CO2C3CO3 + NO3 = RN8O2 + NO2 ;
+KRO2NO3*1.6      : RTN26O2 + NO3 = RTN25O2 + NO2 ;
 *
-KRO2NO3                           : RA19CO2 + NO3 = CARB9 + UDCARB8 + HO2 + NO2 ;
-KRO2NO3                           : RTN10O2 + NO3 = RN8O2 + CO + NO2 ;
-KRO2NO3                           : RTN14O2 + NO3 = HCHO + TNCARB10 + HO2 + NO2 ;
-KRO2NO3                           : RTN23O2 + NO3 = CH3COCH3 + RTN14O2 + NO2 ;
-KRO2NO3                           : RTN24O2 + NO3 = RTN23O2 + NO2 ;
-KRO2NO3                           : RTN25O2 + NO3 = RTN24O2 + NO2 ;
-KRO2NO3                           : RTN28O2 + NO3 = TNCARB26 + HO2 + NO2 ;
-KRO2NO3                           : RTX22O2 + NO3 = CH3COCH3 + RN13O2 + NO2 ;
-KRO2NO3                           : RTX24O2 + NO3 = TXCARB22 + HO2 + NO2 ;
-KRO2NO3                           : RTX28O2 + NO3 = TXCARB24 + HCHO + HO2 + NO2 ;
-KRO2NO3                           : DHPR12O2 + NO3 = GLYOX + RN8OOH + OH + NO2 ;
-KRO2NO3                           : NRN6O2 + NO3 = 2 HCHO + 2 NO2 ;
-KRO2NO3                           : NRN9O2 + NO3 = CH3CHO + HCHO + 2 NO2 ;
-KRO2NO3                           : NRN12O2 + NO3 = 2 CH3CHO + 2 NO2 ;
-*CRI KRO2NO3                                  NRU12O2 + NO3 = NOA + CO + HO2 + NO2 ;
-KRO2NO3                 : NRU12O2 + NO3 = NOA + 0.5 GLYOX + 0.5 CO + HO2 + NO2 ;
-KRO2NO3                 : NRU14O2 + NO3 = NUCARB12 + HO2 + NO2 ;
-KRO2NO3                 : NRTN28O2 + NO3 = TNCARB26 + 2 NO2 ;
-KRO2NO3                 : NRTX28O2 + NO3 = TXCARB24 + HCHO + 2 NO2 ;
-KRO2NO3*1.6             : CH3CO3 + NO3 = CH3O2 + NO2 ;
-KRO2NO3*1.6             : C2H5CO3 + NO3 = C2H5O2 + NO2 ;
-KRO2NO3*1.74            : MACO3 + NO3 = 0.35 CH3CO3 + 0.65 CH3O2 + 0.65 CO + HCHO + NO2 ;
-KRO2NO3*1.6             : HOCH2CO3 + NO3 = HO2 + HCHO + NO2 ;
-KRO2NO3*1.74            : HCOCO3 + NO3 = HO2 + CO + NO2 ;
-KRO2NO3*1.74            : CO2C3CO3 + NO3 = RN8O2 + NO2 ;
-KRO2NO3*1.6             : RTN26O2 + NO3 = RTN25O2 + NO2 ;
-*
-3.8e-13*exp(780*tinv)             : CH3O2 + HO2 = 0.9 CH3OOH + 0.1 HCHO ;
-*IUPAC[June2011!] (200-400K): 
+3.8e-13*exp(780*TINV)             : CH3O2 + HO2 = 0.9 CH3OOH + 0.1 HCHO ;
+***CRIv2.2: 4.30e-13*exp(870*TINV)            : C2H5O2 + HO2 = C2H5OOH ;
+*IUPAC June2011 (200-400K): 
 6.4e-13*exp(710*TINV)             : C2H5O2 + HO2 = C2H5OOH ;
-*MCM still has: older IUPAC rate: 
-***MCMrate 4.30e-13*exp(870*tinv)            : C2H5O2 + HO2 = C2H5OOH ;
 KRO2HO2*0.520                     : IC3H7O2 + HO2 = IC3H7OOH ;
-2.03e-13*exp(1250*tinv)           : HOCH2CH2O2 + HO2 = HOC2H4OOH ;
+2.03e-13*exp(1250*TINV)           : HOCH2CH2O2 + HO2 = HOC2H4OOH ;
 KRO2HO2*0.625                     : MACRO2 + HO2 = RU10OOH  ;
 KRO2HO2*0.52                      : RN8O2 + HO2 = RN8OOH ;
 KRO2HO2*0.52                      : RN9O2 + HO2 = RN9OOH ;
@@ -517,77 +492,73 @@ KRO2HO2*0.706                     : NRU12O2 + HO2 = NRU12OOH ;
 KRO2HO2*0.706                     : NRU14O2 + HO2 = NRU14OOH ;
 KRO2HO2*0.914                     : NRTN28O2 + HO2 = NRTN28OOH ;
 KRO2HO2*0.914                     : NRTX28O2 + HO2 = NRTX28OOH ;
-***MCMrate 5.2e-13*EXP(980*tinv)        : CH3CO3 + HO2 = 0.41 CH3CO3H + 0.44 CH3O2 + 0.44 OH + 0.15 O3 + 0.15 CH3CO2H ; old MCM KAPHO2
-*Based on IUPAC at 288K:
-3.14e-12*EXP(580*tinv)     : CH3CO3 + HO2 = 0.454 CH3O2 + 0.454 OH + 0.384 CH3CO3H + 0.162 O3 + 0.162 CH3CO2H ;
-***MCMrate 5.2e-13*EXP(980*tinv)     : C2H5CO3 + HO2 = 0.56 C2H5CO3H + 0.44 C2H5O2 + 0.44 OH ;
-3.14e-12*EXP(580*TINV)     : C2H5CO3 + HO2 = 0.56 C2H5CO3H + 0.44 C2H5O2 + 0.44 OH ;
-***MCMrate 5.2e-13*EXP(980*tinv)        : MACO3 + HO2 = 0.56 RU10OOH + 0.154 CH3CO3 + 0.286 CH3O2 + 0.286 CO + 0.44 HCHO + 0.44 OH ;
-3.14e-12*EXP(580*TINV)     : MACO3 + HO2 = 0.56 RU10OOH + 0.154 CH3CO3 + 0.286 CH3O2 + 0.286 CO + 0.44 HCHO + 0.44 OH ;
-***MCMrate 5.2e-13*EXP(980*tinv)     : HOCH2CO3 + HO2 = 0.56 HOCH2CO3H + 0.44 HCHO + 0.44 HO2 + 0.44 OH ;
-3.14e-12*EXP(580*TINV)     : HOCH2CO3 + HO2 = 0.56 HOCH2CO3H + 0.44 HCHO + 0.44 HO2 + 0.44 OH ;
-***MCMrate 5.2e-13*EXP(980*tinv)        : HCOCO3 + HO2 = 0.44 HO2 + 0.44 CO + 0.44 OH + 0.41 HCOCO3H + 0.15 HCOCO2H + 0.15 O3 ;
-3.14e-12*EXP(580*TINV)     : HCOCO3 + HO2 = 0.44 HO2 + 0.44 CO + 0.44 OH + 0.41 HCOCO3H + 0.15 HCOCO2H + 0.15 O3 ;
-***MCMrate 5.2e-13*EXP(980*tinv)        : CO2C3CO3 + HO2 = 0.44 RN8O2 + 0.44 OH + 0.56 CO2C3CO3H ;
-3.14e-12*EXP(580*TINV)     : CO2C3CO3 + HO2 = 0.44 RN8O2 + 0.44 OH + 0.56 CO2C3CO3H ;
-***MCMrate 5.2e-13*EXP(980*tinv)     : RTN26O2 + HO2 = 0.56 RTN26OOH + 0.44 RTN25O2 + 0.44 OH ;
-3.14e-12*EXP(580*TINV)     : RTN26O2 + HO2 = 0.56 RTN26OOH + 0.44 RTN25O2 + 0.44 OH ;
+***CRIv2.2: 5.2e-13*EXP(980*TINV)        : CH3CO3 + HO2 = 0.41 CH3CO3H + 0.44 CH3O2 + 0.44 OH + 0.15 O3 + 0.15 CH3CO2H ; old MCM KAPHO2
+***CRIv2.2 use an old value for KAPHO2: 5.2e-13*EXP(980*TINV)
+***CRI-R5-emep use a the IUPAC recommended rate from 2017 for CH3CO3+HO2: KAPHO2 3.14e-12*EXP(580/TEMP)
+*Based on IUPAC product split at 288K:
+KAPHO2     : CH3CO3 + HO2 = 0.454 CH3O2 + 0.454 OH + 0.384 CH3CO3H + 0.162 O3 + 0.162 CH3CO2H ;
+KAPHO2     : C2H5CO3 + HO2 = 0.56 C2H5CO3H + 0.44 C2H5O2 + 0.44 OH ;
+KAPHO2     : MACO3 + HO2 = 0.56 RU10OOH + 0.154 CH3CO3 + 0.286 CH3O2 + 0.286 CO + 0.44 HCHO + 0.44 OH ;
+KAPHO2     : HOCH2CO3 + HO2 = 0.56 HOCH2CO3H + 0.44 HCHO + 0.44 HO2 + 0.44 OH ;
+KAPHO2     : HCOCO3 + HO2 = 0.44 HO2 + 0.44 CO + 0.44 OH + 0.41 HCOCO3H + 0.15 HCOCO2H + 0.15 O3 ;
+KAPHO2     : CO2C3CO3 + HO2 = 0.44 RN8O2 + 0.44 OH + 0.56 CO2C3CO3H ;
+KAPHO2     : RTN26O2 + HO2 = 0.56 RTN26OOH + 0.44 RTN25O2 + 0.44 OH ;
 *
-7.4e-13*exp(-520*tinv)*2         : CH3O2 + [RO2POOL] = HCHO + HO2 ;
-2*(1.03e-13*exp(365*tinv)-7.4e-13*exp(-520*tinv))  : CH3O2 + [RO2POOL] = 0.5 HCHO + 0.5 CH3OH ;
-3.1e-13      : C2H5O2 + [RO2POOL] = 0.8 CH3CHO + 0.6 HO2 + 0.2 C2H5OH ;
-4.0e-14      : IC3H7O2 + [RO2POOL] = 0.8 CH3COCH3 + 0.6 HO2 + 0.2 IPROPOL ;
-2.0e-12      : HOCH2CH2O2 + [RO2POOL] = 1.552 HCHO + HO2 + 0.224 HOCH2CHO ;
-3.6e-13      : MACRO2 + [RO2POOL] = ACETOL + CO + HO2  ;
-1.4e-12      : RN8O2 + [RO2POOL] = CH3CO3 + HCHO ;
-8.8e-13      : RN9O2 + [RO2POOL] = CH3CHO + HCHO + HO2 ;
-6.0e-13      : RN10O2 + [RO2POOL] = 0.8 C2H5CHO + 0.6 HO2 + 0.2 NPROPOL ;
-1.4e-12      : RN11O2 + [RO2POOL] = CH3CO3 + CH3CHO ;
-8.8e-13      : RN12O2 + [RO2POOL] = 2 CH3CHO + HO2 ;
-2.5e-13      : RN13O2 + [RO2POOL] = 0.602 MEK + 0.602 HO2 + 0.398 CH3CHO + 0.398 C2H5O2 ;
-1.4e-12      : RN14O2 + [RO2POOL] = C2H5CO3 + CH3CHO ;
-8.8e-13      : RN15O2 + [RO2POOL] = C2H5CHO + CH3CHO + HO2 ;
-2.5e-13      : RN16O2 + [RO2POOL] = RN15AO2 ;
-1.4e-12      : RN17O2 + [RO2POOL] = RN16AO2 ;
-2.5e-13      : RN19O2 + [RO2POOL] = HCC7CO + 0.75 HO2 ;
-8.8e-13      : RN13AO2 + [RO2POOL] = RN12O2 ;
-8.8e-13      : RN15AO2 + [RO2POOL] = CARB13 + HO2 ;
-8.8e-13      : RN16AO2 + [RO2POOL] = RN15O2 ;
-1.22e-12 : RU10O2 + [RO2POOL] = 0.3 MGLYOX + 0.3 HCHO + 0.7 CH3CO3 + 0.7 HOCH2CHO + 0.3 HO2 ;
-4.2e-13  : RU12O2 + [RO2POOL] = 0.585 ACETOL + 0.415 HOCH2CHO + 0.415 GLYOX + 0.415 MGLYOX + 0.17 HOCH2CO3 + 0.83 HO2 ;
-6.0e-13  : RU13O2 + [RO2POOL] = CO2C3CHO + HCHO + HO2 ;
-2.4e-12  : CRU14O2 + [RO2POOL] = UCARB12 + HO2 ;
-2.4e-12  : TRU14O2 + [RO2POOL] = UCARB12 + HO2 ;
-1.26e-12 : BRU14O2 + [RO2POOL] = 0.333 MVK + 0.667 MACR + HCHO + HO2 ;
-8.8e-13  : RA13O2 + [RO2POOL] = GLYOX + UDCARB8 + HO2 ;
-8.8e-13  : RA16O2 + [RO2POOL] = 0.7 GLYOX + 0.7 UDCARB11 + HO2 + 0.3 MGLYOX + 0.3 UDCARB8 ;
-8.8e-13                          : RA19AO2 + [RO2POOL] = GLYOX + UDCARB14 + HO2 ;
-8.8e-13                          : RA19CO2 + [RO2POOL] = GLYOX + UDCARB14 + HO2 ;
-2.0e-12                          : RTN10O2 + [RO2POOL] = RN8O2 + CO ;
-8.8e-13                          : RTN14O2 + [RO2POOL] = HCHO + TNCARB10 + HO2 ;
-6.7e-15                          : RTN23O2 + [RO2POOL] = CH3COCH3 + RTN14O2 ;
-6.7e-15                          : RTN24O2 + [RO2POOL] = RTN23O2 ;
-1.3e-12                          : RTN25O2 + [RO2POOL] = RTN24O2 ;
-2.85e-13                         : RTN28O2 + [RO2POOL] = TNCARB26 + HO2 ;
-2.5e-13                          : RTX22O2 + [RO2POOL] = CH3COCH3 + RN13O2 ;
-2.5e-13                          : RTX24O2 + [RO2POOL] = TXCARB22 + HO2 ;
-2.0e-12                          : RTX28O2 + [RO2POOL] = TXCARB24 + HCHO + HO2 ;
-7.6e-13                          : DHPR12O2 + [RO2POOL] = GLYOX + RN8OOH + OH ;
-6.0e-13                          : NRN6O2 + [RO2POOL] = 2 HCHO + NO2 ;
-2.3e-13                          : NRN9O2 + [RO2POOL] = CH3CHO + HCHO + NO2 ;
-2.5e-13                          : NRN12O2 + [RO2POOL] = 2 CH3CHO + NO2 ;
-9.6e-13                          : NRU12O2 + [RO2POOL] = NOA + 0.5 GLYOX + 0.5 CO + HO2 ;
-1.3e-12                          : NRU14O2 + [RO2POOL] = NUCARB12 + HO2 ;
-1.0e-13                          : NRTN28O2 + [RO2POOL] = TNCARB26 + NO2 ;
-9.2e-14                          : NRTX28O2 + [RO2POOL] = TXCARB24 + HCHO + NO2 ;
+7.4e-13*exp(-520*TINV)*2                           : CH3O2 + [RO2POOL] = HCHO + HO2 ;
+2*(1.03e-13*exp(365*TINV)-7.4e-13*exp(-520*TINV))  : CH3O2 + [RO2POOL] = 0.5 HCHO + 0.5 CH3OH ;
+3.1e-13   : C2H5O2 + [RO2POOL] = 0.8 CH3CHO + 0.6 HO2 + 0.2 C2H5OH ;
+4.0e-14   : IC3H7O2 + [RO2POOL] = 0.8 CH3COCH3 + 0.6 HO2 + 0.2 IPROPOL ;
+2.0e-12   : HOCH2CH2O2 + [RO2POOL] = 1.552 HCHO + HO2 + 0.224 HOCH2CHO ;
+3.6e-13   : MACRO2 + [RO2POOL] = ACETOL + CO + HO2  ;
+1.4e-12   : RN8O2 + [RO2POOL] = CH3CO3 + HCHO ;
+8.8e-13   : RN9O2 + [RO2POOL] = CH3CHO + HCHO + HO2 ;
+6.0e-13   : RN10O2 + [RO2POOL] = 0.8 C2H5CHO + 0.6 HO2 + 0.2 NPROPOL ;
+1.4e-12   : RN11O2 + [RO2POOL] = CH3CO3 + CH3CHO ;
+8.8e-13   : RN12O2 + [RO2POOL] = 2 CH3CHO + HO2 ;
+2.5e-13   : RN13O2 + [RO2POOL] = 0.602 MEK + 0.602 HO2 + 0.398 CH3CHO + 0.398 C2H5O2 ;
+1.4e-12   : RN14O2 + [RO2POOL] = C2H5CO3 + CH3CHO ;
+8.8e-13   : RN15O2 + [RO2POOL] = C2H5CHO + CH3CHO + HO2 ;
+2.5e-13   : RN16O2 + [RO2POOL] = RN15AO2 ;
+1.4e-12   : RN17O2 + [RO2POOL] = RN16AO2 ;
+2.5e-13   : RN19O2 + [RO2POOL] = HCC7CO + 0.75 HO2 ;
+8.8e-13   : RN13AO2 + [RO2POOL] = RN12O2 ;
+8.8e-13   : RN15AO2 + [RO2POOL] = CARB13 + HO2 ;
+8.8e-13   : RN16AO2 + [RO2POOL] = RN15O2 ;
+1.22e-12  : RU10O2 + [RO2POOL] = 0.3 MGLYOX + 0.3 HCHO + 0.7 CH3CO3 + 0.7 HOCH2CHO + 0.3 HO2 ;
+4.2e-13   : RU12O2 + [RO2POOL] = 0.585 ACETOL + 0.415 HOCH2CHO + 0.415 GLYOX + 0.415 MGLYOX + 0.17 HOCH2CO3 + 0.83 HO2 ;
+6.0e-13   : RU13O2 + [RO2POOL] = CO2C3CHO + HCHO + HO2 ;
+2.4e-12   : CRU14O2 + [RO2POOL] = UCARB12 + HO2 ;
+2.4e-12   : TRU14O2 + [RO2POOL] = UCARB12 + HO2 ;
+1.26e-12  : BRU14O2 + [RO2POOL] = 0.333 MVK + 0.667 MACR + HCHO + HO2 ;
+8.8e-13   : RA13O2 + [RO2POOL] = GLYOX + UDCARB8 + HO2 ;
+8.8e-13   : RA16O2 + [RO2POOL] = 0.7 GLYOX + 0.7 UDCARB11 + HO2 + 0.3 MGLYOX + 0.3 UDCARB8 ;
+8.8e-13   : RA19AO2 + [RO2POOL] = GLYOX + UDCARB14 + HO2 ;
+8.8e-13   : RA19CO2 + [RO2POOL] = GLYOX + UDCARB14 + HO2 ;
+2.0e-12   : RTN10O2 + [RO2POOL] = RN8O2 + CO ;
+8.8e-13   : RTN14O2 + [RO2POOL] = HCHO + TNCARB10 + HO2 ;
+6.7e-15   : RTN23O2 + [RO2POOL] = CH3COCH3 + RTN14O2 ;
+6.7e-15   : RTN24O2 + [RO2POOL] = RTN23O2 ;
+1.3e-12   : RTN25O2 + [RO2POOL] = RTN24O2 ;
+2.85e-13  : RTN28O2 + [RO2POOL] = TNCARB26 + HO2 ;
+2.5e-13   : RTX22O2 + [RO2POOL] = CH3COCH3 + RN13O2 ;
+2.5e-13   : RTX24O2 + [RO2POOL] = TXCARB22 + HO2 ;
+2.0e-12   : RTX28O2 + [RO2POOL] = TXCARB24 + HCHO + HO2 ;
+7.6e-13   : DHPR12O2 + [RO2POOL] = GLYOX + RN8OOH + OH ;
+6.0e-13   : NRN6O2 + [RO2POOL] = 2 HCHO + NO2 ;
+2.3e-13   : NRN9O2 + [RO2POOL] = CH3CHO + HCHO + NO2 ;
+2.5e-13   : NRN12O2 + [RO2POOL] = 2 CH3CHO + NO2 ;
+9.6e-13   : NRU12O2 + [RO2POOL] = NOA + 0.5 GLYOX + 0.5 CO + HO2 ;
+1.3e-12   : NRU14O2 + [RO2POOL] = NUCARB12 + HO2 ;
+1.0e-13   : NRTN28O2 + [RO2POOL] = TNCARB26 + NO2 ;
+9.2e-14   : NRTX28O2 + [RO2POOL] = TXCARB24 + HCHO + NO2 ;
 *
-1.0e-11                 : CH3CO3 + [RO2POOL] = CH3O2 ;
-1.0e-11                 : C2H5CO3 + [RO2POOL] = C2H5O2 ;
-1.0e-11                 : MACO3 + [RO2POOL] = 0.35 CH3CO3 + 0.65 CH3O2 + 0.65 CO + HCHO ;
-1.0e-11                 : HOCH2CO3 + [RO2POOL] = HCHO + HO2 ;
-1.0e-11                 : HCOCO3 + [RO2POOL] = 0.7 CO + 0.7 HO2 + 0.3 HCOCO2H ;
-1.0e-11                 : CO2C3CO3 + [RO2POOL] = RN8O2 ;
-1.0e-11                 : RTN26O2 + [RO2POOL] = RTN25O2 ;
+1.0e-11   : CH3CO3 + [RO2POOL] = CH3O2 ;
+1.0e-11   : C2H5CO3 + [RO2POOL] = C2H5O2 ;
+1.0e-11   : MACO3 + [RO2POOL] = 0.35 CH3CO3 + 0.65 CH3O2 + 0.65 CO + HCHO ;
+1.0e-11   : HOCH2CO3 + [RO2POOL] = HCHO + HO2 ;
+1.0e-11   : HCOCO3 + [RO2POOL] = 0.7 CO + 0.7 HO2 + 0.3 HCOCO2H ;
+1.0e-11   : CO2C3CO3 + [RO2POOL] = RN8O2 ;
+1.0e-11   : RTN26O2 + [RO2POOL] = RTN25O2 ;
 *
 *
 rcphot(IDO3_O1D)                  : O3 = OD ;
@@ -610,7 +581,6 @@ rcphot(IDRCOCHO)                  : HCOCO2H = 2 HO2 + CO ;
 rcphot(IDHCHO_H2)*0.0474          : MACR = 0.5 MACO3 + HO2 + 0.825 CO + 0.5 HCHO + 0.325 CH3O2 + 0.175 CH3CO3 ;
 ***MCMj rcphot(23)*2                      : MVK = 0.5 CH3CO3 + 0.5 HCHO + CO + 0.5 HO2 + 0.5 C3H6 ;
 rcphot(IDHCHO_H2)*0.078           : MVK = 0.5 CH3CO3 + 0.5 HCHO + CO + 0.5 HO2 + 0.5 C3H6 ;
-*alternative A:
 rcphot(IDRCOCHO)*0.46             : GLYOX = 2 CO + H2 ; 
 rcphot(IDRCOCHO)*0.07             : GLYOX = HCHO + CO ;
 rcphot(IDCH3O2H)*4.79             : GLYOX = 2 CO + 2 HO2 ;
@@ -622,7 +592,6 @@ rcphot(IDHCHO_H)*0.6              : HOCH2CHO = HCHO + CO + 2 HO2 ;
 rcphot(IDHCHO_H)*0.6              : CO2C3CHO = RN8O2 + HCHO ;
 rcphot(IDCH3COY)                  : CARB9 = 2 CH3CO3 ;
 rcphot(IDMEK)                     : CARB10 = CH3CO3 + CH3CHO + HO2 ;
-*CARB12 unknown, perhaps J35 is a bit too fast? Could J22 be an alternative?
 rcphot(IDCH3COY)                  : CARB12 = CH3CO3 + RN8O2 ;
 rcphot(IDMEK)*3.00                : CARB13 = RN8O2 + CH3CHO + HO2 ;
 rcphot(IDMEK)*4.74                : CARB14 = CH3CO3 + RN10O2 ;
@@ -636,11 +605,9 @@ rcphot(IDHCHO_H2)*6               : HUCARB9 = MGLYOX + CO + HO2 + OH ;
 rcphot(IDHCHO_H2)*12              : HPUCARB12 = 0.5 HUCARB9 + 1.5 OH + 0.425 ACETOL + 0.425 HO2 + 0.075 CH3CO3 + 0.075 HOCH2CHO + 1.425 CO ;
 ***MCMj rcphot(17)                        : DHCARB9 = ACETOL + CO + HO2 + HO2 ;
 rcphot(IDHCHO_H)*1.67             : DHCARB9 = ACETOL + CO + 2 HO2 ;
-*Assume that the DHPCARB9 photolysis is based on MCM DHPMPAL (but a bit simplified)
 ***MCMj rcphot(15)                        : DHPCARB9 = RN8OOH + CO + HO2 + OH ;
 rcphot(IDHCHO_H)*0.6              : DHPCARB9 = RN8OOH + CO + HO2 + OH ;
 rcphot(IDCH3O2H)*2                : DHPCARB9 = MGLYOX + HCHO + 2 OH ;
-*THE PHOTOLYSIS REACTIONS OF UDCARB8 are DIFFERENT IN MCM
 rcphot(IDNO2)*JSF19               : UDCARB8 = C2H5O2 + HO2 ;
 rcphot(IDNO2)*JSF16               : UDCARB8 = ANHY + 2 HO2 ;
 rcphot(IDNO2)*JSF17               : UDCARB11 = ANHY + HO2 + CH3O2 ;
@@ -655,9 +622,7 @@ rcphot(IDCH3O2H)                  : CH3OOH = HCHO + HO2 + OH ;
 rcphot(IDCH3O2H)                  : C2H5OOH = CH3CHO + HO2 + OH ;
 rcphot(IDCH3O2H)                  : IC3H7OOH = CH3COCH3 + HO2 + OH ;
 rcphot(IDCH3O2H)                  : HOC2H4OOH = 2 HCHO + HO2 + OH ;
-*J<41>      RN8OOH = CH3CO3 + HCHO + OH ;
 rcphot(IDCH3O2H)                  : RN8OOH = CH3CO3 + HCHO + OH ;
-*J<22>      RN8OOH = CH3CO3 + HCHO + OH ;
 rcphot(IDMEK)                     : RN8OOH = CH3CO3 + HCHO + OH ;
 rcphot(IDCH3O2H)                  : RN9OOH = CH3CHO + HCHO + HO2 + OH ;
 rcphot(IDCH3O2H)                  : RN10OOH = C2H5CHO + HO2 + OH ;
@@ -670,9 +635,8 @@ rcphot(IDCH3O2H)                  : RN16OOH = RN15AO2 + OH ;
 rcphot(IDCH3O2H)                  : RN17OOH = RN16O2 + OH ;
 *SUGGESTED CHANGE from DJ(IDCH3O2H,k)  RN19OOH = RN18AO2 + OH ; TO MCM-like C720OOH photolysis:
 rcphot(IDCH3O2H)                  : RN19OOH = HCC7CO + OH + HO2 ;
-*
-rcphot(IDCH3O2H) : RU10OOH = 0.226 MGLYOX + 0.376 HCHO + 0.520 CH3CO3 + 0.467 HOCH2CHO + 0.383 HO2 + 0.254 CO + 0.097 CH3O2 + 0.157 ACETOL + OH ;
-rcphot(IDCH3O2H) : RU12OOH = 0.585 ACETOL + 0.415 HOCH2CHO + 0.415 GLYOX + 0.415 MGLYOX + 0.17 HOCH2CO3 + 0.83 HO2 + OH ;
+rcphot(IDCH3O2H)                  : RU10OOH = 0.226 MGLYOX + 0.376 HCHO + 0.520 CH3CO3 + 0.467 HOCH2CHO + 0.383 HO2 + 0.254 CO + 0.097 CH3O2 + 0.157 ACETOL + OH ;
+rcphot(IDCH3O2H)                  : RU12OOH = 0.585 ACETOL + 0.415 HOCH2CHO + 0.415 GLYOX + 0.415 MGLYOX + 0.17 HOCH2CO3 + 0.83 HO2 + OH ;
 rcphot(IDCH3O2H)                  : RU13OOH = CO2C3CHO + HCHO + HO2 + OH ;
 rcphot(IDMEK)                     : RU13OOH = CO2C3CHO + HCHO + HO2 + OH ;
 rcphot(IDCH3O2H)                  : RA13OOH = GLYOX + UDCARB8 + HO2 + OH ;
@@ -712,35 +676,33 @@ rcphot(IDMEK)*0.293               : CH3NO3 = HCHO + HO2 + NO2 ;
 rcphot(IDHNO3)*1.932              : C2H5NO3 = CH3CHO + HO2 + NO2 ;
 ***MCMj rcphot(54)                        : IC3H7NO3 = CH3COCH3 + HO2 + NO2 ;
 rcphot(IDMEK)*0.778               : IC3H7NO3 = CH3COCH3 + HO2 + NO2 ;
-* Test using a scaled version of MEK-photolysis instead
 ***MCMj rcphot(56)                        : NOA = CH3CO3 + HCHO + NO2 ;
 rcphot(IDMEK)*8.3                 : NOA = CH3CO3 + HCHO + NO2 ;
 ***MCMj rcphot(53)                        : RN10NO3 = C2H5CHO + HO2 + NO2 ;
 rcphot(IDHNO3)*2.62               : RN10NO3 = C2H5CHO + HO2 + NO2 ;
-*Why not J53 for RN13NO3? -- J54 is based on assuming that RN13NO3 represents SC4H9NO3
-***MCMj rcphot(54)                        : RN13NO3 = 0.398 CH3CHO + 0.398 C2H5O2 + 0.602 MEK + 0.602 HO2 + NO2 ;
+***CRIv2.2 has rcphot(53) : RN13NO3 = 0.398 CH3CHO + 0.398 C2H5O2 + 0.602 CARB11A + 0.602 HO2 + NO2 ;
+*Here use MCMj rcphot(54) assuming that RN13NO3 mainly represent SC4H9NO3
 rcphot(IDMEK)*0.778               : RN13NO3 = 0.398 CH3CHO + 0.398 C2H5O2 + 0.602 MEK + 0.602 HO2 + NO2 ;
-*revert to the CRIv2.1 version from the web, which is MCM_J53:
 ***MCMj rcphot(53) : RN16NO3 = RN15O2 + NO2 ;
 rcphot(IDHNO3)*2.62               : RN16NO3 = RN15O2 + NO2 ;
-*SUGGESTED CHANGE! from DJ(IDHNO3,k)*2.871  RN19NO3 = RN18O2 + NO2 ; to MCM (C720NO3) based photolysis:
-***MCMj rcphot(54)                        : RN19NO3 = HCC7CO + NO2 + HO2 ;
+***CRIv2.2: rcphot(53) : RN19NO3 = RN18O2 + NO2 ;
+*Here change to MCM-like photolysis of C720NO3 MCMj rcphot(54) : RN19NO3 = HCC7CO + NO2 + HO2 ;
 rcphot(IDMEK)*0.778               : RN19NO3 = HCC7CO + NO2 + HO2 ;
-*R15_R1A/MCM: 
 ***MCMj rcphot(56)*1.6                    : RU10NO3 = CH3CO3 + HOCH2CHO + NO2 ;
 rcphot(IDMEK)*13.3                : RU10NO3 = CH3CO3 + HOCH2CHO + NO2 ;
 ***MCMj rcphot(56)*10                     : RU12NO3 = MGLYOX + HOCH2CHO + HO2 + NO2 ;   
 rcphot(IDMEK)*83.                 : RU12NO3 = MGLYOX + HOCH2CHO + HO2 + NO2 ;
-*NOTE! Assumed j for RU13NO3 as for MCM C51NO3 -- the original C15_R1A had j56*0.91, which is much faster!
+***C15_R1A had MCMj rcphot(56)*0.91 : RU13NO3 = CO2C3CHO + HCHO + HO2 + NO2 ;
+*Changed to rcphot(IDMEK) based on RU13NO3 being predominantly MCM C51NO3
 rcphot(IDMEK)                     : RU13NO3 = CO2C3CHO + HCHO + HO2 + NO2 ;     
-*Use MCM ISOPANO3 for RU14NO3
-***MCMj rcphot(53)                        : RU14NO3 = 0.333 MVK + 0.667 MACR + HCHO + HO2 + NO2 ;
+***MCMj rcphot(53) [based on MCM ISOPANO3]  : RU14NO3 = 0.333 MVK + 0.667 MACR + HCHO + HO2 + NO2 ;
 rcphot(IDHNO3)*2.62               : RU14NO3 = 0.333 MVK + 0.667 MACR + HCHO + HO2 + NO2 ;
 ***MCMj rcphot(54)                        : RA13NO3 = GLYOX + UDCARB8 + HO2 + NO2 ;
 rcphot(IDMEK)*0.778               : RA13NO3 = GLYOX + UDCARB8 + HO2 + NO2 ;
 ***MCMj rcphot(54)                        : RA16NO3 = GLYOX + UDCARB11 + HO2 + NO2 ;
 rcphot(IDMEK)*0.778               : RA16NO3 = GLYOX + UDCARB11 + HO2 + NO2 ;
-***MCMj rcphot(55)                        : RA19NO3 = MGLYOX + UDCARB11 + HO2 + NO2 ;
+***CRIv2.2:  rcphot(54)  : RA19NO3 = CARB6 + UDCARB11 + HO2 + NO2 
+*Changed to MCMj rcphot(55) based on RA19NO3 being predominantly MCM OXYBIPENO3
 rcphot(IDHCHO_H)*0.234            : RA19NO3 = MGLYOX + UDCARB11 + HO2 + NO2 ;
 ***MCMj rcphot(54)                        : RTX24NO3 = TXCARB22 + HO2 + NO2 ;
 rcphot(IDMEK)*0.778               : RTX24NO3 = TXCARB22 + HO2 + NO2 ;
@@ -763,8 +725,8 @@ rcemis(TBUT2ENE,KDIM)             : = TBUT2ENE ;
 rcemis(CH3CHO,KDIM)               : = CH3CHO ;
 rcemis(C2H5CHO,KDIM)              : = C2H5CHO ;
 rcemis(CH3CO2H,KDIM)              : = CH3CO2H ;
-rcemis(CH3COCH3,KDIM)              : = CH3COCH3 ;
-rcemis(C5H8,KDIM)                 : = C5H8 ;     # Anthropogenic
+rcemis(CH3COCH3,KDIM)             : = CH3COCH3 ;
+rcemis(C5H8,KDIM)                 : = C5H8 ; # Anthropogenic
 rcemis(BENZENE,KDIM)              : = BENZENE ;
 rcemis(TOLUENE,KDIM)              : = TOLUENE ;
 rcemis(OXYL,KDIM)                 : = OXYL ;
@@ -776,14 +738,17 @@ rcemis(CH3OH,KDIM)                : = CH3OH ;
 rcemis(C2H5OH,KDIM)               : = C2H5OH ;
 rcemis(NPROPOL,KDIM)              : = NPROPOL ;
 rcemis(IPROPOL,KDIM)              : = IPROPOL ;
-rcemis(APINENE,KDIM)              : = APINENE ;  # Anthropogenic
-rcemis(BPINENE,KDIM)              : = BPINENE ;  # Anthropogenic
+rcemis(APINENE,KDIM)              : = APINENE ; # Anthropogenic
+rcemis(BPINENE,KDIM)              : = BPINENE ; # Anthropogenic
+*MOVED to extra_mechanisms rcemis(XTERP,KDIM)                : = XTERP ; #Anthropogenic
+*MOVED to extra_mechanisms rcemis(SQT_SOA_nv,KDIM)           : = SQT_SOA_nv ; # Anthropogenic SQT emissions 
+rcemis(MACR,KDIM)                 : = MACR ; # wood combustion?
 rcemis(GLYOX,KDIM)                : = GLYOX ; 
-rcemis(MGLYOX,KDIM)               : = MGLYOX ;   # Forest Fire FINNv1.5
-rcemis(ACETOL,KDIM)               : = ACETOL ;   # Forest Fire FINNv1.5
+rcemis(MGLYOX,KDIM)               : = MGLYOX ; # Forest Fire FINNv1.5
+rcemis(ACETOL,KDIM)               : = ACETOL ; # Forest Fire FINNv1.5
 rcemis(HOCH2CHO,KDIM)             : = HOCH2CHO ; # Forest Fire FINNv1.5
 *
-* Moved to extra_mechanisms, e.g BVOC_IsopMT1 or IsopMT3:
-*_func_rcbio(1,k)                  : = C5H8    ;
-*_func_rcbio(2,k) : =  0.45 APINENE + 0.2 BPINENE + 0.35 XTERP ;  if wanted, SQT is in exrta_mechanisms
+* Biogenic emissions moved to extra_mechanisms, e.g BVOC_IsopMT1:
+**_func_rcbio(1,k)                  : = C5H8    ;
+**_func_rcbio(2,k) : =  0.45 APINENE + 0.2 BPINENE + 0.35 XTERP ;  if wanted, SQT is in extra_mechanisms
 *
