@@ -1,4 +1,6 @@
-* HI this is a changed CRI R5 Shorthand file
+* Manually updated Shorthand file for CRI-R5-emep
+* 
+* original version comment:
 * This file has been written by cri2GenChem.py on 25/07/2016 13:50:25
 * Its inputfile is
 * input_files/cri_subset_all_20160629.fac
@@ -22,42 +24,37 @@
 *
 * HI added (not in GenChem anymore)
 XT            TEMP
-* HI added, copied from MCM 3.3
-K14ISOM1      3.00e7*EXP(-5300/TEMP)
-* HI added, copied from CB05_Shorthands.txt
-*KMT21         5.30e-12*exp(190*tinv)
-*KMT22         0.6*KMT21
-*KMT23         0.4*KMT21
+* HI added, from MCM 3.3
+K14ISOM1      3.00e7*EXP(-5300*TINV)
 JSF15        3.00e+00
 JSF16        7.20e-03
 JSF17        9.00e-03
 JSF18        1.10e-02
 JSF19        1.28e-02
 
-
 * Generic Rate Coefficients
 *
-KRO2NO        2.7e-12*EXP(360/TEMP)
-KRO2HO2       2.91e-13*EXP(1300/TEMP)
-*old KAPHO2        5.2e-13*EXP(980/TEMP)
-*IUPAC 2017:
-KAPHO2        3.14e-12*EXP(580/TEMP)
-KAPNO         7.5e-12*EXP(290/TEMP)
+KRO2NO        2.7e-12*EXP(360*TINV)
+KRO2HO2       2.91e-13*EXP(1300*TINV) ! MCM2001 to be multiplied by (1-exp(-0.245n)) where n is the carbon number
+*old KAPHO2        5.2e-13*EXP(980*TINV)
+*IUPAC 2017 [note CH3CO3 + HO2 reaction rate revised again by IUPAC in Dec2019 -- not updated here]:
+KAPHO2        3.14e-12*EXP(580*TINV)
+KAPNO         7.5e-12*EXP(290*TINV)
 KRO2NO3       2.3e-12
 *KNO3AL: NO3 + CH3CHO, IUPAC 2007:
-KNO3AL        1.4e-12*EXP(-1860/TEMP)
+KNO3AL        1.4e-12*EXP(-1860*TINV)
 KDEC          1.00e+06
-KROPRIM       2.50e-14*EXP(-300/TEMP)
-KROSEC        2.50e-14*EXP(-300/TEMP)
-KCH3O2        1.03e-13*EXP(365/TEMP)
+KROPRIM       2.50e-14*EXP(-300*TINV)
+KROSEC        2.50e-14*EXP(-300*TINV)
+KCH3O2        1.03e-13*EXP(365*TINV)
 K298CH3O2     3.5e-13
 *
 * Complex reactions
 *
 *Note KBPAN updated!
-*Where did this come from??? KD0           1.70e-3*EXP(-10100/TEMP)*M
-KD0           1.10e-5*EXP(-10100/TEMP)*M
-KDI           1.9e+17*EXP(-14100/TEMP)
+*
+KD0           1.10e-5*EXP(-10100*TINV)*M
+KDI           1.9e+17*EXP(-14100*TINV)
 KRD           KD0/KDI
 FCD           0.30
 NCD           0.75-1.27*(LOG10(FCD))
@@ -73,7 +70,7 @@ FC            10**(LOG10(FCC)/(1+(LOG10(KRC)/NC)**2))
 KFPAN         (KC0*KCI)*FC/(KC0+KCI)
 K10           1.0e-31*M*(TEMP/300)**(-1.6)
 *note K1I updated!
-K1I           5.00e-11*(TEMP/300)**(-0.3)
+K1I           5.0e-11*(TEMP/300)**(-0.3)
 KR1           K10/K1I
 FC1           0.85
 NC1           0.75-1.27*(LOG10(FC1))
@@ -93,16 +90,15 @@ FC3           0.35
 NC3           0.75-1.27*(LOG10(FC3))
 F3            10**(LOG10(FC3)/(1+(LOG10(KR3)/NC3)**2))
 KMT03         (K30*K3I)*F3/(K30+K3I)
-K40           1.3e-3*M*(TEMP/300)**(-3.5)*EXP(-11000/TEMP)
-K4I           9.7e+14*(TEMP/300)**0.1*EXP(-11080/TEMP)
+K40           1.3e-3*M*(TEMP/300)**(-3.5)*EXP(-11000*TINV)
+K4I           9.7e+14*(TEMP/300)**0.1*EXP(-11080*TINV)
 KR4           K40/K4I
 FC4           0.35
 NC4           0.75-1.27*(LOG10(FC4))
 F4            10**(LOG10(FC4)/(1+(LOG10(KR4)/NC4)**2))
 KMT04         (K40*K4I)*F4/(K40+K4I)
-* KMT05         1.44e-13*(1+(M/4.2e+19))
 KMT05         1.44e-13+(M*3.43e-33)
-KMT06         1+(1.40e-21*EXP(2200/TEMP)*H2O)
+KMT06         1+(1.40e-21*EXP(2200*TINV)*H2O)
 K70           7.4e-31*M*(TEMP/300)**(-2.4)
 K7I           3.3e-11*(TEMP/300)**(-0.3)
 KR7           K70/K7I
@@ -126,17 +122,17 @@ FC9           0.4
 NC9           0.75-1.27*(LOG10(FC9))
 F9            10**(LOG10(FC9)/(1+(LOG10(KR9)/NC9)**2))
 KMT09         (K90*K9I)*F9/(K90+K9I)
-K100          4.10e-05*M*EXP(-10650/TEMP)
+K100          4.10e-05*M*EXP(-10650*TINV)
 *Note! KMT10 updated
-K10I          6.0e+15*EXP(-11170/TEMP)
+K10I          6.0e+15*EXP(-11170*TINV)
 KR10          K100/K10I
 FC10          0.4
 NC10          0.75-1.27*(LOG10(FC10))
 F10           10**(LOG10(FC10)/(1+(LOG10(KR10)/NC10)**2))
 KMT10         (K100*K10I)*F10/(K100+K10I)
-K1            2.40e-14*EXP(460/TEMP)
-K3            6.50e-34*EXP(1335/TEMP)
-K4            2.70e-17*EXP(2199/TEMP)
+K1            2.4e-14*EXP(460*TINV)
+K3            6.5e-34*EXP(1335*TINV)
+K4            2.7e-17*EXP(2199*TINV)
 K2            (K3*M)/(1+(K3*M/K4))
 KMT11         K1+K2
 K120          4.5e-31*M*(TEMP/300)**(-3.9)
@@ -153,8 +149,8 @@ FC13          0.36
 NC13          0.75-1.27*(LOG10(FC13))
 F13           10**(LOG10(FC13)/(1+(LOG10(KR13)/NC13)**2))
 KMT13         (K130*K13I)*F13/(K130+K13I)
-K140          9.0e-5*EXP(-9690/TEMP)*M
-K14I          1.1e+16*EXP(-10560/TEMP)
+K140          9.0e-5*EXP(-9690*TINV)*M
+K14I          1.1e+16*EXP(-10560*TINV)
 KR14          K140/K14I
 FC14          0.4
 NC14          0.75-1.27*(LOG10(FC14))
@@ -181,13 +177,12 @@ FC17          0.17*EXP(-51/TEMP)+EXP(-TEMP/204)
 NC17          0.75-1.27*(LOG10(FC17))
 F17           10**(LOG10(FC17)/(1.0+(LOG10(KR17)/NC17)**2))
 KMT17         (K170*K17I*F17)/(K170+K17I)
-KMT18         9.5e-39*O2*EXP(5270/TEMP)/(1+7.5e-29*O2*EXP(5610/TEMP))
-KPPN0         1.7e-03*EXP(-11280/TEMP)*M
-KPPNI         8.3e+16*EXP(-13940/TEMP)
+KMT18         9.5e-39*O2*EXP(5270*TINV)/(1+7.5e-29*O2*EXP(5610*TINV))
+KPPN0         1.7e-03*EXP(-11280*TINV)*M
+KPPNI         8.3e+16*EXP(-13940*TINV)
 KRPPN         KPPN0/KPPNI
 FCPPN         0.36
 NCPPN         0.75-1.27*(LOG10(FCPPN))
 FPPN          10**(LOG10(FCPPN)/(1+(LOG10(KRPPN)/NCPPN)**2))
 KBPPN         (KPPN0*KPPNI)*FCPPN/(KPPN0+KPPNI)
 ******************************************************
-*
