@@ -31,7 +31,7 @@ References
 
 
 
-.. warning::
+.. comment::
 
   **  NOTE !!
   This user-guide is a work-in-progress manual on the GenChem system,

@@ -4,21 +4,29 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Quick start &#8212; genchem 0.9.0 documentation</title>
     <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.9.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Formatting of GenChem files" href="GenChemDoc_chem.html" />
     <link rel="prev" title="Introduction" href="GenChemDoc_intro.html" /> 
-  </head><body>
+  </head>
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -36,7 +44,7 @@
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table of Contents</a></h3>
+  <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Quick start</a><ul>
 <li><a class="reference internal" href="#step-1-initial-setup">Step 1: initial setup</a></li>
@@ -46,6 +54,8 @@
 <li><a class="reference internal" href="#time-related-variables">Time-related variables</a></li>
 <li><a class="reference internal" href="#geographical-location">Geographical location</a></li>
 <li><a class="reference internal" href="#emissions">Emissions</a></li>
+<li><a class="reference internal" href="#outputs">Outputs</a></li>
+<li><a class="reference internal" href="#debug">Debug</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#step-3-emep-setup-py">Step 3: emep_setup.py</a></li>
@@ -68,14 +78,12 @@
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
-    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -87,9 +95,9 @@
           <div class="body" role="main">
             
   <div class="section" id="quick-start">
-<h1>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h1>
+<span id="index-0"></span><h1>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h1>
 <p>We will proceed directly to a run of the box-model system, to show how
-chemical schemes are normally compiled into <code class="docutils literal notranslate"><span class="pre">CM_</span></code> and <code class="docutils literal notranslate"><span class="pre">CMX_</span></code> files, and used
+chemical schemes are normally compiled into <code class="docutils literal"><span class="pre">CM_</span></code> and <code class="docutils literal"><span class="pre">CMX_</span></code> files, and used
 in box-model simulations. This is actually the normal and recommended way to
 prepare files for the EMEP model, but also provides a good environment for
 comparing chemical mechanisms.</p>
@@ -98,7 +106,7 @@ comparing chemical mechanisms.</p>
 <p>If not run previously, some preliminary steps are needed to set up a
 working directory.  From the <strong>GenChem/box</strong> directory (cd
 GenChem/box), do:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">somepath</span><span class="o">/</span><span class="n">GenChem</span><span class="o">-</span><span class="n">xxx</span><span class="o">/</span><span class="n">box</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">somepath</span><span class="o">/</span><span class="n">GenChem</span><span class="o">-</span><span class="n">xxx</span><span class="o">/</span><span class="n">box</span>
 <span class="n">mkdir</span> <span class="n">tmp_work</span>
 
 <span class="n">cd</span> <span class="n">tmp_work</span><span class="o">/</span>
@@ -112,7 +120,7 @@ GenChem/box), do:</p>
 </div>
 <p>If you want, the script box_setup.sh from the box/scripts directory can also be
 used to perform the above steps:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">somepath</span><span class="o">/</span><span class="n">GenChem</span><span class="o">-</span><span class="n">xxx</span><span class="o">/</span><span class="n">box</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">somepath</span><span class="o">/</span><span class="n">GenChem</span><span class="o">-</span><span class="n">xxx</span><span class="o">/</span><span class="n">box</span>
 <span class="n">scripts</span><span class="o">/</span><span class="n">box_setup</span><span class="o">.</span><span class="n">sh</span> <span class="n">tmp_work</span>
 </pre></div>
 </div>
@@ -121,7 +129,7 @@ used to perform the above steps:</p>
 <h2>Step 2: do.testChems<a class="headerlink" href="#step-2-do-testchems" title="Permalink to this headline">¶</a></h2>
 <p>At this stage, one can try compiling a chemical scheme. With the example of
 EmChem19, and now from our tmp_work directory, try:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">do</span><span class="o">.</span><span class="n">testChems</span>  <span class="n">EmChem19a</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">do</span><span class="o">.</span><span class="n">testChems</span>  <span class="n">EmChem19a</span>
 </pre></div>
 </div>
 <p>This script will run GenChem.py on the EmChem19a scheme (also adding
@@ -132,13 +140,13 @@ results in the Output directory:  file boxEmChem19a.csv.
 This file is readable with e.g. libreoffice. Plot scripts are
 also available (see BELOW), for easy visualisation and
 comparison of these csv results.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">CM_</span></code> and <code class="docutils literal notranslate"><span class="pre">CMX_</span></code> fortran files produced by this process are saved in directories, e.g.
-here in  <code class="docutils literal notranslate"><span class="pre">ZCMBOX_EmChem19a</span></code>. These files could be used in the EMEP model if wanted,
+<p>The <code class="docutils literal"><span class="pre">CM_</span></code> and <code class="docutils literal"><span class="pre">CMX_</span></code> fortran files produced by this process are saved in directories, e.g.
+here in  <code class="docutils literal"><span class="pre">ZCMBOX_EmChem19a</span></code>. These files could be used in the EMEP model if wanted,
 but usually the more complex script emep_setup.py (described below) is
 used for that. (Hence we reserve the prefix ZCMBOX for files created by do.testChems
 and ZCM for those created with emep_setup.py, see below.)</p>
 <p>Now, if one wants to compare several schemes, one can do e.g.:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">do</span><span class="o">.</span><span class="n">testChems</span>  <span class="n">EmChem19a</span> <span class="n">CRI</span><span class="o">-</span><span class="n">R5</span><span class="o">-</span><span class="n">emep</span> <span class="n">MCM_v3</span><span class="o">.</span><span class="mi">3</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">do</span><span class="o">.</span><span class="n">testChems</span>  <span class="n">EmChem19a</span> <span class="n">CRIv2R5Em</span> <span class="n">MCMv3</span><span class="o">.</span><span class="mi">3</span><span class="n">Em</span>
 </pre></div>
 </div>
 <p>This would produce 3 output .csv files, which again are easily plotted
@@ -155,7 +163,7 @@ against each other.</p>
 <h2>2a. Plotting?<a class="headerlink" href="#a-plotting" title="Permalink to this headline">¶</a></h2>
 <p>If one has run say 3 chemical schemes using Step 2 above, the results
 are easily plotted from the <em>box/tmp_work/Output</em> directory:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>../../scripts/boxplots.py -h     for help!
+<div class="highlight-default"><div class="highlight"><pre><span></span>../../scripts/boxplots.py -h     for help!
 
 ../../scripts/boxplots.py -v O3 -i boxEmChem19a.csv boxChem1.csv boxChem2.csv  -p
 </pre></div>
@@ -164,7 +172,7 @@ are easily plotted from the <em>box/tmp_work/Output</em> directory:</p>
 in this case. For example, here we can see a comparison of three schemes produced with this script:</p>
 <a class="reference internal image-reference" href="_images/Comp_ppt_HO2_AeroCRI-R5-emep_AeroEmChem19a_AeroMCM_v3pt3.png"><img alt="_images/Comp_ppt_HO2_AeroCRI-R5-emep_AeroEmChem19a_AeroMCM_v3pt3.png" class="align-center" src="_images/Comp_ppt_HO2_AeroCRI-R5-emep_AeroEmChem19a_AeroMCM_v3pt3.png" style="width: 519.2px; height: 404.8px;" /></a>
 <p>Another crude+helpful script just grabs the concentrations:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">../../</span><span class="n">scripts</span><span class="o">/</span><span class="n">getboxconcs</span><span class="o">.</span><span class="n">py</span>  <span class="n">O3</span> <span class="n">boxEmChem19a</span><span class="o">.</span><span class="n">csv</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">../../</span><span class="n">scripts</span><span class="o">/</span><span class="n">getboxconcs</span><span class="o">.</span><span class="n">py</span>  <span class="n">O3</span> <span class="n">boxEmChem19a</span><span class="o">.</span><span class="n">csv</span>
 </pre></div>
 </div>
 <p>which results in ResConcs_boxEmChem19a_O3_ppb.txt</p>
@@ -177,7 +185,7 @@ in this case. For example, here we can see a comparison of three schemes produce
 an exclamation mark (!) is ignored.</p>
 <div class="section" id="time-related-variables">
 <h3>Time-related variables<a class="headerlink" href="#time-related-variables" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>! Time variables, all in seconds
+<div class="highlight-default"><div class="highlight"><pre><span></span>! Time variables, all in seconds
 ! ------------------------------
  tstart = 43200., ! start at 12:00
 ! end time is absolute time -&gt; total runtime is tend - tstart!
@@ -189,14 +197,14 @@ an exclamation mark (!) is ignored.</p>
 </div>
 <div class="section" id="geographical-location">
 <h3>Geographical location<a class="headerlink" href="#geographical-location" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>lat = 45.05,    ! degrees N
+<div class="highlight-default"><div class="highlight"><pre><span></span>lat = 45.05,    ! degrees N
 lon = 15.06,    ! degrees E
 </pre></div>
 </div>
 </div>
 <div class="section" id="emissions">
 <h3>Emissions<a class="headerlink" href="#emissions" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> use_emis = T,     ! use emissions at all?
+<div class="highlight-default"><div class="highlight"><pre><span></span> use_emis = T,     ! use emissions at all?
 ! directory with emissplit files:
  emissplit_dir = &#39;emissplit_run/&#39;
  emis_kgm2day = &#39;nox&#39;, 18.3, ! NOx, kg/m2/day, as in MCM/CRI tests
@@ -204,11 +212,46 @@ lon = 15.06,    ! degrees E
  !emis_kgm2day = &#39;nox&#39;, 180.3, ! NOx, kg/m2/day, as in MCM/CRI tests
  !               &#39;voc&#39;, 150.4  ! NMVOC
 
- ! BVOC emissions.
- ! The following emissions will be modulated by light
- rcbio_isopMax  = 1.0e11, ! molec/cm2/s  isoprene
- rcbio_mtlMax   = 0.5e11, ! molec/cm2/s  monoterpenes from light-dependent emissions
- rcbio_mtp      = 0.5e11,
+ ! BVOC emissions are set in chem/extra_mechanisms/BoxBVOCemis, where
+ ! also a factor SUN is given for light-dependent emissions. These BVOC
+ ! emissions can be adjusted with the factors below.
+
+ fIso = 1.0,                     ! isoprene
+ fMTL = 0.0,                     ! monoterpenes from light-dependent emissions
+ fMTP = 0.0,                     ! monoterpenes from pool (Temp.)-dependent emissions
+ fSQT = 0.0,                     ! sesqui-terpenes
+</pre></div>
+</div>
+</div>
+<div class="section" id="outputs">
+<h3>Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default"><div class="highlight"><pre><span></span>! Can say just e.g. &#39;O3&#39;, to reduce size of outputs,
+!  but in general usage &#39;all&#39; is normally best.
+
+  OutSpecs_list =
+  &#39;all&#39;, &#39;ppb&#39;    ! Will switch to ug for OM
+
+! Output Groups
+! --------------
+  OutGroups_list =
+  &#39;NOX&#39;,   &#39;ppb&#39;,
+</pre></div>
+</div>
+</div>
+<div class="section" id="debug">
+<h3>Debug<a class="headerlink" href="#debug" title="Permalink to this headline">¶</a></h3>
+<p>Some flags produce more output. More documentation to be added later.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>! -----
+
+! For testing, one can assign all VOC to one species. Do that here:
+!  dbgVOC = &#39;NODEBUG&#39;,
+!  dbgVOC = &#39;C2H4&#39;,
+  debug%Emis = 0
+!  debug%VOC = &#39;C2H4&#39;
+  debug%Spec = &#39;NONE&#39;, !&#39;C2H4&#39;
+  debug%SOA = 0
+  debug%PM = .false.
+  debug%Chem = .false.
 </pre></div>
 </div>
 </div>
@@ -243,35 +286,29 @@ within  the <strong>box</strong> system. So, from e.g. box/tmp_work, do:</p>
 <blockquote>
 <div>./emep_setup.py  EmChem19a</div></blockquote>
 <p>or just:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">emep_setup</span><span class="o">.</span><span class="n">py</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">emep_setup</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
 <p>and this will provide a list of options.</p>
 <p>You can edit the <em>emep_setup.py</em> scripts, maybe renaming it as <em>my_setup.py</em> directory.
 If selecting from the provided base_mechanisms and extra_mechanisms you only need to extend
 the possible command lines as provided by the <em>cmdx</em>  dictionary:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cmdx</span><span class="p">[</span><span class="s1">&#39;EmChem19a&#39;</span><span class="p">]</span> <span class="o">=</span><span class="s1">&#39;-b EmChem19a -e PM_VBS_EmChem19 BVOC_MTERP1_EmChem19&#39;</span><span class="o">+</span><span class="n">common</span>
-<span class="n">cmdx</span><span class="p">[</span><span class="s1">&#39;CRI-R5-emep&#39;</span><span class="p">]</span> <span class="o">=</span><span class="s1">&#39;-b CRI-R5-emep -e common&#39;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cmdx</span><span class="p">[</span><span class="s1">&#39;EmChem19a-vbs&#39;</span><span class="p">]</span> <span class="o">=</span><span class="s1">&#39;-b EmChem19a -e PM_VBS_EmChem19 &#39;</span><span class="o">+</span><span class="n">common_IsoMT1</span>
+<span class="n">cmdx</span><span class="p">[</span><span class="s1">&#39;CRIv2R5Em-M19&#39;</span><span class="p">]</span> <span class="o">=</span><span class="s1">&#39;-b CRIv2R5Em -e PM_JPAC_MT3 PM_Hodzic_Aromatics BVOC_XTERP_CRI&#39;</span><span class="o">+</span><span class="n">common_IsoMT3</span><span class="s1">&#39;</span>
 </pre></div>
 </div>
 <p>The ‘-b’ argument gives the base mechanism, and then you can have any number of compatable extra mechanisms (-e argument).</p>
+<p>(There are many possible combinations of packages - see Simpson et al., (2020, submitted) and the emep_setup.py code for many examples.</p>
 <p>Any keys from <em>cmdx</em> can be used by <em>emep_setup.py</em>. For example, if the user builds a new base scheme <em>usersChem</em> and
 some OA scheme, <em>usersSOA</em>, then <em>emep_setup.py</em> can be edited to add these as a new option:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cmdx</span><span class="p">[</span><span class="s1">&#39;usersChem&#39;</span><span class="p">]</span> <span class="o">=</span><span class="s1">&#39;-b usersChem -e  usersSOA&#39;</span><span class="o">+</span><span class="n">common</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cmdx</span><span class="p">[</span><span class="s1">&#39;usersChem&#39;</span><span class="p">]</span> <span class="o">=</span><span class="s1">&#39;-b usersChem -e  usersSOA&#39;</span><span class="o">+</span><span class="n">common</span>
 </pre></div>
 </div>
 <p>you could do:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">do</span><span class="o">.</span><span class="n">testChems</span> <span class="n">usersChem</span>   <span class="c1"># GOOD TO CHECK FIRST</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">do</span><span class="o">.</span><span class="n">testChems</span> <span class="n">usersChem</span>   <span class="c1"># GOOD TO CHECK FIRST</span>
 
 <span class="n">emep_setup</span><span class="o">.</span><span class="n">py</span> <span class="n">usersChem</span>  <span class="c1"># Creates ZCM_usersChem</span>
 </pre></div>
-</div>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">**  NOTE !!
-This user-guide is a work-in-progress manual on the GenChem system,
-with this interim version produced for interested users, Feb. 2020.
-**</p>
 </div>
 </div>
 </div>
@@ -299,7 +336,7 @@ with this interim version produced for interested users, Feb. 2020.
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2000-2020 met.no.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
     </div>
   </body>
 </html>

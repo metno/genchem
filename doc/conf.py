@@ -35,6 +35,7 @@ release = ''
 #
 # needs_sphinx = '1.0'
 
+#import sphinx_rtd_theme
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
@@ -43,6 +44,7 @@ extensions = [
     'sphinx.ext.imgmath',
     'sphinx.ext.ifconfig',
     'sphinx.ext.githubpages',
+#    'sphinx_rtd_theme',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -86,6 +88,8 @@ exclude_patterns = []
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
 
+# If true, `todo` and `todoList` produce output, else they produce nothing.
+#todo_include_todos = True
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -95,6 +99,9 @@ pygments_style = 'sphinx'
 # html_theme = 'alabaster'
 html_theme = 'nature'  # nice!
 html_theme = 'sphinxdoc'
+#failed, even after pip install:
+#html_theme = 'sphinx_rtd_theme'
+ 
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the

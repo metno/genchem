@@ -4,21 +4,29 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Introduction &#8212; genchem 0.9.0 documentation</title>
     <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.9.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Quick start" href="GenChemDoc_quickstart.html" />
     <link rel="prev" title="Welcome to GenChem’s documentation!" href="index.html" /> 
-  </head><body>
+  </head>
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -36,10 +44,11 @@
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table of Contents</a></h3>
+  <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Introduction</a><ul>
 <li><a class="reference internal" href="#code-structure">Code structure</a></li>
+<li><a class="reference internal" href="#conventions-in-documenentation-naming">Conventions in documenentation naming</a></li>
 <li><a class="reference internal" href="#requirements">Requirements</a></li>
 </ul>
 </li>
@@ -60,14 +69,12 @@
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
-    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -79,7 +86,7 @@
           <div class="body" role="main">
             
   <div class="section" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<span id="index-0"></span><h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
 <p>GenChem is a system to generate and test chemical mechanisms for the
 EMEP MSC-W model [Simpson2012] and 1-D canopy model, ESX [SimpsonTuovinen2014].
 GenChem consists of two main directories, <strong>chem</strong> and <strong>box</strong>.</p>
@@ -102,7 +109,7 @@ mechanisms alongside each other.</p>
 <div class="section" id="code-structure">
 <h2>Code structure<a class="headerlink" href="#code-structure" title="Permalink to this headline">¶</a></h2>
 <p>The directory structure for GenChem can be summarised as:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">XXX</span><span class="o">/</span><span class="n">chem</span>                 <span class="c1"># GenChem&#39;s mechanism tree</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">XXX</span><span class="o">/</span><span class="n">chem</span>                 <span class="c1"># GenChem&#39;s mechanism tree</span>
 <span class="n">XXX</span><span class="o">/</span><span class="n">chem</span><span class="o">/</span><span class="n">scripts</span>         <span class="c1"># scripts, including do.GenChem and GenChem.py</span>
 <span class="n">XXX</span><span class="o">/</span><span class="n">chem</span><span class="o">/</span><span class="n">base_mechanisms</span> <span class="c1"># collection of main chemical schemes</span>
 <span class="n">XXX</span><span class="o">/</span><span class="n">chem</span><span class="o">/</span><span class="n">extra_mechanisms</span> <span class="c1"># collection of extra reactions for chemical schemes</span>
@@ -120,6 +127,33 @@ mechanisms alongside each other.</p>
 </div>
 <p>(where XXX could any suitable user-directory into which GenChem was unpacked, e.g. /home/fred/chemwork/GenChem.)</p>
 </div>
+<div class="section" id="conventions-in-documenentation-naming">
+<h2>Conventions in documenentation naming<a class="headerlink" href="#conventions-in-documenentation-naming" title="Permalink to this headline">¶</a></h2>
+<p>The input files to GenChem (GenIn files) as used in box or emep model
+are usually built up by appending files from one <em>base</em> directory (from
+base_mechanisms) and one or more (usually many!) <em>extra</em> mechanisms
+from the extra_mechanisms directory. For example, GenIn_Species.csv
+used for  the EMEP CTM’s default EmChem19p scheme consists of  Species
+files from base_mechanisms/EmChem19a, and from twelve extra_mechanisms
+directories (e.g. extra_mechanisms/SeaSalt/SeaSalt_Species.csv,
+extra_mechanisms/PM_VBS_EmChem19/PM_VBS_EmChem19_Species, etc.). To
+avoid having to write out these names explicitly each time, we adopt
+generic names, as illustrated below for the EmChem19p case:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">SCHEME</span>               <span class="n">name</span> <span class="k">for</span> <span class="n">complete</span> <span class="n">chemical</span> <span class="n">mechanisms</span> <span class="n">package</span><span class="o">.</span>
+                     <span class="p">(</span><span class="n">currently</span> <span class="n">EmChem19a</span><span class="p">,</span> <span class="n">EmChem19p</span><span class="p">,</span> <span class="n">CB6r2</span><span class="p">,</span> <span class="n">CRIv2emep</span><span class="p">,</span> <span class="n">MCM_v3</span><span class="o">.</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">BASE_Species</span><span class="o">.</span><span class="n">csv</span>     <span class="n">base_mechanisms</span><span class="o">/</span><span class="n">EmChem19a_Species</span><span class="o">.</span><span class="n">csv</span>
+
+<span class="n">EXTRAS_Species</span><span class="o">.</span><span class="n">csv</span>   <span class="n">extra_mechanisms</span><span class="o">/</span><span class="n">SeaSalt</span><span class="o">/</span><span class="n">SeaSalt_Species</span><span class="o">.</span><span class="n">csv</span><span class="p">,</span>
+                     <span class="n">extra_mechanisms</span><span class="o">/</span><span class="n">Aqueous_EmChem16x</span><span class="o">/</span><span class="n">Aqueous_EmChem16x_Species</span><span class="o">.</span><span class="n">csv</span><span class="p">,</span>
+                     <span class="o">....</span>
+
+<span class="n">CMDIR_Species</span><span class="o">.</span><span class="n">csv</span>    <span class="n">Either</span> <span class="n">base</span> <span class="ow">or</span> <span class="n">extras</span> <span class="n">file</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span>
+                     <span class="n">base_mechanisms</span><span class="o">/</span><span class="n">EmChem19a_Species</span><span class="o">.</span><span class="n">csv</span> <span class="o">**</span><span class="ow">or</span><span class="o">**</span>
+                     <span class="n">extra_mechanisms</span><span class="o">/</span><span class="n">SeaSalt</span><span class="o">/</span><span class="n">SeaSalt_Species</span><span class="o">.</span><span class="n">csv</span><span class="p">,</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
 <p>GenChem has been developed on Ubuntu linux systems, and
@@ -135,13 +169,6 @@ The minumum requirements are a modern fortran compiler and python3
 <li>ifort 13.0.1</li>
 </ul>
 </div></blockquote>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">**  NOTE !!
-This user-guide is a work-in-progress manual on the GenChem system,
-with this interim version produced for interested users, Feb. 2020.
-**</p>
-</div>
 </div>
 </div>
 
@@ -168,7 +195,7 @@ with this interim version produced for interested users, Feb. 2020.
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2000-2020 met.no.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
     </div>
   </body>
 </html>

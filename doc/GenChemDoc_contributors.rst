@@ -26,7 +26,7 @@ The GenChem system was created over many years:
   various bug-fixes and updates. Added pollen.
 
 
-.. warning::
+.. comment::
 
   **  NOTE !!
   This user-guide is a work-in-progress manual on the GenChem system,

@@ -4,21 +4,29 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Formatting of GenChem files &#8212; genchem 0.9.0 documentation</title>
     <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.9.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Contributors" href="GenChemDoc_contributors.html" />
     <link rel="prev" title="Quick start" href="GenChemDoc_quickstart.html" /> 
-  </head><body>
+  </head>
+  <body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -36,7 +44,7 @@
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table of Contents</a></h3>
+  <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Formatting of GenChem files</a><ul>
 <li><a class="reference internal" href="#reactions-files">Reactions files</a></li>
@@ -61,14 +69,12 @@
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
-    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -84,7 +90,7 @@
 <div class="section" id="reactions-files">
 <h2>Reactions files<a class="headerlink" href="#reactions-files" title="Permalink to this headline">¶</a></h2>
 <p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Some</span> <span class="n">simple</span> <span class="n">lines</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Some</span> <span class="n">simple</span> <span class="n">lines</span>
 <span class="mf">1.4e-12</span><span class="o">*</span><span class="n">EXP</span><span class="p">(</span><span class="o">-</span><span class="mf">1310.</span><span class="o">*</span><span class="n">TINV</span><span class="p">)</span>          <span class="p">:</span> <span class="n">O3</span> <span class="o">+</span> <span class="n">NO</span>    <span class="o">=</span> <span class="n">NO2</span> <span class="o">+</span> <span class="o">&lt;</span><span class="n">O2</span><span class="o">&gt;</span>  <span class="p">;</span> <span class="n">acp2004</span>
 <span class="mf">5.681e-34</span><span class="o">*</span><span class="n">EXP</span><span class="p">(</span><span class="o">-</span><span class="mf">2.6</span><span class="o">*</span><span class="n">LogTdiv300</span><span class="p">)</span>    <span class="p">:</span> <span class="n">OP</span> <span class="o">+</span> <span class="o">&lt;</span><span class="n">O2</span><span class="o">&gt;</span> <span class="o">+</span> <span class="o">&lt;</span><span class="n">M</span><span class="o">&gt;</span>  <span class="o">=</span> <span class="n">O3</span> <span class="p">;</span> <span class="n">acp2004</span>
 <span class="mf">2.15e-11</span><span class="o">*</span><span class="n">EXP</span><span class="p">(</span><span class="mf">110.</span><span class="o">*</span><span class="n">TINV</span><span class="p">)</span>           <span class="p">:</span> <span class="n">OD</span> <span class="o">+</span> <span class="o">&lt;</span><span class="n">N2</span><span class="o">&gt;</span>  <span class="o">=</span> <span class="n">OP</span>       <span class="p">;</span> <span class="n">Updated</span> <span class="p">(</span><span class="n">IUPAC</span> <span class="mi">2009</span><span class="p">)</span>
@@ -116,40 +122,102 @@
 <h2>Species files<a class="headerlink" href="#species-files" title="Permalink to this headline">¶</a></h2>
 <p>The input to the GenChem.py script is GenIn_Species.csv, but this
 is assembled by do.GenChem from all needed  _Species.csv files from
-the base_mechanisms and extra_mechanisms sub-directories. For For
+the base_mechanisms and extra_mechanisms sub-directories. For
 example, for a typical emep run with base EmChem19a, do.GenChem
 appends EmChem19a_Species.csv, SeaSalt_Species.csv, and many more into
 one GenIn_Species.csv. The file contains columns with species
 name, type, formula, and various settings related to dry and wet deposition</p>
-<p>Example lines:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Spec,adv,formula,MW,DRY,WET,Groups,!Comments
+<p>The GenIn_Species.csv file is a spreadsheet-friendly comma-separated file
+where the characteristics of the chemical compounds are given.</p>
+<blockquote>
+<div>Spec,adv,formula,MW,DRY,WET,Groups,!Comments
 *
 RO2POOL,1,RO2POOL,xx,xx,xx,xx,!
 OD,0,O,xx,xx,xx,xx,!
 NO2,1,NO2,xx,NO2,xx,NOx;OX;OXN;daObs,!
 MACR,1,CH2=CCH3CHO,xx,MEK,xx,RCHO;carbonyl;Hstar_5p0e0;f0_0p05;DRx_2p6,!
-BSOC_ng1e2,2,C,12.,ALD,ROOH,Cstar:0.1;DeltaH:30.0;OM25;PCM;BSOA,&quot;! semi-volatile OC from BVOC &quot;
-</pre></div>
-</div>
-<p>Further details can be found in the documentation article …</p>
+BSOC_ng1e2,2,C,12.,ALD,ROOH,Cstar:0.1;DeltaH:30.0;OM25;PCM;BSOA,”! semi-volatile OC from BVOC “</div></blockquote>
+<p>The meaning of the columns is:</p>
+<blockquote>
+<div><p><strong>Spec</strong> -  Species name as used in model.</p>
+<p><strong>adv</strong> -   Type of compound. CTMs usually distinguish between advected and
+non-advected (or short-lived) species, in order to minimise CPU needs
+(concentrations of short-lived compounds only need chemical reaction
+terms, not advection). In addition, the EMEP model handles semivolatile
+SOA species  through special handling (see below), and some
+species are so long-lived (e.g. CH4) that they can be accurately
+calculated without multiple iterations.  Allowed values of type are:</p>
+<blockquote>
+<div><p>0 - for short lived compounds (e.g. OH), which are not advected in the EMEP model.</p>
+<p>1 - for advected compounds (e.g. O3, HCHO)</p>
+<p>2 - for semivolatile SOA compounds (e.g. BSOC_ng100). The EMEP model (and boxChem)
+tracks such species by compound rather than phase, and calculates
+the partitioning between the phases dynamically, based upon the
+compound’s volatilty. Species labelled with
+type 2 are accounted within the list of advected species, but the
+start and end of the  semivolatile list is calculated by GenChem.py,
+to produce integer variables which demarcate these semivolatile
+compounds, e.g. FIRST_SEMIVOL=136  and LAST_SEMIVOL=176.</p>
+<p>3 - for compounds which react very slowly (e.g. CH4).</p>
+</div></blockquote>
+<p><strong>formula</strong> -  If a true chemical formula is provided (e.g. CH3CHO, or
+O=CHC(O2)(CH3)CH2OH) then GenChem will calculate the number of atoms
+(C, H, O, S or N) and the molecular weight. Such formula must use
+capital letters; lower case letters are ignored as far as processing is
+concerned, but may be used to help document the intention, e.g. nC4H10
+is identical to C4H10, or pm25 is particulate matter but whose formula
+we do not know. For example, an entry for an organic nitrate might have
+formula ‘someNO3’ which mixes lower and upper case.  In this case
+the molecular weight must be given if this is needed for the chemical
+modelling. (Typically we do need the mass of emitted species, but not
+always the mass of other species since we usually use mixing ratios
+for advection and output in ppb units.  Occassionally examples occur
+where mass is not strictly required, but where one wants to know
+the nitrogen content, typically where outputs are given in terms of
+e.g. ug(N)/m3. In this case, the ‘someNO3’ formula would be
+enough to allow GenChem to figure out that this compound contains one
+nitrogen atom.)</p>
+<p><strong>MW</strong> - can be dummy (xx) or a real number giving the molecular
+weight of the compound. When given, this value is used in place of
+any MW calculated from the formula. As noted above, the MW value is
+sometimes but not always needed. For some emitted compounds, usually
+connected with particulate matter where we do not know the composition,
+we have to give a dummy molecular weight.  This information is used
+internally in the model to get associated mixing ratios, but outputs
+for such compounds should always be in mass-units so that consistency
+is preserved.</p>
+<p><strong>DRY</strong> -  dry-deposition surrogate. The EMEP and ESX models calculate
+dry-deposition explicitly for a limited number of compounds, and here
+we can choose which of these compounds can be used as a surrogate
+for the desired species.  For example, for O3 we simply use O3; for
+C2H5OOH we use the ROOH surrogate. If not dry-deposited, simply use xx.
+For the semivolatile SOA species EMEP/ESX CTMs will use this rate for
+the gas-phase fraction of the SOA.</p>
+<p><strong>WET</strong> - wet-deposition surrogate - similar to the dry deposition
+system.  For example, for HCHO we simply use HCHO; for the semivolatile
+SOA species such as BSOC_ng100  we specify the same wet-deposition
+as for fine-particulate matter (denoted PMf), and the EMEP/ESX CTMs
+will use this rate  for the condensed fraction of the SOA.</p>
+<p><strong>Groups</strong> -  specifies groups which species belong to (e.g. OXN
+for oxidised nitrogen, RO2 for peroxy radicals) and allows
+surrogate species or factors to be assigned to these groups,
+e.g. Cstar:10.0;Extinc:0.4 assigns a vapour pressure Cstar (used
+in SOA modelling) to be 10 (ug/m3) and an Extinc coefficient to
+be 0.4. It is important that these groups are
+separated by semi-colons, not commas.  This rather powerful feature
+is discussed further in Simpson et al. (Submitted, 2020).</p>
+</div></blockquote>
 </div>
 <div class="section" id="shorthands-file">
 <h2>Shorthands file<a class="headerlink" href="#shorthands-file" title="Permalink to this headline">¶</a></h2>
 <p>Shorthands are text-strings used in the Reactions.txt file, usually to represent commonly used rate-coefficients. The meaning of the text-string is given in _Shorthand.txt file, e.g.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>XT           temp
+<div class="highlight-default"><div class="highlight"><pre><span></span>XT           temp
 FH2O         (1.0+1.4e-21*h2o*exp(2200.0*TINV))
 KHO2RO2      2.91e-13*exp(1300.*TINV) ! MCM2001 ...
 KMT12        IUPAC_troe(2.8e-31*exp(2.6*Log300divT),2.0e-12,exp(-TEMP/472.),M,0.75-1.27*(-TEMP/472.)/LOG(10.))
 </pre></div>
 </div>
 <p>In these examples, XT is just a character-saving replacement for temp, FH2O gives a more complex expression, which also uses the pre-defined variable TINV = 1/temp. KHO2RO2 is a common rate-coefficient, but here we see that comments are allowed - anything afer the 2nd term. FInally, the KMT12 term shows that complex fuction calls are also allowed. IMPORTANT - avoid white space in any terms!</p>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">**  NOTE !!
-This user-guide is a work-in-progress manual on the GenChem system,
-with this interim version produced for interested users, Feb. 2020.
-**</p>
-</div>
 </div>
 </div>
 
@@ -176,7 +244,7 @@ with this interim version produced for interested users, Feb. 2020.
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2000-2020 met.no.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
     </div>
   </body>
 </html>

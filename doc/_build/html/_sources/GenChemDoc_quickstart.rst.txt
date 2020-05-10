@@ -1,4 +1,4 @@
-
+.. index:: Quick Start
 
 Quick start
 -----------
@@ -65,7 +65,7 @@ and ZCM for those created with emep\_setup.py, see below.)
 
 Now, if one wants to compare several schemes, one can do e.g.::
 
-  ./do.testChems  EmChem19a CRI-R5-emep MCM_v3.3
+  ./do.testChems  EmChem19a CRIv2R5Em MCMv3.3Em
 
 This would produce 3 output .csv files, which again are easily plotted
 against each other. 
@@ -153,11 +153,48 @@ Emissions
    !emis_kgm2day = 'nox', 180.3, ! NOx, kg/m2/day, as in MCM/CRI tests
    !               'voc', 150.4  ! NMVOC
 
-   ! BVOC emissions.
-   ! The following emissions will be modulated by light
-   rcbio_isopMax  = 1.0e11, ! molec/cm2/s  isoprene
-   rcbio_mtlMax   = 0.5e11, ! molec/cm2/s  monoterpenes from light-dependent emissions
-   rcbio_mtp      = 0.5e11,
+   ! BVOC emissions are set in chem/extra_mechanisms/BoxBVOCemis, where
+   ! also a factor SUN is given for light-dependent emissions. These BVOC
+   ! emissions can be adjusted with the factors below.
+
+   fIso = 1.0,                     ! isoprene
+   fMTL = 0.0,                     ! monoterpenes from light-dependent emissions
+   fMTP = 0.0,                     ! monoterpenes from pool (Temp.)-dependent emissions
+   fSQT = 0.0,                     ! sesqui-terpenes
+
+
+Outputs
+.......
+::
+
+   ! Can say just e.g. 'O3', to reduce size of outputs,
+   !  but in general usage 'all' is normally best.
+   
+     OutSpecs_list =
+     'all', 'ppb'    ! Will switch to ug for OM
+   
+   ! Output Groups
+   ! --------------
+     OutGroups_list =
+     'NOX',   'ppb',
+
+Debug
+.....
+
+Some flags produce more output. More documentation to be added later.
+::
+
+   ! -----
+  
+   ! For testing, one can assign all VOC to one species. Do that here:
+   !  dbgVOC = 'NODEBUG',
+   !  dbgVOC = 'C2H4',
+     debug%Emis = 0
+   !  debug%VOC = 'C2H4'
+     debug%Spec = 'NONE', !'C2H4'
+     debug%SOA = 0
+     debug%PM = .false.
+     debug%Chem = .false.
 
 
 
@@ -205,11 +242,13 @@ You can edit the *emep_setup.py* scripts, maybe renaming it as *my_setup.py* dir
 If selecting from the provided base\_mechanisms and extra\_mechanisms you only need to extend
 the possible command lines as provided by the *cmdx*  dictionary::
 
-  cmdx['EmChem19a'] ='-b EmChem19a -e PM_VBS_EmChem19 BVOC_MTERP1_EmChem19'+common
-  cmdx['CRI-R5-emep'] ='-b CRI-R5-emep -e common'
+  cmdx['EmChem19a-vbs'] ='-b EmChem19a -e PM_VBS_EmChem19 '+common_IsoMT1
+  cmdx['CRIv2R5Em-M19'] ='-b CRIv2R5Em -e PM_JPAC_MT3 PM_Hodzic_Aromatics BVOC_XTERP_CRI'+common_IsoMT3'
 
 
 The '-b' argument gives the base mechanism, and then you can have any number of compatable extra mechanisms (-e argument).
+
+(There are many possible combinations of packages - see Simpson et al., (2020, submitted) and the emep_setup.py code for many examples.
 
 Any keys from *cmdx* can be used by *emep_setup.py*. For example, if the user builds a new base scheme *usersChem* and
 some OA scheme, *usersSOA*, then *emep_setup.py* can be edited to add these as a new option::
@@ -225,9 +264,9 @@ you could do::
 
 
 
-.. warning::
+.. comment::
 
   **  NOTE !!
   This user-guide is a work-in-progress manual on the GenChem system,
-  with this interim version produced for interested users, Feb. 2020.
+  with this interim version produced for interested users, Apr. 2020.
   **

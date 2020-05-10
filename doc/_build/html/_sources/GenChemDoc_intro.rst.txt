@@ -1,3 +1,5 @@
+.. index:: INTRO
+  
 
 Introduction
 ============
@@ -48,6 +50,36 @@ The directory structure for GenChem can be summarised as::
 (where XXX could any suitable user-directory into which GenChem was unpacked, e.g. /home/fred/chemwork/GenChem.)
 
 
+Conventions in documenentation naming
+-------------------------------------
+
+The input files to GenChem (GenIn files) as used in box or emep model
+are usually built up by appending files from one *base* directory (from
+base_mechanisms) and one or more (usually many!) *extra* mechanisms
+from the extra_mechanisms directory. For example, GenIn_Species.csv
+used for  the EMEP CTM's default EmChem19p scheme consists of  Species
+files from base_mechanisms/EmChem19a, and from twelve extra_mechanisms
+directories (e.g. extra_mechanisms/SeaSalt/SeaSalt_Species.csv,
+extra_mechanisms/PM_VBS_EmChem19/PM_VBS_EmChem19_Species, etc.). To
+avoid having to write out these names explicitly each time, we adopt
+generic names, as illustrated below for the EmChem19p case::
+
+
+  SCHEME               name for complete chemical mechanisms package. 
+                       (currently EmChem19a, EmChem19p, CB6r2, CRIv2emep, MCM_v3.3)
+
+  BASE_Species.csv     base_mechanisms/EmChem19a_Species.csv
+
+  EXTRAS_Species.csv   extra_mechanisms/SeaSalt/SeaSalt_Species.csv, 
+                       extra_mechanisms/Aqueous_EmChem16x/Aqueous_EmChem16x_Species.csv,
+                       ....
+
+  CMDIR_Species.csv    Either base or extras file, e.g.
+                       base_mechanisms/EmChem19a_Species.csv **or**
+                       extra_mechanisms/SeaSalt/SeaSalt_Species.csv, 
+
+
+
 Requirements
 ------------
 
@@ -67,7 +99,7 @@ We have used for example
 
 
 
-.. warning::
+.. comment::
 
   **  NOTE !!
   This user-guide is a work-in-progress manual on the GenChem system,

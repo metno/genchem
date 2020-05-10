@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2019.11.11)  13 JAN 2020 12:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2019.11.11)  26 FEB 2020 14:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -873,7 +873,7 @@ Chapter 2.
 [3
 
 ]
-<Comp_ppt_HO2_AeroCRI-R5-emep_AeroEmChem19a_AeroMCM_v3pt3.png, id=125, 469.0323
+<Comp_ppt_HO2_AeroCRI-R5-emep_AeroEmChem19a_AeroMCM_v3pt3.png, id=131, 469.0323
 pt x 365.6862pt>
 File: Comp_ppt_HO2_AeroCRI-R5-emep_AeroEmChem19a_AeroMCM_v3pt3.png Graphic file
  (type png)
@@ -925,25 +925,29 @@ Chapter 4.
 Chapter 5.
 [11] [12
 
+]
+Chapter 6.
+[13] [14
+
 ] (./GenChemDoc.ind)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 568.
- [13
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 582.
+ [15
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 568.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 582.
  (./GenChemDoc.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 568.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 568.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 582.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 582.
 Package rerunfilecheck Info: File `GenChemDoc.out' has not changed.
-(rerunfilecheck)             Checksum: A431BBDFA95EB9C169DCD108FEA4AAF8;2070.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 568.
+(rerunfilecheck)             Checksum: 484132DC02B5088B96D330A93F1A374F;2210.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 582.
  ) 
 Here is how much of TeX's memory you used:
- 13568 strings out of 494477
- 190699 string characters out of 6175714
- 329960 words of memory out of 5000000
- 16902 multiletter control sequences out of 15000+600000
- 47968 words of font info for 69 fonts, out of 8000000 for 9000
+ 13574 strings out of 494477
+ 190766 string characters out of 6175714
+ 329025 words of memory out of 5000000
+ 16904 multiletter control sequences out of 15000+600000
+ 49128 words of font info for 70 fonts, out of 8000000 for 9000
  60 hyphenation exceptions out of 8191
  37i,11n,45p,456b,477s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
@@ -951,13 +955,14 @@ e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/f
 onts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
 w/courier/ucrro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/u
-hvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on GenChemDoc.pdf (17 pages, 179697 bytes).
+hvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/urw/times/utmri8a.pfb>
+Output written on GenChemDoc.pdf (19 pages, 188264 bytes).
 PDF statistics:
- 224 PDF objects out of 1000 (max. 8388607)
- 188 compressed objects within 2 object streams
- 45 named destinations out of 1000 (max. 500000)
- 154 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 243 PDF objects out of 1000 (max. 8388607)
+ 203 compressed objects within 3 object streams
+ 48 named destinations out of 1000 (max. 500000)
+ 162 words of extra memory for PDF output out of 10000 (max. 10000000)
 
