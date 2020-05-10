@@ -11,11 +11,11 @@ Biomass burning
 
 So far two setups are needed, for either the FINN or GFAS sources of wildfires:
 
-MCM_v3.3_BiomassBurningMapping_FINNv1.5.txt
-MCM_v3.3_BiomassBurningMapping_GFASv1.txt
+MCMv3.3Em_BiomassBurningMapping_FINNv1.5.txt
+MCMv3.3Em_BiomassBurningMapping_GFASv1.txt
 
 
 Boumdary condition mapping
 --------------------------
 
-MCM_v3.3_BoundaryConditions.txt
+MCMv3.3Em_BoundaryConditions.txt
