@@ -12,11 +12,11 @@ Biomass burning
 
 So far two setups are needed, for either the FINN or GFAS sources of wildfires:
 
-CRI-R5-emep_BiomassBurning_FINNv1.5.txt
-CRI-R5-emep_BiomassBurning_GFASv1.txt
+CRIv2R5Em_BiomassBurning_FINNv1.5.txt
+CRIv2R5Em_BiomassBurning_GFASv1.txt
 
 
 Boumdary condition mapping
 --------------------------
 
-CRI-R5-emep_BoundaryConditions.txt
+CRIv2R5Em_BoundaryConditions.txt
