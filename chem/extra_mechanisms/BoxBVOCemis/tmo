@@ -1,7 +1,0 @@
-* has a reasonably realistic diurnal variation.
-* As example emission rates, we use the default broadleaf and coniferous
-* from Simpson et al, ACP, 2012:
-* broadleaf Iso with e=5ug/g/h, D=320 g/m2, Hmix=1000m has emission in #/cm3/s of 3.94e6
-* coniferous MT with emtp=1ug/g/h emtl=1ug/h, D=500 g/m2, Hmix=1000m has emission in #/cm3/s of 6.4e5
-* with MT maybe controlled 50% by SUN and 50% by just temperature 
-

@@ -80,46 +80,9 @@ XYL,1,C8,96.0,xx,xx,xx,!Xylene and other polyalkyl aromatics !!NOTE emitted spec
 NTR1,1,C4H9O3N,119.1,VLSOLNO3,xx,nitrate;TNO3;OXN;Hstar_0p0e0;f0_0p3;DRx_3p3,!Simple organic nitrates -- deposition parameters from CRI RN13NO3
 NTR2,1,C4H9O4N,135.1,MDSOLNO3,HCHO,nitrate;TNO3;OXN;Hstar_1p0e4;f0_0p3;DRx_3p4,!Multi-functional organic nitrates -- deposition parameters based on estimates for MCM BUT2OLNO3
 ECH4,1,CH4,16.0,xx,xx,xx,!Emitted methane (to enable tracking separate from CH4)
-CL2,1,Cl2,70.9,xx,xx,xx,!Molecular chlorine
-CL,1,Cl,35.5,xx,xx,xx,!Chlorine atom
-CLO,1,OCl,51.4,xx,xx,xx,!Chlorine monoxide
-HCL,1,HCl,36.5,xx,xx,xx,!Hydrogen chloride
-HOCL,1,HOCl,52.4,xx,xx,xx,!Hypochlorous acid
-CLN2,1,O2NCl,81.4,xx,xx,OXN,!Nitryl chloride
-CLN3,1,O3NCl,97.4,xx,xx,OXN,!Chlorine nitrate
-FMCL,1,CHOCl,64.5,xx,xx,xx,!Formyl chloride
-BR2,1,Br2,159.8,xx,xx,xx,!Molecular bromine
-BR,1,Br,79.9,xx,xx,xx,!Bromine atom
-BRO,1,OBr,95.9,xx,xx,xx,!Bromine monoxide
-HBR,1,HBr,80.9,xx,xx,xx,!Hydrogen bromide
-HOBR,1,HOBr,96.9,xx,xx,xx,!Hypobromous acid
-BRN2,1,O2NBr,125.9,xx,xx,OXN,!Nitryl broride
-BRN3,1,O3NBr,141.9,xx,xx,OXN,!Bromine nitrate
-FMBR,1,CHOBr,108.9,xx,xx,xx,!Formyl bromide
-I2,1,I2,253.8,xx,xx,xx,!Molecular iodine
-Iodine,1,I,126.9,xx,xx,xx,!Iodine atom
-IO,1,OI,142.9,xx,xx,xx,!Iodine monoxide
-OIO,1,O2I,158.9,xx,xx,xx,!Iodine dioxide
-I2O2,1,O2I2,285.8,xx,xx,xx,!Diiodine dioxide
-IXOY,1,O3I2,301.8,xx,xx,xx,!Condensable iodine oxides
-HI,1,HI,127.9,xx,xx,xx,!Hydrogen iodide
-HOI,1,HOI,143.9,xx,xx,xx,!Hypoiodous acid
-HIO3,1,HO3I,175.9,xx,xx,xx,!Iodic acid
-INO2,1,O2NI,172.9,xx,xx,OXN,!Nitryl iodide
-INO3,1,O3NI,188.9,xx,xx,OXN,!Iodine nitrate
-CH3I,1,CH3I,141.9,xx,xx,xx,!Iodomethane (CH3I}
-MI2,1,CH2I2,267.8,xx,xx,xx,!Diiodomethane (CH2I2}
-MIB,1,CH2BrI,220.8,xx,xx,xx,!Bromoiodomethane (CH2IBr}
-MIC,1,CH2ClI,176.4,xx,xx,xx,!Chloroiodomethane (CH2ICl}
-MBC,1,CH2ClBr,129.4,xx,xx,xx,!Chlorobromomethane (CH2BrCl}
-MB2,1,CH2Br2,173.8,xx,xx,xx,!Dibromomethane (CH2Br2}
-MBC2,1,CH3Cl2Br,165.8,xx,xx,xx,!Dichlorobromomethane (CHBrCl2}
-MB2C,1,CH3ClBr2,210.3,xx,xx,xx,!Chlorodibromomethane (CHBr2Cl}
-MB3,1,CHBr3,252.7,xx,xx,xx,!Bromoform (CHBr3}
-SSCL,1,Cl,35.5,xx,xx,xx,!Pseudo gas?phase species for sea salt chloride
-SSBR,1,Br,79.9,xx,xx,xx,!Pseudo gas?phase species for sea salt bromide
-SSN3,1,O3N,62.0,xx,xx,xx,!Pseudo gas?phase species for sea salt nitrate
-IALK,1,C3H7I,170.0,xx,xx,xx,!Alkyl iodides
+*
+* Skipping halogens in CB6r2Em
+*
 * EMEP changes
 * Spec,type,formula,MW,DRY,WET,Groups,!Comments
 H2,1,H2,xx,xx,xx,xx,!DS added

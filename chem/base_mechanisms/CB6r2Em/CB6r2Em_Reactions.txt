@@ -28,8 +28,6 @@ K_23                              : H2O2 + OP = OH + HO2   ;
 K_24                              : NO + NO + <O2> = 2 NO2   ;
 K_25                              : HO2 + NO = OH + NO2   ;
 K_26                              : NO2 + O3 = NO3   ;
-*FAILED cbphot(27)                : NO3 = NO2 + OP   ;
-*FAILED cbphot(28)                : NO3 = NO   ;
 *EMEP:
 rcphot(IDNO3)    : NO3           = 0.113 NO + 0.887 NO2 + 0.887 OP ; test for EMEP, assuming that the available jNO3 = rcphot(IDNO3_NO)+rcphot(IDNO3_NO2) -- NO/NO2 split based on cbphot(27)/cbphot(28) rates at SZA=60 deg. -- note that cbphot(27+28) is clearly faster than MCM j5+6 (ca26% faster at SZA=60, 20-25% faster for SZA0-50deg)
 K_29                              : NO3 + NO = 2 NO2   ;
@@ -41,11 +39,7 @@ K_34                              : NO3 + O3 = NO2   ;
 K_35                              : NO3 + NO3 = 2 NO2   ;
 K_36                              : NO3 + NO2 = N2O5   ;
 K_37                              : N2O5 = NO3 + NO2   ;
-*EMEP/MCM SKIP cbphot(38)                : N2O5 = NO2 + NO3   ; 
-*7.*rcphot(IDH2O2)                 : N2O5 = NO2 + NO3   ; based on high correlation between cbphot(38) and MCM(J3)
-*EMEP 3d-model:
 rcphot(IDN2O5)                : N2O5 = NO2 + NO3   ; Reintroduce - EMEP includes N2O5 photolysis 
-*BOX MODEL: rcphot(IDH2O2)*7.                : N2O5 = NO2 + NO3   ; MCM does not have N2O5-photolysis
 K_39                              : N2O5 + <H2O> = 2 HNO3   ;
 K_40                              : NO + OH = HONO   ;
 K_41                              : NO + NO2 + <H2O> = 2 HONO   ;
@@ -57,21 +51,14 @@ K_46                              : HNO3 + OH = NO3   ;
 cbphot(47)                        : HNO3 = OH + NO2   ;
 K_48                              : HO2 + NO2 = PNA   ;
 K_49                              : PNA = HO2 + NO2   ;
-*EMEP/SKIP cbphot(50)             : PNA = 0.59 HO2 + 0.59 NO2 + 0.41 OH + 0.41 NO3  ; 
-*1.8*rcphot(IDMEK)                 : PNA = 0.59 HO2 + 0.59 NO2 + 0.41 OH + 0.41 NO3  ;
-*cbphot(50)                : PNA = 0.59 HO2 + 0.59 NO2 + 0.41 OH + 0.41 NO3  ; Reintroduce - EMEP includes HO2NO2 photolysis
-*BOX MODEL: rcphot(IDMEK)*1.8          : PNA = 0.59 HO2 + 0.59 NO2 + 0.41 OH + 0.41 NO3  ; MCM does not have HO2NO2 photolysis
-*EMEP-3d: 
 rcphot(IDHO2NO2)             : PNA = 0.59 HO2 + 0.59 NO2 + 0.41 OH + 0.41 NO3  ; 
 K_51                              : PNA + OH = NO2   ;
 *EMEP SO2+OH=SO4+HO2 in Aqueous_EmChem16x_Reactions K_52                              : SO2 + OH = SULF + HO2   ;
 K_53                              : C2O3 + NO = NO2 + MEO2 + RO2   ;
 K_54                              : C2O3 + NO2 = PAN   ;
 K_55                              : PAN = NO2 + C2O3   ;
-*EMEP/MCM SKIP cbphot(56)             : PAN = 0.6 NO2 + 0.6 C2O3 + 0.4 NO3 + 0.4 MEO2 + 0.4 RO2  ; 
 *cbphot(56)                : PAN = 0.6 NO2 + 0.6 C2O3 + 0.4 NO3 + 0.4 MEO2 + 0.4 RO2   ;
-*Box model: rcphot(IDMEK)*0.26         : PAN = 0.6 NO2 + 0.6 C2O3 + 0.4 NO3 + 0.4 MEO2 + 0.4 RO2 ; MCM does not have HO2NO2 photolysis
-*EMEP-3d: 
+*EMEP no photolysis of PAN approximate as J(HO2NO2)*0.14: 
 rcphot(IDHO2NO2)*0.14   : PAN = 0.6 NO2 + 0.6 C2O3 + 0.4 NO3 + 0.4 MEO2 + 0.4 RO2 ; 
 K_57                              : C2O3 + HO2 = 0.41 PACD + 0.15 AACD + 0.15 O3 + 0.44 MEO2 + 0.44 RO2 + 0.44 OH   ;
 K_58                              : C2O3 + RO2 = C2O3   ;
@@ -80,10 +67,8 @@ K_60                              : C2O3 + CXO3 = MEO2 + ALD2 + XO2H + 2 RO2   ;
 K_61                              : CXO3 + NO = NO2 + ALD2 + XO2H + RO2   ;
 K_62                              : CXO3 + NO2 = PANX   ;
 K_63                              : PANX = NO2 + CXO3   ;
-*EMEP/MCM SKIP cbphot(64)               : PANX = 0.6 NO2 + 0.6 CXO3 + 0.4 NO3 + 0.4 ALD2 + 0.4 XO2H + 0.4 RO2 ;
 *cbphot(64)                : PANX = 0.6 NO2 + 0.6 CXO3 + 0.4 NO3 + 0.4 ALD2 + 0.4 XO2H + 0.4 RO2 ;
-*Box model: rcphot(IDMEK)*0.26         : PANX = 0.6 NO2 + 0.6 CXO3 + 0.4 NO3 + 0.4 ALD2 + 0.4 XO2H + 0.4 RO2 ; MCM does not have HO2NO2 photolysis
-*EMEP-3d: 
+*EMEP no photolysis of PAN approximate as J(HO2NO2)*0.14: 
 rcphot(IDHO2NO2)*0.14  : PANX = 0.6 NO2 + 0.6 CXO3 + 0.4 NO3 + 0.4 ALD2 + 0.4 XO2H + 0.4 RO2 ;
 K_65                              : CXO3 + HO2 = 0.41 PACD + 0.15 AACD + 0.15 O3 + 0.44 ALD2 + 0.44 XO2H + 0.44 RO2 + 0.44 OH   ;
 K_66                              : CXO3 + RO2 = 0.8 ALD2 + 0.8 XO2H + 0.8 RO2   ;
@@ -112,7 +97,8 @@ cbphot(88)                        : CH3OOH = MEO2 + RO2 + OH   ;
 K_89                              : ROOH + OH = 0.54 XO2H + 0.06 XO2N + 0.6 RO2 + 0.4 OH   ;
 cbphot(90)                        : ROOH = HO2 + OH   ;
 K_91                              : NTR1 + OH = NTR2   ;
-*SKIP cbphot(92)                        : NTR1 = NO2   ;
+*cbphot(92)                        : NTR1 = NO2   ;
+rcphot(IDMEK)*0.83                : NTR1 = NO2   ;
 K_93                              : FACD + OH = HO2   ;
 K_94                              : AACD + OH = MEO2 + RO2   ;
 K_95                              : PACD + OH = C2O3   ;
