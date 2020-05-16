@@ -19,11 +19,20 @@ import time  # for time.sleep() debugging
 
 Usage="""
 
- Usage: do.GenChem   -b BaseMechanism {-e  [ExtraMechanism1] {ExtraMechanism2} ...}
+ Usage:
 
-   e.g. do.GenChem   -b EmChem19a
+    do.GenChem   -b BaseMechanism {-e  [ExtraMechanism1] {ExtraMechanism2} ...}  {-c chemdir}
 
-   e.g. do.GenChem   -b EmChem19a -e SeaSalt Dust
+    e.g. do.GenChem   -b EmChem19a
+
+    e.g. do.GenChem   -b EmChem19a -e SeaSalt Dust
+
+    The -c option is only needed if not running from the boxChem working directory (eg box/tmp_work),
+    and if the full path to do.GenChem is not given. The following two calls are equivalent:
+    
+         do.GenChem   -b EmChem19a -e SeaSalt Dust  -c /home/users/alex/genchem/chem
+
+         /home/users/alex/genchem/chem/do.GenChem   -b EmChem19a -e SeaSalt Dust
 
  [Type do.GenChem -h for some debug options]
 
@@ -47,6 +56,7 @@ parser.add_argument('-e','--extra_mechanisms', nargs='+', help='Chemical '
     'mechanisms (zero or more needed), e.g. VBS_acp2012 SeaSalt', default=[])
 parser.add_argument('-s','--slow', type=int,
     help='sleep time to slow down outputs, e.g. 3 or 10', default=0)
+parser.add_argument('-c','--chemdir', help='location of chem directory')
 parser.add_argument('-d','--dbg', help='debug mode. Waits for user input at '
     'key steps', action='store_true')
 args = parser.parse_args()
@@ -54,22 +64,37 @@ print(args)
 #print parser.print_usage() parser.print_help() parser.parse_args()
 
 
-# Figure out where chem dir is. We know GenChem is in xx/yy/chem/scripts
-gcdir   = os.path.dirname(os.path.realpath(__file__)) # tells where this script is
-genchem = gcdir + '/GenChem.py'
-chemdir = gcdir.replace('/scripts','')  # e.g. GenChem-xx/chem 
-
-# Quick check that all directories exist:
-for cm in args.base_mechanism:
-  assert os.path.isdir(chemdir+'/base_mechanisms/'+cm),'Missing directory%s'% cm
-for cm in args.extra_mechanisms:
-  assert os.path.isdir(chemdir+'/extra_mechanisms/'+cm),'Missing directory%s'% cm
-
 mydir      = os.path.abspath('.')         # Current directory
 buildDir   = mydir + '/build'             # temporary build directory
 splitdir   = mydir + '/emissplit_run'     # output dir for emissplits
 print('emissplit outputs: ',   relpath(splitdir)) 
 print('emissplit full: ',   splitdir) 
+
+# Figure out where chem dir is. We know GenChem is in xx/yy/chem/scripts
+boxtestdir=os.path.dirname(mydir) # we test to see if we are in box/xxxx dir
+if args.chemdir is not None:
+  print('ARGS ', args.chemdir)
+  chemdir=args.chemdir
+  gcdir = chemdir+'/scripts'
+elif boxtestdir.endswith('/box'):
+  chemdir = boxtestdir.replace('box','chem')
+  gcdir   = chemdir + '/scripts'
+  print('BOX->CHEM ', mydir, '=>',gcdir)
+else: # if run with explicit path, e.g. /home/users/genchem/chem/scripts/do.GenChem
+  gcdir   = os.path.dirname(os.path.realpath(__file__)) # tells where this script is
+  chemdir = gcdir.replace('/scripts','')  # e.g. GenChem-xx/chem 
+
+genchem = gcdir + '/GenChem.py'
+
+# Quick check that all directories exist:
+#print('GCDIR ', gcdir)
+print('CHEMDIR ', chemdir)
+#sys.exit()
+for cm in args.base_mechanism:
+  assert os.path.isdir(chemdir+'/base_mechanisms/'+cm),'Missing directory%s'% cm
+for cm in args.extra_mechanisms:
+  assert os.path.isdir(chemdir+'/extra_mechanisms/'+cm),'Missing directory%s'% cm
+
 
 for dir in [  chemdir, splitdir, buildDir ]:
   os.makedirs( dir, exist_ok=True )
@@ -188,6 +213,7 @@ print("### Run GenChem: ", schemes)
 
 os.chdir(buildDir)
 
+print("### Run GenChem: ", genchem)
 subprocess.run([genchem, schemes], stdout=subprocess.PIPE)
 
 # Finally, copy build/CM files to mydir (we don't need femis or Log for box)

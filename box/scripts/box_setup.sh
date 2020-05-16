@@ -36,3 +36,6 @@ cp -i ../src/config_box.nml   . # ask before potential overwrite
 cp -i ../src/Makefile         . # ask before potential overwrite
 cp  ../scripts/do.testChems .
 cp  ../scripts/emep_setup.py .
+# do.GenChem  is not usually needed as it is better to use do.testChems, but
+# sometimes it helps as a first test
+cp ../../chem/scripts/do.GenChem . 
