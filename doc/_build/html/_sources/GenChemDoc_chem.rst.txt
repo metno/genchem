@@ -87,7 +87,7 @@ name, type, formula, and various settings related to dry and wet deposition
 
 
 The GenIn\_Species.csv file is a spreadsheet-friendly comma-separated file
-where the characteristics of the chemical compounds are given.
+where the characteristics of the chemical compounds are given::
 
   Spec,adv,formula,MW,DRY,WET,Groups,!Comments
   *

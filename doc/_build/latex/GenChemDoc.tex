@@ -59,7 +59,7 @@
 
 
 \title{GenChem Documentation}
-\date{Feb 26, 2020}
+\date{May 15, 2020}
 \release{0.9.0}
 \author{David Simpson et al.}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -75,9 +75,10 @@
 \phantomsection\label{\detokenize{index::doc}}
 
 
+\index{INTRO@\spxentry{INTRO}}\ignorespaces 
 
 \chapter{Introduction}
-\label{\detokenize{GenChemDoc_intro:introduction}}\label{\detokenize{GenChemDoc_intro::doc}}
+\label{\detokenize{GenChemDoc_intro:introduction}}\label{\detokenize{GenChemDoc_intro:index-0}}\label{\detokenize{GenChemDoc_intro::doc}}
 GenChem is a system to generate and test chemical mechanisms for the
 EMEP MSC-W model {[}Simpson2012{]} and 1-D canopy model, ESX {[}SimpsonTuovinen2014{]}.
 GenChem consists of two main directories, \sphinxstylestrong{chem} and \sphinxstylestrong{box}.
@@ -125,6 +126,35 @@ The directory structure for GenChem can be summarised as:
 (where XXX could any suitable user-directory into which GenChem was unpacked, e.g. /home/fred/chemwork/GenChem.)
 
 
+\section{Conventions in documenentation naming}
+\label{\detokenize{GenChemDoc_intro:conventions-in-documenentation-naming}}
+The input files to GenChem (GenIn files) as used in box or emep model
+are usually built up by appending files from one \sphinxstyleemphasis{base} directory (from
+base\_mechanisms) and one or more (usually many!) \sphinxstyleemphasis{extra} mechanisms
+from the extra\_mechanisms directory. For example, GenIn\_Species.csv
+used for  the EMEP CTM’s default EmChem19p scheme consists of  Species
+files from base\_mechanisms/EmChem19a, and from twelve extra\_mechanisms
+directories (e.g. extra\_mechanisms/SeaSalt/SeaSalt\_Species.csv,
+extra\_mechanisms/PM\_VBS\_EmChem19/PM\_VBS\_EmChem19\_Species, etc.). To
+avoid having to write out these names explicitly each time, we adopt
+generic names, as illustrated below for the EmChem19p case:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{n}{SCHEME}               \PYG{n}{name} \PYG{k}{for} \PYG{n}{complete} \PYG{n}{chemical} \PYG{n}{mechanisms} \PYG{n}{package}\PYG{o}{.}
+                     \PYG{p}{(}\PYG{n}{currently} \PYG{n}{EmChem19a}\PYG{p}{,} \PYG{n}{EmChem19p}\PYG{p}{,} \PYG{n}{CB6r2}\PYG{p}{,} \PYG{n}{CRIv2emep}\PYG{p}{,} \PYG{n}{MCM\PYGZus{}v3}\PYG{o}{.}\PYG{l+m+mi}{3}\PYG{p}{)}
+
+\PYG{n}{BASE\PYGZus{}Species}\PYG{o}{.}\PYG{n}{csv}     \PYG{n}{base\PYGZus{}mechanisms}\PYG{o}{/}\PYG{n}{EmChem19a\PYGZus{}Species}\PYG{o}{.}\PYG{n}{csv}
+
+\PYG{n}{EXTRAS\PYGZus{}Species}\PYG{o}{.}\PYG{n}{csv}   \PYG{n}{extra\PYGZus{}mechanisms}\PYG{o}{/}\PYG{n}{SeaSalt}\PYG{o}{/}\PYG{n}{SeaSalt\PYGZus{}Species}\PYG{o}{.}\PYG{n}{csv}\PYG{p}{,}
+                     \PYG{n}{extra\PYGZus{}mechanisms}\PYG{o}{/}\PYG{n}{Aqueous\PYGZus{}EmChem16x}\PYG{o}{/}\PYG{n}{Aqueous\PYGZus{}EmChem16x\PYGZus{}Species}\PYG{o}{.}\PYG{n}{csv}\PYG{p}{,}
+                     \PYG{o}{.}\PYG{o}{.}\PYG{o}{.}\PYG{o}{.}
+
+\PYG{n}{CMDIR\PYGZus{}Species}\PYG{o}{.}\PYG{n}{csv}    \PYG{n}{Either} \PYG{n}{base} \PYG{o+ow}{or} \PYG{n}{extras} \PYG{n}{file}\PYG{p}{,} \PYG{n}{e}\PYG{o}{.}\PYG{n}{g}\PYG{o}{.}
+                     \PYG{n}{base\PYGZus{}mechanisms}\PYG{o}{/}\PYG{n}{EmChem19a\PYGZus{}Species}\PYG{o}{.}\PYG{n}{csv} \PYG{o}{*}\PYG{o}{*}\PYG{o+ow}{or}\PYG{o}{*}\PYG{o}{*}
+                     \PYG{n}{extra\PYGZus{}mechanisms}\PYG{o}{/}\PYG{n}{SeaSalt}\PYG{o}{/}\PYG{n}{SeaSalt\PYGZus{}Species}\PYG{o}{.}\PYG{n}{csv}\PYG{p}{,}
+\end{sphinxVerbatim}
+
+
 \section{Requirements}
 \label{\detokenize{GenChemDoc_intro:requirements}}
 GenChem has been developed on Ubuntu linux systems, and
@@ -146,16 +176,10 @@ ifort 13.0.1
 
 \end{itemize}
 
-\begin{sphinxadmonition}{warning}{Warning:}
-**  NOTE !!
-This user-guide is a work-in-progress manual on the GenChem system,
-with this interim version produced for interested users, Feb. 2020.
-**
-\end{sphinxadmonition}
-
+\index{Quick Start@\spxentry{Quick Start}}\ignorespaces 
 
 \chapter{Quick start}
-\label{\detokenize{GenChemDoc_quickstart:quick-start}}\label{\detokenize{GenChemDoc_quickstart::doc}}
+\label{\detokenize{GenChemDoc_quickstart:quick-start}}\label{\detokenize{GenChemDoc_quickstart:index-0}}\label{\detokenize{GenChemDoc_quickstart::doc}}
 We will proceed directly to a run of the box-model system, to show how
 chemical schemes are normally compiled into \sphinxcode{\sphinxupquote{CM\_}} and \sphinxcode{\sphinxupquote{CMX\_}} files, and used
 in box-model simulations. This is actually the normal and recommended way to
@@ -171,30 +195,17 @@ GenChem/box), do:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{n}{cd} \PYG{n}{somepath}\PYG{o}{/}\PYG{n}{GenChem}\PYG{o}{\PYGZhy{}}\PYG{n}{xxx}\PYG{o}{/}\PYG{n}{box}
-\PYG{n}{mkdir} \PYG{n}{tmp\PYGZus{}work}
 
-\PYG{n}{cd} \PYG{n}{tmp\PYGZus{}work}\PYG{o}{/}
-
-\PYG{n}{cp} \PYG{o}{.}\PYG{o}{.}\PYG{o}{/}\PYG{n}{src}\PYG{o}{/}\PYG{o}{*}\PYG{o}{.}\PYG{n}{f90} \PYG{o}{.}
-\PYG{n}{cp} \PYG{o}{.}\PYG{o}{.}\PYG{o}{/}\PYG{n}{src}\PYG{o}{/}\PYG{n}{Makefile} \PYG{o}{.}
-\PYG{n}{cp} \PYG{o}{.}\PYG{o}{.}\PYG{o}{/}\PYG{n}{src}\PYG{o}{/}\PYG{n}{config\PYGZus{}box}\PYG{o}{.}\PYG{n}{nml} \PYG{o}{.}
-\PYG{n}{cp} \PYG{o}{.}\PYG{o}{.}\PYG{o}{/}\PYG{n}{scripts}\PYG{o}{/}\PYG{n}{do}\PYG{o}{.}\PYG{n}{testChems} \PYG{o}{.}
-\PYG{n}{cp} \PYG{o}{.}\PYG{o}{.}\PYG{o}{/}\PYG{n}{scripts}\PYG{o}{/}\PYG{n}{emep\PYGZus{}setup}\PYG{o}{.}\PYG{n}{py} \PYG{o}{.}
-\end{sphinxVerbatim}
-
-If you want, the script box\_setup.sh from the box/scripts directory can also be
-used to perform the above steps:
-
-\begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{cd} \PYG{n}{somepath}\PYG{o}{/}\PYG{n}{GenChem}\PYG{o}{\PYGZhy{}}\PYG{n}{xxx}\PYG{o}{/}\PYG{n}{box}
 \PYG{n}{scripts}\PYG{o}{/}\PYG{n}{box\PYGZus{}setup}\PYG{o}{.}\PYG{n}{sh} \PYG{n}{tmp\PYGZus{}work}
 \end{sphinxVerbatim}
+
+where \_somepath\_ is the user’s path. The name \_tmp\_work is just an example - anything can be used.
 
 
 \section{Step 2: do.testChems}
 \label{\detokenize{GenChemDoc_quickstart:step-2-do-testchems}}
 At this stage, one can try compiling a chemical scheme. With the example of
-EmChem19, and now from our tmp\_work directory, try:
+EmChem19a, and now from our tmp\_work directory, try:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{o}{.}\PYG{o}{/}\PYG{n}{do}\PYG{o}{.}\PYG{n}{testChems}  \PYG{n}{EmChem19a}
@@ -218,7 +229,7 @@ and ZCM for those created with emep\_setup.py, see below.)
 Now, if one wants to compare several schemes, one can do e.g.:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{o}{.}\PYG{o}{/}\PYG{n}{do}\PYG{o}{.}\PYG{n}{testChems}  \PYG{n}{EmChem19a} \PYG{n}{CRI}\PYG{o}{\PYGZhy{}}\PYG{n}{R5}\PYG{o}{\PYGZhy{}}\PYG{n}{emep} \PYG{n}{MCM\PYGZus{}v3}\PYG{o}{.}\PYG{l+m+mi}{3}
+\PYG{o}{.}\PYG{o}{/}\PYG{n}{do}\PYG{o}{.}\PYG{n}{testChems}  \PYG{n}{EmChem19a} \PYG{n}{CRIv2R5Em} \PYG{n}{MCMv3}\PYG{o}{.}\PYG{l+m+mi}{3}\PYG{n}{Em}
 \end{sphinxVerbatim}
 
 This would produce 3 output .csv files, which again are easily plotted
@@ -302,11 +313,49 @@ lon = 15.06,    ! degrees E
  !emis\PYGZus{}kgm2day = \PYGZsq{}nox\PYGZsq{}, 180.3, ! NOx, kg/m2/day, as in MCM/CRI tests
  !               \PYGZsq{}voc\PYGZsq{}, 150.4  ! NMVOC
 
- ! BVOC emissions.
- ! The following emissions will be modulated by light
- rcbio\PYGZus{}isopMax  = 1.0e11, ! molec/cm2/s  isoprene
- rcbio\PYGZus{}mtlMax   = 0.5e11, ! molec/cm2/s  monoterpenes from light\PYGZhy{}dependent emissions
- rcbio\PYGZus{}mtp      = 0.5e11,
+ ! BVOC emissions are set in chem/extra\PYGZus{}mechanisms/BoxBVOCemis, where
+ ! also a factor SUN is given for light\PYGZhy{}dependent emissions. These BVOC
+ ! emissions can be adjusted with the factors below.
+
+ fIso = 1.0,                     ! isoprene
+ fMTL = 0.0,                     ! monoterpenes from light\PYGZhy{}dependent emissions
+ fMTP = 0.0,                     ! monoterpenes from pool (Temp.)\PYGZhy{}dependent emissions
+ fSQT = 0.0,                     ! sesqui\PYGZhy{}terpenes
+\end{sphinxVerbatim}
+
+
+\subsection{Outputs}
+\label{\detokenize{GenChemDoc_quickstart:outputs}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+! Can say just e.g. \PYGZsq{}O3\PYGZsq{}, to reduce size of outputs,
+!  but in general usage \PYGZsq{}all\PYGZsq{} is normally best.
+
+  OutSpecs\PYGZus{}list =
+  \PYGZsq{}all\PYGZsq{}, \PYGZsq{}ppb\PYGZsq{}    ! Will switch to ug for OM
+
+! Output Groups
+! \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
+  OutGroups\PYGZus{}list =
+  \PYGZsq{}NOX\PYGZsq{},   \PYGZsq{}ppb\PYGZsq{},
+\end{sphinxVerbatim}
+
+
+\subsection{Debug}
+\label{\detokenize{GenChemDoc_quickstart:debug}}
+Some flags produce more output. More documentation to be added later.
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+! \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
+
+! For testing, one can assign all VOC to one species. Do that here:
+!  dbgVOC = \PYGZsq{}NODEBUG\PYGZsq{},
+!  dbgVOC = \PYGZsq{}C2H4\PYGZsq{},
+  debug\PYGZpc{}Emis = 0
+!  debug\PYGZpc{}VOC = \PYGZsq{}C2H4\PYGZsq{}
+  debug\PYGZpc{}Spec = \PYGZsq{}NONE\PYGZsq{}, !\PYGZsq{}C2H4\PYGZsq{}
+  debug\PYGZpc{}SOA = 0
+  debug\PYGZpc{}PM = .false.
+  debug\PYGZpc{}Chem = .false.
 \end{sphinxVerbatim}
 
 
@@ -360,11 +409,13 @@ If selecting from the provided base\_mechanisms and extra\_mechanisms you only n
 the possible command lines as provided by the \sphinxstyleemphasis{cmdx}  dictionary:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{n}{cmdx}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{EmChem19a}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZhy{}b EmChem19a \PYGZhy{}e PM\PYGZus{}VBS\PYGZus{}EmChem19 BVOC\PYGZus{}MTERP1\PYGZus{}EmChem19}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{+}\PYG{n}{common}
-\PYG{n}{cmdx}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{CRI\PYGZhy{}R5\PYGZhy{}emep}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZhy{}b CRI\PYGZhy{}R5\PYGZhy{}emep \PYGZhy{}e common}\PYG{l+s+s1}{\PYGZsq{}}
+\PYG{n}{cmdx}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{EmChem19a\PYGZhy{}vbs}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZhy{}b EmChem19a \PYGZhy{}e PM\PYGZus{}VBS\PYGZus{}EmChem19 }\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{+}\PYG{n}{common\PYGZus{}IsoMT1}
+\PYG{n}{cmdx}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{CRIv2R5Em\PYGZhy{}M19}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZhy{}b CRIv2R5Em \PYGZhy{}e PM\PYGZus{}JPAC\PYGZus{}MT3 PM\PYGZus{}Hodzic\PYGZus{}Aromatics BVOC\PYGZus{}XTERP\PYGZus{}CRI}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{+}\PYG{n}{common\PYGZus{}IsoMT3}\PYG{l+s+s1}{\PYGZsq{}}
 \end{sphinxVerbatim}
 
 The ‘-b’ argument gives the base mechanism, and then you can have any number of compatable extra mechanisms (-e argument).
+
+(There are many possible combinations of packages - see Simpson et al., (2020, submitted) and the emep\_setup.py code for many examples.)
 
 Any keys from \sphinxstyleemphasis{cmdx} can be used by \sphinxstyleemphasis{emep\_setup.py}. For example, if the user builds a new base scheme \sphinxstyleemphasis{usersChem} and
 some OA scheme, \sphinxstyleemphasis{usersSOA}, then \sphinxstyleemphasis{emep\_setup.py} can be edited to add these as a new option:
@@ -380,13 +431,6 @@ you could do:
 
 \PYG{n}{emep\PYGZus{}setup}\PYG{o}{.}\PYG{n}{py} \PYG{n}{usersChem}  \PYG{c+c1}{\PYGZsh{} Creates ZCM\PYGZus{}usersChem}
 \end{sphinxVerbatim}
-
-\begin{sphinxadmonition}{warning}{Warning:}
-**  NOTE !!
-This user-guide is a work-in-progress manual on the GenChem system,
-with this interim version produced for interested users, Feb. 2020.
-**
-\end{sphinxadmonition}
 
 
 \chapter{Formatting of GenChem files}
@@ -453,13 +497,14 @@ e.g. 1.36e-11 :   {[}OXYL{]} + {[}OH{]} = \textbar{}YCOXY(0)\textbar{}  ASOC\_ug
 \label{\detokenize{GenChemDoc_chem:species-files}}
 The input to the GenChem.py script is GenIn\_Species.csv, but this
 is assembled by do.GenChem from all needed  \_Species.csv files from
-the base\_mechanisms and extra\_mechanisms sub-directories. For For
+the base\_mechanisms and extra\_mechanisms sub-directories. For
 example, for a typical emep run with base EmChem19a, do.GenChem
 appends EmChem19a\_Species.csv, SeaSalt\_Species.csv, and many more into
 one GenIn\_Species.csv. The file contains columns with species
 name, type, formula, and various settings related to dry and wet deposition
 
-Example lines:
+The GenIn\_Species.csv file is a spreadsheet-friendly comma-separated file
+where the characteristics of the chemical compounds are given:
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 Spec,adv,formula,MW,DRY,WET,Groups,!Comments
@@ -471,7 +516,87 @@ MACR,1,CH2=CCH3CHO,xx,MEK,xx,RCHO;carbonyl;Hstar\PYGZus{}5p0e0;f0\PYGZus{}0p05;D
 BSOC\PYGZus{}ng1e2,2,C,12.,ALD,ROOH,Cstar:0.1;DeltaH:30.0;OM25;PCM;BSOA,\PYGZdq{}! semi\PYGZhy{}volatile OC from BVOC \PYGZdq{}
 \end{sphinxVerbatim}
 
-Further details can be found in the documentation article …
+The meaning of the columns is:
+\begin{quote}
+
+\sphinxstylestrong{Spec} -  Species name as used in model.
+
+\sphinxstylestrong{adv} -   Type of compound. CTMs usually distinguish between advected and
+non-advected (or short-lived) species, in order to minimise CPU needs
+(concentrations of short-lived compounds only need chemical reaction
+terms, not advection). In addition, the EMEP model handles semivolatile
+SOA species  through special handling (see below), and some
+species are so long-lived (e.g. CH4) that they can be accurately
+calculated without multiple iterations.  Allowed values of type are:
+\begin{quote}
+
+0 - for short lived compounds (e.g. OH), which are not advected in the EMEP model.
+
+1 - for advected compounds (e.g. O3, HCHO)
+
+2 - for semivolatile SOA compounds (e.g. BSOC\_ng100). The EMEP model (and boxChem)
+tracks such species by compound rather than phase, and calculates
+the partitioning between the phases dynamically, based upon the
+compound’s volatilty. Species labelled with
+type 2 are accounted within the list of advected species, but the
+start and end of the  semivolatile list is calculated by GenChem.py,
+to produce integer variables which demarcate these semivolatile
+compounds, e.g. FIRST\_SEMIVOL=136  and LAST\_SEMIVOL=176.
+
+3 - for compounds which react very slowly (e.g. CH4).
+\end{quote}
+
+\sphinxstylestrong{formula} -  If a true chemical formula is provided (e.g. CH3CHO, or
+O=CHC(O2)(CH3)CH2OH) then GenChem will calculate the number of atoms
+(C, H, O, S or N) and the molecular weight. Such formula must use
+capital letters; lower case letters are ignored as far as processing is
+concerned, but may be used to help document the intention, e.g. nC4H10
+is identical to C4H10, or pm25 is particulate matter but whose formula
+we do not know. For example, an entry for an organic nitrate might have
+formula ‘someNO3’ which mixes lower and upper case.  In this case
+the molecular weight must be given if this is needed for the chemical
+modelling. (Typically we do need the mass of emitted species, but not
+always the mass of other species since we usually use mixing ratios
+for advection and output in ppb units.  Occassionally examples occur
+where mass is not strictly required, but where one wants to know
+the nitrogen content, typically where outputs are given in terms of
+e.g. ug(N)/m3. In this case, the ‘someNO3’ formula would be
+enough to allow GenChem to figure out that this compound contains one
+nitrogen atom.)
+
+\sphinxstylestrong{MW} - can be dummy (xx) or a real number giving the molecular
+weight of the compound. When given, this value is used in place of
+any MW calculated from the formula. As noted above, the MW value is
+sometimes but not always needed. For some emitted compounds, usually
+connected with particulate matter where we do not know the composition,
+we have to give a dummy molecular weight.  This information is used
+internally in the model to get associated mixing ratios, but outputs
+for such compounds should always be in mass-units so that consistency
+is preserved.
+
+\sphinxstylestrong{DRY} -  dry-deposition surrogate. The EMEP and ESX models calculate
+dry-deposition explicitly for a limited number of compounds, and here
+we can choose which of these compounds can be used as a surrogate
+for the desired species.  For example, for O3 we simply use O3; for
+C2H5OOH we use the ROOH surrogate. If not dry-deposited, simply use xx.
+For the semivolatile SOA species EMEP/ESX CTMs will use this rate for
+the gas-phase fraction of the SOA.
+
+\sphinxstylestrong{WET} - wet-deposition surrogate - similar to the dry deposition
+system.  For example, for HCHO we simply use HCHO; for the semivolatile
+SOA species such as BSOC\_ng100  we specify the same wet-deposition
+as for fine-particulate matter (denoted PMf), and the EMEP/ESX CTMs
+will use this rate  for the condensed fraction of the SOA.
+
+\sphinxstylestrong{Groups} -  specifies groups which species belong to (e.g. OXN
+for oxidised nitrogen, RO2 for peroxy radicals) and allows
+surrogate species or factors to be assigned to these groups,
+e.g. Cstar:10.0;Extinc:0.4 assigns a vapour pressure Cstar (used
+in SOA modelling) to be 10 (ug/m3) and an Extinc coefficient to
+be 0.4. It is important that these groups are
+separated by semi-colons, not commas.  This rather powerful feature
+is discussed further in Simpson et al. (Submitted, 2020).
+\end{quote}
 
 
 \section{Shorthands file}
@@ -486,13 +611,6 @@ KMT12        IUPAC\PYGZus{}troe(2.8e\PYGZhy{}31*exp(2.6*Log300divT),2.0e\PYGZhy{
 \end{sphinxVerbatim}
 
 In these examples, XT is just a character-saving replacement for temp, FH2O gives a more complex expression, which also uses the pre-defined variable TINV = 1/temp. KHO2RO2 is a common rate-coefficient, but here we see that comments are allowed - anything afer the 2nd term. FInally, the KMT12 term shows that complex fuction calls are also allowed. IMPORTANT - avoid white space in any terms!
-
-\begin{sphinxadmonition}{warning}{Warning:}
-**  NOTE !!
-This user-guide is a work-in-progress manual on the GenChem system,
-with this interim version produced for interested users, Feb. 2020.
-**
-\end{sphinxadmonition}
 
 
 \chapter{Contributors}
@@ -522,23 +640,9 @@ Alvaro Valdebenito, Norwegian Meteorological Institute, 2018-2019,
 various bug-fixes and updates. Added pollen.
 \end{quote}
 
-\begin{sphinxadmonition}{warning}{Warning:}
-**  NOTE !!
-This user-guide is a work-in-progress manual on the GenChem system,
-with this interim version produced for interested users, Nov. 2019.
-**
-\end{sphinxadmonition}
-
 
 \chapter{References}
 \label{\detokenize{GenChemDoc_refs:references}}\label{\detokenize{GenChemDoc_refs::doc}}
-\begin{sphinxadmonition}{warning}{Warning:}
-**  NOTE !!
-This user-guide is a work-in-progress manual on the GenChem system,
-with this interim version produced for interested users, Nov. 2019.
-**
-\end{sphinxadmonition}
-
 
 \chapter{Indices and tables}
 \label{\detokenize{index:indices-and-tables}}\begin{itemize}

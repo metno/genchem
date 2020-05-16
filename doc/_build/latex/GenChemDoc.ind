@@ -1,0 +1,14 @@
+\begin{sphinxtheindex}
+\let\bigletter\sphinxstyleindexlettergroup
+\let\spxpagem \sphinxstyleindexpagemain
+\let\spxentry \sphinxstyleindexentry
+\let\spxextra \sphinxstyleindexextra
+
+  \bigletter I
+  \item \spxentry{INTRO}, \hyperpage{1}
+
+  \indexspace
+  \bigletter Q
+  \item \spxentry{Quick Start}, \hyperpage{2}
+
+\end{sphinxtheindex}

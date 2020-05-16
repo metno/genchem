@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2019.11.11)  26 FEB 2020 14:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2019.11.11)  15 MAY 2020 12:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -842,127 +842,136 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
 
 ]
 Chapter 1.
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 108.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 109.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <9> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 109.
-LaTeX Font Info:    Try loading font information for TS1+pcr on input line 109.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 110.
+LaTeX Font Info:    Try loading font information for TS1+pcr on input line 110.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1pcr.fd
 File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
 )
 LaTeX Font Info:    Font shape `TS1/pcr/m/it' in size <9> not available
-(Font)              Font shape `TS1/pcr/m/sl' tried instead on input line 109.
+(Font)              Font shape `TS1/pcr/m/sl' tried instead on input line 110.
 
-Underfull \hbox (badness 10000) in paragraph at lines 125--126
+Underfull \hbox (badness 10000) in paragraph at lines 126--127
 []\T1/ptm/m/n/10 (where XXX could any suit-able user-directory into which GenCh
 em was un-packed, e.g.
  []
 
-LaTeX Font Info:    Try loading font information for TS1+ptm on input line 138.
+[1
 
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
+]
+LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <9> not available
+(Font)              Font shape `T1/pcr/b/n' tried instead on input line 143.
+LaTeX Font Info:    Try loading font information for TS1+ptm on input line 168.
+
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-) [1
-
-] [2]
+) [2]
 Chapter 2.
 [3
 
 ]
-<Comp_ppt_HO2_AeroCRI-R5-emep_AeroEmChem19a_AeroMCM_v3pt3.png, id=131, 469.0323
+<Comp_ppt_HO2_AeroCRI-R5-emep_AeroEmChem19a_AeroMCM_v3pt3.png, id=144, 469.0323
 pt x 365.6862pt>
 File: Comp_ppt_HO2_AeroCRI-R5-emep_AeroEmChem19a_AeroMCM_v3pt3.png Graphic file
  (type png)
 <use Comp_ppt_HO2_AeroCRI-R5-emep_AeroEmChem19a_AeroMCM_v3pt3.png>
 Package pdftex.def Info: Comp_ppt_HO2_AeroCRI-R5-emep_AeroEmChem19a_AeroMCM_v3p
-t3.png  used on input line 252.
+t3.png  used on input line 263.
 (pdftex.def)             Requested size: 375.22635pt x 292.54935pt.
  [4 <./Comp_ppt_HO2_AeroCRI-R5-emep_AeroEmChem19a_AeroMCM_v3pt3.png>]
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 331--340
+Underfull \hbox (badness 10000) in paragraph at lines 380--389
 []\T1/ptm/m/n/10 CM_ChemDims_mod.f90 CM_ChemGroups_mod.f90 CM_ChemRates_mod.f90
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 331--340
+Underfull \hbox (badness 10000) in paragraph at lines 380--389
 \T1/ptm/m/n/10 CM_ChemSpecs_mod.f90 CM_DryDep.inc CM_EmisFile.inc CM_emislist.c
 sv
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 331--340
+Underfull \hbox (badness 10000) in paragraph at lines 380--389
 \T1/ptm/m/n/10 CM_EmisSpecs.inc CM_Reactions1.inc CM_Reactions2.inc CM_Reaction
 s.log
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 331--340
+Underfull \hbox (badness 10000) in paragraph at lines 380--389
 \T1/ptm/m/n/10 CM_WetDep.inc CMX_BiomassBurningMapping_FINNv1.5.txt
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 331--340
+Underfull \hbox (badness 10000) in paragraph at lines 380--389
 \T1/ptm/m/n/10 CMX_BiomassBurningMapping_GFASv1.txt CMX_BoundaryConditions.txt 
 con-
  []
 
-[6]
+[6] [7] [8
+
+]
 Chapter 3.
-[7
+[9] [10] [11] [12
 
-] [8]
+]
 Chapter 4.
-[9
-
-] [10
+[13] [14
 
 ]
 Chapter 5.
-[11] [12
+[15] [16
 
 ]
 Chapter 6.
-[13] [14
+[17] [18
 
-] (./GenChemDoc.ind)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 582.
- [15
+] (./GenChemDoc.ind [19
 
-]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 582.
+] [20
+
+] [21
+
+
+])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 686.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 686.
  (./GenChemDoc.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 582.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 582.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 686.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 686.
 Package rerunfilecheck Info: File `GenChemDoc.out' has not changed.
-(rerunfilecheck)             Checksum: 484132DC02B5088B96D330A93F1A374F;2210.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 582.
+(rerunfilecheck)             Checksum: 7FC6E425889DE7620E2F74BD8928034A;2529.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 686.
  ) 
 Here is how much of TeX's memory you used:
- 13574 strings out of 494477
- 190766 string characters out of 6175714
- 329025 words of memory out of 5000000
- 16904 multiletter control sequences out of 15000+600000
- 49128 words of font info for 70 fonts, out of 8000000 for 9000
+ 13599 strings out of 494477
+ 191109 string characters out of 6175714
+ 346241 words of memory out of 5000000
+ 16914 multiletter control sequences out of 15000+600000
+ 52547 words of font info for 74 fonts, out of 8000000 for 9000
  60 hyphenation exceptions out of 8191
- 37i,11n,45p,456b,477s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,11n,45p,456b,492s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
-w/courier/ucrro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/u
-hvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/urw/times/utmri8a.pfb>
-Output written on GenChemDoc.pdf (19 pages, 188264 bytes).
+onts/type1/urw/courier/ucrb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
+w/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucr
+ro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utm
+ri8a.pfb>
+Output written on GenChemDoc.pdf (25 pages, 204593 bytes).
 PDF statistics:
- 243 PDF objects out of 1000 (max. 8388607)
- 203 compressed objects within 3 object streams
- 48 named destinations out of 1000 (max. 500000)
- 162 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 292 PDF objects out of 1000 (max. 8388607)
+ 244 compressed objects within 3 object streams
+ 58 named destinations out of 1000 (max. 500000)
+ 178 words of extra memory for PDF output out of 10000 (max. 10000000)
 

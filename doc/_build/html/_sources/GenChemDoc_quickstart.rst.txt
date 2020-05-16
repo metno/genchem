@@ -18,33 +18,17 @@ working directory.  From the **GenChem/box** directory (cd
 GenChem/box), do::
 
   cd somepath/GenChem-xxx/box
-  mkdir tmp_work
 
-  cd tmp_work/
-
-  cp ../src/*.f90 .
-  cp ../src/Makefile .
-  cp ../src/config_box.nml .
-  cp ../scripts/do.testChems .
-  cp ../scripts/emep_setup.py .
-  
-..
-  Skips do.Makefile for nowhhhhhhhhh make
-
-
-If you want, the script box_setup.sh from the box/scripts directory can also be
-used to perform the above steps::
-
-  cd somepath/GenChem-xxx/box
   scripts/box_setup.sh tmp_work
   
 
+where _somepath_ is the user's path. The name _tmp\_work is just an example - anything can be used.
 
 Step 2: do.testChems
 ++++++++++++++++++++
 
 At this stage, one can try compiling a chemical scheme. With the example of
-EmChem19, and now from our tmp_work directory, try::
+EmChem19a, and now from our tmp_work directory, try::
 
   ./do.testChems  EmChem19a
 
@@ -248,7 +232,7 @@ the possible command lines as provided by the *cmdx*  dictionary::
 
 The '-b' argument gives the base mechanism, and then you can have any number of compatable extra mechanisms (-e argument).
 
-(There are many possible combinations of packages - see Simpson et al., (2020, submitted) and the emep_setup.py code for many examples.
+(There are many possible combinations of packages - see Simpson et al., (2020, submitted) and the emep_setup.py code for many examples.)
 
 Any keys from *cmdx* can be used by *emep_setup.py*. For example, if the user builds a new base scheme *usersChem* and
 some OA scheme, *usersSOA*, then *emep_setup.py* can be edited to add these as a new option::

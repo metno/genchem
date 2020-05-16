@@ -5,7 +5,7 @@ Contributors
 The GenChem system was created over many years:
 
   David Simpson, Norwegian Meteorological Institute & Chalmers, 
-  1998-2019: wrote original GenChem.pl scripts, the
+  1998-2020: wrote original GenChem.pl scripts, the
   boxChem system, assorted helper scripts (do.GenChem, boxplots.py, etc.), 
   and python3 conversion.
 
@@ -16,15 +16,17 @@ The GenChem system was created over many years:
   of arrays (e.g. factor groups), plus further scripts.  Added
   CRI and MCM chemical mechanisms.
 
-  John Johansson, Chalmers, 2017-2019: improved organisation and
+  John Johansson, Chalmers, 2017-2020: improved organisation and
   flexibility of GenChem system.
 
-  Robert Bergström, Chalmers and SMHI, 2017-2019: development of
+  Robert Bergström, Chalmers and SMHI, 2017-2020: development of
   chemical mechanisms (e.g. EmChem19 family, VBS schemes) for gas and aerosols.
 
   Alvaro Valdebenito, Norwegian Meteorological Institute, 2018-2019,
   various bug-fixes and updates. Added pollen.
 
+  Michael Priestley, Univ. Gothenburg, 2020. Added Docker system and
+  testing for Windows PCs.
 
 .. comment::
 
