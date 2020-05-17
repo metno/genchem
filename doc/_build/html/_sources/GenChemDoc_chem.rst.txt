@@ -1,4 +1,5 @@
 
+.. index:: Formatting of GenChem files
 
 
 ..
@@ -37,6 +38,12 @@
 
 Formatting of GenChem files
 ---------------------------
+
+Three types of simple text file are needed to 
+describe chemical mechanisms in the GenChem system: Reactions,
+Species and Shorthands. The formatting of these is described
+briefly here, and further information and background can be
+found in [Simpson2020].
 
 Reactions files
 +++++++++++++++

@@ -48,7 +48,6 @@
   <ul>
 <li><a class="reference internal" href="#">Introduction</a><ul>
 <li><a class="reference internal" href="#code-structure">Code structure</a></li>
-<li><a class="reference internal" href="#conventions-in-documenentation-naming">Conventions in documenentation naming</a></li>
 <li><a class="reference internal" href="#requirements">Requirements</a></li>
 </ul>
 </li>
@@ -88,8 +87,10 @@
   <div class="section" id="introduction">
 <span id="index-0"></span><h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
 <p>GenChem is a system to generate and test chemical mechanisms for the
-EMEP MSC-W model [Simpson2012] and 1-D canopy model, ESX [SimpsonTuovinen2014].
-GenChem consists of two main directories, <strong>chem</strong> and <strong>box</strong>.</p>
+EMEP MSC-W model [Simpson2012], a 1-D canopy model, ESX [SimpsonTuovinen2014], and also includes its own box-model, boxChem.
+To complement the technical details given here, the GenChem system and its approach have been documented in [Simpson2020], and the chemical and organic
+aerosol mechanisms will be documented in [Bergstrom2020a,Bergstrom2020b].</p>
+<p>GenChem consists of two main directories, <strong>chem</strong> and <strong>box</strong>.</p>
 <p>The <strong>chem</strong> directory contains several chemical mechanisms written
 in chemist-friendly format (e.g. <em>k1</em>  NO2 + OH = HNO3).
 A python script <em>GenChem.py</em> can be used to convert these files
@@ -99,7 +100,7 @@ The fortran files produced by these scripts
 have the prefix “<a href="#id1"><span class="problematic" id="id2">CM_</span></a>” or “<a href="#id3"><span class="problematic" id="id4">CMX_</span></a>”, where CM denotes Chemical Mechanism.</p>
 <p>Although GenChem can be run directly from within the <strong>chem</strong> directory,
 the strongly recommended  approach is to use the scripts available
-in the <strong>box</strong> directory. In this approach GenChem is first applied, and
+in the <strong>box</strong> directory. In this approach GenChem.py is first applied, and
 then the resulting CM files are compiled and run
 as box-model simulations. Once all looks okay, a final script
 can be run to add additional code, and provide an EMEP-ready
@@ -126,9 +127,6 @@ mechanisms alongside each other.</p>
 </pre></div>
 </div>
 <p>(where XXX could any suitable user-directory into which GenChem was unpacked, e.g. /home/fred/chemwork/GenChem.)</p>
-</div>
-<div class="section" id="conventions-in-documenentation-naming">
-<h2>Conventions in documenentation naming<a class="headerlink" href="#conventions-in-documenentation-naming" title="Permalink to this headline">¶</a></h2>
 <p>The input files to GenChem (GenIn files) as used in box or emep model
 are usually built up by appending files from one <em>base</em> directory (from
 base_mechanisms) and one or more (usually many!) <em>extra</em> mechanisms
@@ -136,29 +134,16 @@ from the extra_mechanisms directory. For example, GenIn_Species.csv
 used for  the EMEP CTM’s default EmChem19p scheme consists of  Species
 files from base_mechanisms/EmChem19a, and from twelve extra_mechanisms
 directories (e.g. extra_mechanisms/SeaSalt/SeaSalt_Species.csv,
-extra_mechanisms/PM_VBS_EmChem19/PM_VBS_EmChem19_Species, etc.). To
-avoid having to write out these names explicitly each time, we adopt
-generic names, as illustrated below for the EmChem19p case:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">SCHEME</span>               <span class="n">name</span> <span class="k">for</span> <span class="n">complete</span> <span class="n">chemical</span> <span class="n">mechanisms</span> <span class="n">package</span><span class="o">.</span>
-                     <span class="p">(</span><span class="n">currently</span> <span class="n">EmChem19a</span><span class="p">,</span> <span class="n">EmChem19p</span><span class="p">,</span> <span class="n">CB6r2</span><span class="p">,</span> <span class="n">CRIv2emep</span><span class="p">,</span> <span class="n">MCM_v3</span><span class="o">.</span><span class="mi">3</span><span class="p">)</span>
-
-<span class="n">BASE_Species</span><span class="o">.</span><span class="n">csv</span>     <span class="n">base_mechanisms</span><span class="o">/</span><span class="n">EmChem19a_Species</span><span class="o">.</span><span class="n">csv</span>
-
-<span class="n">EXTRAS_Species</span><span class="o">.</span><span class="n">csv</span>   <span class="n">extra_mechanisms</span><span class="o">/</span><span class="n">SeaSalt</span><span class="o">/</span><span class="n">SeaSalt_Species</span><span class="o">.</span><span class="n">csv</span><span class="p">,</span>
-                     <span class="n">extra_mechanisms</span><span class="o">/</span><span class="n">Aqueous_EmChem16x</span><span class="o">/</span><span class="n">Aqueous_EmChem16x_Species</span><span class="o">.</span><span class="n">csv</span><span class="p">,</span>
-                     <span class="o">....</span>
-
-<span class="n">CMDIR_Species</span><span class="o">.</span><span class="n">csv</span>    <span class="n">Either</span> <span class="n">base</span> <span class="ow">or</span> <span class="n">extras</span> <span class="n">file</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span>
-                     <span class="n">base_mechanisms</span><span class="o">/</span><span class="n">EmChem19a_Species</span><span class="o">.</span><span class="n">csv</span> <span class="o">**</span><span class="ow">or</span><span class="o">**</span>
-                     <span class="n">extra_mechanisms</span><span class="o">/</span><span class="n">SeaSalt</span><span class="o">/</span><span class="n">SeaSalt_Species</span><span class="o">.</span><span class="n">csv</span><span class="p">,</span>
-</pre></div>
-</div>
+extra_mechanisms/PM_VBS_EmChem19/PM_VBS_EmChem19_Species, etc.).
+Further examples of the many possible combinations can be found in
+[Simpson2020].</p>
 </div>
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
 <p>GenChem has been developed on Ubuntu linux systems, and
 should work on any modern linux/unix computer. The code has also been
-run on Windows via a virtual ubuntu environment.
+run on Windows via a virtual ubuntu environment and via the Docker
+files which are included with the distribution.
 The minumum requirements are a modern fortran compiler and python3
 (probably 3.5 or higher).</p>
 <p>We have used for example</p>
