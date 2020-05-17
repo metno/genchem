@@ -14,15 +14,14 @@ Step 1: initial setup
 +++++++++++++++++++++
 
 If not run previously, some preliminary steps are needed to set up a
-working directory.  From the **GenChem/box** directory (cd
-GenChem/box), do::
+working directory.  From the **GenChem/box** directory, do::
 
   cd somepath/GenChem-xxx/box
 
   scripts/box_setup.sh tmp_work
   
 
-where _somepath_ is the user's path. The name _tmp\_work is just an example - anything can be used.
+The name _tmp\_work is just an example - anything can be used.
 
 Step 2: do.testChems
 ++++++++++++++++++++
@@ -30,22 +29,25 @@ Step 2: do.testChems
 At this stage, one can try compiling a chemical scheme. With the example of
 EmChem19a, and now from our tmp_work directory, try::
 
+  cd tmp_work
+
   ./do.testChems  EmChem19a
 
 This script will run GenChem.py on the EmChem19a scheme (also adding
-a few extra reactions from a helper BoxAero mechanism), run "make", and then
-run the resulting box-model code. Results will appear in
-one log-file (RES.EmChem19a, way too wordy!), and as comma-separated
-results in the Output directory:  file boxEmChem19a.csv.
-This file is readable with e.g. libreoffice. Plot scripts are
-also available (see BELOW), for easy visualisation and
-comparison of these csv results.
+a few extra reactions from helper BoxAero, BoxBVOCemis and BoxDep
+mechanisms), run "make", and then run the resulting box-model
+code. Results will appear in one log-file (e.g. RES.EmChem19a),
+and as comma-separated results in the Output directory (set in
+do.testChems):  OUTPUTS_TEST/boxEmChem19a.csv.  This file is readable
+with e.g. libreoffice. Plot scripts are also available (see next section),
+for easy visualisation and comparison of these csv results.
 
-The ``CM_`` and ``CMX_`` fortran files produced by this process are saved in directories, e.g.
-here in  ``ZCMBOX_EmChem19a``. These files could be used in the EMEP model if wanted,
-but usually the more complex script emep_setup.py (described below) is
-used for that. (Hence we reserve the prefix ZCMBOX for files created by do.testChems
-and ZCM for those created with emep\_setup.py, see below.)
+The ``CM_`` and ``CMX_`` fortran files produced by this process are saved
+in directories, e.g.  here in  ``ZCMBOX_EmChem19a``. These files could
+be used in the EMEP model if wanted, but usually the more complex script
+emep_setup.py (described below) is used for that. (Hence we reserve
+the prefix ZCMBOX for files created by do.testChems and ZCM for those
+created with emep\_setup.py, see below.)
 
 Now, if one wants to compare several schemes, one can do e.g.::
 
@@ -57,7 +59,7 @@ against each other.
 
 Technical comments: 
 
-   * do.testChems is just a simple wrapper, which cleans up files, runs another script (do.GenChem), and runs the box model.
+   * do.testChems is just a simple wrapper, which cleans up files, runs another script (do.GenChem), compiles, and runs the box model, boxChem.
 
    * MCM is a very large scheme and this can take a while, or stress your PC's memory! Try with the smaller schemes first.
 
@@ -66,14 +68,15 @@ Technical comments:
 +++++++++++++
 
 If one has run say 3 chemical schemes using Step 2 above, the results
-are easily plotted from the *box/tmp_work/Output* directory::
+are easily plotted from the *box/tmp_work/OUTPUT_TEST* directory::
 
   ../../scripts/boxplots.py -h     for help!
 
   ../../scripts/boxplots.py -v O3 -i boxEmChem19a.csv boxChem1.csv boxChem2.csv  -p
 
-Using 'ALL' or 'DEF' with -v results in all or many common species being plotted at once (-p is assumed
-in this case. For example, here we can see a comparison of three schemes produced with this script:
+Using 'ALL' or 'DEF' with -v results in all or many common species being
+plotted at once (-p is assumed in this case). For example, here we can
+see a comparison of three schemes produced with this script:
 
 .. image:: Comp_ppt_HO2_AeroCRI-R5-emep_AeroEmChem19a_AeroMCM_v3pt3.png
    :scale: 80 %
@@ -100,7 +103,8 @@ which results in ResConcs_boxEmChem19a_O3_ppb.txt
 
 The script do.testChems above compiles the executable boxChem for each mechanism in turn, and by default runs this using some settings from the default config\_box.nml file. This file contains a number of important settings which by deault run a 24-hour simulation (starting at 12:00 GMT), with set emissions, temperature of 298.15 K, mixing height of 1000 m, and some boundary conditions. Default outputs are also given.
 
-The user can of course change these settings (do this in your working directory, not in *src*). We explain the variables and choices here.
+The user can of course change these settings (do this in your working directory, not in *src*). We explain some the key variables and choices here, and further
+information can be found in [Simpson2020].
 
 *Note* these config files follow fortran namelist conventions. Text following
 an exclamation mark (!) is ignored.
@@ -114,8 +118,11 @@ Time-related variables
    tstart = 43200., ! start at 12:00
   ! end time is absolute time -> total runtime is tend - tstart!
    tend = 302400.,  ! three days on top of 12 hours
+   tend = 129600.,  ! one day on top of 12 hours
    dt = 30.         ! time-step for numerical simulations
    doy = 182,        ! Day of the year
+
+(In config files, variables can be given multiple times. The  last entry given is used, in this case we get tend = 129600 s.)
 
 Geographical location
 .....................
@@ -187,7 +194,7 @@ Step 3: emep_setup.py
 
 The do.testChems script described above is best for quickly testing and 
 comparing different mechanisms. Usually these comparisons only involve
-gas-phase mechanisms such as EmChem19a or MCM_v3.3. However, the EMEP
+gas-phase mechanisms such as EmChem19a or MCMv3.3Em. However, the EMEP
 model usually requires a host of extra species and reactions to 
 accommodate sea-salt, dust, organic aerosols, and pollen.
 It also requires files to specify how emissions and boundary
@@ -207,7 +214,7 @@ copied into ZCM\_XXX directories for the scheme XXX you wish to use:
     CM_Reactions.log                        CM_WetDep.inc
     CMX_BiomassBurningMapping_FINNv1.5.txt  CMX_BiomassBurningMapping_GFASv1.txt
     CMX_BoundaryConditions.txt              config_box.nml
-    run_emislist/  (with emislist.defaults.sox etc..)
+    run_emislist/  (with emislist_defaults_sox.csv etc..)
 
 
 The recommended way to get this directory is to use the script *emep_setup.py* from your temporary work directory
@@ -245,6 +252,17 @@ you could do::
 
   emep_setup.py usersChem  # Creates ZCM_usersChem
 
+
+
+Step 4: Use for EMEP CTM
+++++++++++++++++++++++++
+
+After emep_setup.py has successfully run, the ZCM_ directory produced
+contains all the files needed to run the EMEP CTM.  The CM_ and CMX_
+files can be copied directly to the CTM's source directory, and the EMEP
+model compiled as normal (make clean, make).  The emissplit_run files
+need to be sent to a location specified by the user (via the EMEP CTMs'
+emep_config.nml namelist).
 
 
 
