@@ -5,7 +5,11 @@ Introduction
 ============
 
 GenChem is a system to generate and test chemical mechanisms for the
-EMEP MSC-W model [Simpson2012] and 1-D canopy model, ESX [SimpsonTuovinen2014].
+EMEP MSC-W model [Simpson2012], a 1-D canopy model, ESX [SimpsonTuovinen2014], and also includes its own box-model, boxChem.
+To complement the technical details given here, the GenChem system and its approach have been documented in [Simpson2020], and the chemical and organic
+aerosol mechanisms will be documented in [Bergstrom2020a,Bergstrom2020b].
+
+
 GenChem consists of two main directories, **chem** and **box**.
 
 The **chem** directory contains several chemical mechanisms written
@@ -18,7 +22,7 @@ have the prefix "CM_" or "CMX_", where CM denotes Chemical Mechanism.
 
 Although GenChem can be run directly from within the **chem** directory,
 the strongly recommended  approach is to use the scripts available
-in the **box** directory. In this approach GenChem is first applied, and
+in the **box** directory. In this approach GenChem.py is first applied, and
 then the resulting CM files are compiled and run
 as box-model simulations. Once all looks okay, a final script
 can be run to add additional code, and provide an EMEP-ready
@@ -49,9 +53,9 @@ The directory structure for GenChem can be summarised as::
 
 (where XXX could any suitable user-directory into which GenChem was unpacked, e.g. /home/fred/chemwork/GenChem.)
 
-
-Conventions in documenentation naming
--------------------------------------
+.. comment
+  Conventions in documenentation naming
+  -------------------------------------
 
 The input files to GenChem (GenIn files) as used in box or emep model
 are usually built up by appending files from one *base* directory (from
@@ -60,32 +64,37 @@ from the extra_mechanisms directory. For example, GenIn_Species.csv
 used for  the EMEP CTM's default EmChem19p scheme consists of  Species
 files from base_mechanisms/EmChem19a, and from twelve extra_mechanisms
 directories (e.g. extra_mechanisms/SeaSalt/SeaSalt_Species.csv,
-extra_mechanisms/PM_VBS_EmChem19/PM_VBS_EmChem19_Species, etc.). To
-avoid having to write out these names explicitly each time, we adopt
-generic names, as illustrated below for the EmChem19p case::
+extra_mechanisms/PM_VBS_EmChem19/PM_VBS_EmChem19_Species, etc.).
+Further examples of the many possible combinations can be found in
+[Simpson2020].
 
-
-  SCHEME               name for complete chemical mechanisms package. 
-                       (currently EmChem19a, EmChem19p, CB6r2, CRIv2emep, MCM_v3.3)
-
-  BASE_Species.csv     base_mechanisms/EmChem19a_Species.csv
-
-  EXTRAS_Species.csv   extra_mechanisms/SeaSalt/SeaSalt_Species.csv, 
-                       extra_mechanisms/Aqueous_EmChem16x/Aqueous_EmChem16x_Species.csv,
-                       ....
-
-  CMDIR_Species.csv    Either base or extras file, e.g.
-                       base_mechanisms/EmChem19a_Species.csv **or**
-                       extra_mechanisms/SeaSalt/SeaSalt_Species.csv, 
-
-
+.. comment
+  To avoid having to write out these names explicitly each time, we adopt
+  generic names, as illustrated below for the EmChem19p case::
+  
+  
+    SCHEME               name for complete chemical mechanisms package. 
+                         (currently EmChem19a, EmChem19p, CB6r2, CRIv2emep, MCM_v3.3)
+  
+    BASE_Species.csv     base_mechanisms/EmChem19a_Species.csv
+  
+    EXTRAS_Species.csv   extra_mechanisms/SeaSalt/SeaSalt_Species.csv, 
+                         extra_mechanisms/Aqueous_EmChem16x/Aqueous_EmChem16x_Species.csv,
+                         ....
+  
+    CMDIR_Species.csv    Either base or extras file, e.g.
+                         base_mechanisms/EmChem19a_Species.csv **or**
+                         extra_mechanisms/SeaSalt/SeaSalt_Species.csv, 
+  
+  
 
 Requirements
 ------------
 
 GenChem has been developed on Ubuntu linux systems, and
 should work on any modern linux/unix computer. The code has also been
-run on Windows via a virtual ubuntu environment.
+run on Windows via a virtual ubuntu environment and via the Docker
+files which are included with the distribution.
 The minumum requirements are a modern fortran compiler and python3 
 (probably 3.5 or higher).
 
