@@ -53,6 +53,10 @@ cmdx=dict()
 
 cmdx['EmChem19a-vbs']  ='-b EmChem19a -e PM_VBS_EmChem19 '+ common_IsoMT1
 cmdx['EmChem19p-vbs']  = cmdx['EmChem19a-vbs'] + ' Pollen'
+# To preserve older notation, we allow two simple aliases:
+cmdx['EmChem19a']  = cmdx['EmChem19a-vbs']
+cmdx['EmChem19p']  = cmdx['EmChem19p-vbs']
+
 cmdx['EmChem19a-vbs3'] ='-b EmChem19a -e BVOC_ExtraMTs PM_VBS_EmChem19 PM_VBS_ExtraMTs'+common_IsoMT3 
 cmdx['EmChem19a-H']    ='-b EmChem19a -e PM_Hodzic_EmChem19'+common_IsoMT1
 #cmdx['TestEm'] ='-b EmChem19a -e FFireInert SeaSalt' # minimal gas/particle
