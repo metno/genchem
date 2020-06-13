@@ -111,7 +111,7 @@ SO2,1,SO2,xx,SO2,SO2,SOx,!Move to slow?
 
 SO4,3,SO4,xx,PMf,PMf,PM10;PMfine;SIA;SOx;Extinc:SO4,!
 NH3,3,NH3,xx,NH3,NH3,RDN,!
-NO3_f,3,NO3_f,xx,PMfNO3,PMf,PM10;PMfine;SIA;OXN;TNO3;Extinc:NO3f,!in equilib module
-NO3_c,3,NO3_c,xx,PMc,PMc,PM10;PMcoarse;SIA;OXN;TNO3;Extinc:NO3c,!Coarse nitrate
+NO3_f,3,NO3_f,xx,PMfNO3,PMf,PM10;PMfine;SIA;OXN;pNO3;Extinc:NO3f,!in equilib module
+NO3_c,3,NO3_c,xx,PMc,PMc,PM10;PMcoarse;SIA;OXN;pNO3;Extinc:NO3c,!Coarse nitrate
 NH4_f,3,NH4_f,xx,PMfNH4,PMf,RDN;PM10;PMfine;SIA;Extinc:NH4f,! in equilib module
 

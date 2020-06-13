@@ -43,7 +43,7 @@ H2O2,1,H2O2,34.0,H2O2,H2O2,HOx;Hstar_1p0e5;f0_1p0;DRx_1p36,!C0
 HNO3,1,HO3N,63.0,HNO3,HNO3,OXN,!Nitric acid
 HONO,1,HO2N,47.0,HNO2,H2O2,OXN;Hstar_2p6e5;f0_0p5;DRx_1p6,! uncertain wet-dep rate maybe too high?
 HPLD,1,C5H8O3,116.1,MDSOLOOH,H2O2,RCHO;ROOH;Hstar_1p2e5;f0_0p2;DRx_3p3,!C5 hydroperoxyaldehyde -- deposition parameters based on estimated parameters for MCM C5HPALD1 and C5HPALD2
-INTR,1,C5H9O4N,147.1,MDNO3OH,0p7,nitrate;TNO3;OXN;Hstar_5p0e4;f0_0p3;DRx_3p6,!Organic nitrates from ISO2 reaction with NO -- deposition parameters based on estimated parameters for MCM ISOP[A,B,C,D]NO3
+INTR,1,C5H9O4N,147.1,MDNO3OH,0p7,nitrate;OrgNO3;OXN;Hstar_5p0e4;f0_0p3;DRx_3p6,!Organic nitrates from ISO2 reaction with NO -- deposition parameters based on estimated parameters for MCM ISOP[A,B,C,D]NO3
 IOLE,1,C4,48.0,xx,xx,xx,!Internal olefin carbon bond (R-C=C-R) DSCB5 !!NOTE emitted species!! M must be kept at 48.0 -- if changed the emissplit-file will have to be updated!
 C5H8,1,C5H8,68.12,xx,xx,BVOC,!Isoprene !!NOTE emitted species!! M should be kept at 68.12 -- if changed the emissplit-file may have to be updated!
 ISPD,1,C4H6O,70.1,MEK,xx,xx,!"Isoprene product (lumped methacrolein; methyl vinyl ketone; etc.)"
@@ -77,8 +77,8 @@ APINENE,1,C10H16,136.24,xx,xx,BVOC,!Monoterpenes !!NOTE emitted species!! M shou
 TOL,1,C7,84.,xx,xx,xx,!Toluene and other monoalkyl aromatics !!NOTE emitted species!! M must be kept at 84.0 -- if changed the emissplit-file will have to be updated!
 XOPN,1,C5H6O2,98.1,DICARB,H2O2,carbonyl,!Aromatic ring opening product (unsaturated dicarbonyl) -- perhaps equivalent to MCM C5DICARB (and/or perhaps C4MDIAL)
 XYL,1,C8,96.0,xx,xx,xx,!Xylene and other polyalkyl aromatics !!NOTE emitted species!! M must be kept at 96.0 -- if changed the emissplit-file will have to be updated!
-NTR1,1,C4H9O3N,119.1,VLSOLNO3,xx,nitrate;TNO3;OXN;Hstar_0p0e0;f0_0p3;DRx_3p3,!Simple organic nitrates -- deposition parameters from CRI RN13NO3
-NTR2,1,C4H9O4N,135.1,MDSOLNO3,HCHO,nitrate;TNO3;OXN;Hstar_1p0e4;f0_0p3;DRx_3p4,!Multi-functional organic nitrates -- deposition parameters based on estimates for MCM BUT2OLNO3
+NTR1,1,C4H9O3N,119.1,VLSOLNO3,xx,nitrate;OrgNO3;OXN;Hstar_0p0e0;f0_0p3;DRx_3p3,!Simple organic nitrates -- deposition parameters from CRI RN13NO3
+NTR2,1,C4H9O4N,135.1,MDSOLNO3,HCHO,nitrate;OrgNO3;OXN;Hstar_1p0e4;f0_0p3;DRx_3p4,!Multi-functional organic nitrates -- deposition parameters based on estimates for MCM BUT2OLNO3
 ECH4,1,CH4,16.0,xx,xx,xx,!Emitted methane (to enable tracking separate from CH4)
 *
 * Skipping halogens in CB6r2Em
@@ -89,8 +89,8 @@ H2,1,H2,xx,xx,xx,xx,!DS added
 NH3,1,NH3,xx,NH3,NH3,RDN,!DS added
 SO4,1,SO4,xx,PMf,PMf,SIA;SOX;PM10;PM;PMfine;Extinc:SO4,!DS added. Particulate, diff to gaseous SULF above?
 NH4_f,1,NH4,18.01,PMfNH4,PMf,PM10;PM;PMfine;SIA;RDN;Extinc:NH4f,!
-NO3_f,1,NO3,62,PMfNO3,PMf,PM10;PM;PMfine;SIA;OXN;Extinc:NO3f,!
-NO3_c,1,NO3,62,PMc,PMc,PM;PM10;PMcoarse;SIA;OXN;Extinc:NO3f,!
+NO3_f,1,NO3,62,PMfNO3,PMf,PM10;PM;PMfine;SIA;OXN;pNO3;Extinc:NO3f,!
+NO3_c,1,NO3,62,PMc,PMc,PM;PM10;PMcoarse;SIA;OXN;pNO3;Extinc:NO3f,!
 * Fake species for -PAR
 PARLOSS,1,counter,72.1,xx,xx,xx,!cf Gery1988 p127 -PAR, 
 *
