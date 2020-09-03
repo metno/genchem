@@ -57,11 +57,11 @@ NO,1,ON,30.0,xx,xx,OXN;NOx,!Nitric oxide
 NO2,1,O2N,46.0,NO2,xx,OXN;NOx,!Nitrogen dioxide
 O3,1,O3,48.0,O3,xx,xx,!Ozone
 OLE,1,C2,24.,xx,xx,xx,!Terminal olefin carbon bond (R-C=C) DSCB5 !!NOTE emitted species!! M must be kept at 24.0 -- if changed the emissplit-file will have to be updated!
-OPAN,1,C4H3O6N,161.0,PAN,xx,PAN;OXN;RCHO,!Peroxyacyl nitrate (PAN compound) from OPO3 -- perhaps equivalent to MCM MALDIALPAN? deposition???
+OPAN,1,C4H3O6N,161.0,PAN,xx,PANS;OXN;RCHO,!Peroxyacyl nitrate (PAN compound) from OPO3 -- perhaps equivalent to MCM MALDIALPAN? deposition???
 OPEN,1,C4H4O2,84.0,DICARB,H2O2,carbonyl;Hstar_2p0e5;f0_0p0;DRx_2p8,!Aromatic ring opening product (unsaturated dicarbonyl) -- MCM MALDIAL (deposition parameters based on mixture of BZFUONE and MALDIAL -- CRI: UDCARB8)
 PACD,1,C2H4O3,76.0,PAA,ROOH,peroxyacid;Hstar_8p3e2;f0_0p2;DRx_2p4,!Peroxyacetic and higher peroxycarboxylic acids
-PAN,1,C2H3O5N,121.0,PAN,xx,OXN;PAN;Hstar_3p0e0;f0_0p5;DRx_2p8,!Peroxyacetyl Nitrate
-PANX,1,C3H5O5N,135.0,PAN,xx,OXN;PAN;Hstar_2p9e0;f0_0p5;DRx_3p2,!C3 and higher peroxyacyl nitrate
+PAN,1,C2H3O5N,121.0,PAN,xx,OXN;PANS;Hstar_3p0e0;f0_0p5;DRx_2p8,!Peroxyacetyl Nitrate
+PANX,1,C3H5O5N,135.0,PAN,xx,OXN;PANS;Hstar_2p9e0;f0_0p5;DRx_3p2,!C3 and higher peroxyacyl nitrate
 PAR,1,C,12.0,xx,xx,xx,!Paraffin carbon bond (C-C) DSCB5 !!NOTE emitted species!! M must be kept at 12.0 -- if changed the emissplit-file will have to be updated!
 PNA,1,HO4N,79.0,HO2NO2,0p8,OXN;Hstar_6p0e4;f0_1p0;DRx_2p1,!Peroxynitric acid
 PRPA,1,C3H8,44.1,xx,xx,xx,!Propane !!NOTE emitted species!! M should be kept at 44.1 -- if changed the emissplit-file may have to be updated!

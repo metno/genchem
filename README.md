@@ -14,3 +14,11 @@ To get started, follow the guide::
 
    https://genchem.readthedocs.io/en/latest/index.html
 
+
+Updates:
+2020-09-03:
+    Bug fix: changed log to log10 in Shorthands file for CB6r2Em
+    changed group name of PANs to PANS in Species file
+    Moved chem/scripts/GenIn_Shorthands.txt to chem/generic_Shorthands.txt
+     to make this file more visible.
+    Added -i, -v args to getboxconcs.py in box/scripts
