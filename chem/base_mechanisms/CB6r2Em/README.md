@@ -14,18 +14,20 @@ Modifications:
    variables, so that a uniform system can be used across all the
    chemical-schemes in GenChem.
 
-   PARLOSS added as a species, to avoid negative stiochiometry on RHS of equations.
-   Fast PARLOSS + PAR = ; reaction added to achieve the desired effect in a mass
-   consistent way.
+   PARLOSS added as a species, to avoid negative stiochiometry on RHS of
+     equations.
+   Fast PARLOSS + PAR = ; reaction added to achieve the desired effect in a
+     mass consistent way.
 
    Added H2, NH3, SO4, CH3OOH for consistency with EMEP/ESX
 
    MW changed in CB6x for those 'artificial' species (PAR,OLE,ALD2) which are
    emitted in emissplit. 
 
-   Added PAN in group column for 3 species
+   Added PANS in group column for 3 peroxy acyl nitrate species
 
    Some species names changed to match MCM/EMEP/CRI. 
-      - This has been done for TERP -- name changed to APINENE (still representing all monoterpenes!)
+      - This has been done for TERP -- name changed to APINENE (still
+             representing all monoterpenes!)
       - Also done for ISOP -- name changed to C5H8
 
