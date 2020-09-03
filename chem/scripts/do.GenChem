@@ -122,7 +122,8 @@ genfiles= {                    #type/      suffix
 }
 
 # For shorthands we have a 'generic master' file to start with:
-shGeneric='%s/GenChem_Shorthands.txt' %  gcdir
+#shGeneric='%s/GenChem_Shorthands.txt' %  gcdir
+shGeneric='%s/generic_Shorthands.txt' %  chemdir
 
 outf =dict() # output files
 outfh=dict() # file handles
