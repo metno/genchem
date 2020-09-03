@@ -44,7 +44,7 @@
 
   Reads data for a specific pollutant, and stores in ResConcs file::
 
-     ../../scripts/getboxconcs.py O3 file.csv
+     ../../scripts/getboxconcs.py -v O3 -i file.csv
 
   would produce ResConcs\_file_O3_ppb.txt
 

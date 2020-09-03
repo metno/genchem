@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+import argparse
+import pandas as pd
+import sys
 Usage="""
 
   reads  boxChem output files such as AeroEmChem19a.csv
@@ -6,18 +9,23 @@ Usage="""
 
   Usage:
 
-     getConcs OH  AeroEmChem19a.csv
+     getConcs -v OH  -i AeroEmChem19a.csv
 
 """
-import pandas as pd
-import sys
+#----------------------------------------------------------
+parser = argparse.ArgumentParser()
+parser.add_argument('-i', required=True,
+                     help='input file, e.g. -i Ouput/test1.csv')
+parser.add_argument('-v',required=True,
+    help='species wanted , e.g. -v OH')
+parser.print_usage = parser.print_help
+args = parser.parse_args()
 
-if len(sys.argv) == 1:
-  poll='O3'
-  ifile='boxEmChem19a.csv'
-else:
-  poll  = sys.argv[1]
-  ifile = sys.argv[2]
+print(args, len(args.i))
+#----------------------------------------------------------
+poll= args.v
+ifile= args.i
+
 
 x=pd.read_csv(ifile)
 concs=x[poll].values   # 1st cell will be unit, e.g. ppb
