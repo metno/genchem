@@ -59,6 +59,8 @@ cmdx['EmChem19p']  = cmdx['EmChem19p-vbs']
 
 cmdx['EmChem19a-vbs3'] ='-b EmChem19a -e BVOC_ExtraMTs PM_VBS_EmChem19 PM_VBS_ExtraMTs'+common_IsoMT3 
 cmdx['EmChem19a-H']    ='-b EmChem19a -e PM_Hodzic_EmChem19'+common_IsoMT1
+#
+#cmdx['EmChem19X-vbs']  ='-b EmChem19X -e PM_VBS_EmChem19 '+ common_IsoMT1
 #cmdx['TestEm'] ='-b EmChem19a -e FFireInert SeaSalt' # minimal gas/particle
 # CB6s:
 cmdx['CB6r2Em-vbs']   ='-b CB6r2Em -e PM_VBS_CB6r2Em'+common_IsoMT1
