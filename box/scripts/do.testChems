@@ -24,7 +24,7 @@ do
 
   echo CHEM $chem
 
-  odir=D_Outputs_TEST # $tst
+  odir=OUTPUTS # $tst
 #  if [ -f "$odir/box_dt30s.csv" ]; then rm $odir/box_dt30s.csv; fi
   mkdir -p build $odir
   mkdir ZCMBOX_$chem
@@ -48,7 +48,7 @@ do
     cp CM_* ZCMBOX_$chem
     cp CMX_* ZCMBOX_$chem
 
-    ./boxChem > RES.$chem
+    ./boxChem > $odir/RES.$chem
 
     cp -r emissplit_run     ZCMBOX_$chem
     cp config_box.nml    $odir/config_box.$chem
