@@ -35,12 +35,11 @@ References
     The Norwegian Meteorological Institute, Oslo, Norway, pp 145-155,
     www.emep.int, 2019
 
-.. [Simpson2020]
+.. [Simpson_et_al_2020]
     Simpson, D., Bergström, R., Briolat, A., Imhof, H., Johansson, J.,
     Priestly, M. and Valdebenito, GenChem v1.0 - a chemical pre-processing
-    and testing system for atmospheric modelling, Submitted.
-
-
+    and testing system for atmospheric modelling, 
+    [Accepted for publication](https://gmd.copernicus.org/preprints/gmd-2020-147/)
 
 
 
@@ -49,5 +48,5 @@ References
 
   **  NOTE !!
   This user-guide is a work-in-progress manual on the GenChem system,
-  with this interim version produced for interested users, Nov. 2019.
+  with this interim version produced for interested users, Oct. 2020.
   **

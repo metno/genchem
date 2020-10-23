@@ -86,10 +86,16 @@
             
   <div class="section" id="introduction">
 <span id="index-0"></span><h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<p>GenChem is a system to generate and test chemical mechanisms for the
-EMEP MSC-W model [Simpson2012], a 1-D canopy model, ESX [SimpsonTuovinen2014], and also includes its own box-model, boxChem.
-To complement the technical details given here, the GenChem system and its approach have been documented in [Simpson2020], and the chemical and organic
-aerosol mechanisms will be documented in [Bergstrom2020a,Bergstrom2020b].</p>
+<p>GenChem is a system to generate and test chemical mechanisms for the EMEP
+MSC-W model <a class="reference external" href="https://acp.copernicus.org/articles/12/7825/2012/">(Simpson et al. 2012)</a>
+a 1-D canopy model, ESX [SimpsonTuovinen2014],
+and also includes its own box-model, boxChem.  To complement the
+technical details given here, the GenChem system and its approach have
+been documented in
+<a class="reference external" href="https://gmd.copernicus.org/preprints/gmd-2020-147/">Simpson et al 2020</a>
+and the with this readthedocs manual.
+The chemical and organic aerosol
+mechanisms will be documented in [Bergstrom2020a,Bergstrom2020b].</p>
 <p>GenChem consists of two main directories, <strong>chem</strong> and <strong>box</strong>.</p>
 <p>The <strong>chem</strong> directory contains several chemical mechanisms written
 in chemist-friendly format (e.g. <em>k1</em>  NO2 + OH = HNO3).
@@ -106,7 +112,8 @@ as box-model simulations. Once all looks okay, a final script
 can be run to add additional code, and provide an EMEP-ready
 set of fortran files. This approach ensures that the CM files
 compile as they should, and allows rapid testing of several chemical
-mechanisms alongside each other.</p>
+mechanisms alongside each other. See the more detailed documentation
+specified above for more details and examples.</p>
 <div class="section" id="code-structure">
 <h2>Code structure<a class="headerlink" href="#code-structure" title="Permalink to this headline">¶</a></h2>
 <p>The directory structure for GenChem can be summarised as:</p>
@@ -140,6 +147,7 @@ Further examples of the many possible combinations can be found in
 </div>
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>The GenChem system itself can be downloaded from <a class="reference external" href="https://github.com/metno/genchem">github</a>.</p>
 <p>GenChem has been developed on Ubuntu linux systems, and
 should work on any modern linux/unix computer. The code has also been
 run on Windows via a virtual ubuntu environment and via the Docker

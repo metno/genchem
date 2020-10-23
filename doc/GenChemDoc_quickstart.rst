@@ -104,7 +104,7 @@ which results in ResConcs_boxEmChem19a_O3_ppb.txt
 The script do.testChems above compiles the executable boxChem for each mechanism in turn, and by default runs this using some settings from the default config\_box.nml file. This file contains a number of important settings which by deault run a 24-hour simulation (starting at 12:00 GMT), with set emissions, temperature of 298.15 K, mixing height of 1000 m, and some boundary conditions. Default outputs are also given.
 
 The user can of course change these settings (do this in your working directory, not in *src*). We explain some the key variables and choices here, and further
-information can be found in [Simpson2020].
+information can be found in `Simpson et al 2020 <https://gmd.copernicus.org/preprints/gmd-2020-147/>`_.
 
 *Note* these config files follow fortran namelist conventions. Text following
 an exclamation mark (!) is ignored.
@@ -239,7 +239,9 @@ the possible command lines as provided by the *cmdx*  dictionary::
 
 The '-b' argument gives the base mechanism, and then you can have any number of compatable extra mechanisms (-e argument).
 
-(There are many possible combinations of packages - see Simpson et al., (2020, submitted) and the emep_setup.py code for many examples.)
+(There are many possible combinations of packages - see
+`Simpson et al 2020 <https://gmd.copernicus.org/preprints/gmd-2020-147/>`_
+ and the emep_setup.py code for many examples.)
 
 Any keys from *cmdx* can be used by *emep_setup.py*. For example, if the user builds a new base scheme *usersChem* and
 some OA scheme, *usersSOA*, then *emep_setup.py* can be edited to add these as a new option::

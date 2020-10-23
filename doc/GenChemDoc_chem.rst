@@ -43,7 +43,8 @@ Three types of simple text file are needed to
 describe chemical mechanisms in the GenChem system: Reactions,
 Species and Shorthands. The formatting of these is described
 briefly here, and further information and background can be
-found in [Simpson2020].
+found in
+`Simpson et al 2020 <https://gmd.copernicus.org/preprints/gmd-2020-147/>`_.
 
 Reactions files
 +++++++++++++++

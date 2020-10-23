@@ -4,10 +4,16 @@
 Introduction
 ============
 
-GenChem is a system to generate and test chemical mechanisms for the
-EMEP MSC-W model [Simpson2012], a 1-D canopy model, ESX [SimpsonTuovinen2014], and also includes its own box-model, boxChem.
-To complement the technical details given here, the GenChem system and its approach have been documented in [Simpson2020], and the chemical and organic
-aerosol mechanisms will be documented in [Bergstrom2020a,Bergstrom2020b].
+GenChem is a system to generate and test chemical mechanisms for the EMEP
+MSC-W model `(Simpson et al. 2012) <https://acp.copernicus.org/articles/12/7825/2012/>`_
+a 1-D canopy model, ESX [SimpsonTuovinen2014],
+and also includes its own box-model, boxChem.  To complement the
+technical details given here, the GenChem system and its approach have
+been documented in 
+`Simpson et al 2020 <https://gmd.copernicus.org/preprints/gmd-2020-147/>`_
+and the with this readthedocs manual.
+The chemical and organic aerosol
+mechanisms will be documented in [Bergstrom2020a,Bergstrom2020b].
 
 
 GenChem consists of two main directories, **chem** and **box**.
@@ -28,7 +34,8 @@ as box-model simulations. Once all looks okay, a final script
 can be run to add additional code, and provide an EMEP-ready
 set of fortran files. This approach ensures that the CM files
 compile as they should, and allows rapid testing of several chemical
-mechanisms alongside each other.
+mechanisms alongside each other. See the more detailed documentation
+specified above for more details and examples.
 
 
 Code structure
@@ -91,6 +98,9 @@ Further examples of the many possible combinations can be found in
 Requirements
 ------------
 
+The GenChem system itself can be downloaded from `github <https://github.com/metno/genchem>`_.
+
+
 GenChem has been developed on Ubuntu linux systems, and
 should work on any modern linux/unix computer. The code has also been
 run on Windows via a virtual ubuntu environment and via the Docker
@@ -112,5 +122,5 @@ We have used for example
 
   **  NOTE !!
   This user-guide is a work-in-progress manual on the GenChem system,
-  with this interim version produced for interested users, Feb. 2020.
+  with this interim version produced for interested users, Oct. 2020.
   **
