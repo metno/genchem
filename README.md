@@ -12,7 +12,7 @@ example easy testing of chemical mechanisms against each other.
 
 To get started, read the documentation article and guide::
 
-   https://https://gmd.copernicus.org/preprints/gmd-2020-147/
+   https://gmd.copernicus.org/preprints/gmd-2020-147/
 
    https://genchem.readthedocs.io/en/latest/index.html
 
