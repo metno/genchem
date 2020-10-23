@@ -9,7 +9,6 @@ in box-model simulations. This is actually the normal and recommended way to
 prepare files for the EMEP model, but also provides a good environment for
 comparing chemical mechanisms.
 
-
 Step 1: initial setup
 +++++++++++++++++++++
 

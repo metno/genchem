@@ -1,4 +1,4 @@
-.. index:: INTRO
+.. index:: Introduction
   
 
 Introduction
@@ -37,6 +37,7 @@ compile as they should, and allows rapid testing of several chemical
 mechanisms alongside each other. See the more detailed documentation
 specified above for more details and examples.
 
+.. index:: Code structure
 
 Code structure
 --------------
@@ -94,6 +95,7 @@ Further examples of the many possible combinations can be found in
                          extra_mechanisms/SeaSalt/SeaSalt_Species.csv, 
   
   
+.. index:: Requirements
 
 Requirements
 ------------

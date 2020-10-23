@@ -6,16 +6,16 @@ References
 ..
  REFERENCES FOR HERE
 
-.. [Bergstrom2020a]
+.. [Bergstrom_et_al2020a]
     Bergström, R. et al., Update and comparison of chemical mechanisms
     for the EMEP MSC-W model system --- EmChem19a, EmChem19X, CRIv2R5Em,
     CB6r2Em, and MCMv3.3Em, in preparation, 2020.
 
-.. [Bergstrom2020b]
+.. [Bergstrom_et_al2020b]
     Bergström, R. et al., Organic aerosol schemes for the EMEP MSC-W model for
     European and Global scale simulations
 
-.. [Simpson2012]
+.. [Simpson_et_al2012]
     Simpson, D., Benedictow, A., Berge, H., Bergström, R., Emberson, L.
     D., Fagerli, H., Flechard, C. R., Hayman, G. D., Gauss, M., Jonson,
     J. E., Jenkin, M. E., Nyri, A., Richter, C., Semeena, V. S., Tsyro,
@@ -29,7 +29,7 @@ References
     acidifying and eutrophying components. Status Report 1/2014, The Norwegian
     Meteorological Institute, Oslo, Norway, pp 147-154, 2014
 
-.. [SimpsonEMEP2019]
+.. [Simpson_et_alEMEP2019]
     Simpson, D., Bergström, R., Tsyro, S. and Wind, P.,
     Updates to the EMEP/MSC-W model, 2018--2019, in EMEP Status Report 1/2019,
     The Norwegian Meteorological Institute, Oslo, Norway, pp 145-155,
