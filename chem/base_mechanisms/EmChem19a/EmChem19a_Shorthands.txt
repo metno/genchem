@@ -1,24 +1,26 @@
-*-- GenIn.shorthand    ---
+*-----------------------------------------------------------------------------
+*-- EmChem19a_Shorthands.txt
+* will be appended to generic_Shorthands.txt by do.GenChem or do.testChems
+* to produce the final GenIn_Shorthands.txt file.
+* In the process any earlier shorthands will be overwriten by the 
+* shorthands defined here.
+*-----------------------------------------------------------------------------
 *
 * Here one can give any "shorthand" rate coefficients, e.g. KHO2RO2
 *
-* One can also define any term used in the rate equations, e.g.
-* for the EMEP model XT can be replaced by TEMP(iq) for temperature
-*
 * Note that terms on the right hand side can be expressed in terms
-* of __previously_defined__ left-hand-side short cuts. Thus, 
-* 5.8*KRC67 below will be replaced by 5.8*1.0e-12*exp(190./TEMP(IQ))
-* as long as KRC67 and XT have been listed already.
+* of __previously_defined__ left-hand-side short cuts. 
 *
 * NB - NO SPACES ON RHS , E.G. SEE FH2O
 * NB - CAREFUL WITH PARENTHESES - (A+B)*X =/= A+B*X ! SEE FH2O
 *
   
-logtdiv300   log(temp/300) # HI added this
-log300divt   log(300*TINV) # and this
+*These are now in generic_Shorthands.txt
+*logtdiv300   log(temp/300) # HI added this
+*log300divt   log(300*TINV) # and this
+*H2O          H2O
+*XT           temp
 
-H2O          H2O
-XT           temp
 FH2O         (1.0+1.4e-21*h2o*exp(2200.0*TINV))
 KHO2RO2      2.91e-13*exp(1300.*TINV) ! MCM2001 to be multiplied by (1-exp(-0.245n)) where n is the carbon number
 KRC67        1.0e-12*exp(190.*TINV)
@@ -215,6 +217,6 @@ KMT16         IUPAC_troe(8.0e-27*exp(3.5*Log300divT),9.0e-9*TINV,0.5,M,0.75-1.27
 *FCPPN         0.36
 *NCPPN         0.75-1.27*(LOG10(FCPPN))
 *FPPN          10**(LOG10(FCPPN)/(1+(LOG10(KRPPN)/NCPPN)**2))
-*KBPPN         (KPPN0*KPPNI)*FCPPN/(KPPN0+KPPNI)
+*KBPPN         (KPPN0*KPPNI)*FPPN/(KPPN0+KPPNI)
 KBPPN         IUPAC_troe(1.7e-03*EXP(-11280.*TINV),8.3e+16*EXP(-13940.*TINV),0.36,M,0.75-1.27*log10(0.36))
 ******************************************************
