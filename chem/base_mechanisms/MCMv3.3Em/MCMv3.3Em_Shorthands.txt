@@ -1,28 +1,40 @@
+*-----------------------------------------------------------------------------
+*-- MCMv3.3Em_Shorthands.txt
+* will be appended to generic_Shorthands.txt by do.GenChem or do.testChems
+* to produce the final GenIn_Shorthands.txt file.
+* In the process any earlier shorthands will be overwriten by the
+* shorthands defined here.
+*-----------------------------------------------------------------------------
+* Here one can give any "shorthand" rate coefficients, e.g. KHO2RO2
+*
+* Note that terms on the right hand side can be expressed in terms
+* of __previously_defined__ left-hand-side short cuts. 
+*
+* NB - NO SPACES ON RHS , E.G. SEE FH2O
+* NB - CAREFUL WITH PARENTHESES - (A+B)*X =/= A+B*X ! SEE FH2O
+
 * This file has been manually updated (26/04/2020) with revisions 
 * to two rate expressions: 
 *                            KAPHO2 -- RCO3 + HO2 
 *                            KMT12  -- SO2 + OH 
+* And a bug fix in the KBPPN rate (28/08/2020)
+*
 * Original header:
 * This file has been written by cri2GenChem.py on 07/07/2016 16:09:27
-* Its inputfile is
-* MCM3.3/mcm_subset.fac
+* Its inputfile is MCM3.3/mcm_subset.fac
 * its initialisation file is input_files/EmChem15.init
 * ----------------------------------------------------------------------
-*-- GenIn.shorthand    ---
-*
-* Here one can give any "shorthand" rate coefficients, e.g. KHO2RO2
-*
-* One can also define any term used in the rate equations, e.g.
-* for the EMEP model XT can be replaced by TEMP(iq) for temperature
-*
-* Note that terms on the right hand side can be expressed in terms
-* of __previously_defined__ left-hand-side short cuts. Thus, 
-* 5.8*KRC67 below will be replaced by 5.8*1.0e-12*exp(190./TEMP(IQ))
-* as long as KRC67 and XT have been listed already.
-*
+  
+*These are now in generic_Shorthands.txt
+* logtdiv300   log(temp/300)
+* log300divt   log(300/temp)
+*H2O          H2O
+*XT           temp
+
 * NB - NO SPACES ON RHS , E.G. SEE FH2O
 * NB - CAREFUL WITH PARENTHESES - (A+B)*X =/= A+B*X ! SEE FH2O
 *
+
 * Generic Rate Coefficients
 *
 KRO2NO        2.7e-12*EXP(360.*TINV)
@@ -179,6 +191,7 @@ KRPPN         KPPN0/KPPNI
 FCPPN         0.36
 NCPPN         0.75-1.27*(LOG10(FCPPN))
 FPPN          10**(LOG10(FCPPN)/(1+(LOG10(KRPPN)/NCPPN)**2))
-KBPPN         (KPPN0*KPPNI)*FCPPN/(KPPN0+KPPNI)
+*BUG in MCM: KBPPN         (KPPN0*KPPNI)*FCPPN/(KPPN0+KPPNI)
+KBPPN         (KPPN0*KPPNI)*FPPN/(KPPN0+KPPNI)
 ******************************************************
 *
