@@ -91,7 +91,7 @@ KMT16                     : OH + C3H6 = RN9O2 ;
 1.01e-11*exp(550*TINV)    : OH + TBUT2ENE = RN12O2 ;
 3.9e-13                   : NO3 + TBUT2ENE = NRN12O2 ;
 ***CRIv2.2: 6.64e-15*exp(-1059*TINV)     : O3 + TBUT2ENE = CH3CHO + 0.69 CO + 0.69 CH3O2 + 0.69 OH + 0.31 CH3CO2H ;
-*IUPAC 200807, products based on MCM:
+*IUPAC 201807, products based on MCM:
 7.0e-15*exp(-1060*TINV)   : O3 + TBUT2ENE = 1.0675 CH3CHO + 0.695 CH3O2 + 0.57 CO + 0.57 OH + 0.125 HO2 + 0.125 CH4 + 0.1125 CH3CO2H + 0.0675 H2O2 ;
 KMT17                     : OH + C2H2 = 0.636 GLYOX + 0.636 OH + 0.364 HCOOH + 0.364 CO + 0.364 HO2 ;  #DS HI has CARB3
 *Rates for BENZENE+OH and TOLUENE+OH are slightly different from CRIv2.2
@@ -120,8 +120,9 @@ KMT17                     : OH + C2H2 = 0.636 GLYOX + 0.636 OH + 0.364 HCOOH + 0
 *IUPAC Dec 2017: 
 1.34e-11*exp(410*TINV)    : APINENE + OH = RTN28O2 ; 
 1.20e-12*exp(490*TINV)    : APINENE + NO3 = NRTN28O2 ; 
-***CRIv2.2: 8.05e-16*exp(-640*TINV) : APINENE + O3 = 0.8 OH + 0.8 RTN26O2 + 0.125 RCOOH25 + 0.075 TNCARB26 + 0.075 H2O2 ; 
-*IUPAC Aug 2018:
+***CRIv???: 8.05e-16*exp(-640*TINV) : APINENE + O3 = 0.8 OH + 0.8 RTN26O2 + 0.125 RCOOH25 + 0.075 TNCARB26 + 0.075 H2O2 ; 
+***CRIv2.2(york version): 8.05e-16*exp(-640*TINV) : APINENE + O3 = 0.8 OH + 0.8 CH3COCH3 + 0.8 RN18AO2 + 0.175 TNCARB26 + 0.175 H2O2 + 0.025 RCOOH25 ;
+*IUPAC Aug 2018 rate, products from some "UK" version???:
 8.22e-16*exp(-640*TINV)   : APINENE + O3 = 0.8 OH + 0.8 RTN26O2 + 0.125 RCOOH25 + 0.075 TNCARB26 + 0.075 H2O2 ; 
 ***CRIv2.2: 2.38e-11*exp(357*TINV)         : BPINENE + OH = RTX28O2 ; 
 *IUPAC Dec 2017: 
@@ -492,8 +493,9 @@ KRO2HO2*0.706                     : NRU12O2 + HO2 = NRU12OOH ;
 KRO2HO2*0.706                     : NRU14O2 + HO2 = NRU14OOH ;
 KRO2HO2*0.914                     : NRTN28O2 + HO2 = NRTN28OOH ;
 KRO2HO2*0.914                     : NRTX28O2 + HO2 = NRTX28OOH ;
-***CRIv2.2: 5.2e-13*EXP(980*TINV)        : CH3CO3 + HO2 = 0.41 CH3CO3H + 0.44 CH3O2 + 0.44 OH + 0.15 O3 + 0.15 CH3CO2H ; old MCM KAPHO2
-***CRIv2.2 use an old value for KAPHO2: 5.2e-13*EXP(980*TINV)
+***CRIv2.2: 5.2e-13*EXP(980*TINV)        : CH3CO3 + HO2 = 0.56 CH3CO3H + 0.44 CH3O2 + 0.44 OH ; 
+***CRIv2.2 (and MCMv3.3.1) use an old value for KAPHO2: 5.2e-13*EXP(980*TINV)
+***MCMv3.3.1: 5.2e-13*EXP(980*TINV)        : CH3CO3 + HO2 = 0.41 CH3CO3H + 0.44 CH3O2 + 0.44 OH + 0.15 O3 + 0.15 CH3CO2H ; 
 ***CRI-R5-emep use a the IUPAC recommended rate from 2017 for CH3CO3+HO2: KAPHO2 3.14e-12*EXP(580/TEMP)
 *Based on IUPAC product split at 288K:
 KAPHO2     : CH3CO3 + HO2 = 0.454 CH3O2 + 0.454 OH + 0.384 CH3CO3H + 0.162 O3 + 0.162 CH3CO2H ;
