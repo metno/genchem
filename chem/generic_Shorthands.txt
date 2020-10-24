@@ -1,11 +1,13 @@
 * General shorthands file for GenChem
-* Base-file produced from MCM
+* Base-file originally produced from MCM
 * This file has been written by cri2GenChem.py on 07/07/2016 16:09:27
-* Its inputfile is
-* MCM3.3/mcm_subset.fac
-* its initialisation file is input_files/EmChem15.init
+* Its inputfile was based upon MCM3.3/mcm_subset.fac and input_files/EmChem15.init
 * ----------------------------------------------------------------------
-*-- GenIn.shorthand    ---
+*-- generic_Shorthands.txt ---
+* This file is the starting point for the final GenIn_Shorthands.txt
+* which do.GenChem or do.testChems will generate. In this process
+* additional shorthands files may be appended to this file, and in
+* the process any later files overwrite shorthands defined here. 
 *
 * Here one can give any "shorthand" rate coefficients, e.g. KHO2RO2
 *
@@ -20,6 +22,14 @@
 * NB - NO SPACES ON RHS , E.G. SEE FH2O
 * NB - CAREFUL WITH PARENTHESES - (A+B)*X =/= A+B*X ! SEE FH2O
 *
+* Common temperature expression:
+* (nb TINV = 1/temp, and is known to EMEP/ESX/boxChem models)
+*
+logtdiv300   log(temp/300)  
+log300divt   log(300*TINV)   ! or -logtdiv300!
+H2O          H2O
+XT           temp
+
 * Generic Rate Coefficients
 *
 KRO2NO        2.7e-12*EXP(360/TEMP)
