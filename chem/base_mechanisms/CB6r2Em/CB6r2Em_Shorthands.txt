@@ -1,3 +1,18 @@
+*-----------------------------------------------------------------------------
+*-- CB6r2Em_Shorthands.txt
+* will be appended to generic_Shorthands.txt by do.GenChem or do.testChems
+* to produce the final GenIn_Shorthands.txt file.
+* In the process any earlier shorthands will be overwriten by the
+* shorthands defined here.
+*-----------------------------------------------------------------------------
+* Here one can give any "shorthand" rate coefficients, e.g. KHO2RO2
+*
+* Note that terms on the right hand side can be expressed in terms
+* of __previously_defined__ left-hand-side short cuts. 
+*
+* NB - NO SPACES ON RHS , E.G. SEE FH2O
+* NB - CAREFUL WITH PARENTHESES - (A+B)*X =/= A+B*X ! SEE FH2O
+
 *
 *----- Reaction type 3: O + O2 + M = O3 + M ----------------------- ;
 * ;
