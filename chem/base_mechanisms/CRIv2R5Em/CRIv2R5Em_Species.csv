@@ -96,7 +96,7 @@ C3H8,1,C3H8,44.1,xx,xx,alkane,!C3
 NC4H10,1,nC4H10,58.12,xx,xx,alkane,!C4
 C2H4,1,C2H4,28.05,xx,xx,alkene,!C2
 C3H6,1,C3H6,42.08,xx,xx,alkene,!C3
-TBUT2ENE,1,tbut2ene,56.11,xx,xx,alkene,!C4
+TBUT2ENE,1,tCH3CH=CHCH3,56.11,xx,xx,alkene,!C4
 CH3CHO,1,CH3CHO,44.05,ALD,xx,RCHO;Hstar_1p3e1;f0_0p05;DRx_2p1,!C2, H ca 13 M/atm (Sander)
 C2H5CHO,1,C2H5CHO,58.08,MEK,xx,RCHO;Hstar_1p0e1;f0_0p05;DRx_2p4,!C3, H ca 10 M/atm (Sander)
 CH3CO2H,1,CH3CO2H,60.05,CH3CO2H,H2O2,acid;Hstar_7p0e5;f0_0p0;DRx_2p0,!C2, H* for pH=7
