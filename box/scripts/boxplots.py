@@ -141,7 +141,7 @@ for v in vars[0]:
 
       ind  = find_index(v,h[n]) # returns -1 if not found
       maxv = -999.0
-      nls += 1; nco += 1
+      #nls += 1; nco += 1
 
       if ind > 0:
         vals=d[n][:,ind]
@@ -196,6 +196,7 @@ for v in vars[0]:
       if nls == len(linestyle): nls = 0
       if nco == len(cols)     : nco = 0
       if maxv>0.0: plt.plot(vals,label=linelab,ls=linestyle[nls],color=cols[nco])
+      nls += 1; nco += 1
       #   plt.ylim(bottom=0.0)
 
       # Needed to prevent plt using strange constant offsets (e.g. 1701 -> 1)
