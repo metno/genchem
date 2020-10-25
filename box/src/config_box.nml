@@ -43,7 +43,7 @@ lon = 15.06,
  ! BVOC emissions are set in chem/extra_mechanisms/BoxBVOCemis, where
  ! also a factor SUN is given for light-dependent emissions. These BVOC
  ! emissions can be adjusted with the factors below.
- fIsop = 1.0,                     ! isoprene 
+ fIsop = 0.0,                     ! isoprene 
  fMTL  = 0.0,                     ! monoterpenes from light-dependent emissions
  fMTP  = 0.0,                     ! monoterpenes from pool (Temp.)-dependent emissions
  fSQT  = 0.0,                     ! sesqui-terpenes
