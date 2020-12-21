@@ -10,7 +10,7 @@ a 1-D canopy model, ESX [SimpsonTuovinen2014],
 and also includes its own box-model, boxChem.  To complement the
 technical details given here, the GenChem system and its approach have
 been documented in 
-`Simpson et al 2020 <https://gmd.copernicus.org/preprints/gmd-2020-147/>`_
+`Simpson et al 2020 <https://gmd.copernicus.org/articles/13/6447/2020/>`_
 and the with this readthedocs manual.
 The chemical and organic aerosol
 mechanisms will be documented in [Bergstrom2020a,Bergstrom2020b].
