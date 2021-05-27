@@ -13,6 +13,7 @@
 *  3. GenChem.py reads factors or mapbacks like Cstar or Extinc,,,,,,,
 *       from the Groups column. If you want to set e.g. Cstar=3.5, write in the Groups,,,,,,
 "*       column: "";Cstar:3.5;""",,,,,,,
+*  4. NMVOC, NMHC??? These will be used to get the sum of such species, but here we exclude short-lived.
 *************************************************************,,,,,,,
 Spec,adv,formula,MW,DRY,WET,Groups,!Comments
 *
@@ -32,9 +33,9 @@ MEKO2,0,CH3COCHO2CH3,xx,xx,xx,RO2,!(from MEK)
 C5DICARBO2,0,CH3COCH(OH)CH(O2)CHO,xx,xx,xx,RO2,!
 MACRO2,0,O=CHC(O2)(CH3)CH2OH,xx,xx,xx,RO2,!(from macr degradation; from MCM)
 CH3CO3,1,CH3COO2,xx,xx,xx,RO2,! 
-*******,Added,for,ESX,xx,xx,advected,!
-NMVOC,1,nmvoc,36.767,xx,xx,xx,for_emissions !
-********************************************,,,,,,,
+*REM *******,Added,for,ESX,xx,xx,advected,!
+*REM NMVOC,1,nmvoc,36.767,xx,xx,xx,for_emissions !
+*REM ********************************************,,,,,,,
 *,xx,xx,0,xx,xx,,!
 O3,1,O3,xx,O3,xx,daObs;OX,!
 NO,1,NO,xx,xx,xx,NOx;OXN,!
@@ -48,50 +49,50 @@ HNO3,1,HNO3,xx,HNO3,HNO3,OXN,!
 HO2NO2,1,HO2NO2,xx,HO2NO2,0p8,OXN;Hstar_6p0e4;f0_1p0;DRx_2p1,! Sander gives very variable H 40-20 000 M/atm -> H* 6E2-3E5 M/atm or 4E3-2E6M/atm depending on Ka
 CO,1,CO,xx,xx,xx,xx,!
 CH4,1,CH4,xx,xx,xx,xx,!
-C2H6,1,C2H6,xx,xx,xx,xx,!
-NC4H10,1,nC4H10,xx,xx,xx,xx,!
-C2H4,1,C2H4,xx,xx,xx,xx,!
-C3H6,1,C3H6,xx,xx,xx,xx,!
-BENZENE,1,C6H6,xx,xx,xx,xx,!
-TOLUENE,1,C7H8,xx,xx,xx,xx,!
-OXYL,1,oC6H4(CH3)CH3,xx,xx,xx,xx,!
-C5H8,1,CH2=HCC=CH2CH3,xx,xx,xx,BVOC,!
-CH3OH,1,CH3OH,xx,xx,xx,xx,! roughly 200 M/atm [Sander]
-C2H5OH,1,C2H5OH,xx,xx,xx,xx,! roughly 200 M/atm [Sander]
-HCHO,1,HCHO,xx,HCHO,ROOH,RCHO;carbonyl;Hstar_3p2e3;f0_0p2;DRx_1p4,! 
-CH3CHO,1,CH3CHO,xx,ALD,xx,RCHO;carbonyl;Hstar_1p3e1;f0_0p05;DRx_2p1,!
-MACR,1,CH2=CCH3CHO,xx,MEK,xx,RCHO;carbonyl;Hstar_5p0e0;f0_0p05;DRx_2p6,!
-MEK,1,CH3COC2H5,xx,MEK,xx,carbonyl;Hstar_2p0e1;f0_0p05;DRx_2p7,!
-ACETOL,1,CH3COCH2OH,xx,ACETOL,HCHO,carbonyl;Hstar_8p0e3;f0_0p05;DRx_2p6,! hydroxy acetone
-GLYOX,1,HCOHCO,xx,GLYOX,H2O2,RCHO;carbonyl;Hstar_3p0e5;f0_0p0;DRx_2p1,! {H* ca 3E5 M/atm or 2 orders of magnitude higher in Mexico City?}
-MGLYOX,1,CH3COCHO,xx,MGLYOX,0p3,carbonyl;RCHO;Hstar_2p4e4;f0_0p2;DRx_2p5,! 
-BIACET,1,CH3C(=O)C(=O)CH3,xx,MEK,xx,carbonyl;Hstar_7p3e1;f0_0p05;DRx_2p8,! 2,3-butanedione (dimethyl glyoxal) 
-C5DICARB,1,CH3COCH=CHCHO,xx,C5DICARB,H2O2,carbonyl;RCHO;Hstar_6p0e5;DRx_3p1,! MCM equivalent is C5DICARB? CRI UDCARB11?
+C2H6,1,C2H6,xx,xx,xx,NMVOC;NMHC,!
+NC4H10,1,nC4H10,xx,xx,xx,NMVOC;NMHC,!
+C2H4,1,C2H4,xx,xx,xx,NMVOC;NMHC,!
+C3H6,1,C3H6,xx,xx,xx,NMVOC;NMHC,!
+BENZENE,1,C6H6,xx,xx,xx,NMVOC;NMHC,!
+TOLUENE,1,C7H8,xx,xx,xx,NMVOC;NMHC,!
+OXYL,1,oC6H4(CH3)CH3,xx,xx,xx,NMVOC;NMHC,!
+C5H8,1,CH2=HCC=CH2CH3,xx,xx,xx,BVOC;NMVOC;NMHC,!
+CH3OH,1,CH3OH,xx,xx,xx,NMVOC,! roughly 200 M/atm [Sander]
+C2H5OH,1,C2H5OH,xx,xx,xx,NMVOC,! roughly 200 M/atm [Sander]
+HCHO,1,HCHO,xx,HCHO,ROOH,RCHO;carbonyl;Hstar_3p2e3;f0_0p2;DRx_1p4;NMVOC,! 
+CH3CHO,1,CH3CHO,xx,ALD,xx,RCHO;carbonyl;Hstar_1p3e1;f0_0p05;DRx_2p1;NMVOC,!
+MACR,1,CH2=CCH3CHO,xx,MEK,xx,RCHO;carbonyl;Hstar_5p0e0;f0_0p05;DRx_2p6;NMVOC,!
+MEK,1,CH3COC2H5,xx,MEK,xx,carbonyl;Hstar_2p0e1;f0_0p05;DRx_2p7;NMVOC,!
+ACETOL,1,CH3COCH2OH,xx,ACETOL,HCHO,carbonyl;Hstar_8p0e3;f0_0p05;DRx_2p6;NMVOC,! hydroxy acetone
+GLYOX,1,HCOHCO,xx,GLYOX,H2O2,RCHO;carbonyl;Hstar_3p0e5;f0_0p0;DRx_2p1;NMVOC,! {H* ca 3E5 M/atm or 2 orders of magnitude higher in Mexico City?}
+MGLYOX,1,CH3COCHO,xx,MGLYOX,0p3,carbonyl;RCHO;Hstar_2p4e4;f0_0p2;DRx_2p5;NMVOC,! 
+BIACET,1,CH3C(=O)C(=O)CH3,xx,MEK,xx,carbonyl;Hstar_7p3e1;f0_0p05;DRx_2p8;NMVOC,! 2,3-butanedione (dimethyl glyoxal) 
+C5DICARB,1,CH3COCH=CHCHO,xx,C5DICARB,H2O2,carbonyl;RCHO;Hstar_6p0e5;DRx_3p1;NMVOC,! MCM equivalent is C5DICARB? CRI UDCARB11?
 * C5134CO2OH,1,CH3C(=O)C(=O)CH(OH)CHO,xx,MDSOLOOH,H2O2,RCHO;carbonyl,! Multifunctional (three carbonyl groups + OH group) 
 * C54CO,1,CH3C(=O)C(=O)C(=O)CHO,xx,VHISOLOOH,H2O2,RCHO;carbonyl,! Multifunctional (four carbonyl groups) 
-CH3OOH,1,CH3O2H,xx,MEOOH,xx,ROOH;Hstar_3p0e2;f0_0p2;DRx_1p9,!
-C2H5OOH,1,C2H5OOH,xx,MEOOH,xx,ROOH;Hstar_3p3e2;f0_0p2;DRx_2p3,!
-BURO2H,1,secC4H9O2H,xx,C3H7OOH,xx,ROOH;Hstar_6p2e1;DRx_3p0,!(butane RO2 + ho2)
-ETRO2H,1,CH2O2HCH2OH,xx,SHISOLOOH,H2O2,ROOH;Hstar_1p3e6;f0_0p2;DRx_2p5,! (ethene RO2 + ho2)
+CH3OOH,1,CH3O2H,xx,MEOOH,xx,ROOH;Hstar_3p0e2;f0_0p2;DRx_1p9;NMVOC,!
+C2H5OOH,1,C2H5OOH,xx,MEOOH,xx,ROOH;Hstar_3p3e2;f0_0p2;DRx_2p3;NMVOC,!
+BURO2H,1,secC4H9O2H,xx,C3H7OOH,xx,ROOH;Hstar_6p2e1;DRx_3p0;NMVOC,!(butane RO2 + ho2)
+ETRO2H,1,CH2O2HCH2OH,xx,SHISOLOOH,H2O2,ROOH;Hstar_1p3e6;f0_0p2;NMVOC;DRx_2p5,! (ethene RO2 + ho2)
 * PRRO2H,1,CH3CHO2HCH2OH,xx,SHISOLOOH,H2O2,ROOH,!from propene degradation + ho2
-MEKO2H,1,CH3COCHO2HCH3,xx,MDSOLOOH,1p3,carbonyl;ROOH;DRx_3p1;Hstar_9p0e4,!
+MEKO2H,1,CH3COCHO2HCH3,xx,MDSOLOOH,1p3,carbonyl;ROOH;DRx_3p1;Hstar_9p0e4;NMVOC,!
 ISRO2H,1,C5H10O3,xx,SHISOLOOH,H2O2,ROOH,!from isoprene degradation + ho2
-C5DICAROOH,1,CH3COCHOHCHO2CHO,xx,VHISOLNO3,H2O2,ROOH;carbonyl;RCHO;Hstar_1p6e8;DRx_3p55;f0_0p3,! 
-HPALD,1,C5H8O3,xx,MDSOLOOH,H2O2,ROOH;RCHO;carbonyl;Hstar_1p2e5;DRx_3p3,! unsaturated C5 hydroperoxide and aldehyde
-MACROOH,1,O=CHC(CH3)(OOH)CH2OH,xx,VHISOLOOH,H2O2,ROOH;carbonyl;RCHO;DRx_3p2;Hstar_3p5e8,!from macro2 + ho2
-OXYO2H,1,C8H12O5,xx,VHISOLOOH,H2O2,ROOH;Hstar_1p4e8;f0_0p2;DRx_4p1,!from oxyo2 + ho2 multifunctional [OOC1(C)C=CC2OOC1(C)C2O] 
-CH3CO3H,1,CH3COO2H,xx,PAA,ROOH,peroxyacid;Hstar_8p3e2;f0_0p2;DRx_2p4,!  
-PACALD,1,C5H6O4,xx,CO2C5OH,H2O2,peroxyacid;RCHO;carbonyl;Hstar_1p5e6;DRx_3p47,! assuming that it is based on MCM C5PACALD[1,2]
-IEPOX,1,C5H10O3,xx,HISOLF0,HNO3,epoxide,! assuming it is based on the MCM IEPOX[A,B,C] epoxide with two hydroxyl groups. 
-SC4H9NO3,1,C4H9NO3,xx,VLSOLNO3,xx,OXN;Hstar_0p0e0;f0_0p3;DRx_3p3,! nitrate group
-NALD,1,O2NOCH2CHO,xx,PAN,ROOH,OXN;RCHO;carbonyl;Hstar_5p5e3;DRx_2p7,! nitrate group, nitrooxy acetaldehyde -- uncertain deposition parameters
-ISON,1,C5H9NO4,xx,MDNO3OH,0p7,OXN;Hstar_5p0e4;f0_0p3;DRx_3p6,! isoprene nitrate (MCM: ISOP[A,B,C,D]NO3) (CRI RU14NO3)
-PAN,1,CH3COO2NO2,xx,PAN,xx,OXN;PANS;Hstar_3p0e0;f0_0p5;DRx_2p8,! 
-MPAN,1,CH2CH(CH3)C(=0)O2NO2,xx,MPAN,xx,OXN;PANS;Hstar_3p0e0;f0_0p2;DRx_3p4,!(from macr degradation)
+C5DICAROOH,1,CH3COCHOHCHO2CHO,xx,VHISOLNO3,H2O2,ROOH;carbonyl;RCHO;Hstar_1p6e8;DRx_3p55;f0_0p3;NMVOC,! 
+HPALD,1,C5H8O3,xx,MDSOLOOH,H2O2,ROOH;RCHO;carbonyl;Hstar_1p2e5;DRx_3p3;NMVOC,! unsaturated C5 hydroperoxide and aldehyde
+MACROOH,1,O=CHC(CH3)(OOH)CH2OH,xx,VHISOLOOH,H2O2,ROOH;carbonyl;RCHO;DRx_3p2;Hstar_3p5e8;NMVOC,!from macro2 + ho2
+OXYO2H,1,C8H12O5,xx,VHISOLOOH,H2O2,ROOH;Hstar_1p4e8;f0_0p2;DRx_4p1;NMVOC,!from oxyo2 + ho2 multifunctional [OOC1(C)C=CC2OOC1(C)C2O] 
+CH3CO3H,1,CH3COO2H,xx,PAA,ROOH,peroxyacid;Hstar_8p3e2;f0_0p2;DRx_2p4;NMVOC,!  
+PACALD,1,C5H6O4,xx,CO2C5OH,H2O2,peroxyacid;RCHO;carbonyl;Hstar_1p5e6;DRx_3p47;NMVOC,! assuming that it is based on MCM C5PACALD[1,2]
+IEPOX,1,C5H10O3,xx,HISOLF0,HNO3,epoxide;NMVOC,! assuming it is based on the MCM IEPOX[A,B,C] epoxide with two hydroxyl groups. 
+SC4H9NO3,1,C4H9NO3,xx,VLSOLNO3,xx,OXN;Hstar_0p0e0;f0_0p3;DRx_3p3;NMVOC,! nitrate group
+NALD,1,O2NOCH2CHO,xx,PAN,ROOH,OXN;RCHO;carbonyl;Hstar_5p5e3;DRx_2p7;NMVOC,! nitrate group, nitrooxy acetaldehyde -- uncertain deposition parameters
+ISON,1,C5H9NO4,xx,MDNO3OH,0p7,OXN;Hstar_5p0e4;f0_0p3;DRx_3p6;NMVOC,! isoprene nitrate (MCM: ISOP[A,B,C,D]NO3) (CRI RU14NO3)
+PAN,1,CH3COO2NO2,xx,PAN,xx,OXN;PANS;Hstar_3p0e0;f0_0p5;DRx_2p8;NMVOC,! 
+MPAN,1,CH2CH(CH3)C(=0)O2NO2,xx,MPAN,xx,OXN;PANS;Hstar_3p0e0;f0_0p2;DRx_3p4;NMVOC,!(from macr degradation)
 *
-APINENE,1,C10H16,xx,xx,xx,BVOC;MONOTERP,!
-TERPO2,0,xx,xx,xx,xx,RO2,,!
-TERPOOH,1,C10H18O3,xx,LHISOLOOH,H2O2,ROOH;Hstar_1p5e6;f0_0p2;DRx_4p5,!C0?
+APINENE,1,C10H16,xx,xx,xx,BVOC;MONOTERP;NMVOC;NMHC,!
+TERPO2,0,xx,xx,xx,xx,RO2;NMVOC,,!
+TERPOOH,1,C10H18O3,xx,LHISOLOOH,H2O2,ROOH;Hstar_1p5e6;f0_0p2;DRx_4p5;NMVOC,!C0?
 
 SO2,1,SO2,xx,SO2,SO2,SOx,!Move to slow?
 *,,,,,,,
