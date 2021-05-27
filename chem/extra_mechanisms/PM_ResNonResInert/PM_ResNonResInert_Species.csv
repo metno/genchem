@@ -1,0 +1,31 @@
+*"---------------------------------------------------------------------"
+* Assumes PM emissions, with OC, EC, remPPM, for fine and coarse
+* FFIRE now moved to separate FFireInert directory
+*"---------------------------------------------------------------------"
+* REMEMBER to NOT include the PM10 and PMfine groups for the fine (PM2.5) Organic components! Taken care of by the help species PART_OM_F!
+* Aiken et al., EST2008, gives values about 1.56-1.72 for P-BBOA and similar for ambient BBOA
+*
+*"Spec,adv,formula,MW,DRY,WET,Groups,!Comments"
+*
+* Inert POM species:
+* 
+POM_f_Res,3,CO,20.4,PMf,PMf,OM25;PCM;PPM25;PPM10;nvResOC25;nonvolPCM;nvabsOM,"!Primary Res burning OC emissions, OM/OC=1.7"
+POM_c_Res,3,CO,20.4,PMc,PMc,PMcoarse;PPM_c;PPM10;PM10;nvResOC_coarse;OMcoarse;nonvolPCM,"!Primary Res burning coarse OC emissions, OM/OC=1.7"
+POM_f_nonRes,3,CH3,xx,PMf,PMf,OM25;PCM;PPM25;PPM10;nvnonResOC25;nonvolPCM;nvabsOM,"!Primary fossil fuel burning fine OC emissions, OM/OC=1.25"
+POM_c_nonRes,3,CH3,xx,PMc,PMc,PMcoarse;PPM_c;PPM10;PM10;PM10anthr;nvnonResOC_coarse;OMcoarse;nonvolPCM,"!Primary fossil fuel burning coarse OC emissions, OA/OC=1.25"
+*
+* Primary Res burning fine EC emissions"
+EC_f_Res_new,3,C,xx,PMf,ECfn,Extinc:ECn;EC_f;PMfine;PM10;PPM25;PPM10;PCM;ResEC;ResECfine;ECfine;nonvolPCM,
+EC_f_Res_age,3,C,xx,PMf,PMf,Extinc:ECa;EC_f;PMfine;PM10;PPM25;PPM10;PCM;ResEC;ResECfine;ECfine;nonvolPCM,"!Aged Res burning fine EC emissions"
+EC_c_Res,3,C,xx,PMc,PMc,Extinc:EC;PPM_c;PPM10;PM10;PM10anthr;ResEC;ECcoarse;nonvolPCM,"!Primary Res burning coarse EC emissions"
+EC_f_nonRes_new,3,C,xx,PMf,ECfn,Extinc:ECn;EC_f;PMfine;PM10;PPM25;PPM10;PCM;nonResEC;nonResECfine;ECfine;nonvolPCM,"!Primary fossil fuel burning fine EC emissions"
+EC_f_nonRes_age,3,C,xx,PMf,PMf,Extinc:ECa;EC_f;PMfine;PM10;PPM25;PPM10;PCM;nonResEC;nonResECfine;ECfine;nonvolPCM,"!Aged fossil fuel burning fine EC emissions"
+EC_c_nonRes,3,C,xx,PMc,PMc,Extinc:EC;PPM_c;PPM10;PM10;PM10anthr;nonResEC;ECcoarse;nonvolPCM,"!Primary fossil fuel burning coarse EC emissions"
+*
+* Four species represent any particle emissions which are not EC or OC. Uses a little
+* extra CPU if only OC, EC inventories are used, but makes for easy consistency with PMxx inventories
+*
+remPPM25_nonRes,3,xx,12,PMf,PMf,Extinc:DDf;PM10;PMfine;PPM25;PPM10,"!Primary; fine <2.5um"
+remPPM25_Res,3,xx,12,PMf,PMf,Extinc:DDf;PM10;PMfine;PPM25;PPM10,"!Primary; fine <2.5um"
+remPPM_c_nonRes,3,xx,12,PMc,PMc,Extinc:DDc;PMcoarse;PPM_c;PPM10;PM10,"!Primary; coarse 2.5um<PM<10"
+remPPM_c_Res,3,xx,12,PMc,PMc,Extinc:DDc;PMcoarse;PPM_c;PPM10;PM10,"!Primary; coarse 2.5um<PM<10"

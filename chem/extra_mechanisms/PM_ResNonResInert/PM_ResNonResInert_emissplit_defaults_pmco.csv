@@ -1,0 +1,21 @@
+# PPM25 splits for EmChem19res
+# FAKE - DO NOT USES for EMEP RUNS!!
+# 2021 UPDATA - for "real" runs EMEP uses the GNFR system these days, from
+#  ZCM_DIRS. 
+# Key-word, MASS_ASSUMED= 0 by default, 
+# OLD: D. Simpson, May 2011, loosely based upon IIASA, POMI, CARBOSOL papers
+# change when emissions have artificial mass, e.g. 46 for NOx as NO2
+: MASS_ASSUMED 0 
+ 99, 99,POM_c_nonRes,EC_c_nonRes,EC_c_Res,remPPM_c_Res,remPPM_c_nonRes, #HEADERS
+#DATA
+  0,  1,        1.0,       5.0,      0.0,    0.0,  94.0
+  0,  2,       50.0,      20.0,      0.0,   30.0,   0.0
+  0,  3,        5.0,      10.0,      0.0,    0.0,  85.0
+  0,  4,        5.0,       5.0,      0.0,    0.0,  90.0
+  0,  5,        5.0,       5.0,      0.0,    0.0,  90.0
+  0,  6,       10.0,      40.0,      0.0,    0.0,  50.0
+  0,  7,       40.0,      30.0,      0.0,    0.0,  30.0
+  0,  8,       45.0,      45.0,      0.0,    0.0,  10.0
+  0,  9,       40.0,      30.0,      0.0,    0.0,  30.0
+  0, 10,       40.0,      20.0,      0.0,    0.0,  40.0
+  0, 11,       70.0,       0.0,      0.0,    0.0,  30.0

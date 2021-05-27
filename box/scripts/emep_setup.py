@@ -28,6 +28,8 @@ chemscripts='../../chem/scripts'  # ecosx/chem/scripts directory (do.GenChem)
 # Comments: Aqueous_EmChem16x is still standard
 #           Aqueous_EmChem16z uses Fgas(SO2) and still need checking
 common= ' Aqueous_EmChem16x Aero2017nx ShipNOx PM_FFireInert SeaSalt DustExtended Ash PM_WoodFFuelInert EC_ageing' # Most typical EMEP
+# with ResNonRes PM, EC aging moved in PM_ResNonResInert
+commonRNR= ' Aqueous_EmChem16x Aero2017nx ShipNOx PM_FFireInert SeaSalt DustExtended Ash PM_ResNonResInert' 
 dcommon=' Aqueous_EmChem16x Aero2017nx ShipNOx PM_FFireInert SeaSalt Dust BVOC_SQT_NV' # More compact dust
 ocommon=' ShipNOx PM_FFireInert SeaSalt DustExtended Pollen' # Added pollen and extended dust
 fcommon=' Aqueous_EmChem16x Aero2017nx Ash ShipNOx PM_FFireInert SeaSalt DustExtended Pollen BVOC_SQT_NV'
@@ -38,6 +40,7 @@ ncommon=' Aqueous_EmChem16x Aero2017nx Ash ShipNOx FFireInert16z SeaSalt DustExt
 # Mainly emissions in these common packages, since chem reactions and species
 # differ betweem EmChems, CRIs and CB6 schemes
 common_IsoMT1  = common + ' BVOC_SQT_NV BVOC_IsoMT1_emis'
+common_RNR     = commonRNR + ' BVOC_SQT_NV BVOC_IsoMT1_emis'
 common_IsoMT2  = common + ' BVOC_SQT_NV BVOC_IsoMT2_emis'
 common_IsoMT3  = common + ' BVOC_SQT_NV BVOC_IsoMT3_emis'
 
@@ -56,6 +59,7 @@ cmdx['EmChem19p-vbs']  = cmdx['EmChem19a-vbs'] + ' Pollen'
 # To preserve older notation, we allow two simple aliases:
 cmdx['EmChem19a']  = cmdx['EmChem19a-vbs']
 cmdx['EmChem19p']  = cmdx['EmChem19p-vbs']
+cmdx['EmChem19rnr']  ='-b EmChem19a -e PM_VBS_EmChem19 '+ common_RNR
 
 cmdx['EmChem19a-vbs3'] ='-b EmChem19a -e BVOC_ExtraMTs PM_VBS_EmChem19 PM_VBS_ExtraMTs'+common_IsoMT3 
 cmdx['EmChem19a-H']    ='-b EmChem19a -e PM_Hodzic_EmChem19'+common_IsoMT1

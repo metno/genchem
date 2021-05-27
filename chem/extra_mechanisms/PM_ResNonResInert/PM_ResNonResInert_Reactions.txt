@@ -1,0 +1,24 @@
+*
+emisfiles:pm25,pmco
+* 
+* Here primary OA emissions are considered nonvolatile ("traditional approach")
+*
+rcemis(POM_f_nonRes,KDIM)            : = POM_f_nonRes ;
+rcemis(POM_c_nonRes,KDIM)            : = POM_c_nonRes ;
+rcemis(EC_f_nonRes_new,KDIM)         : = EC_f_nonRes_new ;
+rcemis(EC_f_nonRes_age,KDIM)         : = EC_f_nonRes_age ;
+rcemis(EC_c_nonRes,KDIM)             : = EC_c_nonRes ;
+*
+rcemis(POM_f_Res,KDIM)             : = POM_f_Res ;
+rcemis(EC_f_Res_new,KDIM)          : = EC_f_Res_new ;
+rcemis(EC_f_Res_age,KDIM)          : = EC_f_Res_age ;
+rcemis(EC_c_Res,KDIM)              : = EC_c_Res ;
+rcemis(remPPM25_Res,KDIM)          : = remPPM25_Res ;
+rcemis(remPPM25_nonRes,KDIM)       : = remPPM25_nonRes ;
+rcemis(remPPM_c_Res,KDIM)          : = remPPM_c_Res ;
+rcemis(remPPM_c_nonRes,KDIM)       : = remPPM_c_nonRes ;
+*
+*<----- EC ageing ------- -------------------------------------------->
+* ;
+ec_ageing_rate()         : EC_f_Res_new  = EC_f_Res_age ;
+ec_ageing_rate()         : EC_f_nonRes_new = EC_f_nonRes_age ;
