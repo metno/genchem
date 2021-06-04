@@ -60,8 +60,8 @@ cmdx['EmChem19p-vbs']  = cmdx['EmChem19a-vbs'] + ' Pollen'
 cmdx['EmChem19a']  = cmdx['EmChem19a-vbs']
 cmdx['EmChem19p']  = cmdx['EmChem19p-vbs']
 # schemes which uses Res, nonRes split instead of wood/ffuel
-cmdx['EmChem19rnr']  ='-b EmChem19a -e PM_VBS_EmChem19 '+ common_RNR
-cmdx['EmChem19rnrp']  ='-b EmChem19a -e PM_VBS_EmChem19 '+ common_RNR + ' Pollen'
+cmdx['EmChem19r']  ='-b EmChem19a -e PM_VBS_EmChem19 '+ common_RNR
+cmdx['EmChem19rp']  ='-b EmChem19a -e PM_VBS_EmChem19 '+ common_RNR + ' Pollen'
 
 cmdx['EmChem19a-vbs3'] ='-b EmChem19a -e BVOC_ExtraMTs PM_VBS_EmChem19 PM_VBS_ExtraMTs'+common_IsoMT3 
 cmdx['EmChem19a-H']    ='-b EmChem19a -e PM_Hodzic_EmChem19'+common_IsoMT1
