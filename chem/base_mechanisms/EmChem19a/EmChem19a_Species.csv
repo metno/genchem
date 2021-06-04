@@ -87,8 +87,8 @@ IEPOX,1,C5H10O3,xx,HISOLF0,HNO3,epoxide;NMVOC,! assuming it is based on the MCM 
 SC4H9NO3,1,C4H9NO3,xx,VLSOLNO3,xx,OXN;Hstar_0p0e0;f0_0p3;DRx_3p3;NMVOC,! nitrate group
 NALD,1,O2NOCH2CHO,xx,PAN,ROOH,OXN;RCHO;carbonyl;Hstar_5p5e3;DRx_2p7;NMVOC,! nitrate group, nitrooxy acetaldehyde -- uncertain deposition parameters
 ISON,1,C5H9NO4,xx,MDNO3OH,0p7,OXN;Hstar_5p0e4;f0_0p3;DRx_3p6;NMVOC,! isoprene nitrate (MCM: ISOP[A,B,C,D]NO3) (CRI RU14NO3)
-PAN,1,CH3COO2NO2,xx,PAN,xx,OXN;PANS;Hstar_3p0e0;f0_0p5;DRx_2p8;NMVOC,! 
-MPAN,1,CH2CH(CH3)C(=0)O2NO2,xx,MPAN,xx,OXN;PANS;Hstar_3p0e0;f0_0p2;DRx_3p4;NMVOC,!(from macr degradation)
+PAN,1,CH3COO2NO2,xx,PAN,xx,OXN;PANS;Hstar_3p0e0;f0_0p5;DRx_2p8,! 
+MPAN,1,CH2CH(CH3)C(=0)O2NO2,xx,MPAN,xx,OXN;PANS;Hstar_3p0e0;f0_0p2;DRx_3p4,!(from macr degradation)
 *
 APINENE,1,C10H16,xx,xx,xx,BVOC;MONOTERP;NMVOC;NMHC,!
 TERPO2,0,xx,xx,xx,xx,RO2;NMVOC,,!
