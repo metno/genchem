@@ -59,6 +59,7 @@ cmdx['EmChem19p-vbs']  = cmdx['EmChem19a-vbs'] + ' Pollen'
 # To preserve older notation, we allow two simple aliases:
 cmdx['EmChem19a']  = cmdx['EmChem19a-vbs']
 cmdx['EmChem19p']  = cmdx['EmChem19p-vbs']
+cmdx['EmChem19d'] = '-b EmChem19a -e EmAsh ' + ' ShipNOx PM_FFireInert SeaSalt  DustExtended PM_WoodFFuelInert EC_ageing'
 # schemes which uses Res, nonRes split instead of wood/ffuel
 cmdx['EmChem19r']  ='-b EmChem19a -e PM_VBS_EmChem19 '+ common_RNR
 cmdx['EmChem19rp']  ='-b EmChem19a -e PM_VBS_EmChem19 '+ common_RNR + ' Pollen'

@@ -1,0 +1,24 @@
+*
+Spec,adv,formula,MW,DRY,WET,Groups,!Comments
+* adv=1 = fast, sent to CM_Reactions1.inc
+* adv=2 = fast, semi-vol
+* adv=3 = slow, sent to CM_Reactions2.inc
+*
+* Volcanic ash tracers (all active vents)
+*Ash_f,3,xx,12,PMf,PMf,ASH;PMfine;PM10,,"!!Volcanic ash; fine  < 2.5 um"
+*Ash_c,3,xx,12,PMc,PMc,ASH;PMcoarse;PM10,,"!!Volcanic ash; coarse 2.5-10 um"
+*
+
+
+* Ash using 7 species
+ASH_1,1,xx,12,PMf,PMf,ASH;PMfine;PM10,,"!!Volcanic ash; fine  < 2.5 um"
+ASH_2,1,xx,12,PMf,PMf,ASH;PMfine;PM10,,"!!Volcanic ash; fine  < 2.5 um"
+ASH_3,1,xx,12,PMf,PMf,ASH;PMfine;PM10,,"!!Volcanic ash; fine  < 2.5 um"
+ASH_4,1,xx,12,PMf,PMf,ASH;PMfine;PM10,,"!!Volcanic ash; fine  < 2.5 um"
+
+ASH_5,1,xx,12,PMc,PMc,ASH;PMcoarse;PM10,,"!!Volcanic ash; coarse 2.5-10 um"
+
+ASH_6,1,xx,12,PMc,PMc,ASH;PMcoarse;PM10,,"!!Volcanic ash; coarse 2.5-10 um"
+ASH_7,1,xx,12,PMc,PMc,ASH;PMcoarse;PM10,,"!!Volcanic ash; coarse 2.5-10 um"
+
+*

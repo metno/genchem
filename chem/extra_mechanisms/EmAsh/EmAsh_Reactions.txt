@@ -1,0 +1,21 @@
+*  <----------- Volcanic emissions ----------------------------->
+*
+* For ash, we currently set rcemis directly in emepctm
+*
+* rcemis(ASH,k)   : = Ash_1 + Ash_2 + Ash_3 + Ash_4 + Ash_5 + Ash_6 + Ash_7  ;
+
+rcemis(Ash_1,k)   : = Ash_1 ;
+rcemis(Ash_2,k)   : = Ash_2 ;
+rcemis(Ash_3,k)   : = Ash_3 ;
+rcemis(Ash_4,k)   : = Ash_4 ;
+rcemis(Ash_5,k)   : = Ash_5 ;
+rcemis(Ash_6,k)   : = Ash_6 ;
+rcemis(Ash_7,k)   : = Ash_7 ;
+
+*rcemis(Ash_f,k)   : = Ash_f ;
+*rcemis(Ash_c,k)   : = Ash_c ;
+
+*FUTURE MAYBE:
+*_func_rcbio(SEASALT_F,k)   : = SeaSalt_f ;
+*_func_rcbio(SEASALT_C,k)   : = SeaSalt_c ;
+
