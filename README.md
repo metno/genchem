@@ -10,7 +10,7 @@ related systems, GenChem also features a simple box-model testing system
 (**boxChem**), which can run as a stand-alone chemical solver, enabling for
 example easy testing of chemical mechanisms against each other.
 
-To get started, read the documentation article and guide::
+To get started, read the documentation article and guide:
 
    https://gmd.copernicus.org/articles/13/6447/2020/
 
@@ -19,9 +19,11 @@ To get started, read the documentation article and guide::
 
 Updates:
 
-2020-12-21: GMD article published! Link above updated 
-2020-10-22: GMD article accepted for publication. 
-2020-09-03:
+  2020-12-21: GMD article published! Link above updated 
+
+  2020-10-22: GMD article accepted for publication. 
+
+  2020-09-03:
     Bug fix: changed log to log10 in Shorthands file for CB6r2Em
     changed group name of PANs to PANS in Species file
     Moved chem/scripts/GenIn_Shorthands.txt to chem/generic_Shorthands.txt
