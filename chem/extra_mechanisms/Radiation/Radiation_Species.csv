@@ -1,0 +1,23 @@
+*
+Spec,adv,formula,MW,DRY,WET,Groups,!Comments
+* adv=1 = fast, sent to CM_Reactions1.inc
+* adv=2 = fast, semi-vol
+* adv=3 = slow, sent to CM_Reactions2.inc
+*
+
+
+
+* Spec,adv,formula,MW,DRY,WET,Groups,!Comments
+
+* Normal isotopes
+NPP_Cs137,1,xx,12,PMf,PMf,NUC;PMfine;PM25,,"!Cs-137 as PPM25"
+NPP_I131,1,xx,12,PMf,PMf,NUC;PMfine;PM25,, "!I-131 as PPM25"
+NPP_Sr90,1,xx,12,PMf,PMf,NUC;PMfine;PM25,, "!Sr-90 as PPM25"
+
+* Noble gases without deposition
+NPP_Xe133,1,xx,12,xx,xx,NUC;PMfine;PM25,,   "!Xe is a noble gas --> no DEP"
+NPP_Kr85,1,xx,12,xx,xx,NUC;PMfine;PM25,,    "!Kr-85 is a noble gas--> no DEP"
+
+
+* Nuclear Blast
+NUC_Blast,1,xx,12,PMc,PMc,NUC;PMcoarse;PM10,, "!Nuclear blast as PM10"

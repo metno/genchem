@@ -1,0 +1,95 @@
+*   SIMPLE Can-Chem chemistry
+*   This file is comparable with EMEP code
+*   Note conventions  
+*   END-OF-LINE is ";" (not required in comment section)
+* 
+*   Do *NOT* use white space in rate-coefficients !!
+*
+*   lines beginning with "*" are comments  
+*   lines beginning with "DRY" are dry deposition terms  
+*   lines beginning with "WET" are dry deposition terms  
+*   lines beginning with "rcemis" are emission terms  
+*   lines beginning with "emisfiles" give name of  emission files, e.g. nox
+*   ;
+*   Some coefficients are defined in GenIn.shorthand, e.g. KHO2RO2 
+*   Anything else is simply used as the rate coefficient.  
+*   ;
+*   GenChem checks whether all shorthands used here are also in
+*   GenIn.species. For now, I have put some unused "products"
+*   after the ";" EOL, e.g.HCOOH. 
+* 
+*------------------------------------------------------------ ;
+*
+* Scheme is mixture of simple EMEP + teaching scheme of
+* Dacian Daescu (DD below for rates), UIOWA. Added some HO2 losses though.
+*
+6.0e-34*M*O2*(TEMP/300.0)**2.6     : OP + {O2} + {M}  = O3  ; simplified
+2.2e-10*H2O                        : OD + {H2O} = 2. OH        ; A97,J
+1.4e-12*EXP(-1310.0*TINV)          : O3 + NO    = NO2 + {O2}    ; acp2004
+2.03e-17*(TEMP**2)*EXP(78.0*TINV)  : OH + VOC    = RO2 ;  nC4H10 copy
+4.4e-12*EXP(365.0*TINV)            : OH + CH3CHO = CH3COO2 ;  simplified from emep
+3.6e-12*EXP(270.0*TINV)            : NO + HO2   = NO2 + OH      ; acp2004
+KRO2NO                             : NO + RO2  = NO2 +  HO2 + CH3CHO ;
+1.11e-11                           : NO2 + OH + {M}  = HNO3  ; DD
+7.5e-12*EXP(290.0*TINV)            : CH3COO2 + NO  = NO2 + RO2 + {CO2} ;emep had CH3O2
+4.7e-12                            : CH3COO2 + NO2 + {M} = PAN ; DD
+1.95e+16*exp(-13543.0*TINV)        : PAN  + {M} = CH3COO2 + NO2 ; DD !! e16 gave error
+*
+* Photolysis 
+* disabled
+*DJ(IDO3_O1D,k)     O3            = OD             ;   J(5e-5)
+*DJ(IDNO2,k)     NO2           = OP  + NO       ;   J(9e-3)
+*DJ(IDCH3CHO,k)  CH3CHO        = RO2 + HO2 + {CO} ; J(6e-6)
+*
+* consider next:
+*FH2O*2.2e-13*EXP(600.0*TINV)       HO2 + HO2 = H2O2          ; IUPAC 2001
+*FH2O*1.9e-33*EXP(980.0*TINV)*M    HO2 + HO2 = H2O2          ; IUPAC 2001
+*1.44e-13+M*3.43e-33                 OH     + CO    = HO2               ; IUPAC 2005
+* ;
+* Emissions
+emisfiles:sox,nox,voc
+*
+rcemis(TRACER1,KDIM)     : =  TRACER1 ;
+rcemis(TRACER2,KDIM)     : =  TRACER2 ;
+rcemis(NO,KDIM)          : =  NO ;
+rcemis(VOC,KDIM)         : =  VOC ;
+
+* needed for rest of model?
+rcemis(NO2,KDIM)                         : = NO2    ;
+rcemis(SO2,KDIM)                         : = SO2    ;
+rcemis(SO4,KDIM)                         : = SO4    ;
+rcemis(CO,KDIM)                          : = CO    ;
+rcemis(NH3,KDIM)                         : = NH3 ;
+rcemis(C2H6,KDIM)                        : = C2H6    ;
+rcemis(NC4H10,KDIM)                      : = NC4H10    ;
+rcemis(C2H4,KDIM)                        : = C2H4    ;
+rcemis(C3H6,KDIM)                        : = C3H6    ;
+rcemis(OXYL,KDIM)                        : = OXYL    ;
+rcemis(HCHO,KDIM)                        : = HCHO    ;
+rcemis(CH3CHO,KDIM)                      : = CH3CHO    ;
+rcemis(MEK,KDIM)                         : = MEK    ;
+rcemis(C2H5OH,KDIM)                      : = C2H5OH    ;
+rcemis(CH3OH,KDIM)                       : = CH3OH    ;
+rcemis(GLYOX,KDIM)                       : = GLYOX    ;
+rcemis(MGLYOX,KDIM)                      : = MGLYOX    ;
+rcemis(C5H8,KDIM)                        : = C5H8    ; # Anthropogenic isoprene
+rcemis(APINENE,KDIM)                     : = APINENE ; # Anthropogenic monoterpenes
+*
+* <----------- Biogenic/natural emissions ----------------------------->
+*
+*emisextra:C5H8,APINENE,NO,BIOTERP
+*rcbio:C5H8                       = C5H8    ;
+*rcbio:APINENE                    = APINENE ;
+*rcbio:BIOTERP                    = APINENE ;
+*rcbio:NO                         = NO ;
+
+* <----------- Volcanic ash/natural emissions from V1702A02B ----------------------------->
+* rcbio or rcemis?
+*rcemis(V1702A02B_1,KDIM)              : = V1702A02B_1    ;
+*rcemis(V1702A02B_2,KDIM)              : = V1702A02B_2    ;
+*rcemis(V1702A02B_3,KDIM)              : = V1702A02B_3    ;
+*rcemis(V1702A02B_4,KDIM)              : = V1702A02B_4    ;
+*rcemis(V1702A02B_5,KDIM)              : = V1702A02B_5    ;
+*rcemis(V1702A02B_6,KDIM)              : = V1702A02B_6    ;
+*rcemis(V1702A02B_7,KDIM)              : = V1702A02B_7    ;
+*

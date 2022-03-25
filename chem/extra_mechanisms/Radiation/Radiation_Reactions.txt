@@ -1,0 +1,22 @@
+
+* <----------- Decay rate (k) for NPP Nuclear tracers ------------------------------>
+* <----------- corresponds to halv-life T_{1/2}: k = ln(2)/T_{1/2}
+*k=ln(2.0)/(8.0*24.0*3600.0):
+
+0.994e-06 :              NPP_I131  = ;
+0.152e-05 :              NPP_Xe133 = ;
+
+
+*
+* <----------- Nuclear tracer emissions from NPP ----------------------------------->
+*
+rcemis(NPP_Cs137,k)                        : = NPP_Cs137 ;
+rcemis(NPP_I131,k)                         : = NPP_I131  ;
+rcemis(NPP_Sr90,k)                         : = NPP_Sr90  ;
+
+rcemis(NPP_Xe133,k)                        : = NPP_Xe133 ;
+rcemis(NPP_Kr85,k)                         : = NPP_Kr85  ;
+
+
+rcemis(NUC_Blast,k)                         : = NUC_Blast  ;
+
