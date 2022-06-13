@@ -1,3 +1,5 @@
+#----------------------------------------------------------------------------#
+# PM_FFireInert
 # BiomassBurning mapping FINNv1.5 to ffire_OM, ffire_BC, ffire_remPPM25
 #
 # FFire PM species only here, see FFireTracers for ffire_CO tracer if wanted.

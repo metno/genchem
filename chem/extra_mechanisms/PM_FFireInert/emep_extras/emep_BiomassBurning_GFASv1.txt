@@ -1,5 +1,6 @@
 #----------------------------------------------------------------------------#
 # BiomassBurning mapping GFASv1 to EMEP's ffire_OM, ffire_BC, ffire_remPPM25
+# PM_FFireInert
 #----------------------------------------------------------------------------#
 # Column-1 gives GFASv1 species,
 # Column-2 gives unitsfac
