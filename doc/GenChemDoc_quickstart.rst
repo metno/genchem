@@ -254,6 +254,17 @@ you could do::
   emep_setup.py usersChem  # Creates ZCM_usersChem
 
 
+UPDATE 2022-06: Choice of GNFR_CAMS or SNAP
++++++++++++++++++++++++++++++++++++++++++++
+
+GenChem was originally developed when the EMEP CTM used the so-called SNAP emission sector system, which has 11 source categories.
+The EMEP model currently uses a 19-sector system we refer to as GNFR_CAMS. To produce EMEP-ready files with GenChem
+one now needs to specify "-g" in the call to emep_setup.py, e.g.
+
+  ./emep_setup.py  EmChem19a-vbs -g
+
+Omission of this -g flag simply gives the 11-sector SNAP splits, though this option is now deprecated.
+
 
 Step 4: Use for EMEP CTM
 ++++++++++++++++++++++++

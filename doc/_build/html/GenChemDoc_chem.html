@@ -1,32 +1,23 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Formatting of GenChem files &#8212; genchem 1.0.0 documentation</title>
-    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '1.0.0',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinxdoc.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Contributors" href="GenChemDoc_contributors.html" />
     <link rel="prev" title="Quick start" href="GenChemDoc_quickstart.html" /> 
-  </head>
-  <body>
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -39,53 +30,17 @@
         <li class="right" >
           <a href="GenChemDoc_quickstart.html" title="Quick start"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">genchem 1.0.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">genchem 1.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Formatting of GenChem files</a></li> 
       </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Formatting of GenChem files</a><ul>
-<li><a class="reference internal" href="#reactions-files">Reactions files</a></li>
-<li><a class="reference internal" href="#species-files">Species files</a></li>
-<li><a class="reference internal" href="#shorthands-file">Shorthands file</a></li>
-</ul>
-</li>
-</ul>
-
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="GenChemDoc_quickstart.html"
-                        title="previous chapter">Quick start</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="GenChemDoc_contributors.html"
-                        title="next chapter">Contributors</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/GenChemDoc_chem.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+    </div>  
 
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <span class="target" id="index-0"></span><div class="section" id="formatting-of-genchem-files">
+  <span class="target" id="index-0"></span><section id="formatting-of-genchem-files">
 <h1>Formatting of GenChem files<a class="headerlink" href="#formatting-of-genchem-files" title="Permalink to this headline">¶</a></h1>
 <p>Three types of simple text file are needed to
 describe chemical mechanisms in the GenChem system: Reactions,
@@ -93,10 +48,10 @@ Species and Shorthands. The formatting of these is described
 briefly here, and further information and background can be
 found in
 <a class="reference external" href="https://gmd.copernicus.org/preprints/gmd-2020-147/">Simpson et al 2020</a>.</p>
-<div class="section" id="reactions-files">
+<section id="reactions-files">
 <h2>Reactions files<a class="headerlink" href="#reactions-files" title="Permalink to this headline">¶</a></h2>
 <p>Example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Some</span> <span class="n">simple</span> <span class="n">lines</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Some</span> <span class="n">simple</span> <span class="n">lines</span>
 <span class="mf">1.4e-12</span><span class="o">*</span><span class="n">EXP</span><span class="p">(</span><span class="o">-</span><span class="mf">1310.</span><span class="o">*</span><span class="n">TINV</span><span class="p">)</span>          <span class="p">:</span> <span class="n">O3</span> <span class="o">+</span> <span class="n">NO</span>    <span class="o">=</span> <span class="n">NO2</span> <span class="o">+</span> <span class="o">&lt;</span><span class="n">O2</span><span class="o">&gt;</span>  <span class="p">;</span> <span class="n">acp2004</span>
 <span class="mf">5.681e-34</span><span class="o">*</span><span class="n">EXP</span><span class="p">(</span><span class="o">-</span><span class="mf">2.6</span><span class="o">*</span><span class="n">LogTdiv300</span><span class="p">)</span>    <span class="p">:</span> <span class="n">OP</span> <span class="o">+</span> <span class="o">&lt;</span><span class="n">O2</span><span class="o">&gt;</span> <span class="o">+</span> <span class="o">&lt;</span><span class="n">M</span><span class="o">&gt;</span>  <span class="o">=</span> <span class="n">O3</span> <span class="p">;</span> <span class="n">acp2004</span>
 <span class="mf">2.15e-11</span><span class="o">*</span><span class="n">EXP</span><span class="p">(</span><span class="mf">110.</span><span class="o">*</span><span class="n">TINV</span><span class="p">)</span>           <span class="p">:</span> <span class="n">OD</span> <span class="o">+</span> <span class="o">&lt;</span><span class="n">N2</span><span class="o">&gt;</span>  <span class="o">=</span> <span class="n">OP</span>       <span class="p">;</span> <span class="n">Updated</span> <span class="p">(</span><span class="n">IUPAC</span> <span class="mi">2009</span><span class="p">)</span>
@@ -106,25 +61,25 @@ found in
 </pre></div>
 </div>
 <ul class="simple">
-<li>END-OF-LINE is “;”. Text after this (e.g. references, or unused “products”) will be ignored.</li>
-<li>Separator between rate coefficient and reaction is “:”.</li>
-<li>lines beginning with “*” are comments (no “;” needed here)</li>
-<li>lines beginning with “rcemis” are emission terms</li>
-<li>lines beginning with “emisfiles” give name of  emission files, e.g. nox</li>
-<li>Some coefficients are defined in GenIn.shorthand, e.g. TINV, LogTdiv300</li>
-<li>Anything else is simply used as the rate coefficient. (Do not add spaces!)</li>
+<li><p>END-OF-LINE is “;”. Text after this (e.g. references, or unused “products”) will be ignored.</p></li>
+<li><p>Separator between rate coefficient and reaction is “:”.</p></li>
+<li><p>lines beginning with “*” are comments (no “;” needed here)</p></li>
+<li><p>lines beginning with “rcemis” are emission terms</p></li>
+<li><p>lines beginning with “emisfiles” give name of  emission files, e.g. nox</p></li>
+<li><p>Some coefficients are defined in GenIn.shorthand, e.g. TINV, LogTdiv300</p></li>
+<li><p>Anything else is simply used as the rate coefficient. (Do not add spaces!)</p></li>
 </ul>
 <p>Four  types of tracers/catalysts/yields are allowed, denoted by different types of parentheses:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>e.g. [OH] + VOC -&gt; SOA   will put xnew(OH) into the loss rate of VOC, but will not change the loss rate of OH.</li>
-<li>e.g. {O2} + OD -&gt; OP   will ignore the O2 term. Make sure it is in the reaction rate though if needed!</li>
-<li>e.g. OP + &lt;O2&gt; + &lt;M&gt; -&gt; O3  will ignore the O2 and M term AND add their concentrations to the reaction rate (multiply it). This system is only used for these “special” species (O2, N2, M) as they must be pre-defined, e.g. O2(k), in boxChem and/or EMEP codes.</li>
-<li>e.g. 1.36e-11 :   [OXYL] + [OH] = |YCOXY(0)|  ASOC_ug1  + …  will replace the contents of the || term with yield coefficients which will be updated each time-step in the EMEP model.  These variables (here YCOXY(0)) must be predefined in order for emep_setup.py and the emep model to compile.</li>
+<li><p>e.g. [OH] + VOC -&gt; SOA   will put xnew(OH) into the loss rate of VOC, but will not change the loss rate of OH.</p></li>
+<li><p>e.g. {O2} + OD -&gt; OP   will ignore the O2 term. Make sure it is in the reaction rate though if needed!</p></li>
+<li><p>e.g. OP + &lt;O2&gt; + &lt;M&gt; -&gt; O3  will ignore the O2 and M term AND add their concentrations to the reaction rate (multiply it). This system is only used for these “special” species (O2, N2, M) as they must be pre-defined, e.g. O2(k), in boxChem and/or EMEP codes.</p></li>
+<li><p>e.g. 1.36e-11 :   [OXYL] + [OH] = |YCOXY(0)|  ASOC_ug1  + …  will replace the contents of the || term with yield coefficients which will be updated each time-step in the EMEP model.  These variables (here YCOXY(0)) must be predefined in order for emep_setup.py and the emep model to compile.</p></li>
 </ol>
 </div></blockquote>
-</div>
-<div class="section" id="species-files">
+</section>
+<section id="species-files">
 <h2>Species files<a class="headerlink" href="#species-files" title="Permalink to this headline">¶</a></h2>
 <p>The input to the GenChem.py script is GenIn_Species.csv, but this
 is assembled by do.GenChem from all needed  _Species.csv files from
@@ -135,7 +90,7 @@ one GenIn_Species.csv. The file contains columns with species
 name, type, formula, and various settings related to dry and wet deposition</p>
 <p>The GenIn_Species.csv file is a spreadsheet-friendly comma-separated file
 where the characteristics of the chemical compounds are given:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>Spec,adv,formula,MW,DRY,WET,Groups,!Comments
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Spec,adv,formula,MW,DRY,WET,Groups,!Comments
 *
 RO2POOL,1,RO2POOL,xx,xx,xx,xx,!
 OD,0,O,xx,xx,xx,xx,!
@@ -214,22 +169,60 @@ be 0.4. It is important that these groups are
 separated by semi-colons, not commas.  This rather powerful feature
 is discussed further in Simpson et al. (Submitted, 2020).</p>
 </div></blockquote>
-</div>
-<div class="section" id="shorthands-file">
+</section>
+<section id="shorthands-file">
 <h2>Shorthands file<a class="headerlink" href="#shorthands-file" title="Permalink to this headline">¶</a></h2>
 <p>Shorthands are text-strings used in the Reactions.txt file, usually to represent commonly used rate-coefficients. The meaning of the text-string is given in _Shorthand.txt file, e.g.</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>XT           temp
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>XT           temp
 FH2O         (1.0+1.4e-21*h2o*exp(2200.0*TINV))
 KHO2RO2      2.91e-13*exp(1300.*TINV) ! MCM2001 ...
 KMT12        IUPAC_troe(2.8e-31*exp(2.6*Log300divT),2.0e-12,exp(-TEMP/472.),M,0.75-1.27*(-TEMP/472.)/LOG(10.))
 </pre></div>
 </div>
 <p>In these examples, XT is just a character-saving replacement for temp, FH2O gives a more complex expression, which also uses the pre-defined variable TINV = 1/temp. KHO2RO2 is a common rate-coefficient, but here we see that comments are allowed - anything afer the 2nd term. FInally, the KMT12 term shows that complex fuction calls are also allowed. IMPORTANT - avoid white space in any terms!</p>
-</div>
-</div>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Formatting of GenChem files</a><ul>
+<li><a class="reference internal" href="#reactions-files">Reactions files</a></li>
+<li><a class="reference internal" href="#species-files">Species files</a></li>
+<li><a class="reference internal" href="#shorthands-file">Shorthands file</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="GenChemDoc_quickstart.html"
+                        title="previous chapter">Quick start</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="GenChemDoc_contributors.html"
+                        title="next chapter">Contributors</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/GenChemDoc_chem.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -246,12 +239,13 @@ KMT12        IUPAC_troe(2.8e-31*exp(2.6*Log300divT),2.0e-12,exp(-TEMP/472.),M,0.
         <li class="right" >
           <a href="GenChemDoc_quickstart.html" title="Quick start"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">genchem 1.0.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">genchem 1.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Formatting of GenChem files</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2000-2020 met.no.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
     </div>
   </body>
 </html>
