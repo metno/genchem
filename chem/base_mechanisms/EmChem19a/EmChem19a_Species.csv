@@ -91,7 +91,7 @@ PAN,1,CH3COO2NO2,xx,PAN,xx,OXN;PANS;Hstar_3p0e0;f0_0p5;DRx_2p8,!
 MPAN,1,CH2CH(CH3)C(=0)O2NO2,xx,MPAN,xx,OXN;PANS;Hstar_3p0e0;f0_0p2;DRx_3p4,!(from macr degradation)
 *
 APINENE,1,C10H16,xx,xx,xx,BVOC;MONOTERP;NMVOC;NMHC,!
-TERPO2,0,xx,xx,xx,xx,RO2;NMVOC,,!
+TERPO2,0,xx,xx,xx,xx,RO2,,! Can't include SHL in NMVOC group
 TERPOOH,1,C10H18O3,xx,LHISOLOOH,H2O2,ROOH;Hstar_1p5e6;f0_0p2;DRx_4p5;NMVOC,!C0?
 
 SO2,1,SO2,xx,SO2,SO2,SOx,!Move to slow?
