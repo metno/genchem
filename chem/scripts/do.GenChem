@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S python3 -u
 # -*- coding: utf-8 -*- 
 # (see pep-0263  for coding string)
 
@@ -59,52 +59,51 @@ parser.add_argument('-s','--slow', type=int,
 parser.add_argument('-c','--chemdir', help='location of chem directory')
 parser.add_argument('-d','--dbg', help='debug mode. Waits for user input at '
     'key steps', action='store_true')
+parser.add_argument('-g','--gnfrsnap', help='Use snap (deprecated) or new gnfr 19-sector system.', default='gnfr',required=True)
 args = parser.parse_args()
 print(args)
 #print parser.print_usage() parser.print_help() parser.parse_args()
 
-
 mydir      = os.path.abspath('.')         # Current directory
 buildDir   = mydir + '/build'             # temporary build directory
-splitdir   = mydir + '/emissplit_run'     # output dir for emissplits
-print('emissplit outputs: ',   relpath(splitdir)) 
-print('emissplit full: ',   splitdir) 
+splitDir   = mydir + '/emissplit_run'     # output dir for emissplits
 
 # Figure out where chem dir is. We know GenChem is in xx/yy/chem/scripts
 boxtestdir=os.path.dirname(mydir) # we test to see if we are in box/xxxx dir
 if args.chemdir is not None:
   print('ARGS ', args.chemdir)
-  chemdir=args.chemdir
-  gcdir = chemdir+'/scripts'
+  chemDir=args.chemdir
+  gcdir = chemDir+'/scripts'
 elif boxtestdir.endswith('/box'):
-  chemdir = boxtestdir.replace('box','chem')
-  gcdir   = chemdir + '/scripts'
+  chemDir = boxtestdir.replace('box','chem')
+  gcdir   = chemDir + '/scripts'
   print('BOX->CHEM ', mydir, '=>',gcdir)
 else: # if run with explicit path, e.g. /home/users/genchem/chem/scripts/do.GenChem
   gcdir   = os.path.dirname(os.path.realpath(__file__)) # tells where this script is
-  chemdir = gcdir.replace('/scripts','')  # e.g. GenChem-xx/chem 
+  chemDir = gcdir.replace('/scripts','')  # e.g. GenChem-xx/chem 
 
 genchem = gcdir + '/GenChem.py'
 
 # Quick check that all directories exist:
-#print('GCDIR ', gcdir)
-print('CHEMDIR ', chemdir)
-#sys.exit()
+
 for cm in args.base_mechanism:
-  assert os.path.isdir(chemdir+'/base_mechanisms/'+cm),'Missing directory%s'% cm
+  assert os.path.isdir(chemDir+'/base_mechanisms/'+cm),'Missing directory%s'% cm
 for cm in args.extra_mechanisms:
-  assert os.path.isdir(chemdir+'/extra_mechanisms/'+cm),'Missing directory%s'% cm
+  assert os.path.isdir(chemDir+'/extra_mechanisms/'+cm),'Missing directory%s'% cm
 
 
-for dir in [  chemdir, splitdir, buildDir ]:
+for dir in [  chemDir, splitDir, buildDir ]:
   os.makedirs( dir, exist_ok=True )
 
-print('mydir:',         mydir)      # e.g. GenChemSys/box/test_nov15
-print('Chem:       ',   relpath(chemdir)) # ../../chem
-print('buildDir:   ',   relpath(buildDir))   # build
+print('mydir:             ', mydir)      # e.g. GenChemSys/box/test_nov15
+print('chemDir:           ', relpath(chemDir)) # ../../chem
+print('buildDir:          ', relpath(buildDir))   # build
+print('emissplit type:    ', args.gnfrsnap )
+print('emissplit outputs: ', relpath(splitDir)) 
+print('splitDir full:     ', splitDir) 
 
 # We empty the build and inputs directories to avoid confusions ! CAREFUL !!!!!
-for dir in [ buildDir, splitdir ]:
+for dir in [ buildDir, splitDir ]:
   for f in glob.glob(dir + '/*'):
     print('Removing FILE', relpath(f))
     os.remove(f)
@@ -122,8 +121,8 @@ genfiles= {                    #type/      suffix
 }
 
 # For shorthands we have a 'generic master' file to start with:
-#shGeneric='%s/GenChem_Shorthands.txt' %  gcdir
-shGeneric='%s/generic_Shorthands.txt' %  chemdir
+
+shGeneric='%s/generic_Shorthands.txt' %  chemDir
 
 outf =dict() # output files
 outfh=dict() # file handles
@@ -140,6 +139,7 @@ for key in genfiles:
 
   first_cm=True
   subdir='/base_mechanisms'
+  print('\nKey: ', key)
 
   ##################### CM LOOP ##############################################
   # Requested chemical mechanisms from input arguments, e.g. EmChemXX 
@@ -148,14 +148,13 @@ for key in genfiles:
 
   for cm in args.base_mechanism + args.extra_mechanisms:
 
-    print('STARTING ', cm, key ) 
     if 'Species' in key:  schemes+=" "+cm
     time.sleep(args.slow)
 
     if not first_cm:
       subdir='/extra_mechanisms'
 
-    idir = chemdir + subdir + '/' +  cm
+    idir = chemDir + subdir + '/' +  cm
 
     ifile =  '%s/%s_%s.%s'    % ( idir, cm, key, f[1] )
 
@@ -167,10 +166,10 @@ for key in genfiles:
       ifile =  '%s/%s_%s.%s'    % ( idir, cm, key, f[1] )
       gfile =  '%s/%s_%s.%s'    % ( idir, 'emep', key, f[1] )
       if os.path.isfile(ifile): # CM specific
-        print('CMX specific ', cm, key, ifile )
+          if args.dbg: print('CMX specific ', cm, key, ifile )
       elif os.path.isfile(gfile):
         ifile= gfile
-        print('CMX generic ', cm, key )
+        #print('CMX generic ', cm, key )
       else:
         ifile='CMX NOTSET'
 
@@ -193,21 +192,36 @@ if args.dbg: input('Press enter key to continue...')
 # EMISSPLITS: Start with defaults (sox, nox, etc), but allow overwrite
 # (e.g. for voc or pm25)
 
-idir= '%s/inputs/emissplit_defaults' % chemdir # input, defaults
-#for e in glob.glob(idir+'/emissplit.defaults.*'):
-for e in glob.glob(idir+'/emissplit_defaults_*csv'):
-  print('DSPLIT ', e )
-  shutil.copy( e, splitdir )
+idir='%s/inputs/emissplits_%s_defaults' % (chemDir, args.gnfrsnap)
+
+#idir= '%s/inputs/emissplit_defaults' % chemDir # input, defaults
+#splitTemplate='%s/%s_emissplit_defaults_*csv' % ( idir, cm)
+#if args.gnfrsna: 
+#  idir= '%s/inputs/emissplits_gnfr' % chemDir # input, defaults
+#  splitTemplate='%s/%s_emissplit_gnfr_defaults_*csv' % ( idir, cm)
+#  print('GNGR???', idir )
+
+print('DefSPLIT idir: ',idir )
+for e in glob.glob(idir+'/emissplit_defaults_*csv' ):
+  print('DefSPLIT: ', e )
+  shutil.copy( e, splitDir )
 
 subdir='/base_mechanisms'
 for cm in args.base_mechanism + args.extra_mechanisms:
-  idir = chemdir + subdir + '/' +  cm
-  #CSV for ifile in glob.glob('%s/%s_emissplit.defaults.*' % ( idir, cm) ):
-  for ifile in glob.glob('%s/%s_emissplit_defaults_*csv' % ( idir, cm) ):
+  idir = chemDir + subdir + '/' +  cm
+  for ifile in glob.glob('%s/%s_emissplit_%s_defaults_*csv' % ( idir, cm, args.gnfrsnap ) ):
     ofile=os.path.basename(ifile).replace('%s_'%cm,'')
-    ofile= '%s/%s' % ( splitdir, ofile )
-    shutil.copy(ifile,ofile)
+    ofile=ofile.replace('%s_' % args.gnfrsnap,'')
+    ofile= '%s/%s' % ( splitDir, ofile )
+    #print('cmSPLITin:', cm, ifile)
+    #print('cmSPLITut:', cm, ofile)
+    dest=shutil.copy(ifile,ofile)
+    print('SPLITDEST', dest)
   subdir='/extra_mechanisms'
+
+print("\n### Finished emissplits!\n\n Contents of %s are now " % splitDir)
+os.chdir(splitDir)
+subprocess.run('ls -lt',shell=True)
 
 ##X##################### CM LOOP #############################################
 print("### Run GenChem: ", schemes)
@@ -224,4 +238,8 @@ for f in glob.glob(buildDir + '/CM_*')+ glob.glob(buildDir + '/CMX_*'):
   time.sleep(args.slow)
 
 print("\n### Finished!\n\n Contents of %s are now " % buildDir)
+subprocess.run('ls -lt',shell=True)
+
+print("\n### Finished ALL emissplits!\n\n Contents of %s are now " % splitDir)
+os.chdir(splitDir)
 subprocess.run('ls -lt',shell=True)

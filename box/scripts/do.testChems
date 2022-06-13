@@ -6,6 +6,9 @@
 # basic aerosol reactions that would have more complex forms in EMEP model,
 # BoxDep just adds simple deposition for a few species,
 # and BVOC_IsoMT1_emis adds a-pinene as 100% of MTERP emissions.)
+#
+#Jun 2022. do.GenChem needs flag for gnfr or snap.  Use snap for now, until
+# gnfr emissplits created for all mechanisms.
 
 usage="
 
@@ -37,7 +40,7 @@ do
   done
 
 
-  ../../chem/scripts/do.GenChem -b $chem -e BoxAero BoxDep BoxBVOCemis
+  ../../chem/scripts/do.GenChem -b $chem -e BoxAero BoxDep BoxBVOCemis -g snap
 
   if [ -f "CM_ChemDims_mod.f90" ]; then 
 

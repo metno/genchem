@@ -92,9 +92,12 @@ if len(sys.argv) < 2:
     sys.exit(1)
 
 parser.add_argument('chem_mech', help='Base chemical mechanisms (one  needed), e.g. EmChem19a-vbs',choices=available_emeps)
+parser.add_argument('-g','--gnfr',
+    help='use GNFR sectors. Only EmChem19a type so far', action='store_true')
 parser.add_argument('-d','--dbg',
     help='debug mode. Waits for user input at key steps', action='store_true')
 args = parser.parse_args()
+print('sys.args:', sys.argv )
 print(args)
 
 chem=args.chem_mech
@@ -109,8 +112,12 @@ for cmd in cmds:
 
 gchem='../../chem/scripts/do.GenChem'
 
-txt= gchem + ' ' + cmdx[chem] 
-if dbg: txt += ' -d'
+txt= gchem + ' ' + cmdx[chem]
+if dbg:      txt += ' -d'
+if args.gnfr:
+    txt += ' -g gnfr' # gnfr 
+else:
+    txt += ' -g snap' # SNAP was originally used in boxChem 
 args=txt.split()
 for a in args: print('Arg ', a)
 if dbg:  input('Press enter key to continue...')
@@ -138,7 +145,7 @@ print('COPY CM FILES ', odir)
 subprocess.call('wc CM*inc',shell=True)
 subprocess.call('cp CM_* %s' % odir,shell=True)
 subprocess.call('cp CMX_* %s' % odir,shell=True)
-subprocess.call('mv emissplit_run/emissplit*  %s' % splitdir,shell=True )
+subprocess.call('cp emissplit_run/emissplit*  %s' % splitdir,shell=True )
 
 ## Run example
 os.makedirs('Output',exist_ok=True) # just in case ;-)
