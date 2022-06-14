@@ -19,6 +19,7 @@ To get started, read the documentation article and guide:
 
 Updates:
 
+  2022-06-14: Revised tag: 1.1
   2022-06-13: Added -g --gnfr flags to enable GNFR emissplits, and renamed files, e.g. emissplit_snap_defaults_voc.csv
 
   2020-12-21: GMD article published! Link above updated 
