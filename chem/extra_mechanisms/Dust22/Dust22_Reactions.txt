@@ -1,0 +1,5 @@
+
+*  <----------- Biogenic/natural emissions ----------------------------->
+*
+rcemis(DUST_WB_F,k)     : = Dust_WB_f ;
+rcemis(DUST_WB_C,k)     : = Dust_WB_c ;

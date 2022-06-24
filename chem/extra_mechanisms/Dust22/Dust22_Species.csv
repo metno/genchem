@@ -1,0 +1,8 @@
+*
+Spec,adv,formula,MW,DRY,WET,Groups,!Comments
+*
+* NOTE:molar mass must NOT BE CHANGED from the value 200 until the code has been fixed. Otherwise emissions will be in error!"
+*
+Dust_wb_f,3,xx,200,DUf,PMf,PMfine;PM10;Extinc:DDf;DUST;DUST_NAT_F,,!
+Dust_wb_c,3,xx,200,DUc,PMc,PMcoarse;PM10;Extinc:DDc;DUST;DUST_NAT_C,,!
+*
