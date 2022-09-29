@@ -1,0 +1,5 @@
+* Forest fire tracer for CO
+*"---------------------------------------------------------------------"
+*"Spec,adv,formula,MW,DRY,WET,Groups,!Comments"
+*
+ffire_CO,3,CO,xx,xx,xx,tracer,"!Tracer of wildfire CO emissions"

@@ -1,0 +1,13 @@
+# BiomassBurning mapping FINNv1.5 to optional ffire_CO tracer
+#  Column-1 gives FINNv1 species ,
+#  Column-2 gives the product of two numbers:
+#    1) MW if needed to get to kg/day. Not needed for FINNv1
+#       (Some FINN emissions are given with mass basis, kg/day, so just
+#         set to 1.0. Others are given as mole/day, so multiply by MW/1000
+#         to get kg/day)
+#    2) mass fraction of FINN emissions assign to EMEP species (usually 1.0)
+#  Column-3 gives EMEP species
+#
+#----------------------------------------------------------------------------#
+#  Finn       mw      fac   emep             Comment
+    'CO',     0.028 , 1.0,  'ffireCO',       # Tracer species

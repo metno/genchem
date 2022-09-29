@@ -1,0 +1,7 @@
+* Forest fire CO tracer. Decays with OH, but no influence on chemistry.
+*===========================================================================
+*
+rcemis(ffire_CO,KDIM)               : = ffire_CO ;  Tracer only
+1.44e-13+M*3.43e-33                 : [OH] + ffire_CO  =       ;  tracer
+
+
