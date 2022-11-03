@@ -4,4 +4,6 @@
 rcemis(ffire_OM,KDIM)               : = ffire_OM ;
 rcemis(ffire_BC,KDIM)               : = ffire_BC ;
 rcemis(ffire_remPPM25,KDIM)         : = ffire_remPPM25 ;
+* Added Nov 2022 for use with GFAS:
+rcemis(ffire_c,KDIM)                : = ffire_c ;
 
