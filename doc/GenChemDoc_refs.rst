@@ -6,14 +6,12 @@ References
 ..
  REFERENCES FOR HERE
 
-.. [Bergstrom_et_al2020a]
+.. [Bergstrom_et_al2022]
     Bergström, R. et al., Update and comparison of chemical mechanisms
     for the EMEP MSC-W model system --- EmChem19a, EmChem19X, CRIv2R5Em,
-    CB6r2Em, and MCMv3.3Em, in preparation, 2020.
+    CB6r2Em, and MCMv3.3Em, Norwegian Meteorological Institute, Norway,
+    [Technical Report MSC-W 1/2022](https://emep.int/publ/reports/2022/MSCW_technical_1_2022.pdf)
 
-.. [Bergstrom_et_al2020b]
-    Bergström, R. et al., Organic aerosol schemes for the EMEP MSC-W model for
-    European and Global scale simulations
 
 .. [Simpson_et_al2012]
     Simpson, D., Benedictow, A., Berge, H., Bergström, R., Emberson, L.
@@ -39,7 +37,7 @@ References
     Simpson, D., Bergström, R., Briolat, A., Imhof, H., Johansson, J.,
     Priestly, M. and Valdebenito, GenChem v1.0 - a chemical pre-processing
     and testing system for atmospheric modelling, 
-    [Accepted for publication](https://gmd.copernicus.org/preprints/gmd-2020-147/)
+    [Geosci. Model Dev., 13, 6447–6465, 2020](https://doi.org/10.5194/gmd-13-6447-2020)
 
 
 

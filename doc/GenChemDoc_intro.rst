@@ -12,8 +12,9 @@ technical details given here, the GenChem system and its approach have
 been documented in 
 `Simpson et al 2020 <https://gmd.copernicus.org/articles/13/6447/2020/>`_
 and the with this readthedocs manual.
-The chemical and organic aerosol
-mechanisms will be documented in [Bergstrom2020a,Bergstrom2020b].
+
+**NEWS Dec. 2022**: The chemical mechanisms have been documented in
+`Bergstrom_et_al2022 <https://emep.int/publ/reports/2022/MSCW_technical_1_2022.pdf>`_.
 
 
 GenChem consists of two main directories, **chem** and **box**.
