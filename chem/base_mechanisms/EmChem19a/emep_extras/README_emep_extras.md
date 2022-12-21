@@ -21,7 +21,7 @@ emissions of particles can be found in the relevant extra_mechanisms
 directory, e.g.  FFireInert.
 
 
-Boumdary condition mapping
+Boundary condition mapping
 --------------------------
 
 EmChem19a_BoundaryConditions.txt
