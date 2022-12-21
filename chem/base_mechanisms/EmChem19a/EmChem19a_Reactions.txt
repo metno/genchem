@@ -359,6 +359,10 @@ KRO2NO                 : TERPO2  + NO  =  HO2 + 2 MACR + NO2 + 0.19 C2H6 ;
 
 *-------------------------------------------------------------------------------------------
 *
+*REM NOTES:
+*REM From Emmons (no acetone in EmChem19 -- for emissions acetone is lumped
+*REM with C2H6, too keep similar ozone production potential perhaps the 0.1
+*REM CH3COCH3 should be replaced by 0.19 C2H6?).
 
 *
 ** ========================================================================
