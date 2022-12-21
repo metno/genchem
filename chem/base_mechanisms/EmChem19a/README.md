@@ -1,3 +1,14 @@
+EmChem19a chemistry scheme -- the default gas-phase mechanism of the EMEP MSC-W chemical transport model.
+
+See:
+
+  Update and comparison of atmospheric chemistry mechanisms for the EMEP MSC-W model system - EmChem19a, EmChem19X, CRIv2R5Em, CB6r2Em, and MCMv3.3Em,
+  Robert Bergström, Garry D. Hayman, Michael E. Jenkin  and David~Simpson,
+  Technical Report MSC-W 1/2022,
+  EMEP MSC-W, Norwegian Meteorological Institute, Norway
+  https://emep.int/publ/reports/2022/MSCW_technical_1_2022.pdf
+
+
 EmChem19a is an updated (bug fixed) version of EmChem19.
 
 So far, the following things have been updated:

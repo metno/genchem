@@ -1,6 +1,14 @@
 CB6r2Em is a version of the CB6r2h code provided by Greg Yarwood (Dec. 2016),
 modified to work within the EMEP/ESX/GenChem modelling systems.
 
+See:
+
+  Update and comparison of atmospheric chemistry mechanisms for the EMEP MSC-W model system - EmChem19a, EmChem19X, CRIv2R5Em, CB6r2Em, and MCMv3.3Em,
+  Robert Bergström, Garry D. Hayman, Michael E. Jenkin  and David~Simpson,
+  Technical Report MSC-W 1/2022,
+  EMEP MSC-W, Norwegian Meteorological Institute, Norway
+  https://emep.int/publ/reports/2022/MSCW_technical_1_2022.pdf
+
 
 Modifications:
 
