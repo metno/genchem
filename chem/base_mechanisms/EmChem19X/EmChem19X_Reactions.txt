@@ -1,0 +1,717 @@
+*   EMEP chemistry
+*   Note conventions  
+*   END-OF-LINE is ";" (not required in comment section)
+*   Separator between rate coefficient and reaction is ":" *
+*   Do *NOT* use white space in rate-coefficients !!
+*
+*   lines beginning with "*" are comments  
+*   lines beginning with "rcemis" are emission terms  
+*   lines beginning with "emisfiles" give name of  emission files, e.g. nox
+*   ;
+*   Some coefficients are defined in GenIn.shorthand, e.g. KHO2RO2 
+*   Anything else is simply used as the rate coefficient.  
+*   ;
+*   GenChem checks whether all shorthands used here are also in
+*   GenIn.species. For now, I have put some unused "products"
+*   after the ";" EOL, e.g.HCOOH. 
+* 
+* See README for explanation of notation
+*------------------------------------------------------------ ;
+*
+*
+*-- Inorganic chemistry ----- ;
+*-- ;
+* Largely based on MCM and the latest IUPAC recommendations
+* (up to ~ June 2019) (http://mcm.leeds.ac.uk/MCMv3.3.1/home.htt
+* http://iupac.pole-ether.fr/# )
+* Often refers back to acp2004 - Atkinson et al, ACP, 2004, 1461-1738.
+* Some MCM left commented for reference
+
+5.681e-34*EXP(-2.6*LogTdiv300)    : OP + <O2> + <M>  = O3 ; acp2004
+*MCM: 5.6e-34*(TEMP/300.)**(-2.6) : OP + <O2> + <N2> = O3 ;
+*MCM: 6.0e-34*(TEMP/300.)**(-2.6) : OP + <O2> + <O2> = O3 ;
+
+2.15e-11*EXP(110.*TINV)           : OD + <N2>  = OP       ; Updated (IUPAC 2009) 
+*MCM: 2.0e-11*EXP(130.*TINV)          : OD + <N2> = OP ; MCM
+
+3.2e-11*EXP(67.*TINV)             : OD + <O2>  = OP          ; 
+2.14e-10                          : OD + <H2O> = 2 OH        ; 
+
+4.8e-11*EXP(250.*TINV)            : OH + HO2   = <H2O> + <O2> ; 
+2.9e-12*EXP(-160.*TINV)           : OH + H2O2 = HO2 + <H2O>   ; 
+7.7e-12*EXP(-2100.*TINV)          : OH + H2 = HO2 + <H2O>     ; acp2004
+*
+FH2O*2.2e-13*EXP(600.*TINV)       : HO2 + HO2 = H2O2          ; IUPAC 2001
+FH2O*1.9e-33*EXP(980.*TINV)       : HO2 + HO2 + <M> = H2O2    ; IUPAC 2001
+
+* need to leave {} here, because M is already "in" the TROE functions
+KMT01                             : OP + NO  + {M}   = NO2     ;
+1.4e-12*EXP(-1310.*TINV)          : O3 + NO    = NO2 + <O2>    ; acp2004
+1.4e-13*EXP(-2470.*TINV)          : O3 + NO2   = NO3 + <O2>    ; acp2004
+1.7e-12*EXP(-940.*TINV)           : O3 + OH    = HO2 + <O2>    ; acp2004 
+2.03e-16*EXP(-4.57*Log300divT)*EXP(693.*TINV) : O3 + HO2   = OH + 2 <O2>  ; acp2004
+
+1.8e-11*EXP(110.*TINV)            : NO + NO3   = 2 NO2   ; 
+*neglect: 4.25e-39*EXP(663.5*TINV)     : NO + NO + <O2> = NO2 + NO2 ; IUPAC recommended rate
+
+3.45e-12*EXP(270.*TINV)           : NO + HO2   = NO2 + OH      ; Updated (HNO3 fraction is negligible <1% at most atmos cond)
+4.5e-14*EXP(-1260.*TINV)          : NO2 + NO3  = NO + NO2      ; MCM
+KMT03                             : NO2 + NO3  = N2O5          ; 
+KMT04                             : N2O5       = NO2 + NO3     ; 
+*neglect:  4.1e-16                           NO3 + H2O2 = HO2 + HNO3 ; very slow.
+
+KMT08                             : NO2 + OH + {M}  = HNO3   ; 
+KMT3_OH_HNO3                      : OH + HNO3 = NO3 + <H2O>   ; acp2004
+KMT07                             : OH + NO = HONO          ; IUPAC 2002
+2.5e-12*EXP(260.*TINV)            : OH + HONO = NO2  ; 
+2.0e-11                           : OH + NO3 = HO2 + NO2 ;
+4.0e-12                           : HO2 + NO3 = OH + NO2 ;
+KMT09                             : HO2 + NO2 = HO2NO2 ; #-
+KMT10                             : HO2NO2 = HO2 + NO2 ; #-
+3.2e-13*EXP(690.*TINV)            : OH + HO2NO2 = NO2  ; #-
+*
+* ;
+*----- sulphur chemistry ----------------------------------- ;
+* Moved to extra_mechanisms/Aqueous
+* ;
+*----- methane chemistry ----------------------------------- ;
+* ;
+* alternative T-expression: 1.85e-20*EXP(2.82*LOG(TEMP))*EXP(-987.0*TINV) :
+*     OH + CH4 = CH3O2  ; acp2006, V6, p3625-4055, Atkinson et al.
+1.85e-12*exp(-1690.*TINV)         : CH4 + OH  = CH3O2  ; Arrhenius rate expression recommended for T-interval 200K-300K
+
+KMT05                             : CO + OH  = HO2 ; IUPAC and MCM
+
+1.2e-12                           : CH3O2 + NO3   = HCHO + HO2 + NO2 ; IUPAC2008 rate 
+2.3e-12*EXP(360.*TINV)            : CH3O2 + NO    = HCHO + HO2 + NO2  ; acp2006
+1.48e-12*EXP(-520.*TINV)          : CH3O2  + [RO2POOL] = HCHO + HO2 ; from CRI (IUPAC also has half this rate for the CH3O2 + CH3O2 reaction)
+2.06e-13*exp(365.*tinv)-1.48e-12*exp(-520.*tinv)  : CH3O2 + [RO2POOL] = 0.5 HCHO + 0.5 CH3OH ; from CRI (in agreement with IUPAC)
+*suggested simplification: 
+3.8e-13*EXP(780.*TINV)            : CH3O2 + HO2   = 0.9 CH3OOH + 0.1 HCHO  ; based on HCHO fraction at 288K
+
+*IUPAC also has the fairly slow reaction: 3.7e-11*EXP(350.*TINV) : CH3O2 + OH = ca 0.8+-0.2 (2 HO2+HCHO) + possibly ca 0.1(LARGE uncertainty) CH3OOOH + possibly ca 0.07(LARGE uncertainty) (CH3OH+O2) 
+*could test(simplified): 3.7e-11*EXP(350.*TINV)  : CH3O2 + OH = 0.93 HCHO + 1.86 HO2 + 0.07 CH3OH ;
+
+*IUPAC recommended three parameter expression:
+*E/I: 6.38e-18*(TEMP**2)*EXP(144.*TINV) : OH + CH3OH = HO2 + HCHO + <H2O> ; acp2006
+*Simpler Arrhenius expression, recommended for the T-interval 210-300K:
+2.85e-12*EXP(-345.*TINV)          : CH3OH + OH = HO2 + HCHO ;
+
+5.3e-12*EXP(190.*TINV)            : CH3OOH + OH    = 0.4 HCHO + 0.4 OH + 0.6 CH3O2  + 0.6 <H2O> ; IUPAC 2007
+*IUPAC-recommended three parameter expression:
+*E/I: 1.25e-17*(TEMP**2)*EXP(615.0*TINV) : OH     + HCHO  = CO + HO2 + <H2O>   ; acp2006
+*Simpler Arrhenius rate, valid for 200-300K:
+5.4e-12*EXP(135.*TINV)            : HCHO + OH = HO2 + CO ;
+2.0e-12*EXP(-2440.*TINV)          : HCHO + NO3  = HNO3 + CO + HO2    ; IUPAC Oct2007, suggested temp dependance (based on analogy with NO3+CH3CHO reaction)
+* ;
+*----- ethane chemistry ----------------------------------- ;
+* ;
+6.9e-12*EXP(-1000.*TINV)          : C2H6 + OH     = C2H5O2 + <H2O>     ; IUPAC2007
+2.55e-12*EXP(380.*TINV)           : C2H5O2  + NO  = HO2 + CH3CHO + NO2 ; IUPAC2005
+2.3e-12                           : C2H5O2  + NO3 = HO2 + CH3CHO + NO2 ; MCM (in agreement with IUPAC recommended rate)
+6.4e-13*EXP(710.*TINV)            : C2H5O2  + HO2 = C2H5OOH            ; IUPAC2011 - Note MCM uses an older rate 4.3e-13*EXP(870.0*TINV) from IUPAC2008
+3.10e-13                          : C2H5O2 + [RO2POOL] = 0.8 CH3CHO + 0.6 HO2 + 0.2 C2H5OH ; from CRI
+*orig: 8.01e-12                   : C2H5OOH + OH  = CH3CHO + OH     ; Saunders ACP3, 2003, 161-180 CR 
+*orig: 1.9e-12*EXP(190.*TINV)     : C2H5OOH + OH  = C2H5O2       ; KRC68
+*simplification: 
+1.17e-11                          : C2H5OOH + OH  = 0.69 CH3CHO + 0.69 OH + 0.31 C2H5O2 ; based on rates at 288K
+
+4.7e-12*EXP(345.*TINV)            : CH3CHO + OH = 0.95 CH3CO3 + 0.05 HCOCH2O2 ; CH2CHO assumed to react with O2 and form stabilized peroxy radical
+KNO3AL                            : CH3CHO + NO3 = HNO3 + CH3CO3  ; KNO3AL = 1.4e-12*EXP(-1860.0*TINV) IUPAC2007(201712) and MCM
+KAPNO                             : CH3CO3 + NO  = NO2 + CH3O2 + <CO2> ; acp2006 -- KAPNO=7.5e-12*EXP(290.0*TINV)
+4.e-12                            : CH3CO3 + NO3 = NO2 + CH3O2 ; MCM (rate  also recommended by IUPAC)
+KFPAN                             : CH3CO3 + NO2 + {M} = PAN           ; 
+KBPAN                             : PAN  + {M}    = CH3CO3 + NO2      ; 
+
+*MCM: KAPHO2    : CH3CO3 + HO2     = 0.41 CH3CO3H + 0.15 O3 + 0.44 OH + 0.44 CH3O2 + 0.15 {CH3COOH}  ; KAPHO2 MCM-version 
+KAPHO2        : CH3CO3 + HO2 = 0.454 CH3O2 + 0.454 OH + 0.384 CH3CO3H + 0.162 O3 + 0.162 {CH3COOH}  ; IUPAC March 2017 -- Note that the product split is temperature dependent, here the split is based on T=288K
+
+* MCM 3.3.1 (apparently based on Villenave et al. (1998) for reactions of 
+*  CH3CO3 with a series of other RO2 radicals
+1.0e-11                           : CH3CO3 + [RO2POOL] = 0.7 CH3O2 + 0.3 <CH3COOH> ; 
+
+*MCM: 3.7e-12                           : CH3CO3H + OH     = CH3CO3 ; MCM
+1.1e-11       : CH3CO3H + OH     = 0.5 CH3CO3 + 0.5 CH2O2CO3H ; Based on IUPAC recommendations November 2017 (large(?) uncertainties both in rate and product split)
+KRO2NO        : CH2O2CO3H + NO = NO2 + HOCH2CO3 ; assume standard RO2+NO reaction rate [neglecting other (low-NOx) reaction paths initially]
+2.3e-12       : CH2O2CO3H + NO3 = NO2 + HOCH2CO3 ; assumed NO3 reaction
+*What about HO2 reaction!? and perhaps RO2-reaction?
+
+*adding HCOCH2O2 chemistry (from vinoxy radical)
+KHO2RO2*0.387     : HCOCH2O2 + HO2 = HCOCH2OOH ; MCM
+KRO2NO            : HCOCH2O2 + NO  = NO2 + HCHO + CO + HO2 ; MCM
+2.3e-12           : HCOCH2O2 + NO3 = NO2 + HCHO + CO + HO2 ; MCM
+2.0e-12           : HCOCH2O2 + [RO2POOL] =  0.2 GLYOX + 0.2 HOCH2CHO + 0.6 HCHO + 0.6 HO2 + 0.6 CO ; MCM
+
+3.3e-11              : HCOCH2OOH + OH = 0.89 GLYOX + 0.89 OH + 0.11 HCOCH2O2 ; simplified from MCM (based on rates at 288K)
+
+*----- ethanol chemistry ----------------------------------- ;
+
+*MCM-based: 3.0e-12*exp(20.*TINV)             : OH + C2H5OH    = 0.05 ETRO2 + 0.95 CH3CHO + 0.95 HO2 ; note that IUPAC recommends this rate only up to 300K and the three-parameter expression above for a wider T-range -- the difference in rate at typical atmospheric temperatures should be less than 4%
+*suggested simplification: 
+3.22e-12             : C2H5OH + OH   = 0.05 ETRO2 + 0.95 CH3CHO + 0.95 HO2 ; based on MCM rate at 288K
+
+*----- n-butane chemistry ----------------------------------- ;
+* ;
+* 2.03e-17*(TEMP**2)*EXP(78.0*TINV) : nC4H10 + OH = secC4H9O2 ; IUPAC2007 Note: MCM uses simpler Arrhenius rate expression: 9.8e-12*exp(-425.0*TINV)
+9.8e-12*exp(-425.*TINV)           : nC4H10 + OH = C4H9O2 ; IUPAC2007 (recommended Arrhenius rate expression for T in range 180-300K) -- C4H9O2 = 0.873 SC4H9O2 + 0.127 NC4H9O2
+KHO2RO2*0.625                     : C4H9O2 + HO2 = BURO2H ; Earlier versions had 5% loss to S/IVOC SOA species -- BURO2H = 0.873 SC4H9OOH + 0.127 NC4H9OOH
+*suggested simplification (replace minor C3H7CHO path by MEK): 
+2.4e-11                           : BURO2H + OH = 0.847 OH + 0.847 MEK + 0.153 C4H9O2 ; based on rates at 288K
+
+*simplified version for EMEP 3-d (based on MCM-split at 288K and replacing: C3H7CHO by MEK, HO1C4O2 by CH3CHO+C2H5O2, nC4H9NO3 by sC4H9NO3):
+KRO2NO   : C4H9O2 + NO = 0.917 NO2 + 0.083 sC4H9NO3 + 0.654 HO2 + 0.654 MEK + 0.264 CH3CHO + 0.264 C2H5O2 ; (288K split)
+
+*simplified as for the NO reaction:
+2.3e-12  : C4H9O2 + NO3 = NO2 + 0.716 MEK + 0.716 HO2 + 0.284 CH3CHO + 0.284 C2H5O2 ; (288K split)
+*neglect: 3.8e-13       : C4H9O2 + [RO2POOL] = 0.757 MEK + 0.355 HO2 + 0.243 CH3CHO + 0.243 C2H5O2 ; (298K split?) replacing C3H7CHO by MEK
+
+*slow -- but perhaps not negligible?
+8.6e-13                   : sC4H9NO3 + OH = MEK + NO2 ; MCM
+
+*---------------------------
+
+*MCM/IUPAC: 1.5e-12*exp(-90.*TINV)            : OH + MEK = MEKO2 ; MCM and IUPAC recommended Arrhenius type rate for T-range 210-300K (IUPAC 2009)
+*Note weak T-dependence -- could simplify the MEK+OH reaction to: 
+1.1e-12                   : MEK + OH = MEKO2 ; based on rate at 288K
+*simplified MEKO2 (based on MCM MEKBO2 and MEKCO2):
+KRO2NO                    : MEKO2  + NO  = NO2 + 0.854 CH3CO3 + 0.854 CH3CHO + 0.146 C2H5CO3 + 0.146 HCHO ; 
+2.3e-12                   : MEKO2  + NO3 = NO2 + 0.854 CH3CO3 + 0.854 CH3CHO + 0.146 C2H5CO3 + 0.146 HCHO ; 
+KHO2RO2*0.625             : MEKO2  + HO2 = MEKO2H   ; neglecting MEKAO2 -> MEKO2H represents 0.854 MEKBOOH + 0.146 MEKCOOH
+1.04e-12  : MEKO2 + [RO2POOL] = 0.2135 BIACET + 0.6405 CH3CO3 + 0.6405 CH3CHO + 0.0365 EGLYOX + 0.1095 C2H5CO3 + 0.1095 HCHO ;
+2.1e-11    : MEKO2H + OH  = 0.826 OH + 0.7054 BIACET + 0.1206 EGLYOX + 0.174 MEKO2   ; based on rates at 288K
+
+*simplified rate and products:
+2.3e-13                   : BIACET + OH = CH3CO3 + HCHO + CO ; simplified -- replacing BIACETO2 by CH3CO3+HCHO+CO (could also consider C2H5CO3+CO?)
+
+KAPHO2                  : C2H5CO3 + HO2 = 0.75 C2H5O2 + 0.75 OH + 0.25 O3 + 0.25 <PROPACID> ; simplified -- replacing 0.41 PERPROACID by 0.31 C2H5O2+OH & 0.10 O3+<PROPACID>
+
+6.7e-12*exp(340.*TINV)  : C2H5CO3 + NO = NO2 + C2H5O2 ; MCM
+KFPAN                   : C2H5CO3 + NO2 = PPN ; MCM
+4.0e-12                 : C2H5CO3 + NO3 = C2H5O2 + NO2 ; MCM KRO2NO3*1.74
+1.0e-11                 : C2H5CO3 + [RO2POOL] = 0.7 C2H5O2 + 0.3 <PROPACID> ; MCM
+
+1.27e-12                : PPN + OH = CH3CHO + CO + NO2 ; MCM
+*BUG!: 1.7e-3*exp(-11280*TINV) : PPN = C2H5CO3 + NO2 ; MCM -- bug in EMEP MCM version 3.3
+KBPPN                   : PPN = C2H5CO3 + NO2 ; MCM
+
+
+1.4e-12*exp(-1860.*TINV)*4.0  : EGLYOX + NO3 = C2H5CO3 + CO + HNO3 ; MCM KNO3AL*4
+1.39e-11                      : EGLYOX + OH = C2H5CO3 + CO ; MCM
+
+*----- ethene chemistry ----------------------------------- ;
+KMT15                             : C2H4 + OH + {M}  = ETRO2   ;   
+*
+KRO2NO                   : ETRO2 + NO  = NO2 + HOCH2CH2O ; neglecting minor nitrate formation
+2.3e-12                  : ETRO2 + NO3 = NO2 + HOCH2CH2O ;
+1.53e-13*exp(1300.*TINV) : ETRO2 + HO2 = ETRO2H   ; MCM T-dep
+1.9e-12                  : ETRO2 + [RO2POOL] = 0.4 HOCH2CHO + 0.6 HOCH2CH2O ; simplified rate (based on MCM rate at 288K), replacing ETHGLY by HOCH2CHO
+9.5e13*exp(-5988.*TINV)  : HOCH2CH2O = HO2 + 2 HCHO ; MCM
+KROPRIM                  : HOCH2CH2O + <O2> = HO2 + HOCH2CHO ; MCM
+
+*suggested simplification ("accurate" within ca 2% for rate): 
+1.7475e-11     : ETRO2H + OH = 0.79 HOCH2CHO + 0.79 OH + 0.21 ETRO2 ; based on rates at 288K
+
+1.00e-11      : HOCH2CHO + OH = 0.2 GLYOX + 0.2 HO2 + 0.8 HOCH2CO3 ; MCM
+KNO3AL        : HOCH2CHO + NO3 = HOCH2CO3 + HNO3 ; MCM 
+
+KAPHO2        : HOCH2CO3 + HO2 = 0.75 HO2 + 0.75 HCHO + 0.75 OH + 0.25 O3 + 0.25 HOCH2CO2H ; simplified -- replacing 0.41 HOCH2CO3H by 0.31 HO2+HCHO+OH + 0.1 O3+HOCH2CO2H
+KAPNO         : HOCH2CO3 + NO  = NO2 + HO2 + HCHO ; MCM 
+KFPAN         : HOCH2CO3 + NO2 = PHAN ; MCM
+4.0e-12       : HOCH2CO3 + NO3 = NO2 + HO2 + HCHO ; MCM KRO2NO3*1.74
+1.00e-11      : HOCH2CO3 + [RO2POOL] = 0.7 HCHO + 0.7 HO2 + 0.3 HOCH2CO2H ; MCM
+2.73e-12      : HOCH2CO2H + OH = HCHO + HO2 ; MCM
+1.12e-12      : PHAN + OH = HCHO + CO + NO2 ; MCM
+KBPAN         : PHAN = HOCH2CO3 + NO2 ; MCM
+
+*IUPAC 2018:
+*MCM-products(simplified): 6.82e-15*exp(-2500.*TINV)        : C2H4 + O3 = 1.139 HCHO + 0.63 CO + 0.13 HO2 + 0.13 OH + 0.139 H2O2 + 0.231 <HCOOH>  ; 
+6.82e-15*exp(-2500.*TINV) : C2H4 + O3 = 1.1575 HCHO + 0.17 OH + 0.35 CO + 0.27 HO2 + 0.18 H2 + 0.2625 <HCOOH> + 0.1575 H2O2 ; IUPAC2018 (with simplified MCM split for CH2OO) products (simplified)
+
+*----- propene chemistry ----------------------------------- ;
+
+KMT16                             : C3H6 + OH + {M}   = PRRO2           ;   
+*IUPAC 2018 (product split is quite different from MCM, including vinoxy radical -- here a simplified split is used):
+5.77e-15*exp(-1880.*TINV) : C3H6 + O3 = 0.489 CH3CHO + 0.68 HCHO + 0.169 H2O2 + 0.3646 OH + 0.183 CO + 0.0684 H2 + 0.038 HO2 + 0.3 HCOCH2O2 + 0.05 CH3OH + 0.04 CH4 + 0.1 <HCOOH> + 0.181 <CH3CO2H> ; IUPAC gives 10% ketene(CH2CO)+H2O -- ketene should be very reactive but is not included in MCM and this part is treated as the CH3CHOO path in MCM
+
+*Use old C3H6-chem (neglecting PROPOLNO3):
+KRO2NO                    : PRRO2 + NO = NO2 + CH3CHO + HCHO + HO2 ;
+2.3e-12                   : PRRO2 + NO3 = NO2 + CH3CHO + HCHO + HO2 ; taken from CRI
+
+*simplifying -- go directly to ACETOL:
+KHO2RO2*0.52              : PRRO2 + HO2  = ACETOL ;
+8.8e-13                   : PRRO2 + [RO2POOL] = 0.4 ACETOL + 0.6 CH3CHO + 0.6 HCHO + 0.6 HO2 ; simplified ACETOL as surrogate for PROPGLY & CH3CHOHCHO
+
+4.6e-13*exp(-1155.*TINV)  : C3H6 + NO3 = NRN9O2 ; from CRI, same rate from IUPAC and MCM
+
+KHO2RO2*0.52  : NRN9O2 + HO2 = NOA ; simplified -- replaced NRN9OOH by NOA
+
+*initially simplify assuming 100% NOA (i.e. replace CHOPRNO3 by NOA):
+KRO2NO        : NRN9O2 + NO = 1.13 NO2 + 0.87 NOA + 0.87 HO2 + 0.13 CH3CHO + 0.13 HCHO ; Based on T=288K
+2.3e-12       : NRN9O2 + NO3 = 1.13 NO2 + 0.87 NOA + 0.87 HO2 + 0.13 CH3CHO + 0.13 HCHO ; Based on T=288K 
+
+8.3337*rcphot(IDMEK)  : NOA           = CH3CO3 + HCHO + NO2 ;
+6.70e-13              : NOA + OH      = MGLYOX + NO2 ; rate from MCM
+
+KHO2RO2*0.625  : IBUTOLBO2 + HO2 = C2H5OH + C2H5OOH ; simplify -- replace IBUTOLBO2H by C2H5OH + C2H5OOH -- alternatively CH3OH + CH3COCH3
+
+KRO2NO         : IBUTOLBO2 + NO  = NO2 + HCHO + HO2 + C2H6 + CH3OH ; replacing CH3COCH3 by C2H6 + CH3OH
+2.3e-12        : IBUTOLBO2 + NO3 = NO2 + HCHO + HO2 + C2H6 + CH3OH ; replacing CH3COCH3 by C2H6 + CH3OH
+*neglect: 9.2e-14        : IBUTOLBO2 + [RO2POOL] = HCHO + HO2 + C2H6 + CH3OH ; replacing CH3COCH3 by C2H6 + CH3OH
+
+*---------- BENZENE and TOLUENE only first reaction  -----------------------------------
+*ADD ONLY INITIAL REACTION RATE and use OXYL-chemistry products (adjusted for differences in molar mass)!
+2.3e-12*exp(-190.*TINV)   : BENZENE + OH = 0.39 OXYLOL + 0.654 HO2 + 0.346 OXYBIPERO2 ; -- scaling PHENOL and BZBIPERO2 to OXYLOL and OXYBIPERO2 by M(BENZENE)/M(OXYLENE)
+1.8e-12*exp(340.*TINV)    : TOLUENE + OH = 0.16 OXYLOL + 0.29 HO2 + 0.71 OXYBIPERO2 ; initially don't mess with a separate CRESOL species (at least relatively similar chemistry to OXYLOL and reasonably similar fraction) -- scaling CRESOL and TLBIPERO2 to OXYLOL and OXYBIPERO2 by M(TOLUENE)/M(OXYLENE)
+
+*---------------------- o-Xylene (aromatic) chemistry --------------------------------------------
+1.36e-11   : OXYL + OH  =  0.84 OXYBIPERO2 + 0.16 HO2 + 0.16 OXYLOL ; simplified -- replacing OXYEPOXMUC and OXYLO2 paths by OXYBIPERO2
+
+* scaled reaction rate taking into account CRESOL and PHENOL fractions:
+2.1e-11    : OXYLOL + NO3 = 0.61 NOXYOLO2 + 0.39 OXY1O + 0.39 HNO3 ; simplified -- neglecting OXYOLO2(+HNO3) path; replace with NOXYOLO2
+* scaled reaction rate taking into account CRESOL and PHENOL fractions:
+6.1e-11    : OXYLOL + OH  = 0.17 OXY1O + 0.83 HO2 + 0.83 OXYCATECH ; simplified -- replace OXYOLO2 with 0.5 OXY1O + 0.5 OXYCATECH+HO2
+
+2.01e-10   : OXYCATECH + NO3 = HNO3 + OXCATEC1O ; 
+2.05e-10   : OXYCATECH + OH = OXCATEC1O ; 
+*neglect: 2.81e-17           : OXYCATECH + O3 = C5CO14OH + CH3COCO2H + HO2 + OH ; 
+
+*Neglect: 4.9e-14*exp(280.*TINV) : CH3COCO2H + OH = products ; IUPAC (June 2017)
+
+2.08e-12           : OXCATEC1O + NO2 = OXNCATECH ; 
+2.86e-13           : OXCATEC1O + O3  = OXCATEC1O2 ; 
+
+5.03e-12           : OXNCATECH + NO3 = OXNNCATCO2 ; 
+6.83e-12           : OXNCATECH + OH  = OXNCATECO2 ; 
+
+KHO2RO2*0.859      : OXNCATECO2 + HO2 = OXNCATCOOH ; 
+KRO2NO             : OXNCATECO2 + NO  = NO2 + CH3COCO2H + HO2 + NC4MDCO2H ; 
+2.3e-12            : OXNCATECO2 + NO3 = NO2 + CH3COCO2H + HO2 + NC4MDCO2H ; 
+8.0e-13            : OXNCATECO2 + [RO2POOL] = CH3COCO2H + HO2 + NC4MDCO2H ; 
+
+1.9e-12*exp(190.0*TINV)  : NC4MDCO2H + OH = NO2 + <MMALANHY> ; -- MMALANHY treated as unreactive
+
+1.9e-12*exp(190.0*TINV)  : OXNCATCOOH + OH = OXNCATECO2 ; 
+
+KHO2RO2*0.859      : OXNNCATCO2 + HO2 = OXNNCATOOH ; 
+KRO2NO             : OXNNCATCO2 + NO = 2 NO2 + CH3COCO2H + NC4MDCO2H ; 
+2.3e-12            : OXNNCATCO2 + NO3 = 2 NO2 + CH3COCO2H + NC4MDCO2H ; 
+8.0e-13            : OXNNCATCO2 + [RO2POOL] = CH3COCO2H + NO2 + NC4MDCO2H ; 
+
+1.9e-12*exp(190.0*TINV)  : OXNNCATOOH + OH = OXNNCATCO2 ; 
+
+KHO2RO2*0.859      : OXCATEC1O2 + HO2 = OCATEC1OOH ; 
+KRO2NO             : OXCATEC1O2 + NO = NO2 + OXCATEC1O ; 
+2.3e-12            : OXCATEC1O2 + NO3 = NO2 + OXCATEC1O ;
+8.8e-13            : OXCATEC1O2 + [RO2POOL] = OXCATEC1O ; 
+
+2.05e-10           : OCATEC1OOH + OH = OXCATEC1O2 ; 
+
+2.08e-12           : OXY1O + NO2 = OXY1OHNO2 ; 
+2.86e-13           : OXY1O + O3  = DM123O2 ; 
+
+3.13e-13           : OXY1OHNO2 + NO3 = HNO3 + NOXYOL1O ; 
+1.53e-12           : OXY1OHNO2 + OH = NOXYOL1O ; 
+
+2.08e-12           : NOXYOL1O + NO2 = <DNOXYOL> ; MCM, test neglecting the DNOXYOL
+2.86e-13           : NOXYOL1O + O3 = NOXYOL1O2 ; 
+
+KHO2RO2*0.859      : NOXYOL1O2 + HO2 = NOXYOL1OOH ; 
+KRO2NO             : NOXYOL1O2 + NO = NO2 + NOXYOL1O ; 
+2.3e-12            : NOXYOL1O2 + NO3 = NO2 + NOXYOL1O ; 
+*neglect: 2.5e-13            : NOXYOL1O2 + [RO2POOL] = NOXYOL1O ; 
+
+1.53e-12           : NOXYOL1OOH + OH = NOXYOL1O2 ; MCM
+
+KHO2RO2*0.859      : DM123O2 + HO2 = DM123OOH ; MCM
+KRO2NO             : DM123O2 + NO = NO2 + OXY1O ; MCM
+2.3e-12            : DM123O2 + NO3 = NO2 + OXY1O ; MCM
+*neglect: 2.5e-13            : DM123O2 + [RO2POOL] = OXY1O ; MCM
+
+4.65e-11           : DM123OOH + OH = DM123O2 ; MCM
+
+KHO2RO2*0.859      : NOXYOLO2 + HO2 = NOXYOLOOH ; MCM
+KRO2NO             : NOXYOLO2 + NO = 2 NO2 + GLYOX + CH3COCO2H + C3H6 ; simplified -- replacing C5DBCOCO2H by CH3COCO2H + C3H6
+2.3e-12            : NOXYOLO2 + NO3 = 2 NO2 + GLYOX + CH3COCO2H + C3H6 ; simplified -- replacing C5DBCOCO2H by CH3COCO2H + C3H6
+8.0e-13            : NOXYOLO2 + [RO2POOL] = NO2 + GLYOX + CH3COCO2H + C3H6 ; simplified -- neglecting NOXYOLOH (30% in MCM) AND replacing C5DBCOCO2H by CH3COCO2H + C3H6
+
+1.43e-10           : NOXYOLOOH + OH = NOXYOLO2 ; MCM
+
+*neglect: 4.10e-16           : OXYL + NO3 = HNO3 + OXYLO2 ; MCM
+
+KRO2NO        : OXYBIPERO2 + NO = 0.138 NOXYOLOOH + 0.862 NO2 + 0.862 HO2 + 0.3017 BIACET + 0.58185 BZFUONE + 0.28015 C5DICARB + 0.28015 MGLYOX + 0.28015 EGLYOX ; simplified for EmChem19X
+2.3e-12       : OXYBIPERO2 + NO3 = NO2 + HO2 + 0.35 BIACET + 0.325 C5DICARB + 0.325 MGLYOX + 0.675 BZFUONE + 0.325 EGLYOX ; simplified for EmChem19X
+KHO2RO2*0.859 : OXYBIPERO2 + HO2 = OXYBPEROOH ; Note no losses to ASOA components! May need to change this?
+
+7.62e-11      : OXYBPEROOH + OH = OXYBIPERO2 ; MCM -- perhaps this rate should be reduced? OXYBIPERO2 also represents other compounds
+
+*neglect: 2.20e-19  : BZFUONE + O3 = 0.5 OH + 0.5 CO + 0.5 HCOCH2O2 + 0.5*(6/16(CO14O3CHO+H2O2)+10/16(CO14O3CO2H)) ; MCM
+* simplified -- replacing the BZFUO2 by IBUTOLBO2 and NBZFUO2 by IBUTOLBO2+NO2:
+3.0e-13       : BZFUONE + NO3 = NO2 + IBUTOLBO2 ;
+4.45e-11      : BZFUONE + OH = IBUTOLBO2 ;
+
+*neglect: 9.2e-14  : OXYBIPERO2 + [RO2POOL] = HO2 + 0.35 BIACET + 0.15 EGLYOX + 0.5 BZFUONE + 0.5 MGLYOX + 0.5 GLYOX + 0.5 C3H6 ; simplified -- neglect OXYBPER2OH (30% in MCM) and use the same simplifications as earlier for the OXYBIPERO product
+
+*simplified as in earlier EmChem schemes:
+6.2e-11        : C5DICARB + OH   = C5DICARBO2  ; MAL = C5DICARB in MCM, MALO2=48% C5CO14O2 + 52% C5DICARBO2
+*neglect : 2e-18        : C5DICARB + O3 = 0.53375 GLYOX + 0.53375 MGLYOX + 0.9175 CO + 0.57 OH + 0.3475 CH3CO3 + 0.0625 CH3CHO + 0.0625 HCHO + 0.4725 HO2 + 0.0675 H2O2 + 0.05625 CH3COCO2H + 0.05625 HCOCO2H ;
+*neglect : KNO3AL*2.75   : C5DICARB + NO3 = HNO3 + C5CO14O2 ; MCM
+
+KRO2NO                : C5DICARBO2 + NO  = NO2 + HO2 + MGLYOX + GLYOX ; Based on only C5DICARBO2!
+KRO2NO3               : C5DICARBO2 + NO3 = NO2 + HO2 + MGLYOX + GLYOX ; 
+KHO2RO2*0.706         : C5DICARBO2 + HO2 = C5DICAROOH ;
+*neglect: 1.4e-12     : C5DICARBO2 + [RO2POOL] = 0.6 HO2 + 0.6 MGLYOX + 0.6 GLYOX + 0.4 C5134CO2OH ; simplified -- replacing 0.2 C514CO23OH by C5134CO2OH
+
+*MCM-based: 1.25e-10              : C5DICAROOH + OH = 0.03 C5DICARBO2 + 0.97 C5134CO2OH + 0.97 OH ; MCM simplified T-dependence and product split (but very weakly T-dependent)
+*use EC16 variant (very different from MCM but perhaps not critical?):
+1.9e-12*EXP(190.0*TINV)       : C5DICAROOH + OH = C5DICARBO2 ;
+
+3.1e-12*EXP(340.*TINV)   : GLYOX + OH = 0.416 HO2 + 1.417 CO + 0.584 OH ; simplified from MCM (at 288K) replaced HCOCO3 by 2 CO + HO2
+
+*neglect: 4.e-16  : GLYOX + NO3  = HO2 + CO + CO + HNO3 ; NOTE! IUPAC recommended rate (checked 20171206)
+
+1.9e-12*EXP(575.*TINV)    : MGLYOX + OH = CH3CO3 + CO    ;  IUPAC2008
+
+*neglect: 5.e-16  : MGLYOX + NO3    = CH3CO3 + CO + HNO3 ; NOTE! IUPAC recommended rate (checked 20171206) -- MCM uses about an order of magnitude faster rate!
+
+*----- isoprene chemistry ----------------------------------- ;
+* ;
+** ========================================================================
+** CheT2mod -- MODIFIED! [including some updated reaction rates and
+*                         revised C5H8+O3 and C5H8+NO3 products,
+*                         added ISON product in ISRO2 + NO reaction,
+*                         added ISRO2 + NO3 reaction,
+*                         revised ISRO2 + RO2 reaction (rate),
+*                         revised ISRO2H + OH reaction (rate and products),
+*                         revised IEPOX + OH products,
+*                         revised MACR + OH and MACR + O3 reactions,
+*                         MACR + NO3 reaction (? was this not included in CheT2mod?),
+*                         MACRO2 + NO reaction (? almost certainly changed),
+*                         added MACRO2 + NO3 reaction,
+*                         added MACRO2 self reaction,
+*                         revised MACROOH + OH rate,
+*                         revised MACO3 + HO2 and MACO3 + RO2 reactions,
+*                         revised MPAN + OH products,
+*                         added MPAN + O3 reaction,
+*                         NALD+OH (keep CheT2 rate),
+*                         revised MPAN reactions, 
+*                         revised MVK chemistry,
+*                         changed ISON2 + OH products,
+*                         more?] 
+* ****************************************************************** 
+* CheT2 Isoprene chemistry UKCA variant U3 as described in:
+* M.E. Jenkin, Review of the atmospheric chemistry of isoprene and 
+* evaluation of mechanisms for global modelling 
+* Atmospheric Chemistry Services Report 03-12, 2012
+* CheT2mod added MVK to scheme (and changed some other reactions) 
+* ****************************************************************** 
+* ISOOH = ISRO2H
+* CH3CO3 = CH3COO2
+* CH3CO3H = CH3COO2H
+* ACETOL = HACET
+* NALD = nitrooxyacetaldehyde (O2NOCH2CHO)
+* HPALD = (MCM) C5HPALD1, C5HPALD2 [perhaps mostly modelled based on C5HPALD2?] but the chemistry seems limited?
+* PACALD? possibly MCM C5PACALD2? but very little chemistry included??
+* IEPOX? probably based on the MCM IEPOX[A,B,C]? but the chemistry is extremely simplified...
+* ;
+*;
+2.7e-11*EXP(390.*TINV)        : C5H8 + OH = ISRO2 ;
+*IUPAC (slightly changed rate, July 2018): 1.05e-14*EXP(-2000.*TINV)     : C5H8 + O3 = 0.25 HO2 + 0.25 OH + 0.08 CH3O2 + 0.14 CO + 0.09 H2O2 + 0.28 <HCOOH> + 0.1 CH3CO3 + 0.1 MACRO2 + 0.39 MACR + 0.26 MVK + 0.58 HCHO ; 
+1.05e-14*EXP(-2000.*TINV)     : C5H8 + O3 = 0.363 MACR + 0.312 MVK + 0.364 CO + 0.1725 HO2 + 0.25 OH + 0.175 <HCOOH> + 0.7775 HCHO + 0.28 H2O2 + 0.0475 C3H6 + 0.1535 CH3CO3 + 0.105 MACO2H ; Revised products based on MCM (simplified)
+
+2.95e-12*EXP(-450.*TINV)      : C5H8 + NO3 = NISOPO2 ; IUPAC rate (updated 2015)
+
+KRO2NO      : ISRO2 + NO = 0.9 NO2 + 0.6 MVK + 0.3 MACR + 0.9 HCHO + 0.9 HO2 + 0.1 ISON ;
+*CheT2mod had: KRO2NO*0.9    : NO + ISRO2 = NO2 + 0.667 MVK + 0.333 MACR + HCHO + HO2 ;
+*NOT really in CheT2 or CheT2mod: 
+2.3e-12  : NO3 + ISRO2 = NO2 + 0.667 MVK + 0.333 MACR + HCHO + HO2 ;
+
+KHO2RO2*0.706      : ISRO2 + HO2 = ISRO2H ;  # EMEP ISRO2H 
+*MCM/CheT2mod-based (simplified) [rate based on MCM rates for different ISRO2 weighted by relative abundance]: 
+1.45e-12           : ISRO2 + [RO2POOL] = 0.6665 MVK + HCHO + HO2 + 0.3335 MACR ; Simplified products based on CheT2mod, rate based on MCM
+
+*CheT2mod had: 7.14e-11        : OH + ISRO2H = 0.9 IEPOX + OH + 0.1 MACR ;
+6.0e-11      : ISRO2H + OH = 0.93 IEPOX + 0.07 ISRO2 + 0.93 OH ;
+*alternative?: 1.0e-10   ISRO2H + OH = 0.858 IEPOX + 0.953 OH + 0.046 ISRO2 + 0.062 MACR + 0.034 MVK ;
+
+* 1.16e-11     : IEPOX + OH = MACRO2 ; CheT2mod
+1.16e-11     : IEPOX + OH = 0.74 HMVKO2 + 0.15 MACRO2 + 0.89 CH3OH + 0.11 BIACETOH + 0.11 CH4 ; just a simple test -- not ideal...
+3.25e-11     : ISON + OH = 0.6 ACETOL + 0.6 NALD + 0.6 HO2 + 0.4 NO2 + 0.2 MACR + 0.2 MVK + 0.4 HCHO ; CheT2mod
+*Perhaps useful to add "ISON" + O3 reaction?
+
+* NOTE! MCM has different NALD (NO3CH2CHO) chemistry! 
+* Faster OH-reaction and other product (3.4e-12 and NO3CH2CO3); 
+* MCM also has NO3 reaction for NALD.
+1.55e-12                : NALD + OH = HCHO + CO + NO2 ; EC16/CheT2
+*CheT2mod has: 5.26e-13                          : OH + NALD = HCHO + CO + NO2 ;
+
+*CheT2mod has: 8.0e-12*EXP(380.0*TINV)          : OH + MACR = MACRO2 ;
+8.e-12*EXP(380.0*TINV)  : MACR + OH = 0.45 MACO3 + 0.55 MACRO2 ; EC19X, treating MACROHO2 as MACRO2 -- perhaps useful to add MACROHO2? 
+
+*CheT2mod has: 7.0e-16*EXP(-2100.0*TINV)        : O3 + MACR =  1.8 MGLYOX + 0.9 <HCOOH> + 0.64 HO2 + 0.44 CO ;
+*CheT2mod has: 7.0e-16*EXP(-2100.0*TINV)        : O3 + MACR = 0.38 OH + 0.2 CH3CO3 ;
+1.36e-15*EXP(-2112.*TINV)        : MACR + O3 = 0.9016 MGLYOX + 0.1408 HO2 + 0.6528 CO + 0.2392 OH + 0.2035 <HCOOH> + 0.1437 H2O2 + 0.2421 HCHO + 0.0984 CH3CO3 ; MCM (simplified)
+
+3.4e-15   : MACR + NO3  = MACO3 + HNO3 ; MCM (rate as IUPAC(checked 20171206))
+
+*EC16/CheT2mod(??): KRO2NO  : NO + MACRO2 =  NO2 + 0.25 CH3CO3 + 0.25 ACETOL + 0.25 CO + 0.5 MGLYOX + 0.75 HCHO + 0.75 HO2 ;
+KRO2NO     : MACRO2 + NO = NO2 + HO2 + 0.85 ACETOL + 0.85 CO + 0.15 MGLYOX + 0.15 HCHO ; neglecting 1.3% nitrate formation (+ combining MACRO2 & MACROHO2)
+* adding MACRO2+NO3 reaction:
+2.3e-12    : MACRO2 + NO3 = NO2 + HO2 + 0.85 ACETOL + 0.85 CO + 0.15 MGLYOX + 0.15 HCHO ; combining MACRO2 & MACROHO2
+
+KHO2RO2*0.625                    : MACRO2 + HO2 = MACROOH ;
+
+* perhaps K14ISOM1 should be reduced to 0.85*K14ISOM1 to take into account MACROHO2 fraction?
+K14ISOM1                         : MACRO2 = ACETOL + CO + OH ; MCM (not in CheT2mod)
+
+*neglect: MACRO2 + [RO2POOL] (slow in MCM)
+
+KAPHO2    : MACO3 + HO2   = 0.44 OH + 0.44 HCHO + 0.56 O3 + 0.56 MACO2H + 0.154 CH3CO3 + 0.286 CH3O2 + 0.286 CO ;
+1.0e-11   : MACO3 + [RO2POOL] = 0.3 MACO2H + 0.7 HCHO + 0.455 CH3O2 + 0.455 CO + 0.245 CH3CO3 ; from MCM
+
+8.7e-12*EXP(290.*TINV)  : MACO3  + NO   = NO2 + HCHO + 0.35 CH3CO3 + 0.65 CH3O2 + 0.65 CO ; MCM3.3.1 products
+4.0e-12                 : MACO3  + NO3  = NO2 + HCHO + 0.35 CH3CO3 + 0.65 CH3O2 + 0.65 CO ; MCM KRO2NO3*1.74
+
+KFPAN                            : MACO3 + NO2 = MPAN    ; MCM
+KBPAN_2                          : MPAN =  MACO3 + NO2   ; MCM -- note rate for 1 atm
+
+*EC16 (CheT2 and CheT2mod -- seems very odd...): 2.90e-11  : OH + MPAN = ACETOL + NO2 ;
+2.9e-11                          : MPAN + OH = ACETOL + NO3 + CO ; simplified from MCM replacing HMML by ACETOL+CO and neglecting MAE prod
+8.2e-18                          : MPAN + O3 = HCHO + CH3CO3 + NO3 ; 
+*perhaps adjust MACROOH + OH reaction rate to take into account MACROHOOH + OH fraction (with r=5.55e-11 in MCM)
+3.77e-11                         : MACROOH + OH = ACETOL + CO + OH ; MCM rate
+1.6e-12*EXP(305.*TINV)           : ACETOL + OH = MGLYOX + HO2 ;
+
+*CheT2mod: 2.6e-12*EXP(610.0*TINV)          : OH + MVK = MACRO2 ;
+2.6e-12*EXP(610.*TINV)   : MVK + OH     = HMVKO2   ; IUPAC2007/MCM
+
+*CheT2mod-based: 8.5e-16*EXP(-1520.0*TINV) :  MVK + O3  = 0.9 MGLYOX + 0.45 <HCOOH> + 0.32 HO2 + 0.22 CO + 0.19 OH + 0.1 CH3CO3 ;
+8.5e-16*EXP(-1520.0*TINV) :  MVK + O3  = 0.545 MGLYOX + 0.645 HCHO + 0.56 CO + 0.36 OH + 0.28 HO2 + 0.075 <HCOOH> + 0.09 H2O2 + 0.1 CH3CHO + 0.28 CH3CO3 + 0.075 CH3COCO2H ; EmChem19X/MCM
+
+KRO2NO         : HMVKO2 + NO = 0.0352 MVKNO3 + 0.9648 NO2 + 0.67536 CH3CO3 + 0.67536 HOCH2CHO + 0.28944 MGLYOX + 0.28944 HCHO + 0.28944 HO2 ; 
+2.3e-12        : HMVKO2 + NO3 = NO2 + 0.7 CH3CO3 + 0.7 HOCH2CHO + 0.3 MGLYOX + 0.3 HCHO + 0.3 HO2 ; based on MCM
+KHO2RO2*0.625  : HMVKO2 + HO2 = MVKO2H ;
+
+4.5e-11        : MVKO2H + OH = 0.7 BIACETOH + OH + 0.3 CO2H3CHO ; MCM weighted rate 
+
+1.22e-12 :  HMVKO2 + [RO2POOL] = 0.28 BIACETOH + 0.42 CH3CO3 + 0.42 HOCH2CHO + 0.12 CO2H3CHO + 0.18 MGLYOX + 0.18 HO2 + 0.18 HCHO ; simplified -- replaced HO12CO3C4 by other paths
+
+*BIACETOH
+2.96e-12         : OH + BIACETOH = CO23C3CHO + HO2 ; MCM
+1.23e-11         : CO23C3CHO + OH = CH3CO3 + 2 CO ; MCM 
+KNO3AL*4.        : CO23C3CHO + NO3 = CH3CO3 + 2 CO + HNO3 ; MCM (KNO3AL*4.0)
+
+2.45e-11  : CO2H3CHO + OH = CO2H3CO3 ; MCM
+KNO3AL*4. : CO2H3CHO + NO3 = HNO3 + CO2H3CO3 ; MCM
+
+1.33e-12 : MVKNO3 + OH = 0.67 CO2N3CHO + 0.67 HO2 + 0.33 BIACETOH + 0.33 NO2 ; MCM
+
+*CO2N3CHO
+*neglect CO2N3CHO+OH reaction (photolysis is quite fast anyway... BUT THE OH reaction is also fairly fast -- maybe should be investigated?)
+
+*NISOPO2
+*MCM: KHO2RO2*0.706  : NISOPO2 + HO2 = NISOPOOH ; MCM
+KHO2RO2*0.706           : NISOPO2 + HO2 = ISON2 ; in MCM NISOPOOH is rapidly transformed into NC4CHO by OH reaction: OH+NISOPOOH=OH+NC4CHO
+KRO2NO                  : NISOPO2 + NO  = NO2 + ISON2 + HO2 ; simplified -- neglecting nitrate (NISOPNO3) formation and replaced NC4CHO by ISON2
+2.3e-12                 : NISOPO2 + NO3 = NO2 + ISON2 + HO2 ; EC19X -- MCM NC4CHO replaced by ISON2
+1.3e-12                 : NISOPO2 + [RO2POOL] = 0.2 ISON + 0.8 ISON2 + 0.6 HO2 ; EC19X -- replaced MCM ICOPCNO3 by ISON and NC4CHO by ISON2
+
+*CheT2mod: 4.16e-11       : OH + ISON2 = NALD + HO2 ;
+4.16e-11                : ISON2 + OH = NC4CO3 ; simplified (MCM has 52% C510O2 + 48% NC4CO3)
+
+*MCM NC4CHO: 2.4e-17        : ISON2 + O3 = 0.555 NOA + 0.5206 GLYOX + 0.89 OH + 0.445 HO2 + 0.89 CO + 0.0756 H2O2 + 0.034375 HCOCO2H + 0.445 MGLYOX + 0.445 NO2 ; 
+2.4e-17 : ISON2 + O3 = 0.555 NOA + 0.555 GLYOX + 0.89 OH + 0.445 HO2 + 0.89 CO + 0.0756 H2O2 + 0.445 MGLYOX + 0.445 NO2 ; based on MCM, simplified replacing HCOCO2H by GLYOX
+KNO3AL*4.25  : ISON2 + NO3 = HNO3 + NC4CO3 ; MCM
+
+*NC4CO3 -- use extremely limited NC4CO3 chemistry only include NOA paths (and initially C5PAN18)
+KAPHO2       : NC4CO3 + HO2 = NOA + CO + HO2 + OH ; exclude two paths 41% NC4CO3H, 15% (NC4CO2H + O3)
+KAPNO        : NC4CO3 + NO  = NO2 + NOA + CO + HO2 ; MCM
+4.0e-12      : NC4CO3 + NO3 = NO2 + NOA + CO + HO2 ; MCM KRO2NO3*1.74
+KFPAN        : NC4CO3 + NO2 = C5PAN18 ; MCM
+1.0e-11      : NC4CO3 + [RO2POOL] = NOA + HO2 + CO ; exclude NC4CO2H path (30% in MCM)
+
+KBPAN        : C5PAN18 = NC4CO3 + NO2 ; MCM
+2.16e-11     : C5PAN18 + OH = NOA + 2 CO + NO2 ; MCM
+
+*From EC16 (ISRO2 self reactions) -- also in CheT2 and CheT2mod:
+1.88e09*EXP(-7261*TINV)*0.052  : ISRO2 = HPALD + HO2 ;
+1.45e12*EXP(-10688*TINV)       : ISRO2 = MACR + HCHO + OH ;
+
+*EC16/CheT2: 
+7.61e-11 : OH + HPALD = MGLYOX + CO + HCHO + OH ; -- odd products! or at least not in agreement with MCM
+
+7.34e-12 : CO2H3CO3H + OH = CO2H3CO3 ; MCM
+KAPHO2 : CO2H3CO3 + HO2 = 0.56 CO2H3CO3H + 0.44 MGLYOX + 0.44 HO2 + 0.44 OH ; MCM
+KAPNO : CO2H3CO3 + NO = MGLYOX + HO2 + NO2 ; MCM
+4.0e-12 : CO2H3CO3 + NO3 = MGLYOX + HO2 + NO2 ; MCM
+1.e-11 : CO2H3CO3 + [RO2POOL] = MGLYOX + HO2 ; MCM
+KFPAN : CO2H3CO3 + NO2 = C4PAN6 ; MCM
+3.74e-12 : C4PAN6 + OH = MGLYOX + CO + NO2 ; MCM
+KBPAN : C4PAN6 = CO2H3CO3 + NO2 ; MCM
+
+1.51e-11            : MACO2H + OH   = 0.35 CH3CO3 + HCHO + 0.65 CO + 0.65 CH3O2 ; MCM
+
+*| ======================================================================
+*| Biogenic APINENE emissions and chemistry
+*| (for use in EmChem versions that treat ALL monoterpenes as a-Pinene!)
+*| rcbio(1:2) for isoprene and monoterpene emissions is kept in e.g.
+*! extra_mechanisms/BVOC_IsopMT1 so that one can choose
+*|  later whether to allocate all BIOTERP to apinene or to several BVOC.
+*| ======================================================================
+*| a-pinene chemistry scheme, loosely based partly on Emmons 2010:
+*|  Emmons et al., 2010 (MOZART-4) Geosci. Model Dev., 3, 43-67, 2010
+*| VERY SIMPLE production of TERPO2 from all!
+*| Many products and rates taken from Emmons 2010. 
+*| EmChem19X -- including MVK:
+*| SQT can be found in separate extra_mechanisms file
+
+1.34e-11*exp(410.*TINV)       : APINENE  + OH = TERPO2 ; Updated rate (new IUPAC recommendation)
+
+KRO2NO                 : TERPO2  + NO  =  HO2 + MACR + MVK + NO2 + 0.19 C2H6 ;  
+
+*Added NO3 reaction (assuming same products as NO-reaction):
+2.3e-12                 : TERPO2  + NO3 =  HO2 + MACR + MVK + NO2 + 0.19 C2H6 ;  
+7.5e-13*exp(700.*TINV)  : TERPO2  + HO2 =  TERPOOH ;  #  rate from Emmons -- CRI has KRO2HO2*0.914
+3.8e-12*exp(200.*TINV)  : TERPOOH + OH  =  TERPO2 ;   #  rate from Emmons -- note CRI does not return to TERPO2 (form aldehyde?)
+
+*-------------------------------------------------------------------------------------------
+*| O3 reactions. 
+
+8.22e-16*exp(-640.*TINV)  : APINENE + O3 = 0.7 OH + MACR + MVK + HO2 ; IUPAC rate 2018-08
+
+*-------------------------------------------------------------------------------------------
+*| NO3 chemistry
+
+1.2e-12*exp(490.*TINV) :  APINENE + NO3 = TERPO2 + NO2 ; Rate from MCM
+
+*-------------------------------------------------------------------------------------------
+*
+*REM NOTES:
+*REM From Emmons (no acetone in EmChem19 -- for emissions acetone is lumped
+*REM with C2H6, too keep similar ozone production potential perhaps the 0.1
+*REM CH3COCH3 should be replaced by 0.19 C2H6?).
+*
+** ========================================================================
+*
+* N2O5 hydrolysis reaction is in Aero2017nx_Reactions:
+*
+*  Photolysis
+*
+rcphot(IDO3_O1D)         : O3            = OD             ; J1     J(5e-5)
+rcphot(IDO3_O3P)         : O3            = OP             ; J2     J(4e-4)
+rcphot(IDH2O2)           : H2O2          = 2 OH           ; J3     J(8e-6)
+rcphot(IDNO2)            : NO2           = OP  + NO       ; J4     J(9e-3)
+*NO3 photolysis merges two pathways (=>NO2+OP or =>NO)
+rcphot(IDNO3)            : NO3           = 0.127 NO + 0.873 NO2 + 0.873 OP ;
+
+*EmChem16mt: rcphot(IDNO2)*0.222      : HONO          = OH + NO        ;
+rcphot(IDHONO)                        : HONO          = OH + NO        ; J7
+rcphot(IDHNO3)                        : HNO3          = NO2  + OH      ; J8     J(8e-7,6e-6)
+*Note! No HO2NO2 photolysis in MCM!
+rcphot(IDHO2NO2)         : HO2NO2        = 0.333 OH + 0.333 NO3 + 0.667 NO2 + 0.667 HO2 ; Emmons 2010+mass balance
+rcphot(IDHCHO_H)         : HCHO          = CO   + 2 HO2   ; J11    J(3e-5)
+rcphot(IDHCHO_H2)        : HCHO          = CO   + H2      ; J12    J(4e-5)
+rcphot(IDCH3CHO)         : CH3CHO        = CH3O2 + HO2 + CO  ; J13  J(6e-6)  
+rcphot(IDHCHO_H)*0.6     : HOCH2CHO      = 2 HO2 + HCHO + CO ; MCM J15
+rcphot(IDHCHO_H)*0.6     : CO2H3CHO      = 2 HO2 + CO + MGLYOX ; MCM J15
+* MCM may have different photolysis rate for NALD? J56*4.3 -- much faster than IDCH3CHO?
+rcphot(IDCH3CHO)         : NALD          = HCHO + CO + NO2 + HO2 ;   J13
+*"MCM-based": rcphot(IDMEK)*35.68         : NALD = HCHO + CO + NO2 + HO2 ; 
+*CheT2mod (J56*1.6): rcphot(IDMEK)*13.33   : NALD = HCHO + CO + NO2 + HO2 ; 
+*
+rcphot(IDMEK)            : MEK           = CH3CO3 + C2H5O2    ; J22  
+rcphot(IDMEK)            : ACETOL        = CH3CO3 + HCHO + HO2 ;
+*
+* Glyox - exclude explicit for now, and combine
+*
+* rcphot(IDCHOCHO_2CO)    : GLYOX     = 2 CO         ;  J31   #From MCM, see run_kpp_constants
+* rcphot(IDCHOCHO_HCHO)   : GLYOX     = CO + HCHO    ;  J32   #From MCM, see run_kpp_constants
+* rcphot(IDCHOCHO_2CHO)   : GLYOX     = 2 HO2 + 2 CO ;  J33   #From MCM, see run_kpp_constants
+*
+rcphot(IDCHOCHO)         : GLYOX  = 1.9 CO + 0.1 HCHO + 0.5 HO2 ; #From MCM, see run_kpp_constants
+*
+rcphot(IDRCOCHO)         : MGLYOX        = CH3CO3 + CO + HO2 ;  J34
+rcphot(IDRCOCHO)         : EGLYOX = C2H5CO3 + CO + HO2 ; MCM
+*MCM: rcphot(IDRCOCHO)   : CH3COCO2H = CH3CO3 + HO2 ; MCM
+rcphot(IDRCOCHO)         : CH3COCO2H = 0.6 CH3CHO + 0.05 <CH3COOH> + 0.05 CO + 0.35 CH3CO3 + 0.35 HO2 ; IUPAC June 2017
+rcphot(IDCH3COY)         : BIACET = 2 CH3CO3 ; MCM (CH3COY <=> BIACET)
+rcphot(IDCH3COY)         : BIACETOH = CH3CO3 + HOCH2CO3 ; MCM
+rcphot(IDCH3COY)         : CO23C3CHO = CH3CO3 + 0.41 HO2 + 1.41 CO + 0.58 OH ; simplified, based on MCM at 288K but replacing 0.1 HCOCO3 by 0.2 CO + 0.1 HO2
+rcphot(IDRCOCHO)         : CO23C3CHO = CH3CO3 + 2 CO + HO2 ; MCM
+rcphot(IDHCHO_H2)*0.04767 : MACR = 0.5 MACO3 + HO2 + 0.825 CO + 0.5 HCHO + 0.325 CH3O2 + 0.175 CH3CO3 ; combining two reactions 
+*RB: rcphot(MCM_J23)  : MVK  = C3H6 + CO ; MCM
+*DSN18 rcphot(24)       : MVK  = CH3CO3 + HCHO + CO + HO2 ; MCM
+*probably negligible photolysis rate but could add:
+rcphot(IDHCHO_H2)*0.078 : MVK  = 0.5 C3H6 + CO + 0.5 CH3CO3 + 0.5 HCHO + 0.5 HO2 ; MCM
+
+rcphot(IDNO2)*0.2        : C5DICARB = C5DICARBO2 + HO2 ;
+*CheT2mod: rcphot(IDHCHO_H2)*12.     : HPALD = PACALD + HO2 + OH ; -- Odd products! or at least not in agreement with MCM
+rcphot(IDHCHO_H2)*12.    : HPALD = 0.32 CH3CO3 + 0.32 HOCH2CHO + 1.68 CO + OH + 0.68 ACETOL + 0.68 HO2 ; EC19X -- greatly simplified (from MCM) 
+rcphot(IDCH3O2H)         : CH3OOH        = HCHO + OH + HO2 ;  J41   J(6e-6)
+rcphot(IDCH3O2H)         : C2H5OOH       = HO2 + CH3CHO + OH    ;
+*simplified products for EmChem19 (based on 288K split in MCM):
+rcphot(IDCH3O2H)         : BURO2H = OH + 0.716 HO2 + 0.716 MEK + 0.284 CH3CHO + 0.284 C2H5O2 ; (288K split) replacing C3H7CHO by MEK (and HO1C4O2 by CH3CHO+C2H5O2)
+rcphot(IDCH3O2H)         : ETRO2H = OH + HOCH2CH2O ; MCM
+rcphot(IDCH3O2H)         : CH3CO3H      = CH3O2 + OH    ;
+rcphot(IDCH3O2H)         : MEKO2H = OH + 0.854 CH3CHO + 0.854 CH3CO3 + 0.146 C2H5CO3 + 0.146 HCHO ;
+rcphot(IDMEK)            : MEKO2H = OH + 0.854 CH3CHO + 0.854 CH3CO3 + 0.146 C2H5CO3 + 0.146 HCHO ;
+rcphot(IDCH3O2H)         : HCOCH2OOH = OH + HCHO + CO + HO2 ; MCM
+rcphot(IDHCHO_H)*0.6     : HCOCH2OOH = OH + HCHO + CO + HO2 ; MCM J15
+rcphot(IDHCHO_H)*1.87    : MACROOH  = OH + ACETOL + CO + HO2 ; simplified, combining two reactions
+rcphot(IDCH3O2H)         : MVKO2H = OH + 0.7 HOCH2CHO + 0.7 CH3CO3 + 0.3 HO2 + 0.3 HCHO + 0.3 MGLYOX ;
+rcphot(IDCH3O2H)         : OXNCATCOOH = OH + CH3COCO2H + HO2 + NC4MDCO2H ; 
+rcphot(IDCH3O2H)         : OXNNCATOOH = OH + CH3COCO2H + NO2 + NC4MDCO2H ; 
+rcphot(IDCH3O2H)         : OCATEC1OOH = OH + OXCATEC1O ; 
+rcphot(IDCH3O2H)         : DM123OOH = OXY1O + OH ; MCM
+rcphot(IDCH3O2H)         : NOXYOLOOH = OH + NO2 + GLYOX + CH3COCO2H + C3H6 ; simplified -- replacing C5DBCOCO2H by CH3COCO2H + C3H6
+rcphot(IDMEK)*0.78       : NOXYOLOOH = OH + NO2 + HO2 + GLYOX + CH3COCO2H + C3H6 ; simplified -- replacing OXYQONE (48% yield in MCM) AND replacing C5DBCOCO2H by CH3COCO2H + C3H6
+rcphot(IDCH3O2H)         : NOXYOL1OOH = OH + NOXYOL1O ; MCM
+rcphot(IDCH3O2H)         : OXYBPEROOH  = OH + HO2 + 0.35 BIACET + 0.325 C5DICARB + 0.325 MGLYOX + 0.675 BZFUONE + 0.325 EGLYOX ; simplified for EmChem19X
+*CheT2mod has: rcphot(IDCH3O2H)                   : ISRO2H = OH + MVK + HCHO + HO2 ;
+rcphot(IDCH3O2H)         : ISRO2H = OH + HO2 + HCHO + 0.16 MACR + 0.84 MVK ; simplified (from MCM)
+rcphot(IDCH3O2H)         : CO2H3CO3H = MGLYOX + HO2 + OH ; MCM
+*neglect: rcphot(IDMEK)            : CO2H3CO3H = CH3CO3 + HO2 + HCOCO3H ; MCM
+
+rcphot(IDMEK)*0.78       : sC4H9NO3 = NO2 + 0.652 MEK + 0.652 HO2 + 0.348 CH3CHO + 0.348 C2H5O2 ; MCM J5
+rcphot(IDMEK)*13.        : MVKNO3 = CH3CO3 + HOCH2CHO + NO2 ; MCM J56*1.6
+rcphot(IDMEK)*83.        : CO2N3CHO = GLYOX + CH3CO3 + NO2 ; MCM J56*10
+rcphot(IDHCHO_H)*0.1814  : ISON = 0.333 MACR + 0.667 MVK + HCHO + NO2 + HO2 ; CheT2mod
+rcphot(IDMEK)*133.34     : ISON2 = ACETOL + 2 CO + HO2 + NO2 ; CheT2mod
+*
+* Perhaps need to add the following also:
+* MACO3H photolysis (see mcm)
+*
+* Emissions
+* Note multiplication factors below are okay, as long as they are
+* placed at the beginning.(as (k) is tagged onto the end of the
+* of the rate term. See beta*rcemis_SO2
+*
+*
+emisfiles:sox,nox,co,voc,nh3
+*
+rcemis(NO,KDIM)                        : = NO  ;
+rcemis(NO2,KDIM)                       : = NO2 ;
+rcemis(SO2,KDIM)                       : = SO2    ;
+rcemis(SO4,KDIM)                       : = SO4    ;
+rcemis(CO,KDIM)                        : = CO    ;
+rcemis(NH3,KDIM)                       : = NH3 ;
+rcemis(C2H6,KDIM)                      : = C2H6    ;
+rcemis(NC4H10,KDIM)                    : = NC4H10  ;
+rcemis(C2H4,KDIM)                      : = C2H4    ;
+rcemis(C3H6,KDIM)                      : = C3H6    ;
+rcemis(OXYL,KDIM)                      : = OXYL    ;
+rcemis(BENZENE,KDIM)                   : = BENZENE ;
+rcemis(TOLUENE,KDIM)                   : = TOLUENE ;
+rcemis(HCHO,KDIM)                      : = HCHO    ;
+rcemis(CH3CHO,KDIM)                    : = CH3CHO    ;
+rcemis(MEK,KDIM)                       : = MEK    ;
+rcemis(C2H5OH,KDIM)                    : = C2H5OH    ;
+rcemis(CH3OH,KDIM)                     : = CH3OH    ;
+rcemis(GLYOX,KDIM)                     : = GLYOX    ;
+rcemis(MGLYOX,KDIM)                    : = MGLYOX    ;
+rcemis(C5H8,KDIM)                      : = C5H8    ; # Anthropogenic isoprene. Have rcbio below
+rcemis(MACR,KDIM)                      : = MACR ;
+*
+* <----------- Biogenic/natural emissions ----------------------------->
+*
+* See extra_mechanisms for rcbio terms 
+

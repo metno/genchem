@@ -1,0 +1,168 @@
+* GenIn.species:  List of species.,,,,,,,
+"* Give in order desired for twostep scheme, start with short-lived, then move to slower species.",,,,,,,
+"* 2nd column (integer) = 1 for advected species, otherwise 0",,,,,,,
+* 3rd column gives chemical forumala - used for mass-balance,,,,,,,
+*Extinc is extinction coefficient for AOD calculations,,,,,,,
+*DRY give CDDEP species (My_DryDep_ml) most appropriate for this species,,,,,,,
+"*,,,,,,,
+""* *** Important Notes ***:",,,,,,,
+"*  1. Use case correctly in 3rd column - secC4H9O2, *not* SECC4H9O2 which would be assigned 5, not 4 carbon atoms.",,,,,,,
+*  2. GenChem uses the 3rd column to calculate masses. If these masses are important use the correct chemical formula!,,,,,,,
+*  (masses not usually needed except for emissions input and if output in ug/m3 or similar wanted).,,,,,,,
+* Masses assigned in 4th column overwrite any calculated from 3rd,,,,,,,
+*  3. GenChem.py reads factors or mapbacks like Cstar or Extinc,,,,,,,
+*       from the Groups column. If you want to set e.g. Cstar=3.5, write in the Groups,,,,,,
+"*       column: "";Cstar:3.5;""",,,,,,,
+* !!! TODO: Add NMHC, NMVOC groups to species !!!
+*************************************************************,,,,,,,
+Spec,adv,formula,MW,DRY,WET,Groups,!Comments
+*
+RO2POOL,1,RO2POOL,xx,xx,xx,xx,!
+OD,0,O,xx,xx,xx,xx,!
+OP,0,O,xx,xx,xx,xx,!
+OH,0,OH,xx,xx,xx,xx,!
+HO2,0,HO2,xx,xx,xx,xx,!
+CH3O2,0,CH3O2,xx,xx,xx,RO2,!
+C2H5O2,0,C2H5O2,xx,xx,xx,RO2,!
+C4H9O2,0,C4H9O2,xx,xx,xx,RO2,!
+ISRO2,0,C5H9O2,xx,xx,xx,RO2,!( 6 isomers)
+HCOCH2O2,0,HCOCH2O2,xx,xx,xx,RO2,!
+ETRO2,0,CH2O2CH2OH,xx,xx,xx,RO2,!(from ethene ...)
+PRRO2,0,CH3CHO2CH2OH,xx,xx,xx,RO2,!(from propene ...)
+HMVKO2,0,HOCH2CH(OO)C(CH3)=O,xx,xx,xx,RO2,!(also OOCH2CH(OH)C(=O)CH3) 
+OXYBIPERO2,0,C8H11O5,xx,xx,xx,RO2,! used as only product from OXYL+OH
+MACO3,0,CH2C(CH3)C(=O)O2,xx,xx,xx,RO2,!(from macr degradation; from MCM)
+MEKO2,0,CH3COCHO2CH3,xx,xx,xx,RO2,!(from MEK)
+C5DICARBO2,0,CH3COCH(OH)CH(O2)CHO,xx,xx,xx,RO2,!
+DM123O2,0,C8H9O2,xx,xx,xx,RO2,!
+OXCATEC1O2,0,C8H9O3,xx,xx,xx,RO2,!
+CH2O2CO3H,0,CH2O2CO3H,xx,xx,xx,RO2,!
+MACRO2,0,O=CHC(O2)(CH3)CH2OH,xx,xx,xx,RO2,!(from macr degredation; from MCM)
+HOCH2CO3,0,HOCH2CO3,xx,xx,xx,RO2,!C2
+CH3CO3,0,CH3COO2,xx,xx,xx,RO2,!
+C2H5CO3,0,C3H5O3,xx,xx,xx,RO2,! 
+CO2H3CO3,0,C4H5O5,xx,xx,xx,RO2,!
+IBUTOLBO2,0,C4H9O3,xx,xx,xx,RO2,!
+NRN9O2,1,C3H6NO5,xx,xx,xx,RO2;OXN,! nitrate group, nitrogen containing peroxy radical (should not really need advection) from propene NO3 reaction
+NISOPO2,1,C5H8NO5,xx,xx,xx,RO2;OXN,! nitrate group, nitrogen containing peroxy radical (should not really need advection)
+NC4CO3,1,C5H6NO6,xx,xx,xx,RO2;OXN,! nitrate group, nitrogen containing peroxy radical (should not really need advection)
+NOXYOLO2,1,C8H10NO8,xx,xx,xx,RO2;OXN,! nitrate group, nitrogen containing peroxy radical (should not really need advection)
+OXNCATECO2,1,C8H10NO9,xx,xx,xx,RO2;OXN,! nitro group, nitrogen containing peroxy radical (should not really need advection)
+OXNNCATCO2,1,C8H9N2O11,xx,xx,xx,RO2;OXN,! nitrate and nitro groups, nitrogen containing peroxy radical (should not really need advection)
+NOXYOL1O2,1,C8H8NO4,xx,xx,xx,RO2;OXN,! nitro group, nitrogen containing peroxy radical (should not really need advection)
+HOCH2CH2O,0,HOCH2CH2O,xx,xx,xx,xx,! 
+OXY1O,0,C8H9O,xx,xx,xx,xx,! Xyloxo radical
+NOXYOL1O,1,C8H8NO3,xx,xx,xx,OXN,! nitro group, nitrogen containing oxy radical (should not really need advection)
+OXCATEC1O,0,C8H9O2,xx,xx,xx,xx,!
+*******,Added,for,ESX,xx,xx,advected,!
+NMVOC,1,nmvoc,36.767,xx,xx,xx,for_emissions !
+********************************************,,,,,,,
+*,xx,xx,0,xx,xx,,!
+O3,1,O3,xx,O3,xx,daObs;OX,!
+NO,1,NO,xx,xx,xx,NOx;OXN,!
+NO2,1,NO2,xx,NO2,xx,NOx;OX;OXN;daObs,!
+NO3,1,NO3,xx,xx,xx,OXN,!
+N2O5,1,N2O5,xx,N2O5,HNO3,OXN,!
+H2,1,H2,xx,xx,xx,xx,!
+H2O2,1,H2O2,xx,H2O2,H2O2,Hstar_1p0e5;f0_1p0;DRx_1p36,!
+HONO,1,HNO2,xx,HNO2,H2O2,OXN;Hstar_2p6e5;f0_0p5;DRx_1p6,! Uncertain about wet-dep, maybe too efficient?
+HNO3,1,HNO3,xx,HNO3,HNO3,OXN,!
+HO2NO2,1,HO2NO2,xx,HO2NO2,0p8,OXN;Hstar_6p0e4;f0_1p0;DRx_2p1,! Sander gives very variable H 40-20 000 M/atm -> H* 6E2-3E5 M/atm or 4E3-2E6M/atm depending on Ka
+CO,1,CO,xx,xx,xx,xx,!
+CH4,1,CH4,xx,xx,xx,xx,!
+C2H6,1,C2H6,xx,xx,xx,xx,!
+NC4H10,1,nC4H10,xx,xx,xx,xx,!
+C2H4,1,C2H4,xx,xx,xx,xx,!
+C3H6,1,C3H6,xx,xx,xx,xx,!
+BENZENE,1,C6H6,xx,xx,xx,xx,!
+TOLUENE,1,C7H8,xx,xx,xx,xx,!
+OXYL,1,oC6H4(CH3)CH3,xx,xx,xx,xx,!
+C5H8,1,CH2=HCC=CH2CH3,xx,xx,xx,BVOC,!
+CH3OH,1,CH3OH,xx,xx,xx,xx,! roughly 200 M/atm [Sander]
+C2H5OH,1,C2H5OH,xx,xx,xx,xx,! roughly 200 M/atm [Sander]
+OXYLOL,1,C8H10O,xx,xx,xx,Hstar_9p4e2;DRx_3p6,! 2,3-DIMETHYLPHENOL, Sander review latest measured H 9.4e2 M/atm 
+OXYCATECH,1,C8H10O2,xx,OXYCATECH,H2O2,DRx_3p76;Hstar_1p1e7,! 3,4-Dimethylcatechol [Cc1ccc(O)c(O)c1C]
+HCHO,1,HCHO,xx,HCHO,ROOH,RCHO;carbonyl;Hstar_3p2e3;f0_0p2;DRx_1p4,! 
+CH3CHO,1,CH3CHO,xx,ALD,xx,RCHO;carbonyl;Hstar_1p3e1;f0_0p05;DRx_2p1,!
+MACR,1,CH2=CCH3CHO,xx,MEK,xx,RCHO;carbonyl;Hstar_5p0e0;f0_0p05;DRx_2p6,!
+MEK,1,CH3COC2H5,xx,MEK,xx,carbonyl;Hstar_2p0e1;f0_0p05;DRx_2p7,!
+MVK,1,CH3C(=O)CH=CH2,xx,MEK,xx,carbonyl;Hstar_3p0e1;f0_0p05;DRx_2p6,! 
+HOCH2CHO,1,HOCH2CHO,xx,HOCH2CHO,0p6,RCHO;carbonyl;Hstar_4p1e4;f0_0p0;DRx_2p2,!C2, glycolaldehyde
+HCOCH2OOH,1,HCOCH2OOH,xx,HYPERACET,0p3,ROOH;RCHO;carbonyl;Hstar_2p2e4;f0_0p2;DRx_2p4,! Hydroperoxyacetaldehyde
+ACETOL,1,CH3COCH2OH,xx,ACETOL,HCHO,carbonyl;Hstar_8p0e3;f0_0p05;DRx_2p6,! hydroxy acetone
+GLYOX,1,HCOHCO,xx,GLYOX,H2O2,RCHO;carbonyl;Hstar_3p0e5;f0_0p0;DRx_2p1,! {H* ca 3E5 M/atm or 2 orders of magnitude higher in Mexico City?}
+MGLYOX,1,CH3COCHO,xx,MGLYOX,0p3,carbonyl;RCHO;Hstar_2p4e4;f0_0p2;DRx_2p5,! 
+EGLYOX,1,C2H5COCHO,xx,EGLYOX,ROOH,carbonyl;RCHO;Hstar_2p8e3;f0_0p2;DRx_2p8,!
+CO2H3CHO,1,C4H6O3,xx,DICARB,H2O2,carbonyl;RCHO;DRx_3p0;Hstar_1p4e5,! 
+CO23C3CHO,1,C4H4O3,xx,TRICARB,H2O2,carbonyl;RCHO;DRx_2p9;Hstar_9p3e5,! 
+BIACET,1,CH3C(=O)C(=O)CH3,xx,MEK,xx,carbonyl;Hstar_7p3e1;f0_0p05;DRx_2p8,! 2,3-butanedione (dimethyl glyoxal) 
+BIACETOH,1,C4H6O3,xx,CARB12,0p4,Hstar_3p2e4;DRx_3p0;carbonyl,! 
+C5DICARB,1,CH3COCH=CHCHO,xx,C5DICARB,H2O2,carbonyl;RCHO;Hstar_6p0e5;DRx_3p1,! MCM equivalent is C5DICARB? CRI UDCARB11?
+BZFUONE,1,C4H4O2,xx,BZFUONE,xx,carbonyl;Hstar_1p0e2;DRx_2p7,! 2(5H)-Furanone
+HOCH2CO2H,1,HOCH2CO2H,xx,HOCH2CO2H,H2O2,acid;Hstar_4p2e7;DRx_2p5,! glycolic acid [OCC(=O)O], pKa=3.83 Sander review H=2.8e4, H* pH-dependent: pH7 H*=4.2e7, pH6 H*=4.2e6, pH5 H*=4.5e5) 
+CH3COCO2H,1,C3H4O3,xx,HISOLF0,HNO3,carbonyl;acid;Hstar_1p3e10,DRx_2p8,! Pyruvic acid [OC(=O)C(=O)C], pKa=2.39! H = 3.1E5 M/atm (Sander review), H* pH-dependent: pH7 H*=1.3e10M/atm, pH6 H*=1.3e9M/atm, pH5 H*=1.3e8M/atm!
+MACO2H,1,CH2=C(CH3)C(=O)OH,xx,ACETOL,HCHO,acid,!Methacrylic acid from maco3 + ho2 -- probably highly soluble at pH=7, at pH=6 estimated H* ca 5.8e4 M/atm and at pH=5 ca 8.1e3M/atm -- for simplicity assume same deposition parameters as for ACETOL
+CH3OOH,1,CH3O2H,xx,MEOOH,xx,ROOH;Hstar_3p0e2;f0_0p2;DRx_1p9,!
+C2H5OOH,1,C2H5OOH,xx,MEOOH,xx,ROOH;Hstar_3p3e2;f0_0p2;DRx_2p3,!
+BURO2H,1,secC4H9O2H,xx,C3H7OOH,xx,ROOH;Hstar_6p2e1;DRx_3p0,!(butane RO2 + ho2)
+DM123OOH,1,C8H10O2,xx,DM123OOH,xx,ROOH;Hstar_3p3e2;DRx_3p75;f0_0p2,! 2,3-Dimethylphenyl hydroperoxide [OOc1cccc(C)c1C]
+ETRO2H,1,CH2O2HCH2OH,xx,SHISOLOOH,H2O2,ROOH;Hstar_1p3e6;f0_0p2;DRx_2p5,! (ethene RO2 + ho2)
+MEKO2H,1,CH3COCHO2HCH3,xx,MDSOLOOH,1p3,carbonyl;ROOH;DRx_3p1;Hstar_9p0e4,!
+ISRO2H,1,C5H10O3,xx,SHISOLOOH,H2O2,ROOH,!from isoprene degradation + ho2
+C5DICAROOH,1,CH3COCHOHCHO2CHO,xx,VHISOLNO3,H2O2,ROOH;carbonyl;RCHO;Hstar_1p6e8;DRx_3p55;f0_0p3,! 
+OCATEC1OOH,1,C8H10O3,xx,OCATEC1OOH,H2O2,ROOH;Hstar_3p1e6;DRx_3p88,! multifunctional (OH and OOH groups)
+HPALD,1,C5H8O3,xx,MDSOLOOH,H2O2,ROOH;RCHO;carbonyl;Hstar_1p2e5;DRx_3p3,! unsaturated C5 hydroperoxide and aldehyde
+MVKO2H,1,C4H8O4,xx,VHISOLOOH,H2O2,ROOH;carbonyl;DRx_3p2;Hstar_4p4e8,! Combination of MCM HMVKBOOH and HMVKAOOH
+MACROOH,1,O=CHC(CH3)(OOH)CH2OH,xx,VHISOLOOH,H2O2,ROOH;carbonyl;RCHO;DRx_3p2;Hstar_3p5e8,!from macro2 + ho2
+OXYBPEROOH,1,C8H12O5,xx,VHISOLOOH,H2O2,ROOH;Hstar_1p4e8;f0_0p2;DRx_4p1,! multifunctional [OOC1(C)C=CC2OOC1(C)C2O] 
+CH3CO3H,1,CH3COO2H,xx,PAA,ROOH,peroxyacid;Hstar_8p3e2;f0_0p2;DRx_2p4,! H* in Wesely_ml.f90 may be a bit too low?
+CO2H3CO3H,1,C4H6O5,xx,SHISOLOOH,H2O2,peroxyacid;carbonyl;Hstar_6p8e6;DRx_3p3,! 
+* PACALD,1,C5H6O4,xx,CO2C5OH,H2O2,peroxyacid;RCHO;carbonyl;Hstar_1p5e6;DRx_3p47,! assuming that it is based on MCM C5PACALD[1,2]
+IEPOX,1,C5H10O3,xx,HISOLF0,HNO3,epoxide,! assuming it is based on the MCM IEPOX[A,B,C] epoxide with two hydroxyl groups. 
+SC4H9NO3,1,C4H9NO3,xx,VLSOLNO3,xx,OXN;Hstar_0p0e0;f0_0p3;DRx_3p3,! nitrate group
+MVKNO3,1,C4H7NO5,xx,VHISOLNO3,H2O2,nitrate;OrgNO3;OXN;carbonyl;Hstar_1p5e8;f0_0p3;DRx_3p4,! 
+OXY1OHNO2,1,C8H9NO3,xx,xx,xx,OXN;Hstar_7p0e1;DRx_4p0,! multifunctional, 2,3-Dimethyl-6-nitrophenol [O=N(=O)c1ccc(C)c(C)c1O]
+OXNCATECH,1,C8H9NO4,xx,VHISOLNO3,H2O2,OXN;DRx_4p1,! multifunctional [Cc1cc(N(=O)=O)c(O)c(O)c1C] 
+NOXYOL1OOH,1,C8H9NO4,xx,NOXYOL1OOH,1p2,ROOH;OXN;Hstar_8p3e4;DRx_4p1,! multifunctional [OOc1c(ccc(C)c1C)N(=O)=O] 
+CO2N3CHO,1,C5H5NO5,xx,VHISOLNO3,H2O2,OXN;RCHO;carbonyl;Hstar_8p1e6;DRx_3p4,! 
+NALD,1,O2NOCH2CHO,xx,PAN,ROOH,OXN;RCHO;carbonyl;Hstar_5p5e3;DRx_2p7,! nitrate group, nitrooxy acetaldehyde -- uncertain deposition parameters
+NOA,1,C3H5NO4,xx,VLSOLNO3,ROOH,OXN;carbonyl;Hstar_1p0e3;f0_0p3;DRx_3p0,! nitrate 
+ISON,1,C5H9NO4,xx,MDNO3OH,0p7,OXN;Hstar_5p0e4;f0_0p3;DRx_3p6,! assuming it is isoprene nitrate (MCM: ISOP[A,B,C,D]NO3) (CRI RU14NO3)
+ISON2,1,C5H7NO4,xx,LOSOLNO3,ROOH,carbonyl;RCHO;OXN;Hstar_4p2e3;f0_0p3;DRx_3p5,! nitrate group, multifunctional, assumed to be MCM-species NC4CHO [O=CC=C(C)CON(=O)=O]
+NC4MDCO2H,1,C5H5NO5,xx,NC4MDCO2H,H2O2,carbonyl;RCHO;OXN;DRx_3p77;Hstar_3p1e9,! multifunctional [O=CC(=C(C)C(=O)O)N(=O)=O] 
+NOXYOLOOH,1,C8H11NO8,xx,NOXYOLOOH,HNO3,ROOH;OXN,Hstar_4p5e10;DRx_4p57,! nitrate group, multifunctional [OOC1(O)C=C(C)C2(C)OOC1C2ON(=O)=O] 
+OXNCATCOOH,1,C8H11NO9,xx,OXNCATCOOH,HNO3,ROOH;OXN;Hstar_2p0e13;DRx_4p7,! (extremely) multifunctional [OOC1(O)C(=C(C)C2(C)OOC1(N(=O)=O)C2O)O]
+PAN,1,CH3COO2NO2,xx,PAN,xx,OXN;PANS;Hstar_3p0e0;f0_0p5;DRx_2p8,! 
+PHAN,1,C2H3NO6,xx,PAN,xx,PANS;OXN;Hstar_5p5e1;f0_0p5;DRx_3p0,!C2 
+PPN,1,C3H5NO5,xx,PAN,xx,PANS;OXN;Hstar_2p9e0;f0_0p5;DRx_3p2,! 
+MPAN,1,CH2CH(CH3)C(=0)O2NO2,xx,MPAN,xx,OXN;PANS;Hstar_3p0e0;f0_0p2;DRx_3p4,!(from macr degradation)
+C4PAN6,1,C4H5NO7,xx,MDNO3OH,1p1,PANS;OXN;Hstar_8p1e4;DRx_3p65,! 
+C5PAN18,1,C5H6N2O8,xx,C5PAN18,ROOH,OXN;PANS;Hstar_2p4e3;DRx_4p1,! [O=N(=O)OCC(=CC(=O)OON(=O)=O)C], HenryWinBond 2.44e3 M/atm 
+OXNNCATOOH,1,C8H10N2O11,xx,OXNNCATOOH,HNO3,ROOH;OXN;Hstar_2p7e14;DRx_4p95,! nitrate (and nitro) group [OOC1(O)C(=C(C)C2(C)OOC1(N(=O)=O)C2ON(=O)=O)O] (very) multifunctional 2 oxidised N, 2 OH-groups + OOH and R-OO-R
+*
+APINENE,1,C10H16,xx,xx,xx,BVOC;MONOTERP,!
+TERPO2,0,xx,xx,xx,xx,RO2,,!
+TERPOOH,1,C10H18O3,xx,LHISOLOOH,H2O2,ROOH;Hstar_1p5e6;f0_0p2;DRx_4p5,!
+
+SO2,1,SO2,xx,SO2,SO2,SOx,!Move to slow?
+*,,,,,,,
+*slow...,,,,,,,
+* Here we also have particles among the compounds. Specify AOD in groups if this,,,,,,,
+* is wanted (or always,it doesn't matter). Same with VBS params for SOA stuff,,,,,,
+* if present.,,,,,,,
+
+"*Spec,adv,formula,MW,DRY,WET,Groups,!Comments",,,,,,,
+
+* For SOA and EC we will use the group PCM_f .... in the PM10, PMfine groups- ,,,,,,
+* avoids problems with gas/aerosol and simplifies outputs,,,,,,,
+
+* Particle dry and wet surrogates are special. 
+* For dry use PMfNO3 for fine nitrate, PMfNH4 for ammonium, PMf for all else.
+* For wet use PMf for fine. PMc for coarse
+
+SO4,3,SO4,xx,PMf,PMf,PM10;PMfine;SIA;SOx;Extinc:SO4,!
+NH3,3,NH3,xx,NH3,NH3,RDN,!
+NO3_f,3,NO3_f,xx,PMfNO3,PMf,PM10;PMfine;SIA;OXN;TNO3;Extinc:NO3f,!in equilib module
+NO3_c,3,NO3_c,xx,PMc,PMc,PM10;PMcoarse;SIA;OXN;TNO3;Extinc:NO3c,!Coarse nitrate
+NH4_f,3,NH4_f,xx,PMfNH4,PMf,RDN;PM10;PMfine;SIA;Extinc:NH4f,! in equilib module
+
