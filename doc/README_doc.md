@@ -3,11 +3,11 @@ GenChem documentation directory
 
 To look at documentation, do::
 
-   firefox  UsersGuide/html/index.html
+   firefox  _build/html/index.html
 
 or::
 
-   evince UsersGuide/latex/GenChemDoc.pdf
+   evince _build/latex/GenChemDoc.pdf
 
 
 This documentation is written in restructured text (rst), and processed
