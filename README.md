@@ -1,7 +1,7 @@
 GenChem 
 =======
 
-This package contains the GenChem system, which
+This package contains the GenChem system, which 
 includes a chemical pre-processor (**GenChem.py**) for converting chemical
 equations into differential form for use in atmospheric chemical transport
 models (CTMs).  Although primarily intended for users of the **EMEP MSC-W**
