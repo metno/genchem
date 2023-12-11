@@ -46,13 +46,13 @@
 ! If not existsing in MCM (eg HO2NO2) we use one of the empty MCM indices
   integer, private, parameter :: IDNOTSET = 10
 
-  integer, public, parameter :: & 
+  integer, public, save :: & ! don't save as parameter, as CloudJ might overwrite these
     IDO3_O1D   = 1,IDO3_O3P  = 2,IDH2O2    = 3,IDNO2     = 4 ,IDNO3_NO  = 5 &
    ,IDNO3_NO2  = 6,IDHONO    = 7,IDHNO3    = 8,IDHCHO_H  = 11,IDHCHO_H2 = 12&
    ,IDCH3CHO  = 13 &
-   ,MCM_J17   = 17, MCM_J18   = 18, MCM_J20   = 20 &
-   ,MCM_J22   = 22 , IDMEK     = 22 &
-   ,MCM_J23   = 23   & ! DS for EmChem18???
+   ,MCM_J15   = 15, MCM_J17   = 17, MCM_J18   = 18, MCM_J20 = 20 &
+   ,MCM_J22   = 22, IDMEK     = 22, MCM_J54   = 54, MCM_J51 = 51 &
+   ,MCM_J23   = 23, MCM_J52   = 52, MCM_J56   = 56, MCM_J53 = 53 & 
    ,IDACETON  = 21   & !
    ,IDCH3COY  = 35   & ! Based on CH3COY = BIACET (in OSLO CTM3)
 ! The different HCOHCO rates cannot be used with EMEP yet since PHODIS didn't
@@ -62,6 +62,11 @@
    ,IDCHOCHO_2CO  = 31 &! 
    ,IDCHOCHO_HCHO = 32 &! 
    ,IDCHOCHO_2CHO = 33 &!
+
+   ,IDGLYOXA = 33 & ! these are sometimes used in place of the above; same reactions
+   ,IDGLYOXB = 31 &
+   ,IDGLYOXC = 32 &
+
 !78---------------------------------------------------------------------------
    ,IDCHOCHO      = 40 &! !! FAKE: FROM scaling of 31, later in code!!
                         !  Tot/31 = 1.5 !!
@@ -70,10 +75,38 @@
 !
    ,IDCH3COCH3  = 21, IDRCOCHO  = 34 &!  MGLOX, etc
    ,IDCH3O2H  = 41 &
+   ,IDETP     = 41  &  ! IDCH3O2H in CRI R1A, unique in CloudJ (though just CH3O2H scaled by factor 0.5)
+   ,IDETHP    = 41  &  ! the same as CH3O2H in CloudJ as well as CRI R1A, but is still included as unique reaction in CloudJ 
+   ,IDATOOH   = 41  &  ! the same as CH3O2H in CloudJ as well as CRI R1A, but is still included as unique reaction in CloudJ 
+   ,IDR4P     = 41  &  ! the same as CH3O2H in CloudJ as well as CRI R1A, but is still included as unique reaction in CloudJ 
+   ,IDRIPC    = 41  &  ! the same as CH3O2H in CloudJ as well as CRI R1A, but is still included as unique reaction in CloudJ 
+   ,IDIDHPE   = 41  &  ! the same as CH3O2H in CloudJ as well as CRI R1A, but is still included as unique reaction in CloudJ
+   ,IDINPD    = 41  &  ! the same as CH3O2H in CloudJ as well as CRI R1A, but is still included as unique reaction in CloudJ
+   ,IDMAP     = 41  &  ! the same as CH3O2H in CloudJ as well as CRI R1A, but is still included as unique reaction in CloudJ
+   ,IDRP      = 41  &  ! the same as CH3O2H in CloudJ as well as CRI R1A, but is still included as unique reaction in CloudJ
+   ,IDPRALDP  = 41  &  ! the same as CH3O2H in CRI R1A, but is included as unique reaction in CloudJ 
+   ,IDITCN    = 41  &  ! the same as CH3O2H in CRI R1A, but is included as unique reaction in CloudJ 
+   ,IDPIP     = 41  &  ! the same as H2O2 in CloudJ (but unique ID) but same as CH3O2H in CRI R1A
+
+
    ,IDiC3H7ONO2  = 54 &! Used for ISON
    ,IDCH3COO2H  = -1 &! QUERY ???
-   ,IDHO2NO2    = 25 &! IDHO2NO2 not in MCM -- use scaled MEK photolysis rate (assuming jHO2NO2 can be approximated by 1.8*jMEK)
-   ,IDN2O5    = 9 ! IDN2O5 not in MCM -- use scaled H2O2 photolysis rate (assuming jN2O5 can be approximated by 7*jH2O2)
+   ,IDMVKN      = 63 & ! MCM 56 scaled by 1.6 following CRI R1A, unique in CloudJ
+   ,IDR4N2      = 54 & ! following CRI R1A notes, unique in CloudJ
+   ,IDHO2NO2    = 25 & ! IDHO2NO2 not in MCM -- use scaled MEK photolysis rate (assuming jHO2NO2 can be approximated by 1.8*jMEK)
+   ,IDN2O5    = 9 &    ! IDN2O5 not in MCM -- use scaled H2O2 photolysis rate (assuming jN2O5 can be approximated by 7*jH2O2)
+   ,IDC2H5CHO = 14 &   ! MCM 14 in array below
+   ,IDACETOL  = 22 &   ! https://mcm.york.ac.uk/MCM/species/ACETOL   (J22)
+   ,IDINPB    = 22 &   ! IDMEK in CRI R1A, unique in CloudJ
+   ,IDIHN3    = 53 &   ! MCM53 based on CRI R1A, unique in CloudJ
+   
+   ,IDGLYALD  = 15 &   ! https://mcm.york.ac.uk/MCM/species/HOCH2CHO (J15 in MCM, but unique in CloudJ)
+   ,IDMCRENOL = 15 &   ! same MCM J15 as for GLYALD following RB (but unique in CloudJ)
+   ,IDICN = 62 & ! https://acp.copernicus.org/preprints/acp-2019-328/acp-2019-328-supplement.pdf (ICN lumped isoprene caronyl nitrate isomers)
+                 ! photolysis major sink for isoprene-derived carbonyl groups, doi:10.5194/acp-14-2497-2014
+                 ! Bergstrom 2022 scaled MEK by 0.778.
+
+   ,IDPAN    = IDNOTSET  ! cloudj photolysis only
 
 !PHUX  !MCM coeffs: (not same as EMEP)
 !PHUX    integer, public, parameter ::  &
@@ -125,7 +158,7 @@
 
 !78chars----------------------------------------------------------------------
 !MJ = corrected to Mike Jenkin's rates of Feb 2017.
-  type(j_t), dimension(61) :: dj = (/ &
+  type(j_t), dimension(63) :: dj = (/ &
    j_t(  1, 6.073E-05, 1.743, 0.474, 9.447E-06, 'O3 = O1D + O2' ) &
   ,j_t(  2, 4.775E-04, 0.298, 0.080, 3.480E-04, 'O3 = O3P + O2' ) &
   ,j_t(  3, 1.041E-05, 0.723, 0.279, 4.152E-06, 'H2O2 = 2 OH' ) &
@@ -211,6 +244,8 @@
   ,j_t( 59, 0.0,   0.0,   0.0,   0.0,     'NOT SET')  &
   ,j_t( 60, 0.0,   0.0,   0.0,   0.0,     'NOT SET')  &
   ,j_t( 61, 7.537E-04, 0.499, 0.266, 3.505E-04, '??')  &
+  ,j_t( 62, 0.778 * 5.804E-06, 1.092, 0.377, 1.568E-6,'CH3C(O)C2H5 = CH3CO + C2H5') & ! scaled IDMEK following Bergstrom et al 2022 
+  ,j_t( 63, 1.6 * 4.365e-5,1.089,0.323,1.301E-5,'CH3C(O)CH2ONO2 = CH3C(O)CH2O+NO2') &
   /)
 
  contains

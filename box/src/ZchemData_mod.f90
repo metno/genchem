@@ -15,6 +15,8 @@ module ZchemData_mod
     ,rcemis = 0.0
   real, public, save, dimension(MAXRCPHOT,NZ) ::&
      rcphot = 0.0 
+  real, public, save, dimension(MAXRCPHOT,NZ) ::&
+     rcphotslice = 0.0 
   real, public, save :: fIsop=1.0, fMTL=1.0, fMTP=1.0, fSQT=1.0 ! Used by ChemRates
 
   real, public, save, dimension(NSPEC_TOT,NZ) ::&

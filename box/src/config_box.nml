@@ -82,6 +82,12 @@ lon = 15.06,
  Hmix = 1.0e5,    ! cm
  TEMP = 298.15,   ! K
 
+ ! photolysis rates, MCM default
+ use_cloudj   = F, ! update photol. rates available through cloudj (EmChem19cj / cloudj only)
+ use_hrlycj   = T, ! update cloudj rates hrly (every model tstep if false) to match EMEP implementation
+ cloudj_indir = '../input/cloudj_v7.3e/', ! cross-section and phot. reaction input data
+ printJ_day   = 2, ! outputs Jvals at 12:00 hr local. NB: uses hard-coded longitude and start time in boxChem.f90
+
 ! Output species
 ! --------------
 ! Can say just e.g. 'O3', to reduce size of outputs, 

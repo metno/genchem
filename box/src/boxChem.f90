@@ -2,7 +2,9 @@ program Box
   use AeroFunctions_mod,    only: GammaN2O5_om
   use Config_module,        only: Init_Box, use_emis, emis_spec, emis_snap, &
                                   box_emis, emissplit_dir,Hmix, dt, tstart, &
-                                  tend, doy, lat, lon
+                                  tend, doy, lat, lon, & 
+                                  use_cloudj, use_hrlycj, cloudj_indir, &
+                                  printJ_day
   use Box_Outputs,           only: boxOutputs
   use ChemDims_mod
   use ChemFunctions_mod
@@ -19,6 +21,7 @@ program Box
   use PhysicalConstants_mod, only: AVOG
   use SmallUtils_mod,        only: num2str, find_index, to_upper
   use ZchemData_mod              ! xChem,rcphot, etc.
+  use cloudj_mod,            only: setup_phot_cloudj 
 
 !UK T, RH
 !   use MicroMet_mod, only : rh2num
@@ -29,9 +32,12 @@ program Box
    integer :: start, end, rate, cmax, snap, iland
    real :: timeh, ZenRad, hr, time
    logical :: first_tstep=.true.       ! for BOXSOA - tmp
+   logical :: first_print=.true.
    real, parameter :: ppb = 2.55e+10
    real, dimension(1) :: zmid = [ 45.0 ]  ! fake array for box-model
    real :: start_time, stop_time, time_used = 0.0
+   integer, save :: photstep=-999
+   integer :: hr_step
 
    if ( digits(1.0)<50 ) stop "COMPILE ERROR:Needs double prec., e.g. f90 -r8"
 
@@ -91,6 +97,7 @@ program Box
   do while ( time < tend)
    time=time + dt
    timeh = time/3600.0
+   hr_step = int(timeh)
 
   ! Many MCM/CRI tests use variable RH and T, based upon time (from
   ! midnight). Can uncomment below if wanted.
@@ -110,15 +117,101 @@ program Box
      hr = mod(timeh, 24.)
      ZenRad = ZenithAngle(doy_now, hr, lat, lon)
 
-     !do i = 1, NPHOTOLRATES
-     !  idj = photol_used(i)
+     if(use_cloudj) then 
+        if(use_hrlycj) then
+          if(hr_step>photstep) then
+            ! populates rcphotslice, and reassigns phot inds to match cloud on first call
+            call setup_phot_cloudj(cloudj_indir,lat,lon,doy_now,hr) 
+          endif
+        else
+          call setup_phot_cloudj(cloudj_indir,lat,lon,doy_now,hr)
+        endif
+        rcphot(:,1) = rcphotslice(:,1)       
+     else ! use MCM rates
+        ! do i = 1, NPHOTOLRATES
+        !   idj = photol_used(i)
+        !   Photolysis rates, with correction (Ftotal) for external data if
+        !   needed (we assume that rcphot scales as total Radn)
+        !   rcphot(idj,:) = GetPhotol(idj,cos(ZenRad),debug_level=1 )
+        ! end do
+        rcphot(photol_used,1) = GetPhotol2(photol_used, cos(ZenRad), &
+                                    debug_level=debug%Photol) 
+     endif
 
-      ! Photolysis rates, with correction (Ftotal) for external data if
-      ! needed (we assume that rcphot scales as total Radn)
-     !  rcphot(idj,:) = GetPhotol(idj,cos(ZenRad),debug_level=1 )
-     !end do
-     rcphot(photol_used,1) = GetPhotol2(photol_used, cos(ZenRad), &
-                                debug_level=debug%Photol)
+     ! 15 degrees East implies 15/360*24 = 1 hr local time offset
+     ! printed in chronological order for Table 1 of GMD_Photolysis paper
+     ! in the below, -12 is because the start time is at 12:00, and -1 is because of longitude
+     if(hr_step .eq. printJ_day * 24 - 12 - 1 .and. first_print) then
+      write(*,*) 'printing photolysis rates (sanity check)'
+      write(*,*) '1. O3_O3P    ', rcphot(IDO3_O3P,1)    
+      write(*,*) '2. O3_O1D    ', rcphot(IDO3_O1D,1) 
+      write(*,*) '3. NO2       ', rcphot(IDNO2,1)   
+      write(*,*) '4. H2CO_A    ', rcphot(IDHCHO_H,1)
+      write(*,*) '5. H2CO_B    ', rcphot(IDHCHO_H2,1)
+      write(*,*) '6. H2O2      ', rcphot(IDH2O2,1)
+      write(*,*) '7. CH3OOH    ', rcphot(IDCH3O2H,1)
+      write(*,*) '8. NO3       ', rcphot(IDNO3,1)
+      write(*,*) '9. HNO2      ', rcphot(IDHONO,1)
+      write(*,*) '10.HNO3      ', rcphot(IDHNO3,1)
+      write(*,*) '11.HNO4      ', rcphot(IDHO2NO2,1)
+      write(*,*) '12.CH3COCHO  ', rcphot(IDRCOCHO,1) ! = MGLYOX
+      write(*,*) '13.GLYOX     ', rcphot(IDCHOCHO,1)
+      write(*,*) '14.BIACET    ', rcphot(IDCH3COY,1)
+      write(*,*) '15.MEK       ', rcphot(IDMEK,1)
+      write(*,*) '16.CH3CHO    ', rcphot(IDCH3CHO,1) 
+      write(*,*) '17.GLYOXA    ', rcphot(IDGLYOXA,1)
+      write(*,*) '18.GLYOXB    ', rcphot(IDGLYOXB,1)
+      write(*,*) '19.GLYOXC    ', rcphot(IDGLYOXC,1)
+      write(*,*) '20.PAN       ', rcphot(IDPAN,1)  
+      write(*,*) '21.CH3COCH3a ', rcphot(IDCH3COCH3,1)
+      write(*,*) '22.MCM17     ', rcphot(MCM_J17,1)
+      write(*,*) '23.MeAcr     ', rcphot(MCM_J18,1)
+      write(*,*) '24.HPALD1    ', rcphot(MCM_J20,1)
+      write(*,*) '25.CH3COC2H5 ', rcphot(MCM_J22,1)
+      write(*,*) '26.MVK       ', rcphot(MCM_J23,1)
+      write(*,*) '26.IPRNO3    ', rcphot(IDiC3H7ONO2,1)
+      write(*,*) '28.CHOCHOa   ', rcphot(IDCHOCHO_2CHO,1)
+      write(*,*) '29.CHOCHOb   ', rcphot(IDCHOCHO_2CO,1)
+      write(*,*) '30.CHOCHOc   ', rcphot(IDCHOCHO_HCHO,1)
+      write(*,*) '31.C2H5CHO   ', rcphot(IDC2H5CHO,1)
+      write(*,*) '32.ACETOL    ', rcphot(IDACETOL,1)
+
+      ! non-EmChem photolysis rates
+      write(*,*) '33.CH4COCH3  ', rcphot(IDCH3COCH3,1)
+      write(*,*) '34.MCM J15   ', rcphot(MCM_J15,1)
+      write(*,*) '35.MCM J17   ', rcphot(MCM_J17,1)
+      write(*,*) '36.MCM J18   ', rcphot(MCM_J18,1)
+      write(*,*) '37.MCM J20   ', rcphot(MCM_J20,1)
+      write(*,*) '38.MCM J22   ', rcphot(MCM_J22,1)
+      write(*,*) '39.MCM J23   ', rcphot(MCM_J23,1)
+      write(*,*) '40.iCH3H7ONO2', rcphot(IDiC3H7ONO2 ,1)
+      write(*,*) '41.C2H5CHO   ', rcphot(IDC2H5CHO,1)
+      write(*,*) '43.GLYALD    ', rcphot(IDGLYALD,1)
+      write(*,*) '44.MCRENOL   ', rcphot(IDMCRENOL,1)
+      write(*,*) '45.ETP       ', rcphot(IDETP,1)
+      write(*,*) '46.ETHP      ', rcphot(IDETHP,1)
+      write(*,*) '47.ATOOH     ', rcphot(IDATOOH,1)
+      write(*,*) '48.R4P       ', rcphot(IDR4P,1)
+      write(*,*) '49.RIPC      ', rcphot(IDRIPC,1)
+      write(*,*) '50.PRALDP    ', rcphot(IDPRALDP,1)
+      write(*,*) '51.IDHPE     ', rcphot(IDIDHPE,1)
+      write(*,*) '52.PIP       ', rcphot(IDPIP,1)
+      write(*,*) '53.ITCN      ', rcphot(IDITCN,1)
+      write(*,*) '54.INPD      ', rcphot(IDINPD,1)
+      write(*,*) '54.MAP       ', rcphot(IDMAP,1)
+      write(*,*) '55.RP        ', rcphot(IDRP,1)
+      write(*,*) '56.MCM J51   ', rcphot(MCM_J51,1)
+      write(*,*) '57.MCM J52   ', rcphot(MCM_J52,1)
+      write(*,*) '58.MCM J53   ', rcphot(MCM_J53,1)
+      write(*,*) '59.MCM J54   ', rcphot(MCM_J54,1)
+      write(*,*) '60.MCM J56   ', rcphot(MCM_J56,1)
+      write(*,*) '61.R4N2      ', rcphot(IDR4N2,1)
+      write(*,*) '62.MVKN      ', rcphot(IDMVKN,1)
+      write(*,*) '63.INPB      ', rcphot(IDINPB,1)
+      write(*,*) '64.IHN3      ', rcphot(IDIHN3,1)
+
+      first_print = .false.
+     endif
 
    end if
 

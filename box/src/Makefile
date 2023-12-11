@@ -31,6 +31,7 @@ build/boxChem.o: \
 	build/SmallUtils_mod.o\
 	build/CM_ChemRates_mod.o\
 	build/ChemFunctions_mod.o\
+	build/CloudJ_mod.o\
 	build/SOA_mod.o
 	$(F90) -o $@ -c $<
 
@@ -63,6 +64,16 @@ build/AeroFunctions_mod.o: \
 build/DefPhotolysis_mod.o: \
 	DefPhotolysis_mod.f90\
 	build/CB6_Photolysis_mod.o
+	$(F90) -o $@ -c $<
+
+build/ModsCloudJ_mod.o: \
+	ModsCloudJ_mod.f90\
+	build/Config_module.o
+	$(F90) -o $@ -c $<
+
+build/CloudJ_mod.o: \
+	CloudJ_mod.f90\
+	build/ModsCloudJ_mod.o
 	$(F90) -o $@ -c $<
 
 build/SOA_mod.o: \
@@ -270,6 +281,8 @@ boxChem: \
 	build/boxChem.o\
 	build/boxChem_Outputs.o\
 	build/BioNatConstants_mod.o\
+	build/CloudJ_mod.o\
+	build/ModsCloudJ_mod.o\
 	build/OwnDataTypes_mod.o
 	$(F90) -o $@ $^
 
