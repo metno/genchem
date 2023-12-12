@@ -66,3 +66,9 @@ Updates Jan-Feb 2019 [RB]:
                            moment does not expect radicals in the groups)
 
    Switching to latest IUPAC recommended rates for a number of reactions
+
+
+Notes from WVC:
+
+   Updated December 2023 to reflect the photolysis rate and reaction matching performed
+   by Yao Ge as part of the VOC campaign paper.
