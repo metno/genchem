@@ -26,7 +26,7 @@ module ZchemData_mod
   ! Use UNDEF_R to enforce proper initialisation
   real, public, save, dimension(NZ) :: &
             temp = UNDEF_R, rh = UNDEF_R, tinv, M = UNDEF_R, N2 = UNDEF_R &
-            , O2 = UNDEF_R, H2O = UNDEF_R &
+            , O2 = UNDEF_R, H2O = UNDEF_R, METHANE = UNDEF_R, HYDROGEN = UNDEF_R &
             !FUTURE ,log300divt, logtdiv300 &
             ,cN2O5, cHNO3, cHO2, cNO3, cNO2, cO3 & !for gas-aerosols
            !For consistency with EMEP and SOA:

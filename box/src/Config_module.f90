@@ -233,6 +233,15 @@ logical, public, save ::  MasterProc = .true.
      end if
    end do
 
+   ! set methane and hydrogen fixed background, used by EmChem19cj chem scheme
+   do i = 1, NSPEC_INIT
+      if (trim(initBox(i)%species) == 'CH4') & 
+         methane(:) = initBox(i)%init_conc * ppb
+         write(*,*) 'durpdurp', initBox(i)%init_conc
+      if (trim(initBox(i)%species) == 'H2') & 
+         hydrogen(:) = initBox(i)%init_conc * ppb
+         write(*,*) 'durpdurp', initBox(i)%init_conc
+   end do
 
    print "(a,2f8.2,2es12.3)", dtxt//"RH,T,xH2O(x2) ", rh(1), temp(1), rh2num(rh(1),temp(1)), h2o(1)
    o2(:) = 0.2095 * m(:)

@@ -67,6 +67,9 @@ cmdx['Emergency'] = '-b Emergency '
 cmdx['EmChem19r']  ='-b EmChem19a -e PM_VBS_EmChem19 '+ common_RNR
 cmdx['EmChem19rp']  ='-b EmChem19a -e PM_VBS_EmChem19 '+ common_RNR + ' Pollen'
 
+cmdx['EmChem19rc']  ='-b EmChem19cj -e PM_VBS_EmChem19 ' + common_RNR
+cmdx['EmChem19rcp'] ='-b EmChem19cj -e PM_VBS_EmChem19 ' + common_RNR + ' Pollen'
+
 cmdx['EmChem19a-vbs3'] ='-b EmChem19a -e BVOC_ExtraMTs PM_VBS_EmChem19 PM_VBS_ExtraMTs'+common_IsoMT3 
 cmdx['EmChem19a-H']    ='-b EmChem19a -e PM_Hodzic_EmChem19'+common_IsoMT1
 #
