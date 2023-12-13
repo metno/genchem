@@ -398,7 +398,7 @@ rcphot(IDMEK)            : ACETOL        = CH3CO3 + HCHO + HO2 ;
 * rcphot(IDCHOCHO_HCHO)   : GLYOX     = CO + HCHO    ;  J32   #From MCM, see run_kpp_constants
 * rcphot(IDCHOCHO_2CHO)   : GLYOX     = 2 HO2 + 2 CO ;  J33   #From MCM, see run_kpp_constants
 *
-rcphot(IDCHOCHO)         : GLYOX  = 1.9 CO + 0.1 HCHO + 0.5 HO2 ; #From MCM, see run_kpp_constants
+*rcphot(IDCHOCHO)         : GLYOX  = 1.9 CO + 0.1 HCHO + 0.5 HO2 ; #From MCM, see run_kpp_constants
 *
 rcphot(IDRCOCHO)         : MGLYOX        = CH3CO3 + CO + HO2 ;  J34
 rcphot(IDCH3COY)         : BIACET = 2 CH3CO3 ; MCM (CH3COY <=> BIACET)
@@ -412,7 +412,7 @@ rcphot(IDHCHO_H2)*24.     : PACALD = CO + HO2 + MGLYOX + OH ; *CheT2mod
 *MCM has three photolysis reactions for C5DICAROOH! J41+J15+J22 (all with the same products)
 rcphot(IDHCHO_H)*0.9     : C5DICAROOH    = OH + HO2 + MGLYOX + GLYOX    ;
 rcphot(IDCH3O2H)         : CH3OOH        = HCHO + OH + HO2 ;  J41   J(6e-6)
-rcphot(IDCH3O2H)         : C2H5OOH       = HO2 + CH3CHO + OH    ;
+rcphot(IDCH3O2H)*0.5         : C2H5OOH       = HO2 + CH3CHO + OH    ; #0.5 following cloud-j factor
 *simplified products for EmChem19 (based on 288K split in MCM):
 rcphot(IDCH3O2H)         : BURO2H = OH + 0.716 HO2 + 0.716 MEK + 0.284 CH3CHO + 0.284 C2H5O2 ; (288K split) replacing C3H7CHO by MEK (and HO1C4O2 by CH3CHO+C2H5O2)
 rcphot(IDCH3O2H)         : ETRO2H        = HO2 + OH + 1.56 HCHO + 0.22 CH3CHO    ;
