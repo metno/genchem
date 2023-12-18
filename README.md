@@ -19,6 +19,10 @@ To get started, read the documentation article and guide:
 
 Updates:
 
+  2023-12: Converted system to use CloudJ photolysis, c.f. van Caspel et al. (accepted, in typesetting):
+
+    https://gmd.copernicus.org/preprints/gmd-2023-147/
+
   2022-12-21: Added EmChem19X, and updated READMEs to refer to NEW report:
 
     Update and comparison of atmospheric chemistry mechanisms for the EMEP MSC-W model system - EmChem19a, EmChem19X, CRIv2R5Em, CB6r2Em, and MCMv3.3Em,
