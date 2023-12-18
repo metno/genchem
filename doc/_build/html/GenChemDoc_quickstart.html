@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Quick start &#8212; genchem 1.0.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
@@ -12,7 +12,9 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Formatting of GenChem files" href="GenChemDoc_chem.html" />
@@ -41,14 +43,14 @@
           <div class="body" role="main">
             
   <section id="quick-start">
-<span id="index-0"></span><h1>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h1>
+<span id="index-0"></span><h1>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this heading">¶</a></h1>
 <p>We will proceed directly to a run of the box-model system, to show how
 chemical schemes are normally compiled into <code class="docutils literal notranslate"><span class="pre">CM_</span></code> and <code class="docutils literal notranslate"><span class="pre">CMX_</span></code> files, and used
 in box-model simulations. This is actually the normal and recommended way to
 prepare files for the EMEP model, but also provides a good environment for
 comparing chemical mechanisms.</p>
 <section id="step-1-initial-setup">
-<h2>Step 1: initial setup<a class="headerlink" href="#step-1-initial-setup" title="Permalink to this headline">¶</a></h2>
+<h2>Step 1: initial setup<a class="headerlink" href="#step-1-initial-setup" title="Permalink to this heading">¶</a></h2>
 <p>If not run previously, some preliminary steps are needed to set up a
 working directory.  From the <strong>GenChem/box</strong> directory, do:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">somepath</span><span class="o">/</span><span class="n">GenChem</span><span class="o">-</span><span class="n">xxx</span><span class="o">/</span><span class="n">box</span>
@@ -59,7 +61,7 @@ working directory.  From the <strong>GenChem/box</strong> directory, do:</p>
 <p>The name _tmp_work is just an example - anything can be used.</p>
 </section>
 <section id="step-2-do-testchems">
-<h2>Step 2: do.testChems<a class="headerlink" href="#step-2-do-testchems" title="Permalink to this headline">¶</a></h2>
+<h2>Step 2: do.testChems<a class="headerlink" href="#step-2-do-testchems" title="Permalink to this heading">¶</a></h2>
 <p>At this stage, one can try compiling a chemical scheme. With the example of
 EmChem19a, and now from our tmp_work directory, try:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tmp_work</span>
@@ -96,7 +98,7 @@ against each other.</p>
 </div></blockquote>
 </section>
 <section id="a-plotting">
-<h2>2a. Plotting?<a class="headerlink" href="#a-plotting" title="Permalink to this headline">¶</a></h2>
+<h2>2a. Plotting?<a class="headerlink" href="#a-plotting" title="Permalink to this heading">¶</a></h2>
 <p>If one has run say 3 chemical schemes using Step 2 above, the results
 are easily plotted from the <em>box/tmp_work/OUTPUT_TEST</em> directory:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>../../scripts/boxplots.py -h     for help!
@@ -115,14 +117,14 @@ see a comparison of three schemes produced with this script:</p>
 <p>which results in ResConcs_boxEmChem19a_O3_ppb.txt</p>
 </section>
 <section id="b-box-config">
-<h2>2b. Box-config<a class="headerlink" href="#b-box-config" title="Permalink to this headline">¶</a></h2>
+<h2>2b. Box-config<a class="headerlink" href="#b-box-config" title="Permalink to this heading">¶</a></h2>
 <p>The script do.testChems above compiles the executable boxChem for each mechanism in turn, and by default runs this using some settings from the default config_box.nml file. This file contains a number of important settings which by deault run a 24-hour simulation (starting at 12:00 GMT), with set emissions, temperature of 298.15 K, mixing height of 1000 m, and some boundary conditions. Default outputs are also given.</p>
 <p>The user can of course change these settings (do this in your working directory, not in <em>src</em>). We explain some the key variables and choices here, and further
 information can be found in <a class="reference external" href="https://gmd.copernicus.org/preprints/gmd-2020-147/">Simpson et al 2020</a>.</p>
 <p><em>Note</em> these config files follow fortran namelist conventions. Text following
 an exclamation mark (!) is ignored.</p>
 <section id="time-related-variables">
-<h3>Time-related variables<a class="headerlink" href="#time-related-variables" title="Permalink to this headline">¶</a></h3>
+<h3>Time-related variables<a class="headerlink" href="#time-related-variables" title="Permalink to this heading">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>! Time variables, all in seconds
 ! ------------------------------
  tstart = 43200., ! start at 12:00
@@ -136,14 +138,14 @@ an exclamation mark (!) is ignored.</p>
 <p>(In config files, variables can be given multiple times. The  last entry given is used, in this case we get tend = 129600 s.)</p>
 </section>
 <section id="geographical-location">
-<h3>Geographical location<a class="headerlink" href="#geographical-location" title="Permalink to this headline">¶</a></h3>
+<h3>Geographical location<a class="headerlink" href="#geographical-location" title="Permalink to this heading">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>lat = 45.05,    ! degrees N
 lon = 15.06,    ! degrees E
 </pre></div>
 </div>
 </section>
 <section id="emissions">
-<h3>Emissions<a class="headerlink" href="#emissions" title="Permalink to this headline">¶</a></h3>
+<h3>Emissions<a class="headerlink" href="#emissions" title="Permalink to this heading">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span> use_emis = T,     ! use emissions at all?
 ! directory with emissplit files:
  emissplit_dir = &#39;emissplit_run/&#39;
@@ -164,7 +166,7 @@ lon = 15.06,    ! degrees E
 </div>
 </section>
 <section id="outputs">
-<h3>Outputs<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h3>
+<h3>Outputs<a class="headerlink" href="#outputs" title="Permalink to this heading">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>! Can say just e.g. &#39;O3&#39;, to reduce size of outputs,
 !  but in general usage &#39;all&#39; is normally best.
 
@@ -179,7 +181,7 @@ lon = 15.06,    ! degrees E
 </div>
 </section>
 <section id="debug">
-<h3>Debug<a class="headerlink" href="#debug" title="Permalink to this headline">¶</a></h3>
+<h3>Debug<a class="headerlink" href="#debug" title="Permalink to this heading">¶</a></h3>
 <p>Some flags produce more output. More documentation to be added later.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>! -----
 
@@ -197,7 +199,7 @@ lon = 15.06,    ! degrees E
 </section>
 </section>
 <section id="step-3-emep-setup-py">
-<h2>Step 3: emep_setup.py<a class="headerlink" href="#step-3-emep-setup-py" title="Permalink to this headline">¶</a></h2>
+<h2>Step 3: emep_setup.py<a class="headerlink" href="#step-3-emep-setup-py" title="Permalink to this heading">¶</a></h2>
 <p>The do.testChems script described above is best for quickly testing and
 comparing different mechanisms. Usually these comparisons only involve
 gas-phase mechanisms such as EmChem19a or MCMv3.3Em. However, the EMEP
@@ -258,7 +260,7 @@ some OA scheme, <em>usersSOA</em>, then <em>emep_setup.py</em> can be edited to 
 </div>
 </section>
 <section id="update-2022-06-choice-of-gnfr-cams-or-snap">
-<h2>UPDATE 2022-06: Choice of GNFR_CAMS or SNAP<a class="headerlink" href="#update-2022-06-choice-of-gnfr-cams-or-snap" title="Permalink to this headline">¶</a></h2>
+<h2>UPDATE 2022-06: Choice of GNFR_CAMS or SNAP<a class="headerlink" href="#update-2022-06-choice-of-gnfr-cams-or-snap" title="Permalink to this heading">¶</a></h2>
 <p>GenChem was originally developed when the EMEP CTM used the so-called SNAP emission sector system, which has 11 source categories.
 The EMEP model currently uses a 19-sector system we refer to as GNFR_CAMS. To produce EMEP-ready files with GenChem
 one now needs to specify “-g” in the call to emep_setup.py, e.g.</p>
@@ -268,7 +270,7 @@ one now needs to specify “-g” in the call to emep_setup.py, e.g.</p>
 <p>Omission of this -g flag simply gives the 11-sector SNAP splits, though this option is now deprecated.</p>
 </section>
 <section id="step-4-use-for-emep-ctm">
-<h2>Step 4: Use for EMEP CTM<a class="headerlink" href="#step-4-use-for-emep-ctm" title="Permalink to this headline">¶</a></h2>
+<h2>Step 4: Use for EMEP CTM<a class="headerlink" href="#step-4-use-for-emep-ctm" title="Permalink to this heading">¶</a></h2>
 <p>After emep_setup.py has successfully run, the <a href="#id2"><span class="problematic" id="id3">ZCM_</span></a> directory produced
 contains all the files needed to run the EMEP CTM.  The <a href="#id4"><span class="problematic" id="id5">CM_</span></a> and <a href="#id6"><span class="problematic" id="id7">CMX_</span></a>
 files can be copied directly to the CTM’s source directory, and the EMEP
@@ -285,8 +287,9 @@ emep_config.nml namelist).</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table of Contents</a></h3>
-  <ul>
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
 <li><a class="reference internal" href="#">Quick start</a><ul>
 <li><a class="reference internal" href="#step-1-initial-setup">Step 1: initial setup</a></li>
 <li><a class="reference internal" href="#step-2-do-testchems">Step 2: do.testChems</a></li>
@@ -306,12 +309,17 @@ emep_config.nml namelist).</p>
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="GenChemDoc_intro.html"
-                        title="previous chapter">Introduction</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="GenChemDoc_chem.html"
-                        title="next chapter">Formatting of GenChem files</a></p>
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="GenChemDoc_intro.html"
+                          title="previous chapter">Introduction</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="GenChemDoc_chem.html"
+                          title="next chapter">Formatting of GenChem files</a></p>
+  </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -328,7 +336,7 @@ emep_config.nml namelist).</p>
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -351,7 +359,7 @@ emep_config.nml namelist).</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2000-2020 met.no.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   </body>
 </html>

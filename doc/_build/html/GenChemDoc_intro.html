@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Introduction &#8212; genchem 1.0.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
@@ -12,7 +12,9 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Quick start" href="GenChemDoc_quickstart.html" />
@@ -41,7 +43,7 @@
           <div class="body" role="main">
             
   <section id="introduction">
-<span id="index-0"></span><h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<span id="index-0"></span><h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h1>
 <p>GenChem is a system to generate and test chemical mechanisms for the EMEP
 MSC-W model <a class="reference external" href="https://acp.copernicus.org/articles/12/7825/2012/">(Simpson et al. 2012)</a>
 a 1-D canopy model, ESX [SimpsonTuovinen2014],
@@ -50,8 +52,9 @@ technical details given here, the GenChem system and its approach have
 been documented in
 <a class="reference external" href="https://gmd.copernicus.org/articles/13/6447/2020/">Simpson et al 2020</a>
 and the with this readthedocs manual.</p>
+<p><strong>NEWS Dec. 2023</strong>: Converted system to use CloudJ photolysis, c.f.  <a class="reference external" href="https://gmd.copernicus.org/preprints/gmd-2023-147/gmd-2023-147.pdf">van_Caspel_et_al,_2022</a>.</p>
 <p><strong>NEWS Dec. 2022</strong>: The chemical mechanisms have been documented in
-<a class="reference external" href="https://emep.int/publ/reports/2022/MSCW_technical_1_2022.pdf">Bergstrom_et_al2022</a>.</p>
+<a class="reference external" href="https://emep.int/publ/reports/2022/MSCW_technical_1_2022.pdf">Bergstrom_et_al,_2022</a>.</p>
 <p>GenChem consists of two main directories, <strong>chem</strong> and <strong>box</strong>.</p>
 <p>The <strong>chem</strong> directory contains several chemical mechanisms written
 in chemist-friendly format (e.g. <em>k1</em>  NO2 + OH = HNO3).
@@ -71,7 +74,7 @@ compile as they should, and allows rapid testing of several chemical
 mechanisms alongside each other. See the more detailed documentation
 specified above for more details and examples.</p>
 <section id="code-structure">
-<span id="index-1"></span><h2>Code structure<a class="headerlink" href="#code-structure" title="Permalink to this headline">¶</a></h2>
+<span id="index-1"></span><h2>Code structure<a class="headerlink" href="#code-structure" title="Permalink to this heading">¶</a></h2>
 <p>The directory structure for GenChem can be summarised as:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">XXX</span><span class="o">/</span><span class="n">chem</span>                 <span class="c1"># GenChem&#39;s mechanism tree</span>
 <span class="n">XXX</span><span class="o">/</span><span class="n">chem</span><span class="o">/</span><span class="n">scripts</span>         <span class="c1"># scripts, including do.GenChem and GenChem.py</span>
@@ -102,7 +105,7 @@ Further examples of the many possible combinations can be found in
 [Simpson2020].</p>
 </section>
 <section id="requirements">
-<span id="index-2"></span><h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<span id="index-2"></span><h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading">¶</a></h2>
 <p>The GenChem system itself can be downloaded from <a class="reference external" href="https://github.com/metno/genchem">github</a>.</p>
 <p>GenChem has been developed on Ubuntu linux systems, and
 should work on any modern linux/unix computer. The code has also been
@@ -128,8 +131,9 @@ The minumum requirements are a modern fortran compiler and python3
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table of Contents</a></h3>
-  <ul>
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
 <li><a class="reference internal" href="#">Introduction</a><ul>
 <li><a class="reference internal" href="#code-structure">Code structure</a></li>
 <li><a class="reference internal" href="#requirements">Requirements</a></li>
@@ -137,12 +141,17 @@ The minumum requirements are a modern fortran compiler and python3
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="index.html"
-                        title="previous chapter">Welcome to GenChem’s documentation!</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="GenChemDoc_quickstart.html"
-                        title="next chapter">Quick start</a></p>
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="index.html"
+                          title="previous chapter">Welcome to GenChem’s documentation!</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="GenChemDoc_quickstart.html"
+                          title="next chapter">Quick start</a></p>
+  </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -159,7 +168,7 @@ The minumum requirements are a modern fortran compiler and python3
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -182,7 +191,7 @@ The minumum requirements are a modern fortran compiler and python3
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2000-2020 met.no.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   </body>
 </html>

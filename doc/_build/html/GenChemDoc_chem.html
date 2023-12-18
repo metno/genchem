@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Formatting of GenChem files &#8212; genchem 1.0.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
@@ -12,7 +12,9 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Contributors" href="GenChemDoc_contributors.html" />
@@ -41,7 +43,7 @@
           <div class="body" role="main">
             
   <span class="target" id="index-0"></span><section id="formatting-of-genchem-files">
-<h1>Formatting of GenChem files<a class="headerlink" href="#formatting-of-genchem-files" title="Permalink to this headline">¶</a></h1>
+<h1>Formatting of GenChem files<a class="headerlink" href="#formatting-of-genchem-files" title="Permalink to this heading">¶</a></h1>
 <p>Three types of simple text file are needed to
 describe chemical mechanisms in the GenChem system: Reactions,
 Species and Shorthands. The formatting of these is described
@@ -49,7 +51,7 @@ briefly here, and further information and background can be
 found in
 <a class="reference external" href="https://gmd.copernicus.org/preprints/gmd-2020-147/">Simpson et al 2020</a>.</p>
 <section id="reactions-files">
-<h2>Reactions files<a class="headerlink" href="#reactions-files" title="Permalink to this headline">¶</a></h2>
+<h2>Reactions files<a class="headerlink" href="#reactions-files" title="Permalink to this heading">¶</a></h2>
 <p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Some</span> <span class="n">simple</span> <span class="n">lines</span>
 <span class="mf">1.4e-12</span><span class="o">*</span><span class="n">EXP</span><span class="p">(</span><span class="o">-</span><span class="mf">1310.</span><span class="o">*</span><span class="n">TINV</span><span class="p">)</span>          <span class="p">:</span> <span class="n">O3</span> <span class="o">+</span> <span class="n">NO</span>    <span class="o">=</span> <span class="n">NO2</span> <span class="o">+</span> <span class="o">&lt;</span><span class="n">O2</span><span class="o">&gt;</span>  <span class="p">;</span> <span class="n">acp2004</span>
@@ -80,7 +82,7 @@ found in
 </div></blockquote>
 </section>
 <section id="species-files">
-<h2>Species files<a class="headerlink" href="#species-files" title="Permalink to this headline">¶</a></h2>
+<h2>Species files<a class="headerlink" href="#species-files" title="Permalink to this heading">¶</a></h2>
 <p>The input to the GenChem.py script is GenIn_Species.csv, but this
 is assembled by do.GenChem from all needed  _Species.csv files from
 the base_mechanisms and extra_mechanisms sub-directories. For
@@ -171,7 +173,7 @@ is discussed further in Simpson et al. (Submitted, 2020).</p>
 </div></blockquote>
 </section>
 <section id="shorthands-file">
-<h2>Shorthands file<a class="headerlink" href="#shorthands-file" title="Permalink to this headline">¶</a></h2>
+<h2>Shorthands file<a class="headerlink" href="#shorthands-file" title="Permalink to this heading">¶</a></h2>
 <p>Shorthands are text-strings used in the Reactions.txt file, usually to represent commonly used rate-coefficients. The meaning of the text-string is given in _Shorthand.txt file, e.g.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>XT           temp
 FH2O         (1.0+1.4e-21*h2o*exp(2200.0*TINV))
@@ -190,8 +192,9 @@ KMT12        IUPAC_troe(2.8e-31*exp(2.6*Log300divT),2.0e-12,exp(-TEMP/472.),M,0.
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table of Contents</a></h3>
-  <ul>
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
 <li><a class="reference internal" href="#">Formatting of GenChem files</a><ul>
 <li><a class="reference internal" href="#reactions-files">Reactions files</a></li>
 <li><a class="reference internal" href="#species-files">Species files</a></li>
@@ -200,12 +203,17 @@ KMT12        IUPAC_troe(2.8e-31*exp(2.6*Log300divT),2.0e-12,exp(-TEMP/472.),M,0.
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="GenChemDoc_quickstart.html"
-                        title="previous chapter">Quick start</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="GenChemDoc_contributors.html"
-                        title="next chapter">Contributors</a></p>
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="GenChemDoc_quickstart.html"
+                          title="previous chapter">Quick start</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="GenChemDoc_contributors.html"
+                          title="next chapter">Contributors</a></p>
+  </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -222,7 +230,7 @@ KMT12        IUPAC_troe(2.8e-31*exp(2.6*Log300divT),2.0e-12,exp(-TEMP/472.),M,0.
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -245,7 +253,7 @@ KMT12        IUPAC_troe(2.8e-31*exp(2.6*Log300divT),2.0e-12,exp(-TEMP/472.),M,0.
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2000-2020 met.no.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.3.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   </body>
 </html>

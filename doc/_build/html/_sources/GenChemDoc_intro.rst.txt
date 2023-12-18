@@ -13,8 +13,11 @@ been documented in
 `Simpson et al 2020 <https://gmd.copernicus.org/articles/13/6447/2020/>`_
 and the with this readthedocs manual.
 
+**NEWS Dec. 2023**: Converted system to use CloudJ photolysis, c.f.  `van_Caspel_et_al,_2022 <https://gmd.copernicus.org/preprints/gmd-2023-147/gmd-2023-147.pdf>`_.
+
 **NEWS Dec. 2022**: The chemical mechanisms have been documented in
-`Bergstrom_et_al2022 <https://emep.int/publ/reports/2022/MSCW_technical_1_2022.pdf>`_.
+`Bergstrom_et_al,_2022 <https://emep.int/publ/reports/2022/MSCW_technical_1_2022.pdf>`_.
+
 
 
 GenChem consists of two main directories, **chem** and **box**.
