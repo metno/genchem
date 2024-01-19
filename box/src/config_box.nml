@@ -37,8 +37,8 @@ lon = 15.06,
  emissplit_dir = 'emissplit_run/'
 ! Careful. Some compilers don't like comments in array settings:
 ! Example: use 18.3 kg/m2/day for NOx and 15.4 kg/m2/day for VOC, as in MCM/CRI tests
- emis_kgm2day = 'nox', 18.3, !
-                'voc', 15.4  !
+ emis_kgm2day = 'nox', 18.3, 
+                'voc', 15.4 
  !
  ! BVOC emissions are set in chem/extra_mechanisms/BoxBVOCemis, where
  ! also a factor SUN is given for light-dependent emissions. These BVOC
