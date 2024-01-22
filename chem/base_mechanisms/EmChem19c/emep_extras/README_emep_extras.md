@@ -13,10 +13,10 @@ Biomass burning
 So far two setups are needed, for either the FINN or GFAS sources of
 wildfires:
 
-EmChem19a_BiomassBurning_FINNv1.5a.txt
-EmChem19a_BiomassBurning_GFASv1.txt
+EmChem19c_BiomassBurning_FINNv1.5a.txt
+EmChem19c_BiomassBurning_GFASv1.txt
 
-These files address emissions of the EmChem19a gas-phase species. BB
+These files address emissions of the EmChem19c gas-phase species. BB
 emissions of particles can be found in the relevant extra_mechanisms
 directory, e.g.  FFireInert.
 
@@ -24,4 +24,4 @@ directory, e.g.  FFireInert.
 Boundary condition mapping
 --------------------------
 
-EmChem19a_BoundaryConditions.txt
+EmChem19c_BoundaryConditions.txt

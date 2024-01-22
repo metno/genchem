@@ -55,11 +55,13 @@ common_IsoMT3  = common + ' BVOC_SQT_NV BVOC_IsoMT3_emis'
 cmdx=dict()
 
 cmdx['EmChem19a-vbs']  ='-b EmChem19a -e PM_VBS_EmChem19 '+ common_IsoMT1
+cmdx['EmChem19c-vbs']  ='-b EmChem19c -e PM_VBS_EmChem19 '+ common_IsoMT1 # mimics EmChem19a but with EmChem19c base mechanism
 cmdx['EmChem19p-vbs']  = cmdx['EmChem19a-vbs'] + ' Pollen'
 # To preserve older notation, we allow two simple aliases:
 cmdx['EmChem19a']  = cmdx['EmChem19a-vbs']
+cmdx['EmChem19c']  = cmdx['EmChem19c-vbs']
 cmdx['EmChem19p']  = cmdx['EmChem19p-vbs']
-cmdx['EmChem19aAsh7'] = '-b EmChem19a -e EmAsh ' #+ ' ShipNOx PM_FFireInert SeaSalt  DustExtended PM_WoodFFuelInert EC_ageing'
+cmdx['EmChem19cAsh7'] = '-b EmChem19c -e EmAsh ' #+ ' ShipNOx PM_FFireInert SeaSalt  DustExtended PM_WoodFFuelInert EC_ageing'
 cmdx['EmergencyAsh'] = '-b Emergency -e EmAsh '
 cmdx['EmergencyRadiation'] = '-b Emergency -e Radiation '
 cmdx['Emergency'] = '-b Emergency '
@@ -67,11 +69,11 @@ cmdx['Emergency'] = '-b Emergency '
 cmdx['EmChem19r']  ='-b EmChem19a -e PM_VBS_EmChem19 '+ common_RNR
 cmdx['EmChem19rp']  ='-b EmChem19a -e PM_VBS_EmChem19 '+ common_RNR + ' Pollen'
 
-cmdx['EmChem19rc']  ='-b EmChem19cj -e PM_VBS_EmChem19 ' + common_RNR
-cmdx['EmChem19rcp'] ='-b EmChem19cj -e PM_VBS_EmChem19 ' + common_RNR + ' Pollen'
+cmdx['EmChem19rc']  ='-b EmChem19c -e PM_VBS_EmChem19 ' + common_RNR
+cmdx['EmChem19rcp'] ='-b EmChem19c -e PM_VBS_EmChem19 ' + common_RNR + ' Pollen'
 
-cmdx['EmChem19a-vbs3'] ='-b EmChem19a -e BVOC_ExtraMTs PM_VBS_EmChem19 PM_VBS_ExtraMTs'+common_IsoMT3 
-cmdx['EmChem19a-H']    ='-b EmChem19a -e PM_Hodzic_EmChem19'+common_IsoMT1
+cmdx['EmChem19c-vbs3'] ='-b EmChem19c -e BVOC_ExtraMTs PM_VBS_EmChem19 PM_VBS_ExtraMTs'+common_IsoMT3 
+cmdx['EmChem19c-H']    ='-b EmChem19c -e PM_Hodzic_EmChem19'+common_IsoMT1
 #
 #cmdx['EmChem19X-vbs']  ='-b EmChem19X -e PM_VBS_EmChem19 '+ common_IsoMT1
 #cmdx['TestEm'] ='-b EmChem19a -e FFireInert SeaSalt' # minimal gas/particle

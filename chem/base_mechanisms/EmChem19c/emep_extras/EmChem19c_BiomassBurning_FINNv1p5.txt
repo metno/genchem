@@ -1,4 +1,4 @@
-# BiomassBurning mapping FINNv1.5 to EmChem19a
+# BiomassBurning mapping FINNv1.5 to EmChem19c
 #  Column-1 gives FINNv1 species ,
 #  Column-2 gives the product of two numbers:
 #    1) MW if needed to get to kg/day. Not needed for FINNv1

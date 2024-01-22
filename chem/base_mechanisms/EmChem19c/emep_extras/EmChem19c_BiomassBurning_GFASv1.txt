@@ -1,5 +1,5 @@
 #----------------------------------------------------------------------------#
-#     Mapping of emissions from GFASv1 to EMEP EmChem19a species
+#     Mapping of emissions from GFASv1 to EMEP EmChem19c species
 #     Included by  ForestFire_mod
 #----------------------------------------------------------------------------#
 # Column-1 gives GFASv1 species,

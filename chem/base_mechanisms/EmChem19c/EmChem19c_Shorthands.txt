@@ -1,5 +1,5 @@
 *-----------------------------------------------------------------------------
-*-- EmChem19a_Shorthands.txt
+*-- EmChem19c_Shorthands.txt
 * will be appended to generic_Shorthands.txt by do.GenChem or do.testChems
 * to produce the final GenIn_Shorthands.txt file.
 * In the process any earlier shorthands will be overwriten by the 

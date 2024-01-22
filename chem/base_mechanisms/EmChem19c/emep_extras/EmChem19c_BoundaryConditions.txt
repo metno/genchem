@@ -1,4 +1,4 @@
-# CMX_BoundaryConditions.txt for EmChem19a 
+# CMX_BoundaryConditions.txt for EmChem19c 
 # Provides mapping betweeen default boundary and initial conditions
 # (BICs) and EMEP species. A numerical factor may be applied, and a wanted
 # column is also provided so that BICs may we switched off. In many cases

@@ -1,6 +1,6 @@
-EmChem19cj chemistry scheme -- the default gas-phase mechanism of the EMEP MSC-W chemical transport model.
+EmChem19c chemistry scheme -- the default gas-phase mechanism of the EMEP MSC-W chemical transport model.
 
-The EmChem19cj mechanism is a minor update of EmChem19, reflect the addition of the three explicit
+The EmChem19c mechanism is a minor update of EmChem19, reflect the addition of the three explicit
 glyox photolysis channels, as well as now-fixed (i.e. time-invariant) background CH4 and H2 concentrations. 
 In earlier versions, these species were 'free running' after initialization, causing concentrations to go down due to loss against
 oxidation over the course of a simulation (mostly impacting the global EMEP configuration).

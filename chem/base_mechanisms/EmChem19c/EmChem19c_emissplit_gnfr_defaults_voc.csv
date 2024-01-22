@@ -1,4 +1,4 @@
-# VOC splits for GNFR (19 sectors) and EmChem19a -- Robert & Dave Jan-Jun 2020
+# VOC splits for GNFR (19 sectors) and EmChem19c -- Robert & Dave Jan-Jun 2020
 # Merges CAMS 25-compounds (v01, v02...) with matrix to get emep compounds
 # created by mkEC19emissplitMCM.py, mkNMVOCsplit.py etc.
 # from TNO CAMS71_REF2_v1_2015/CAMS71-II_scenarios_v1_REF2_2015
