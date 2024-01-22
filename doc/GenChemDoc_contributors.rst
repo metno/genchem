@@ -30,6 +30,9 @@ The GenChem system was created over many years:
   Michael Priestley, Univ. Gothenburg, 2020. Added Docker system and
   testing for Windows PCs.
 
+  Willem van Caspel, Norwegian Meteorological Institute, 2023,
+  small changes to EmChem19a (now EmChem19c), and introduction of CloudJ photolysis.
+
 .. comment::
 
   **  NOTE !!

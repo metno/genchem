@@ -26,23 +26,23 @@ Step 2: do.testChems
 ++++++++++++++++++++
 
 At this stage, one can try compiling a chemical scheme. With the example of
-EmChem19a, and now from our tmp_work directory, try::
+EmChem19c, and now from our tmp_work directory, try::
 
   cd tmp_work
 
-  ./do.testChems  EmChem19a
+  ./do.testChems  EmChem19c
 
-This script will run GenChem.py on the EmChem19a scheme (also adding
+This script will run GenChem.py on the EmChem19c scheme (also adding
 a few extra reactions from helper BoxAero, BoxBVOCemis and BoxDep
 mechanisms), run "make", and then run the resulting box-model
-code. Results will appear in one log-file (e.g. RES.EmChem19a),
+code. Results will appear in one log-file (e.g. RES.EmChem19c),
 and as comma-separated results in the Output directory (set in
-do.testChems):  OUTPUTS_TEST/boxEmChem19a.csv.  This file is readable
+do.testChems):  OUTPUTS_TEST/boxEmChem19c.csv.  This file is readable
 with e.g. libreoffice. Plot scripts are also available (see next section),
 for easy visualisation and comparison of these csv results.
 
 The ``CM_`` and ``CMX_`` fortran files produced by this process are saved
-in directories, e.g.  here in  ``ZCMBOX_EmChem19a``. These files could
+in directories, e.g.  here in  ``ZCMBOX_EmChem19c``. These files could
 be used in the EMEP model if wanted, but usually the more complex script
 emep_setup.py (described below) is used for that. (Hence we reserve
 the prefix ZCMBOX for files created by do.testChems and ZCM for those
@@ -50,7 +50,7 @@ created with emep\_setup.py, see below.)
 
 Now, if one wants to compare several schemes, one can do e.g.::
 
-  ./do.testChems  EmChem19a CRIv2R5Em MCMv3.3Em
+  ./do.testChems  EmChem19c CRIv2R5Em MCMv3.3Em
 
 This would produce 3 output .csv files, which again are easily plotted
 against each other. 
@@ -71,7 +71,7 @@ are easily plotted from the *box/tmp_work/OUTPUT_TEST* directory::
 
   ../../scripts/boxplots.py -h     for help!
 
-  ../../scripts/boxplots.py -v O3 -i boxEmChem19a.csv boxChem1.csv boxChem2.csv  -p
+  ../../scripts/boxplots.py -v O3 -i boxEmChem19c.csv boxChem1.csv boxChem2.csv  -p
 
 Using 'ALL' or 'DEF' with -v results in all or many common species being
 plotted at once (-p is assumed in this case). For example, here we can
@@ -84,9 +84,9 @@ see a comparison of three schemes produced with this script:
 
 Another crude+helpful script just grabs the concentrations::
 
-  ../../scripts/getboxconcs.py  O3 boxEmChem19a.csv
+  ../../scripts/getboxconcs.py  O3 boxEmChem19c.csv
 
-which results in ResConcs_boxEmChem19a_O3_ppb.txt
+which results in ResConcs_boxEmChem19c_O3_ppb.txt
 
 
 
@@ -193,7 +193,7 @@ Step 3: emep_setup.py
 
 The do.testChems script described above is best for quickly testing and 
 comparing different mechanisms. Usually these comparisons only involve
-gas-phase mechanisms such as EmChem19a or MCMv3.3Em. However, the EMEP
+gas-phase mechanisms such as EmChem19c or MCMv3.3Em. However, the EMEP
 model usually requires a host of extra species and reactions to 
 accommodate sea-salt, dust, organic aerosols, and pollen.
 It also requires files to specify how emissions and boundary
@@ -203,7 +203,7 @@ how a VOC emission should be split into C2H6, C2H4, nC4H10 etc.
 In fact, for the EMEP model, GenChem produces many files which are
 copied into ZCM\_XXX directories for the scheme XXX you wish to use: 
 
-   $ls -x ZCM_EmChem19a/
+   $ls -x ZCM_EmChem19c/
 
     CM_ChemDims_mod.f90                     CM_ChemGroups_mod.f90
     CM_ChemRates_mod.f90                    CM_ChemSpecs_mod.f90
@@ -219,7 +219,7 @@ copied into ZCM\_XXX directories for the scheme XXX you wish to use:
 The recommended way to get this directory is to use the script *emep_setup.py* from your temporary work directory
 within  the **box** system. So, from e.g. box/tmp_work, do:
 
-  ./emep_setup.py  EmChem19a
+  ./emep_setup.py  EmChem19c
 
 or just::
 
@@ -232,7 +232,7 @@ You can edit the *emep_setup.py* scripts, maybe renaming it as *my_setup.py* dir
 If selecting from the provided base\_mechanisms and extra\_mechanisms you only need to extend
 the possible command lines as provided by the *cmdx*  dictionary::
 
-  cmdx['EmChem19a-vbs'] ='-b EmChem19a -e PM_VBS_EmChem19 '+common_IsoMT1
+  cmdx['EmChem19c-vbs'] ='-b EmChem19c -e PM_VBS_EmChem19 '+common_IsoMT1
   cmdx['CRIv2R5Em-M19'] ='-b CRIv2R5Em -e PM_JPAC_MT3 PM_Hodzic_Aromatics BVOC_XTERP_CRI'+common_IsoMT3'
 
 
@@ -261,7 +261,7 @@ GenChem was originally developed when the EMEP CTM used the so-called SNAP emiss
 The EMEP model currently uses a 19-sector system we refer to as GNFR_CAMS. To produce EMEP-ready files with GenChem
 one now needs to specify "-g" in the call to emep_setup.py, e.g.
 
-  ./emep_setup.py  EmChem19a-vbs -g
+  ./emep_setup.py  EmChem19c-vbs -g
 
 Omission of this -g flag simply gives the 11-sector SNAP splits, though this option is now deprecated.
 

@@ -1,0 +1,13 @@
+! UCI_FastJ_AddX_73cx.zip    (2/2016)
+
+        v7.3c had problems with new compiler, needed to 'save' variables read in to subroutines.
+                 no change in results.
+
+        v6.8d O3 data were inconsistent in T (X & Q used different ranges) and
+        V6.8d O3 were derived from the 77-bin reference data output
+                     - traceability problems
+
+     v 6.8e (2/2016) fixes the XO3 and QO1D.
+            much proofing and checking - each X and T directly from JPL-2010
+          Results in      -1% in J-O3total,
+                          +2% (0-3 km) to +4% (6-20km) in J-O3=>O1D increase

@@ -76,7 +76,7 @@ Four  types of tracers/catalysts/yields are allowed, denoted by different types 
 
  2) e.g. {O2} + OD -> OP   will ignore the O2 term. Make sure it is in the reaction rate though if needed!
 
- 3) e.g. OP + <O2> + <M> -> O3  will ignore the O2 and M term AND add their concentrations to the reaction rate (multiply it). This system is only used for these "special" species (O2, N2, M) as they must be pre-defined, e.g. O2(k), in boxChem and/or EMEP codes.
+ 3) e.g. OP + <O2> + <M> -> O3  will ignore the O2 and M term AND add their concentrations to the reaction rate (multiply it). This system is only used for these "special" species (O2, N2, M, CH4, H2) as they must be pre-defined, e.g. O2(k), in boxChem and/or EMEP codes.
 
  4) e.g. 1.36e-11 :   [OXYL] + [OH] = \|YCOXY(0)\|  ASOC_ug1  + ...  will replace the contents of the || term with yield coefficients which will be updated each time-step in the EMEP model.  These variables (here YCOXY(0)) must be predefined in order for emep\_setup.py and the emep model to compile.
 
@@ -88,8 +88,8 @@ Species files
 The input to the GenChem.py script is GenIn\_Species.csv, but this
 is assembled by do.GenChem from all needed  \_Species.csv files from
 the base_mechanisms and extra_mechanisms sub-directories. For
-example, for a typical emep run with base EmChem19a, do.GenChem
-appends EmChem19a\_Species.csv, SeaSalt\_Species.csv, and many more into
+example, for a typical emep run with base EmChem19c, do.GenChem
+appends EmChem19c\_Species.csv, SeaSalt\_Species.csv, and many more into
 one GenIn\_Species.csv. The file contains columns with species
 name, type, formula, and various settings related to dry and wet deposition
 
@@ -131,7 +131,7 @@ The meaning of the columns is:
     to produce integer variables which demarcate these semivolatile
     compounds, e.g. FIRST_SEMIVOL=136  and LAST_SEMIVOL=176.
 
-    3 - for compounds which react very slowly (e.g. CH4).
+    3 - for compounds which react very slowly (e.g. NH3).
 
  
   **formula** -  If a true chemical formula is provided (e.g. CH3CHO, or 

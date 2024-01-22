@@ -13,7 +13,9 @@ been documented in
 `Simpson et al 2020 <https://gmd.copernicus.org/articles/13/6447/2020/>`_
 and the with this readthedocs manual.
 
-**NEWS Dec. 2023**: Converted system to use CloudJ photolysis, c.f.  `van_Caspel_et_al,_2022 <https://gmd.copernicus.org/preprints/gmd-2023-147/gmd-2023-147.pdf>`_.
+**NEWS Dec. 2023**: Converted system to be compatible with CloudJ photolysis, see  
+`van_Caspel_et_al,_2023 <https://gmd.copernicus.org/articles/16/7433/2023/gmd-16-7433-2023.pdf>`_.
+Includes updated base EmChem19 chemical mechanism (now EmChem19c).
 
 **NEWS Dec. 2022**: The chemical mechanisms have been documented in
 `Bergstrom_et_al,_2022 <https://emep.int/publ/reports/2022/MSCW_technical_1_2022.pdf>`_.
@@ -74,7 +76,7 @@ are usually built up by appending files from one *base* directory (from
 base_mechanisms) and one or more (usually many!) *extra* mechanisms
 from the extra_mechanisms directory. For example, GenIn_Species.csv
 used for  the EMEP CTM's default EmChem19p scheme consists of  Species
-files from base_mechanisms/EmChem19a, and from twelve extra_mechanisms
+files from base_mechanisms/EmChem19cj, and from twelve extra_mechanisms
 directories (e.g. extra_mechanisms/SeaSalt/SeaSalt_Species.csv,
 extra_mechanisms/PM_VBS_EmChem19/PM_VBS_EmChem19_Species, etc.).
 Further examples of the many possible combinations can be found in
@@ -86,16 +88,16 @@ Further examples of the many possible combinations can be found in
   
   
     SCHEME               name for complete chemical mechanisms package. 
-                         (currently EmChem19a, EmChem19p, CB6r2, CRIv2emep, MCM_v3.3)
+                         (currently EmChem19cj, EmChem19p, CB6r2, CRIv2emep, MCM_v3.3)
   
-    BASE_Species.csv     base_mechanisms/EmChem19a_Species.csv
+    BASE_Species.csv     base_mechanisms/EmChem19cj_Species.csv
   
     EXTRAS_Species.csv   extra_mechanisms/SeaSalt/SeaSalt_Species.csv, 
                          extra_mechanisms/Aqueous_EmChem16x/Aqueous_EmChem16x_Species.csv,
                          ....
   
     CMDIR_Species.csv    Either base or extras file, e.g.
-                         base_mechanisms/EmChem19a_Species.csv **or**
+                         base_mechanisms/EmChem19cj_Species.csv **or**
                          extra_mechanisms/SeaSalt/SeaSalt_Species.csv, 
   
   

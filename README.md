@@ -19,9 +19,20 @@ To get started, read the documentation article and guide:
 
 Updates:
 
-  2023-12: Converted system to use CloudJ photolysis, c.f. van Caspel et al. (accepted, in typesetting):
+  2023-12: Converted system to use CloudJ photolysis, c.f. van Caspel et al. (2023):
 
-    https://gmd.copernicus.org/preprints/gmd-2023-147/
+    https://doi.org/10.5194/gmd-16-7433-2023
+
+    By default, all chemical mechanisms employ photolysis rates based
+    on MCM in boxChem. However, when "use_cloudj = T" is set in the config 
+    namelist file, (clear-sky) photolysis rates calculated using the Cloud-J v7.3e 
+    photolysis code are used instead. The EMEP model can only use Cloud-J from v4.51 onward, 
+    using the Briegleb averaging cloud effect scheme by default. 
+
+    To reflect the CloudJ update, in addition to a few minor changes, the default
+    chemical mechanism has been updated to EmChem19c (c for cloudj). The changes include
+    specified background concentration for CH4 and H2, and the inclusion of three 
+    explicit glyoxal photolysis channels. 
 
   2022-12-21: Added EmChem19X, and updated READMEs to refer to NEW report:
 
