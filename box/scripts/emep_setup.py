@@ -31,6 +31,7 @@ common= ' Aqueous_EmChem16x Aero2017nx ShipNOx PM_FFireInert SeaSalt DustExtende
 # with ResNonRes PM, EC aging moved in PM_ResNonResInert
 commonRNR= ' Aqueous_EmChem16x Aero2017nx ShipNOx PM_FFireInert SeaSalt DustExtended Ash PM_ResNonResInert' 
 dcommon=' Aqueous_EmChem16x Aero2017nx ShipNOx PM_FFireInert SeaSalt Dust BVOC_SQT_NV' # More compact dust
+camscommon=' Aqueous_EmChem16x Aero2017nx Ash ShipNOx PM_FFireInert SeaSalt DustExtended BVOC_SQT_NV'  # No pollen
 ocommon=' ShipNOx PM_FFireInert SeaSalt DustExtended Pollen' # Added pollen and extended dust
 fcommon=' Aqueous_EmChem16x Aero2017nx Ash ShipNOx PM_FFireInert SeaSalt DustExtended Pollen BVOC_SQT_NV'
 ncommon=' Aqueous_EmChem16x Aero2017nx Ash ShipNOx FFireInert16z SeaSalt DustExtended16z Pollen'
@@ -54,8 +55,13 @@ common_IsoMT3  = common + ' BVOC_SQT_NV BVOC_IsoMT3_emis'
 
 cmdx=dict()
 
+cmdx['EmChem19a-ECf']  ='-b EmChem19a -e ShipNOx PM_ECf' # JUST ECf! aging in PM_ECf
+cmdx['EmChem19a-CAMS5']  ='-b EmChem19a -e PM_ECf PM_POM25 PM_VBS_EmChem19 ' + camscommon + ' BVOC_IsoMT1_emis' # JUST ECf! aging in PM_ECf
+
 cmdx['EmChem19a-vbs']  ='-b EmChem19a -e PM_VBS_EmChem19 '+ common_IsoMT1
-cmdx['EmChem19c-vbs']  ='-b EmChem19c -e PM_VBS_EmChem19 '+ common_IsoMT1 # mimics EmChem19a but with EmChem19c base mechanism
+cmdx['EmChem19c-vbs'] = '-b EmChem19c -e PM_VBS_EmChem19 '+ common_IsoMT1 # mimics emchem19a but with EmChem19c base mechanism
+
+cmdx['EmChem19a-radon']  ='-b EmChem19a -e PM_VBS_EmChem19 '+ common_IsoMT1 + ' Isotope'
 cmdx['EmChem19p-vbs']  = cmdx['EmChem19a-vbs'] + ' Pollen'
 # To preserve older notation, we allow two simple aliases:
 cmdx['EmChem19a']  = cmdx['EmChem19a-vbs']
