@@ -19,6 +19,8 @@ To get started, read the documentation article and guide:
 
 Updates:
 
+  2026-09-12: Revised tag: 1.2 to cover updates from 2022-2023
+
   2023-12: Converted system to use CloudJ photolysis, c.f. van Caspel et al. (2023):
 
     https://doi.org/10.5194/gmd-16-7433-2023
