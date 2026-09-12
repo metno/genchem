@@ -19,7 +19,12 @@ To get started, read the documentation article and guide:
 
 Updates:
 
-  2026-09-12: Revised tag: 1.2 to cover updates from 2022-2023
+  2026-09-12: Updated files to match EmChemPack26 updates - see 
+     EMEP Report 1/2026 chapter 16:
+
+    https://emep.int/publ/reports/2026/EMEP_Status_Report_1_2026.pdf
+
+  2026-09-12: Revised tag: 1.2 to cover updates (below) from 2022-2023
 
   2023-12: Converted system to use CloudJ photolysis, c.f. van Caspel et al. (2023):
 
