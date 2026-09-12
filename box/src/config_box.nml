@@ -14,8 +14,9 @@
 ! tstart = 10800., ! 03:00
  tstart = 43200., ! 12:00
 ! end time is absolute time -> total runtime is tend - tstart!
- tend = 302400., ! three days on top of 12 hours
- tend = 129600., ! one day on top of 12 hours
+  tend = 302400., ! three days on top of 12 hours
+! tend = 129600.,
+! tend = 129600., ! one day on top of 12 hours
 ! tend = 270000., ! three days
 ! tend = 432000., ! five days
 ! timestep dt (seconds)
@@ -28,24 +29,25 @@ doy = 182,
 lat = 45.05,
 lon = 15.06,
 
-
 ! Emissions
 ! ---------
 ! use emissions at all?
  use_emis = T,
 ! directory with emissplit files
  emissplit_dir = 'emissplit_run/'
-! Careful. Some compilers don't like comments in array settings:
-! Example: use 18.3 kg/m2/day for NOx and 15.4 kg/m2/day for VOC, as in MCM/CRI tests
- emis_kgm2day = 'nox', 18.3, 
-                'voc', 15.4 
+ emis_kgm2day = 'nox', 18.3, ! NOx, kg/km2/day, as in MCM/CRI tests
+                'voc', 15.4  ! NMVOC
+!  emis_kgm2day = 'nox', 3.1, ! NOx, kg/km2/day, as in Jenkin 2020
+!                 'voc', 15.4  ! NMVOC
+ !emis_kgm2day = 'nox', 180.3, ! NOx, kg/m2/day, as in MCM/CRI tests
+ !               'voc', 150.4  ! NMVOC
  !
  ! BVOC emissions are set in chem/extra_mechanisms/BoxBVOCemis, where
  ! also a factor SUN is given for light-dependent emissions. These BVOC
  ! emissions can be adjusted with the factors below.
- fIsop = 0.0,                     ! isoprene 
- fMTL  = 0.0,                     ! monoterpenes from light-dependent emissions
- fMTP  = 0.0,                     ! monoterpenes from pool (Temp.)-dependent emissions
+ fIsop = 1.0,                     ! isoprene 
+ fMTL  = 1.0,                     ! monoterpenes from light-dependent emissions
+ fMTP  = 1.0,                     ! monoterpenes from pool (Temp.)-dependent emissions
  fSQT  = 0.0,                     ! sesqui-terpenes
 
 ! Concentrations of fixed species M, N2, O2, H2O.
@@ -55,7 +57,7 @@ lon = 15.06,
 ! M, H2O in molec cm^-3
  M = 2.55e+19,
 ! H2O = 2.55e17,
- RH = 0.90,   ! equivalent to h2ofraction = 0.01
+ RH = 0.665,   ! equivalent to h2ofraction = 0.01
 ! RH = 0.8,    ! equivalent to h2ofraction = 0.01
 ! Ps = 1.0e5   ! equivalent to h2ofraction = 0.01
 
@@ -66,27 +68,27 @@ lon = 15.06,
  all_species = 0.0
 ! then individual ones : 'NAME',4.3e-1, 
  initBox =
-!  'H2O2',2.e+0,
-  'CH4',1.7e+3,
-!  'NO',1.e-1,
+  'H2O2',2.e+0,
+  'CH4',1.8e+3,
+  'NO',1.e-1,
   'H2',5.e+2,
   'CO',1.e+2,
-!  'C5H8',0.0,
+  'C5H8',0.0,
   'O3',3.e+1,
-!  'NO2',1.e-1,
-!  'HNO3',1.e-1,
-!  'PAN', 5.e-1,
+  'NO2',1.e-1,
+  'HNO3',1.e-1,
+  'PAN', 5.e-1,
 
 ! Other variables
 ! ---------------
  Hmix = 1.0e5,    ! cm
  TEMP = 298.15,   ! K
 
- ! photolysis rates, MCM default
- use_cloudj   = F, ! update photol. rates available through cloudj (EmChem19cj / cloudj only)
- use_hrlycj   = T, ! update cloudj rates hrly (every model tstep if false) to match EMEP implementation
- cloudj_indir = '../input/cloudj_v7.3e/', ! cross-section and phot. reaction input data
- printJ_day   = 2, ! outputs Jvals at 12:00 hr local. NB: uses hard-coded longitude and start time in boxChem.f90
+! photolysis rates, MCM default
+ use_cloudj   = F, ! update photol. rates available through cloudj
+ use_hrlycj   = T, ! update cloudj rates hrly (every model tstep if false)
+ cloudj_indir = '../input/unified_cjx/', ! contains phot reactions for all chemical mechanism
+ printJ_day   = 2, ! outputs 12:00 hr local. NB: uses hard-coded longitude and start time in boxChem.f90
 
 ! Output species
 ! --------------

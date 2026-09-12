@@ -32,8 +32,10 @@ module ZchemData_mod
            !For consistency with EMEP and SOA:
             ,gamN2O5=UNDEF_R & ! for n2o5Hydrol
             ,aero_fom=UNDEF_R, aero_fss=UNDEF_R, aero_fdust=UNDEF_R &
-            ,aero_fbc=UNDEF_R &! fractions
-            ,xSO4, xNO3, xNH4 ! for Riemer
+            ,aero_fbc=UNDEF_R & ! fractions
+            ,xSO4, xNO3, xNH4 & ! for Riemer
+            ,xh2o_f              & ! Particle-phase water in fine mode
+            ,xh2o_c                ! Particle-phase water in coarse mode
   real, public, save, dimension(NSAREA_DEF,NZ) :: S_m2m3    ! surface area
   integer, public, save, dimension(NZ) ::  itemp !e.g. for SOA tables
   ! variables for SOA_mod

@@ -59,7 +59,10 @@ parser.add_argument('-s','--slow', type=int,
 parser.add_argument('-c','--chemdir', help='location of chem directory')
 parser.add_argument('-d','--dbg', help='debug mode. Waits for user input at '
     'key steps', action='store_true')
-parser.add_argument('-g','--gnfrsnap', help='Use snap (deprecated) or new gnfr 19-sector system.', default='gnfr',required=True)
+parser.add_argument('-g','--gnfrsnap', 
+    help='Use snap (deprecated) or new gnfr 19-sector system.', default='gnfr',required=True)
+parser.add_argument('-o','--mechanism_name', nargs=1,
+    help='Name for generated chemical mechanisms', default=['None_Specified'])
 args = parser.parse_args()
 print(args)
 #print parser.print_usage() parser.print_help() parser.parse_args()
@@ -115,8 +118,6 @@ genfiles= {                    #type/      suffix
   'Species'   :               [ 'GenIn_' ,   'csv'  ],
   'Reactions' :               [ 'GenIn_' ,   'txt'  ],
   'Shorthands':               [ 'GenIn_' ,   'txt'  ],
-  'BiomassBurning_FINNv1p5':  [ 'CMX_'   ,   'txt'  ],
-  'BiomassBurning_GFASv1':    [ 'CMX_'   ,   'txt'  ],
   'BoundaryConditions':       [ 'CMX_'   ,   'txt'  ],
 }
 
@@ -178,10 +179,13 @@ for key in genfiles:
       ans=input('Press enter key to continue stepwise... or f to finish: ')
       if ans=='f': args.dbg=False
 
+    #assert os.path.isfile(ifile),'MISSING FILE: %s' % ifile
     if os.path.isfile(ifile): # Start or append to outputfile
        if first_cm:  print('START FILE  ', relpath(ifile))
        else:         print('APPEND FILE ', relpath(ifile))
        with open( ifile,'r') as fi: outfh[key].write( fi.read() )
+    else:
+       print('QUERY CHECK:', ifile)
 
     first_cm=False
   if outfh.get(key):
@@ -224,6 +228,7 @@ os.chdir(splitDir)
 subprocess.run('ls -lt',shell=True)
 
 ##X##################### CM LOOP #############################################
+schemes+=' ' + ' '.join(args.mechanism_name)
 print("### Run GenChem: ", schemes)
 
 os.chdir(buildDir)

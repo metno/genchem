@@ -21,7 +21,7 @@ program Box
   use PhysicalConstants_mod, only: AVOG
   use SmallUtils_mod,        only: num2str, find_index, to_upper
   use ZchemData_mod              ! xChem,rcphot, etc.
-  use cloudj_mod,            only: setup_phot_cloudj 
+  use CLOUDJ_MOD,            only: setup_phot_cloudj 
 
 !UK T, RH
 !   use MicroMet_mod, only : rh2num
@@ -116,11 +116,11 @@ program Box
      doy_now = doy + floor((timeh)/24.)
      hr = mod(timeh, 24.)
      ZenRad = ZenithAngle(doy_now, hr, lat, lon)
-
+                          
      if(use_cloudj) then 
         if(use_hrlycj) then
           if(hr_step>photstep) then
-            ! populates rcphotslice, and reassigns phot inds to match cloud on first call
+            ! populates rcphotslice; reassigns phot inds to match cloud on first call
             call setup_phot_cloudj(cloudj_indir,lat,lon,doy_now,hr) 
           endif
         else
@@ -247,6 +247,9 @@ program Box
      timeh, (100.0*time)/tend, " %, O3=",xChem(O3,1)/ppb, ' ppb, OH=',&
        xChem(OH,1), ' /cm3, HO2=', xChem(HO2,1), ' /cm3'
   end if 
+
+  if(hr_step > photstep) photstep=hr_step ! hrly counter for cloudj calls
+
   end do ! time loop
 
 

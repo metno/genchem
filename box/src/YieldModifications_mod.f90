@@ -9,7 +9,7 @@
 !
  module YieldModifications_mod
 
-  use CheckStop_mod,   only : StopAll
+  use CheckStop_mod,   only : CheckStop, StopAll
   use ChemFields_mod             ! => cell_tinv,  NSPEC_TOT, O3, NO2, etc.
   use ChemSpecs_mod              ! => NSPEC_TOT, O3, NO2, etc.
   use Config_module,   only : MasterProc,YieldModifications ! JPCIsoYield
@@ -23,14 +23,15 @@
   public  :: doYieldModifications
 
   logical, public, save :: YieldModificationsInUse = .false.
-  logical, private, save :: dbg = .false.
+  logical, private, save :: dbgYields = .false.
+  integer, private, save :: NO_ix, HO2_ix, C5H8_ix   ! for merge with emep ctm methods
 
   ! VBS work ----------------------------------------------------------
 
   private :: init_VBSyields
   private :: update_VBSyields
-  integer, private, parameter   :: NVBS = 9 !Number VOC 
-  real, private, save :: kro2ho2, kro2no  !  rate-coeffs
+  integer, private, parameter   :: NVBS = 16 !Number VOC; internal to YieldModifications mod
+  real, private, save :: kro2ho2, kro2no, fNO=UNDEF_R  !  rate-coeffs and fraction
  ! Yield arrays used in CM_Reaction2 are hard coded, with OXY=1, ... see below
   real, public, dimension(-2:3),  save :: & !  Hodzic VBS_new range
     YCOXY =UNDEF_R,  YNOXY =UNDEF_R & !  OXYL carbon and non-carbon yields
@@ -40,18 +41,28 @@
    ,YCTERP=UNDEF_R,  YNTERP=UNDEF_R & !  TERP carbon and non-carbon yields
    ,YCBENZ=UNDEF_R,  YNBENZ=UNDEF_R & !  Benzene carbon and non-carbon yields
    ,YCTOL =UNDEF_R,  YNTOL =UNDEF_R & !  Toluene carbon and non-carbon yields
-   ,YCIVOC=UNDEF_R,  YNIVOC=UNDEF_R   !  IVOC carbon and non-carbon yields
+   ,YCIVOC=UNDEF_R,  YNIVOC=UNDEF_R & !  IVOC carbon and non-carbon yields
+   ,YCALK6=UNDEF_R,   YCALK7=UNDEF_R  & ! Manavi & Pandis
+   ,YCALK8=UNDEF_R,   YCALK9=UNDEF_R  &
+   ,YCARO3=UNDEF_R,   YCPAH1=UNDEF_R  &
+   ,YCPAH2=UNDEF_R                    &
+   ,YNALK6=UNDEF_R,   YNALK7=UNDEF_R  & 
+   ,YNALK8=UNDEF_R,   YNALK9=UNDEF_R  &
+   ,YNARO3=UNDEF_R,   YNPAH1=UNDEF_R  &
+   ,YNPAH2=UNDEF_R
+
 
    type, private :: vbs_t
-     character(len=8)   :: name
-     real               :: mw
-     real               :: omoc     ! OM/OC ratio or  C/non-C ratios
-     real               :: ratio    ! eg  C/non-C ratios
-     real               :: fHO2RO2  ! modifier to kHO2RO2 rate
-     real               :: kRO2     ! RO2 reaction rate
+     character(len=8)   :: name    = 'UNSET'
+     real               :: mw      = UNDEF_R
+     real               :: omoc    = UNDEF_R    ! OM/OC ratio or  C/non-C ratios
+     real               :: ratio   = UNDEF_R    ! eg  C/non-C ratios
+     real               :: fHO2RO2 = UNDEF_R  ! modifier to kHO2RO2 rate
+     real               :: kRO2    = UNDEF_R     ! RO2 reaction rate
      real, dimension(-2:3) :: highnox, lownox
    end type vbs_t
-   type(vbs_t), private, dimension(NVBS), save :: Yemep
+   !type(vbs_t), private, dimension(NVBS), save :: Yemep
+   type(vbs_t), private, allocatable, dimension(:), save :: Yemep
 
 
   ! Coded up some JPC experiments for now
@@ -82,7 +93,7 @@
      character(len=*), intent(in) :: txt
      logical, save :: my_first_call = .true.
 
-     dbg = ( DEBUG%SOA>0 .and. DebugCell )
+     dbgYields = ( DEBUG%SOA>0 .and. DebugCell )
 
      if ( YieldModifications(1:3) == 'VBS' ) then
        if( my_first_call .and. txt=='init' ) then
@@ -122,6 +133,9 @@
   !! C15ivoc, C13ivoc (C13 not used)
   !! Yields derived from Tsimpidi et al., ACP, 2010, p529
   !! and Robert's VBS_SOAformation
+  !! Note (July2019)! Earlier version had set VBS-parameters for Benzene and Toluene based on Hodzic et al. (2016) -- this is inconsistent with the rest of the scheme!
+  !!       It is especially problematic if including aging of the VBS-species since that is already assumed to have been included in the Hodzic VBS!
+  !!       Changing this to use the VBS-parameters from  Koo et al. 2014 (which are consistent with the Tsimpidi 2010 VBS)
    type(vbs_t), dimension(9), parameter :: vbs_T10 = [ &  ! vbs_t(&
       vbs_t('OXYL', 106.0, 2.1, -999., 0.859, 9.2e-14,  &     ! Tsimpidi ... ARO2 -- note unusually low RO2 rate for OXYL
           ! 0.01, 0.1,     1     10    100   1000
@@ -140,18 +154,26 @@
           [ 0.0,  0.0, 0.012, 0.122, 0.201, 0.500 ],&
           [ 0.0,  0.0, 0.107, 0.092, 0.359, 0.6   ]) &
   ! Jathar et al 2010 used POA/POC = 1.4
-     ,vbs_t('C15ivoc' , 252.0, 1.4, -999., 0.914, 0.e-13,  &   !JAthar 2010 CHANGE
+     ,vbs_t('C15ivoc' , 252.0, 1.4, -999., 0.914, 0.e-13,  &   !Jathar 2010 CHANGE
           [ 0.0,  0.044, 0.071, 0.41,  0.30, 0.0 ],&   ! used same for h/l now
           [ 0.0,  0.044, 0.071, 0.41,  0.30, 0.0 ])&
-     ,vbs_t('C13ivoc' , 218.4, 1.4, -999., 0.914, 0.e-13,  &   !JAthar 2010 CHANGE
+     ,vbs_t('C13ivoc' , 218.4, 1.4, -999., 0.914, 0.e-13,  &   !Jathar 2010 CHANGE
           [ 0.0,  0.014, 0.059, 0.22,  0.40, 0.0 ],&   ! used same for h/l now
           [ 0.0,  0.014, 0.059, 0.22,  0.40, 0.0 ])&
-     ,vbs_t('BENZ',  78., 2.1, -999., 0.77, 8.8e-13, &     ! Hodzic BENZ. ? Mw,fHO2..
-          [ 0.031, 0.011, 0.507, 0.019, 0.030, 0.142 ],&  ! high
-          [ 0.007, 0.003, 0.270, 0.142, 0.400, 0.120 ])&  ! low 
-     ,vbs_t('TOLU',  92., 2.1, -999., 0.82, 8.8e-13, &     ! Hodzic TOL. ? Mw,fHO2..
-          [ 0.042, 0.123, 0.263, 0.020, 0.319, 0.329 ],&  ! high
-          [ 0.371, 0.028, 0.207, 0.586, 0.063, 0.138 ])]  ! low 
+   ! For benzene, fHO2RO2 comes from MCM, which has BZBIPERO2 + HO2 → BZBIPEROOH with the rate KRO2HO2 × 0.77
+      ,vbs_t('BENZ',  78., 2.1, -999., 0.77, 8.8e-13, &     ! Koo et al. 2014, BENZ. ? Mw,fHO2..
+          [ 0.0,  0.0, 0.003, 0.165, 0.3,   0.435 ],& ! high     
+          [ 0.0,  0.0, 0.075, 0.225, 0.375, 0.525 ])& ! low
+   ! For toluene, fHO2RO2 comes from MCM, which has TLBIPERO2 + HO2 -> TLBIPEROOH with the rate KRO2HO2 × 0.82
+   ! (where  TLBIPERO2 is the main peroxy radical from TOL+OH)
+      ,vbs_t('TOLU',  92., 2.1, -999., 0.82, 8.8e-13, &     ! Koo et al. 2014, TOL. ? Mw,fHO2..
+          [ 0.0,  0.0, 0.011, 0.257, 0.482, 0.718 ],& ! high     
+          [ 0.0,  0.0, 0.011, 0.257, 0.750, 0.468 ])] ! high
+
+
+  !! IMPORTANT. Order must be OXYL, C4H10, C3H6, ISOP, APIN,
+ 
+ 
 ! Not used yet. NOTE - starts at C* 0.1 so would need -1 col
 !    ! Alkanes - only have high NOx, from Presto, Ots. No RO2, sso skip fHO2RO2
 !     ,vbs_t('C15H2' , 212.4, 1.7, -999., -999.,  &     ! Presto, 2010 Alkanes
@@ -180,10 +202,10 @@
      ,vbs_t('APIN' , 136.0, 1.7, -999., 0.914, 3.6e-13, &     ! RO2-rate from MCM (weighted average of three RO2 species, from a-pinene+OH)
           [ 0.045,  0.015, 0.142, 0.061, 0.074, 0.165 ],&
           [ 0.093,  0.211, 0.064, 0.102, 0.110, 0.125 ])&
-     ,vbs_t('C15ivoc', 189.0, 1.7, -999.,  1.0 , 0.e-13, &  ! H16 IVOC+MW, f=1
+     ,vbs_t('C15ivoc', 189.0, 1.7, -999.,  1.0 , 2.5e-13, &  ! H16 IVOC+MW, f=1; using RO2-rate for DDECO2 in MCM
           [ 0.140,  0.136, 0.069, 0.019, 0.010, 0.012 ],&
           [ 0.315,  0.173, 0.046, 0.010, 0.007, 0.008 ])&
-     ,vbs_t('C13ivoc', 189.0, 1.7, -999.,  1.0 , 0.e-13, &  ! H16 IVOC+MW, f=1
+     ,vbs_t('C13ivoc', 189.0, 1.7, -999.,  1.0 , 2.5e-13, &  ! H16 IVOC+MW, f=1; using RO2-rate for DDECO2 in MCM
           [ 0.140,  0.136, 0.069, 0.019, 0.010, 0.012 ],&
           [ 0.315,  0.173, 0.046, 0.010, 0.007, 0.008 ])&
      ,vbs_t('BENZ',  78., 2.1, -999., 0.77, 8.8e-13, &     ! Hodzic BENZ. ? Mw,fHO2..
@@ -193,10 +215,43 @@
           [ 0.042, 0.123, 0.263, 0.020, 0.319, 0.329 ],&  ! high
           [ 0.371, 0.028, 0.207, 0.586, 0.063, 0.138 ])]  ! low 
 
+
+     ! here come the manavi IVOC low/high-nox SVOC yields from 
+     ! Manavi & Pandis (2022, Table 3). ALK's low/high are identical, for now?
+         !changed: kRO2 not used and set to zero (index 5), matching fluxRO2 for safety. fHO2RO2 modifier set to 1.
+         ! now copied from preceding NMHC
+     ! Assume OM/OC ca. 1.4, which is roughly CxHy + O2
+     ! all form ISOC_xx with "CO" MW, ie 28
+
+! Manavi & Pandis (2022):
+   type(vbs_t), dimension(7), parameter :: vbs_Manavi = [ &  ! Manavi low/high speciation for IVOC. Will append to VBS-T10
+      vbs_t('ALK6', 184.0, 1.4, -999., 1.0, 2.5e-13,   & ! kRO2 from C4H10 
+          [ 0.0, 0.038, 0.035, 0.03,  0.062, 0.309 ],  & ! high
+          [ 0.0, 0.038, 0.035, 0.03,  0.062, 0.309 ])  & ! low
+     ,vbs_t('ALK7', 226.0, 1.4, -999., 1.0, 2.5e-13, &    
+          [ 0.0, 0.025, 0.117, 0.401, 0.103, 0.052 ],  & ! high
+          [ 0.0, 0.025, 0.117, 0.401, 0.103, 0.052 ])  & ! low 
+     ,vbs_t('ALK8', 265.0, 1.4, -999., 1.0, 2.5e-13, &     
+          [ 0.0, 0.074, 0.029, 0.622, 0.148, 0.0 ],    & ! high
+          [ 0.0, 0.074, 0.029, 0.622, 0.148, 0.0 ])    & ! low 
+     ,vbs_t('ALK9', 308.0, 1.4, -999., 1.0, 2.5e-13, &    
+          [ 0.0, 0.077, 0.024, 0.629, 0.151, 0.0 ],    & ! high
+          [ 0.0, 0.077, 0.024, 0.629, 0.151, 0.0 ])    & ! low
+     ,vbs_t('ARO3', 190.0, 1.4, -999., 0.82, 8.8e-13,  & ! fHO2RO2, kRO2 from TOLU,
+          [ 0.0, 0.0, 0.001, 0.156, 0.24, 0.348 ],     & ! high
+          [ 0.0, 0.0, 0.06,  0.24,  0.30, 0.42  ])     & ! low 
+     ,vbs_t('PAH1', 142.0, 1.4, -999., 0.82, 8.8e-13, &  ! CRUDE kRO2, fHO2RO2 from TOLU    
+          [ 0.0, 0.0, 0.011, 0.346, 0.038, 0.083 ],    & ! high
+          [ 0.0, 0.0, 0.003, 0.484, 0.0,   0.032 ])    & ! low
+     ,vbs_t('PAH2', 170.0, 1.4, -999., 0.82, 8.8e-13,  & ! CRUDE kRO2, fHO2RO2 from TOLU
+          [ 0.0, 0.0, 0.0,   0.407, 0.077, 0.163 ],    & ! high  
+          [ 0.0, 0.0, 0.0,   0.627, 0.0,   0.074 ]) ]    ! low
+
  ! No Alkane or alkene in VBS_H16
  ! Could add BENZ, TOL, SESQ
 
-   type(vbs_t), dimension(max(size(vbs_T10),size(vbs_HM))), save :: vbs
+   type(vbs_t), dimension(:), allocatable, save :: vbs
+   integer :: ivbs, ispec
 
 !-----------------------------------------------------------------------------------
 ! Conversions from 'literature' yields to EMEP, based on mail from Robert,
@@ -237,18 +292,26 @@
 
       select case(YieldModifications) ! initialise names, etc.
          case('VBS-T10')
-            vbs   = vbs_T10
+            vbs = vbs_T10
          case('VBS-HM')
-            vbs   = vbs_HM
+            vbs = vbs_HM
          case('VBS-TH')  ! Tsimpidi but Hodzic for IVOC
-            vbs   = vbs_T10
+            vbs = vbs_T10
             vbs(6) = vbs_HM(6)  ! IVOC
+         case('VBS-Manavi')
+            vbs = [ vbs_T10, vbs_Manavi ]  ! 
          case default
             call StopAll(dtxt//'Unknown YieldModifications '//YieldModifications)
       end select
+      ! To avoid setting VBS-10 with Manavi chem we do a simple check:
+      ispec = find_index( 'ALK6', species(:)%name , any_case=.true.)
+      ivbs  = find_index( 'ALK6', vbs(:)%name , any_case=.true.)
+      call CheckStop( ( ispec > 0  .and. ivbs < 1),'MIS-MATCH VBS settings:'//YieldModifications)
+      
       Yemep = vbs   ! copies across names etc., before we modify yields
+      if(MasterProc) write(*,*) dtxt//'Using '//trim(YieldModifications)// ' yield modifications, Nvbs=', size(vbs), size(Yemep)
 
-      do isoa = 1, NVBS 
+      do isoa = 1, size(vbs) ! NVBS 
          r1 = 1/vbs(isoa)%omoc       ! eg 1/2.1 OC/OM ! CHECK for other VOC
          r2 = (1-r1)                 ! for non-C
 
@@ -256,7 +319,7 @@
          Yemep(isoa)%lownox(:)  =  vbs(isoa)%lownox(:)  * vbs(isoa)%mw*r1/mwC  ! carbon
          Yemep(isoa)%ratio =  r2/mwH * mwC/r1  ! non-carbon to carbon ratio
          
-         if ( dbg ) then
+         if ( dbgYields ) then
            write(*,'(a,7f8.4,2x,7f8.4)') Yemep(isoa)%name//&
              ',YIELD HighNox ASOC, NOC:: ', Yemep(isoa)%highnox, &
               Yemep(isoa)%highnox * Yemep(isoa)%ratio
@@ -272,55 +335,101 @@
      character(len=*), parameter :: dtxt='updateVBSY:'
      real          ::  fluxNO, fluxHO2, fluxRO2, fNO
      integer ::isoa
+     NO_ix = NO
+     HO2_ix = HO2
+     C5H8_ix = C5H8
+
+     call CheckStop( NO_ix<1, "NO not defined" )
+     call CheckStop( HO2_ix<1, "HO2 not defined" )
 
      kro2no  = 2.54e-12*exp(360*cell_tinv)
      kro2ho2 = 2.91e-13*exp(1300*cell_tinv) ! will modify below
 
-     fluxNO  = kro2no*xnew(NO)
-     fluxHO2 = kro2ho2*xnew(HO2)
+     fluxNO  = kro2no*xnew(NO_ix)
+     fluxHO2 = kro2ho2*xnew(HO2_ix)
 !for later     fluxRO2 = xnew(RO2POOL)
      fluxRO2 = 0. ! initially neglect RO2+RO2-reactions
 
      fNO = 0.0   ! default, eg on 1st call
     ! Loop over bins.
      isoa=1  ! Xylenes
-     if(xnew(NO)>1.0 ) fNO  = fluxNO/(fluxNO+fluxHO2*Yemep(isoa)%fHO2RO2+fluxRO2*Yemep(isoa)%kRO2 )
+     if(xnew(NO_ix)>1.0 ) fNO  = fluxNO/(fluxNO+fluxHO2*Yemep(isoa)%fHO2RO2+fluxRO2*Yemep(isoa)%kRO2 )
      YCOXY(:) = fno * Yemep(isoa)%highnox(:) + (1-fNO) * Yemep(isoa)%lownox(:)
      YNOXY(:) = YCOXY(:) * Yemep(isoa)%ratio
 
      isoa=2  ! Alkanes
-     if(xnew(NO)>1.0 ) fNO  = fluxNO/(fluxNO+fluxHO2*Yemep(isoa)%fHO2RO2+fluxRO2*Yemep(isoa)%kRO2 )
+     if(xnew(NO_ix)>1.0 ) fNO  = fluxNO/(fluxNO+fluxHO2*Yemep(isoa)%fHO2RO2+fluxRO2*Yemep(isoa)%kRO2 )
      YCALK(:) = fno * Yemep(isoa)%highnox(:) + (1-fNO) * Yemep(isoa)%lownox(:)
      YNALK(:) = YCALK(:) * Yemep(isoa)%ratio
 
      isoa=3  ! Alkenes
-     if(xnew(NO)>1.0 ) fNO  = fluxNO/(fluxNO+fluxHO2*Yemep(isoa)%fHO2RO2+fluxRO2*Yemep(isoa)%kRO2 )
+     if(xnew(NO_ix)>1.0 ) fNO  = fluxNO/(fluxNO+fluxHO2*Yemep(isoa)%fHO2RO2+fluxRO2*Yemep(isoa)%kRO2 )
      YCOLE(:) = fno * Yemep(isoa)%highnox(:) + (1-fNO) * Yemep(isoa)%lownox(:)
      YNOLE(:) = YCOLE(:) * Yemep(isoa)%ratio
 
      isoa=4  ! Isop
-     if(xnew(NO)>1.0 ) fNO  = fluxNO/(fluxNO+fluxHO2*Yemep(isoa)%fHO2RO2+fluxRO2*Yemep(isoa)%kRO2 )
+     if(xnew(NO_ix)>1.0 ) fNO  = fluxNO/(fluxNO+fluxHO2*Yemep(isoa)%fHO2RO2+fluxRO2*Yemep(isoa)%kRO2 )
      YCISOP(:) = fno * Yemep(isoa)%highnox(:) + (1-fNO) * Yemep(isoa)%lownox(:)
      YNISOP(:) = YCISOP(:) * Yemep(isoa)%ratio
 
      isoa=5  ! terp
-     if(xnew(NO)>1.0 ) fNO  = fluxNO/(fluxNO+fluxHO2*Yemep(isoa)%fHO2RO2+fluxRO2*Yemep(isoa)%kRO2 )
+     if(xnew(NO_ix)>1.0 ) fNO  = fluxNO/(fluxNO+fluxHO2*Yemep(isoa)%fHO2RO2+fluxRO2*Yemep(isoa)%kRO2 )
      YCTERP(:) = fno * Yemep(isoa)%highnox(:) + (1-fNO) * Yemep(isoa)%lownox(:)
      YNTERP(:) = YCTERP(:) * Yemep(isoa)%ratio
 
+     isoa=6  ! IVOC
+     if(xnew(NO_ix)>1.0 ) fNO  = fluxNO/(fluxNO+fluxHO2*Yemep(isoa)%fHO2RO2+fluxRO2*Yemep(isoa)%kRO2 )
+     YCIVOC(:) = fno * Yemep(isoa)%highnox(:) + (1-fNO) * Yemep(isoa)%lownox(:)
+     YNIVOC(:) = YCIVOC(:) * Yemep(isoa)%ratio
+
      isoa=8 ! Benzene
-     if(xnew(NO)>1.0 ) fNO  = fluxNO/(fluxNO+fluxHO2*Yemep(isoa)%fHO2RO2+fluxRO2*Yemep(isoa)%kRO2 )
+     if(xnew(NO_ix)>1.0 ) fNO  = fluxNO/(fluxNO+fluxHO2*Yemep(isoa)%fHO2RO2+fluxRO2*Yemep(isoa)%kRO2 )
      YCBENZ(:) = fno * Yemep(isoa)%highnox(:) + (1-fNO) * Yemep(isoa)%lownox(:)
      YNBENZ(:) = YCBENZ(:) * Yemep(isoa)%ratio
 
      isoa=9 ! Toluene
-     if(xnew(NO)>1.0 ) fNO  = fluxNO/(fluxNO+fluxHO2*Yemep(isoa)%fHO2RO2+fluxRO2*Yemep(isoa)%kRO2 )
+     if(xnew(NO_ix)>1.0 ) fNO  = fluxNO/(fluxNO+fluxHO2*Yemep(isoa)%fHO2RO2+fluxRO2*Yemep(isoa)%kRO2 )
      YCTOL(:) = fno * Yemep(isoa)%highnox(:) + (1-fNO) * Yemep(isoa)%lownox(:)
      YNTOL(:) = YCTOL(:) * Yemep(isoa)%ratio
 
+    if ( size(Yemep) > 9 ) then  ! CRUDE fix so far. Need to refactor
+     isoa=10 ! Alkane 6 from Manavi et al. (2022)
+     if(xnew(NO_ix)>1.0 ) fNO  = fluxNO/(fluxNO+fluxHO2*Yemep(isoa)%fHO2RO2+fluxRO2*Yemep(isoa)%kRO2 )
+     YCALK6(:) = fNO * Yemep(isoa)%highnox(:) + (1-fNO) * Yemep(isoa)%lownox(:)
+     YNALK6(:) = YCALK6(:) * Yemep(isoa)%ratio
 
+     isoa=11 ! Alkane 7
+     if(xnew(NO_ix)>1.0 ) fNO  = fluxNO/(fluxNO+fluxHO2*Yemep(isoa)%fHO2RO2+fluxRO2*Yemep(isoa)%kRO2 )
+     YCALK7(:) = fNO * Yemep(isoa)%highnox(:) + (1-fNO) * Yemep(isoa)%lownox(:)
+     YNALK7(:) = YCALK7(:) * Yemep(isoa)%ratio
 
-      if ( dbg ) then
+     isoa=12 ! Alkane 8
+     if(xnew(NO_ix)>1.0 ) fNO  = fluxNO/(fluxNO+fluxHO2*Yemep(isoa)%fHO2RO2+fluxRO2*Yemep(isoa)%kRO2 )
+     YCALK8(:) = fNO * Yemep(isoa)%highnox(:) + (1-fNO) * Yemep(isoa)%lownox(:)
+     YNALK8(:) = YCALK8(:) * Yemep(isoa)%ratio
+
+     isoa=13 ! Alkane 9
+     if(xnew(NO_ix)>1.0 ) fNO  = fluxNO/(fluxNO+fluxHO2*Yemep(isoa)%fHO2RO2+fluxRO2*Yemep(isoa)%kRO2 )
+     YCALK9(:) = fNO * Yemep(isoa)%highnox(:) + (1-fNO) * Yemep(isoa)%lownox(:)
+     YNALK9(:) = YCALK9(:) * Yemep(isoa)%ratio
+
+     isoa=14 ! Aromatics
+     if(xnew(NO_ix)>1.0 ) fNO  = fluxNO/(fluxNO+fluxHO2*Yemep(isoa)%fHO2RO2+fluxRO2*Yemep(isoa)%kRO2 )
+     YCARO3(:) = fNO * Yemep(isoa)%highnox(:) + (1-fNO) * Yemep(isoa)%lownox(:)
+     YNARO3(:) = YCARO3(:) * Yemep(isoa)%ratio
+
+     isoa=15 ! Polycycle aromatics 1
+     if(xnew(NO_ix)>1.0 ) fNO  = fluxNO/(fluxNO+fluxHO2*Yemep(isoa)%fHO2RO2+fluxRO2*Yemep(isoa)%kRO2 )
+     YCPAH1(:) = fNO * Yemep(isoa)%highnox(:) + (1-fNO) * Yemep(isoa)%lownox(:)
+     YNPAH1(:) = YCPAH1(:) * Yemep(isoa)%ratio
+     
+     isoa=16 ! Polycycle aromatics 2
+     if(xnew(NO_ix)>1.0 ) fNO  = fluxNO/(fluxNO+fluxHO2*Yemep(isoa)%fHO2RO2+fluxRO2*Yemep(isoa)%kRO2 )
+     YCPAH2(:) = fNO * Yemep(isoa)%highnox(:) + (1-fNO) * Yemep(isoa)%lownox(:)
+     YNPAH2(:) = YCPAH2(:) * Yemep(isoa)%ratio
+    end if ! size(Yemep)
+
+      if ( dbgYields ) then
           !write(*,'(a,f8.5,4es12.3)') 'YIELD RUN '//dtxt,  fNO, &
           !   kro2no, kro2ho2, xnew(NO), xnew(HO2)
           write(*,'(a,es10.2,7f10.4,2x,7f10.2)') Yemep(1)%name//&
@@ -356,7 +465,7 @@
 
    if ( first_call ) then
 
-     if( MasterProc ) write(*,*) dtxt//'YieldModifications:'//&
+     if( dbgYields ) write(*,*) dtxt//'YieldModifications:'//&
            trim(YieldModifications)
 
      if ( index( YieldModifications, 'acid') > 0 ) then
@@ -397,7 +506,7 @@
 
       first_call = .false.
 
-      if ( MasterProc ) write(*,*) dtxt//trim(txt), IsoOHYield, YA0APINOH
+      if ( dbgYields ) write(*,*) dtxt//trim(txt), IsoOHYield, YA0APINOH
     end if
 
     ! Needed at start of each chem timestep (may have changed if JPC-VY used)
@@ -409,7 +518,7 @@
     YA_MTOH = YA_APINOH
     YG_MTOH = 1- YA_APINOH
 
-    if ( dbg ) then
+    if ( dbgYields ) then
        write(*,"(3a,3es12.3)") dtxt//trim(txt), &
            DEBUG%datetxt, "====", YA_MTOH, YA_MTO3,YA_MTNO3
     end if
@@ -431,7 +540,7 @@
      if ( first_call ) then
         i_iso = find_index('OHLOSS_ISO',species(:)%name)
         i_mt  = find_index('OHLOSS_MT',species(:)%name)
-        if(MasterProc) write(*,*) dtxt//' i   ', i_iso, i_mt
+        if(dbgYields) write(*,*) dtxt//' i   ', i_iso, i_mt
         if ( i_iso < 1 .or. i_mt < 1 ) then
            print *, dtxt//"MISSING OHLOSS for JPC: ", i_iso, i_mt
            call StopAll(dtxt//'JPC OHLOSS ERR')
@@ -448,9 +557,9 @@
      dmt =xnew(i_mt)
      ratio = diso /(1.0+diso + dmt )
 
-     if ( dbg ) then
+     if ( dbgYields .and. C5H8_ix>0) then
         write(*,"(4a,4es12.3)") dtxt, DEBUG%datetxt, "====", &
-             dtxt, diso,dmt, ratio, xnew(C5H8)
+             dtxt, diso,dmt, ratio, xnew(C5H8_ix)
      end if
 
      if ( ratio < 0.01 )  then    ! exact to 3 sig figs
@@ -472,7 +581,7 @@
     YA_MTOH = YA_APINOH
     YG_MTOH = 1- YA_MTOH
 
-    if ( dbg ) then
+    if ( dbgYields ) then
       write(*,"(2a,9es12.3)") dtxt//' diso dmt rat y ', DEBUG%datetxt, diso, dmt, ratio, yield
       if ( ratio > 0.01 .and. ratio < 0.5  ) then
             write(*,"(3a,9es12.3)") dtxt//"JPC5YIELD ",dtxt, DEBUG%datetxt, &

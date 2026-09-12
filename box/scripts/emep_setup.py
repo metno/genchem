@@ -27,14 +27,20 @@ chemscripts='../../chem/scripts'  # ecosx/chem/scripts directory (do.GenChem)
 # some useful collections
 # Comments: Aqueous_EmChem16x is still standard
 #           Aqueous_EmChem16z uses Fgas(SO2) and still need checking
-common= ' Aqueous_EmChem16x Aero2017nx ShipNOx PM_FFireInert SeaSalt DustExtended Ash PM_WoodFFuelInert EC_ageing' # Most typical EMEP
+common= ' Aqueous_EmChem19c Aero2017nx ShipNOx PM_FFireInert SeaSalt DustExtended Ash7bin PM_WoodFFuelInert EC_ageing' # Most typical EMEP
 # with ResNonRes PM, EC aging moved in PM_ResNonResInert
-commonRNR= ' Aqueous_EmChem16x Aero2017nx ShipNOx PM_FFireInert SeaSalt DustExtended Ash PM_ResNonResInert' 
+commonRNR= ' Aqueous_EmChem19c Aero2017nx ShipNOx PM_FFireInert SeaSalt DustExtended Ash7bin PM_ResNonResInert'
+#commonRNR= ' Aqueous_EmChem19c Aero2017nx ShipNOx PM_FFireInert SeaSalt DustExtended Ash7bin PM_ResNonResInert'
+#
+# Oct 2024. Use Aero2024 instead of Aero2017nx
+commonRNR= ' Aqueous_EmChem19c Aero2024 ShipNOx PM_FFireInert SeaSalt DustExtended Ash7bin PM_ResNonResInert'
+#
+# less common setups:
 dcommon=' Aqueous_EmChem16x Aero2017nx ShipNOx PM_FFireInert SeaSalt Dust BVOC_SQT_NV' # More compact dust
-camscommon=' Aqueous_EmChem16x Aero2017nx Ash ShipNOx PM_FFireInert SeaSalt DustExtended BVOC_SQT_NV'  # No pollen
+camscommon=' Aqueous_EmChem16x Aero2017nx Ash7bin ShipNOx PM_FFireInert SeaSalt DustExtended BVOC_SQT_NV'  # No pollen
 ocommon=' ShipNOx PM_FFireInert SeaSalt DustExtended Pollen' # Added pollen and extended dust
-fcommon=' Aqueous_EmChem16x Aero2017nx Ash ShipNOx PM_FFireInert SeaSalt DustExtended Pollen BVOC_SQT_NV'
-ncommon=' Aqueous_EmChem16x Aero2017nx Ash ShipNOx FFireInert16z SeaSalt DustExtended16z Pollen'
+fcommon=' Aqueous_EmChem16x Aero2017nx Ash7bin ShipNOx PM_FFireInert SeaSalt DustExtended Pollen BVOC_SQT_NV'
+ncommon=' Aqueous_EmChem16x Aero2017nx Ash7bin ShipNOx FFireInert16z SeaSalt DustExtended16z Pollen'
 
 # Many schemes use common + same BVOC options. We add
 # IsoMT1 adds code for BVOC_SQT_NV, isoprene and apinene as surrogate for all monoterpenes
@@ -55,8 +61,8 @@ common_IsoMT3  = common + ' BVOC_SQT_NV BVOC_IsoMT3_emis'
 
 cmdx=dict()
 
-cmdx['EmChem19a-ECf']  ='-b EmChem19a -e ShipNOx PM_ECf' # JUST ECf! aging in PM_ECf
-cmdx['EmChem19a-CAMS5']  ='-b EmChem19a -e PM_ECf PM_POM25 PM_VBS_EmChem19 ' + camscommon + ' BVOC_IsoMT1_emis' # JUST ECf! aging in PM_ECf
+#cmdx['EmChem19a-ECf']  ='-b EmChem19a -e ShipNOx PM_ECf' # JUST ECf! aging in PM_ECf
+#cmdx['EmChem19a-CAMS5']  ='-b EmChem19a -e PM_ECf PM_POM25 PM_VBS_EmChem19 ' + camscommon + ' BVOC_IsoMT1_emis' # JUST ECf! aging in PM_ECf
 
 cmdx['EmChem19a-vbs']  ='-b EmChem19a -e PM_VBS_EmChem19 '+ common_IsoMT1
 cmdx['EmChem19c-vbs'] = '-b EmChem19c -e PM_VBS_EmChem19 '+ common_IsoMT1 # mimics emchem19a but with EmChem19c base mechanism
@@ -67,9 +73,10 @@ cmdx['EmChem19p-vbs']  = cmdx['EmChem19a-vbs'] + ' Pollen'
 cmdx['EmChem19a']  = cmdx['EmChem19a-vbs']
 cmdx['EmChem19c']  = cmdx['EmChem19c-vbs']
 cmdx['EmChem19p']  = cmdx['EmChem19p-vbs']
-cmdx['EmChem19cAsh7'] = '-b EmChem19c -e EmAsh ' #+ ' ShipNOx PM_FFireInert SeaSalt  DustExtended PM_WoodFFuelInert EC_ageing'
-cmdx['EmergencyAsh'] = '-b Emergency -e EmAsh '
+cmdx['EmChem19cAsh7'] = '-b EmChem19c -e Ash7bin ' #+ ' ShipNOx PM_FFireInert SeaSalt  DustExtended PM_WoodFFuelInert EC_ageing'
+cmdx['EmergencyAsh'] = '-b Emergency -e Ash7bin '
 cmdx['EmergencyRadiation'] = '-b Emergency -e Radiation '
+cmdx['EmergencyRadiationAsh'] = '-b Emergency -e Radiation Ash7bin Volc_SO2 '
 cmdx['Emergency'] = '-b Emergency '
 # schemes which uses Res, nonRes split instead of wood/ffuel
 cmdx['EmChem19r']  ='-b EmChem19a -e PM_VBS_EmChem19 '+ common_RNR
@@ -78,7 +85,13 @@ cmdx['EmChem19rp']  ='-b EmChem19a -e PM_VBS_EmChem19 '+ common_RNR + ' Pollen'
 cmdx['EmChem19rc']  ='-b EmChem19c -e PM_VBS_EmChem19 ' + common_RNR
 cmdx['EmChem19rcp'] ='-b EmChem19c -e PM_VBS_EmChem19 ' + common_RNR + ' Pollen'
 
-cmdx['EmChem19c-vbs3'] ='-b EmChem19c -e BVOC_ExtraMTs PM_VBS_EmChem19 PM_VBS_ExtraMTs'+common_IsoMT3 
+commonRNRn2o5= ' Aqueous_EmChem19c Aero2026 ClNO2 ShipNOx PM_FFireInert SeaSalt DustExtended Ash2bin PM_ResNonResInert BVOC_SQT_NV BVOC_IsoMT1_emis'
+cmdx['EmChem26']  ='-o EmChem26 -b EmChem19c -e PM_VBS_EmChem19 ' + commonRNRn2o5
+
+# EmChem26 with f suffix for Fungal spores species (primary biogenic aerosol particles)
+cmdx['EmChem26f']  ='-o EmChem26f -b EmChem19c -e PM_VBS_EmChem19 ' + commonRNRn2o5 + ' PBAP'
+
+cmdx['EmChem19c-vbs3'] ='-b EmChem19c -e BVOC_ExtraMTs PM_VBS_EmChem19 PM_VBS_ExtraMTs'+common_IsoMT3
 cmdx['EmChem19c-H']    ='-b EmChem19c -e PM_Hodzic_EmChem19'+common_IsoMT1
 #
 #cmdx['EmChem19X-vbs']  ='-b EmChem19X -e PM_VBS_EmChem19 '+ common_IsoMT1
@@ -126,9 +139,9 @@ gchem='../../chem/scripts/do.GenChem'
 txt= gchem + ' ' + cmdx[chem]
 if dbg:      txt += ' -d'
 if args.gnfr:
-    txt += ' -g gnfr' # gnfr 
+    txt += ' -g gnfr' # gnfr
 else:
-    txt += ' -g snap' # SNAP was originally used in boxChem 
+    txt += ' -g snap' # SNAP was originally used in boxChem
 args=txt.split()
 for a in args: print('Arg ', a)
 if dbg:  input('Press enter key to continue...')
@@ -146,7 +159,7 @@ subprocess.call('make')
 print(' MADE...', chem)
 
 ## Create directory to store CM and emissplit files: use these for EMEP model
-# All files and  emissplit_run directory created by do.GenChem 
+# All files and  emissplit_run directory created by do.GenChem
 
 odir='ZCM_' + chem
 splitdir=odir+'/emissplit_run'

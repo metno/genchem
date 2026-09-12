@@ -19,7 +19,7 @@
 
     use AeroConstants_mod,   only: AERO
    !Aqueous is just to allow compilation when using emep_setup
-    use Aqueous_mod,         only: ICLOHSO2, ICLRC1, ICLRC2, ICLRC3, aqrck
+    use Aqueous_mod,         only: ICLOHSO2, ICLRC1, ICLRC2, ICLRC3, ICLHO2H2O2, aqrck
     use BioNatConstants_mod, only: NATBIO ! for consistency with EMEP/ESX
     use CheckStop_mod,       only: CheckStop
     use ChemFields_mod, only : x, xold, xnew, cell_tinv 

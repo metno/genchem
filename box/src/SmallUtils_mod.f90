@@ -446,7 +446,7 @@ function str2csvString(s) result(string)
    integer :: i, n=0
 
    do i=1, size(s)
-     write(str(i),"(g12.3)") s(i)
+     write(str(i),"(g16.3)") s(i)
      str(i) = adjustl( str(i) )
      n = n + 1
    end do

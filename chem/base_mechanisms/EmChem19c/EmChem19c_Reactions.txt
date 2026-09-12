@@ -398,7 +398,7 @@ rcphot(IDMEK)            : ACETOL        = CH3CO3 + HCHO + HO2 ;
 * rcphot(IDCHOCHO_HCHO)   : GLYOX     = CO + HCHO    ;  J32   #From MCM, see run_kpp_constants
 * rcphot(IDCHOCHO_2CHO)   : GLYOX     = 2 HO2 + 2 CO ;  J33   #From MCM, see run_kpp_constants
 *
-*rcphot(IDCHOCHO)         : GLYOX  = 1.9 CO + 0.1 HCHO + 0.5 HO2 ; #From MCM, see run_kpp_constants
+* rcphot(IDCHOCHO)         : GLYOX  = 1.9 CO + 0.1 HCHO + 0.5 HO2 ; #From MCM, see run_kpp_constants. Turned off in cloud-j, explicit instead
 *
 rcphot(IDRCOCHO)         : MGLYOX        = CH3CO3 + CO + HO2 ;  J34
 rcphot(IDCH3COY)         : BIACET = 2 CH3CO3 ; MCM (CH3COY <=> BIACET)
@@ -427,7 +427,7 @@ rcphot(IDCH3O2H)         : ISRO2H = OH + MACR + HCHO + HO2 ;     J41
 rcphot(IDMEK)*0.78       : sC4H9NO3 = NO2 + 0.652 MEK + 0.652 HO2 + 0.348 CH3CHO + 0.348 C2H5O2 ; MCM J5
 *CheT2: 
 rcphot(IDMEK)*0.78  : ISON  = NO2 + MACR + HCHO + HO2 ;    J54  iC3H7ONO2 (CheT2 used MCM J54) 
-*
+
 * ----------------  CLOUD-J reactions
 *rcphot(IDPAN)*0.70            : PAN = CH3CO3 + NO2                     ; These two PAN reactions describe the CloudJ reactions
 *rcphot(IDPAN)*0.30            : PAN = CH3CO2 + NO3                     ; but CH3CO2 not present in EMEP. Not included as standard.

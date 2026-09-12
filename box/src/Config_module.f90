@@ -147,8 +147,8 @@ logical, public, save ::  MasterProc = .true.
    character(len=*), parameter:: dtxt = 'ConfigInit:'
 
    namelist /box_config/ tstart, tend, dt, doy, lat, lon, use_emis, &
-      USES, use_cloudj, use_hrlycj, cloudj_indir, printJ_day, & !added for consistency with EMEP
-      emissplit_dir, m, h2o, Hmix, emis_kgm2day, &
+      USES, use_cloudj, use_hrlycj, cloudj_indir, & !added for consistency with EMEP
+      printJ_day, emissplit_dir, m, h2o, Hmix, emis_kgm2day, &
       fIsop,fMTL,fMTP,fSQT, & ! BVOC factors
       all_species, initBox, &
       debug, OutSpecs_list, OutGroups_list, Temp, rh, debug
