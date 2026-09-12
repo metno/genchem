@@ -1,0 +1,8 @@
+* Chlorine Family Reactions
+
+* Photolysis Reactions
+rcphot(IDClNO2)          : ClNO2         = NO2  ;
+
+* Bimolecular Reactions
+2.40E-12*EXP(-1250.*TINV)        : OH + ClNO2 = OH + NO2 ;
+

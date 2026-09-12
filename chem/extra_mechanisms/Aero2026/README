@@ -1,0 +1,28 @@
+2026-05-18: Aero2026
+            - added stoichiometric yields for HNO3, NO3_f, and NO3_c for N2O5 hydrolysis. 
+            The value of these yeilds are calculated in YieldModifications.f90 analogous
+            to how VBS yields are calculated and applied.
+
+2024-10-10: Aero2024
+            - cleaned up and removed crude H2O2 and CH3COOH losses
+
+2018-06-26: Added this file
+            Add HydrolysisN2O5 for EmChem16x
+            plus old crude aerosol losses (H2O2 and CH3OOH)
+
+
+Aero2026 adds branching of N2O5 hydrolysis consistent with  Thornton reaction 1 of:
+
+  Thornton, J., Kercher, J., Riedel, T. et al. A large atomic chlorine
+  source inferred from mid-continental reactive nitrogen chemistry. Nature
+  464, 271–274 (2010). https://doi.org/10.1038/nature08905
+
+Aero2024 reactions are similar to that used in Stadtler et al 2017, but based
+upon that paper we now skip some reactions.
+
+  Stadtler, S.; Simpson, D.; Schröder, S.; Taraborrelli, D.; Bott,
+  A., Schultz, M. Ozone impacts of gas--aerosol uptake in global
+  chemistry-transport models Atmos. Chem. Physics, 2018, 18, 3147-3171
+  https://www.atmos-chem-phys.net/18/3147/2018/
+
+

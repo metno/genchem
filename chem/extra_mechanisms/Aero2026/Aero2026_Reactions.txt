@@ -1,0 +1,14 @@
+* Aero2026 reactions (May 2026) update the previous Aero2024 reactions - see README
+
+HydrolysisN2O5() : N2O5 = |YN2O5HYD(1)| HNO3 + |YN2O5HYD(2)| ClNO2 + |YN2O5HYD(3)| NO3_f + |YN2O5HYD(4)| NO3_c ;
+
+* GenChem/EMEP uses KDIM to cope with vertical level
+
+UptakeRate(cNO3,gam=0.001,S=S_m2m3(AERO%PM,KDIM))   : NO3 = HNO3 ;
+
+UptakeRate(cHNO3,gam=0.1,S=S_m2m3(AERO%DU_C,KDIM))  : HNO3 = NO3_c ;
+
+UptakeRate(cHNO3,gam=0.01,S=S_m2m3(AERO%SS_C,KDIM)) : HNO3 = NO3_c ;
+
+UptakeRate(cHO2,gam=0.2,S=S_m2m3(AERO%PM,KDIM))     : HO2 = 0.5 H2O2 ;
+
