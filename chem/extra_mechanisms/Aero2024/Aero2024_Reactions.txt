@@ -1,0 +1,20 @@
+* Aero2024 reactions are similar to that used in Stadtler et al 2017, but based
+* upon that paper we now skip some reactions.
+* Stadtler, S.; Simpson, D.; Schröder, S.; Taraborrelli, D.; Bott, A. &
+* Schultz, M. Ozone impacts of gas--aerosol uptake in global
+* chemistry-transport models Atmos. Chem. Physics, 2018, 18, 3147-3171
+* https://www.atmos-chem-phys.net/18/3147/2018/
+* 
+
+HydrolysisN2O5() :       N2O5 = 2 HNO3 ;
+
+* GenChem/EMEP uses KDIM to cope with vertical level
+
+UptakeRate(cNO3,gam=0.001,S=S_m2m3(AERO%PM,KDIM))   : NO3 = HNO3 ;
+
+UptakeRate(cHNO3,gam=0.1,S=S_m2m3(AERO%DU_C,KDIM))  : HNO3 = NO3_c ;
+
+UptakeRate(cHNO3,gam=0.01,S=S_m2m3(AERO%SS_C,KDIM)) : HNO3 = NO3_c ;
+
+UptakeRate(cHO2,gam=0.2,S=S_m2m3(AERO%PM,KDIM))     : HO2 = 0.5 H2O2 ;
+
