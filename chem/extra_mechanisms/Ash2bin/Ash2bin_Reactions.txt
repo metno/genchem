@@ -1,0 +1,7 @@
+
+*  <----------- Volcanic emissions ----------------------------->
+*
+* For ash, we currently set rcemis directly in emepctm
+*
+rcemis(Ash_f,k)   : = Ash_f ;
+rcemis(Ash_c,k)   : = Ash_c ;
